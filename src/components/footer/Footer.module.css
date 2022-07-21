@@ -1,0 +1,25 @@
+.main {
+    @apply
+    flex
+    flex-row
+    justify-between
+    items-center
+    flex-nowrap
+    bg-gray-900
+  }
+  
+  .h1 {
+    @apply
+    p-5
+    text-sm
+    text-purple-300
+    font-mono 
+    font-extrabold 
+    phone:text-3xl
+  }
+  
+  .img {
+    @apply
+    items-center
+  }
+  

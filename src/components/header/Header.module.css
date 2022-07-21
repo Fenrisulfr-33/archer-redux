@@ -1,0 +1,23 @@
+.main {
+    @apply 
+      flex
+      flex-row
+      justify-between
+      items-center
+      h-28
+    bg-gray-900
+  }
+  
+  .h1 {
+    @apply  
+    p-5
+    text-purple-300 
+    font-mono 
+    font-extrabold 
+    phone:text-3xl
+  }
+  
+  .nav {
+    @apply 
+    text-center
+  }

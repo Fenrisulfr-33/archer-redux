@@ -5,17 +5,17 @@ const IndexPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Redux Toolkit</title>
+        <title>Pokemon</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className='bg-blue-400'>
 
       </header>
 
-        <p className={'bg-sky-400'}>hey</p>
+        <p className={'bg-sky-400'}>Pokemon</p>
  
     </>
   )
 }
 
-export default IndexPage
+export default IndexPage;

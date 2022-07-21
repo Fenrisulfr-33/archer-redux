@@ -1,0 +1,9 @@
+.main {
+    @apply 
+    min-h-screen
+    bg-gray-800
+
+    border-8
+    border-gray-900
+    rounded-3xl
+}
