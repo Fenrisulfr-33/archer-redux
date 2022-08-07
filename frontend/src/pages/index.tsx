@@ -7,7 +7,7 @@ const IndexPage: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Redux Toolkit</title>
+        <title>Archer Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>

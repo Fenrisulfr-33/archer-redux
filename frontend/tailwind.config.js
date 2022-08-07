@@ -34,7 +34,25 @@ module.exports = {
         },
         teal: {
           300: '#47E9BA',
-        }
+        },
+        normal: '#9ca3af', // gray-400
+        fire: '#ef4444', // orange-500
+        water: '#0ea5e9', // sky-500
+        electric: '#fde047', // yellow-300
+        grass: '#22c55e',  // green-500
+        ice: '#a5f3fc', // cyan-200
+        fighting: '#9d174d', // pink-800
+        poison: '#a855f7', // purple-500
+        ground: '#b45309', // amber-700
+        flying: '#93c5fd', // blue-300
+        psychic: '#fb7185', // rose-400
+        bug: '#a3e635', // lime-400
+        rock: '#fdba74', // orange-300
+        ghost: '#6366f1', // indigo-500
+        dragon: '#2563eb', // blue-600
+        dark: '#3f3f46', // zinc-700
+        steel: '#155e75', // cyan-800
+        fairy: '#f0abfc', // fuchsia-300
       }
     },
   },
