@@ -37,7 +37,7 @@ module.exports = {
         },
         normal: '#9ca3af', // gray-400
         fire: '#ef4444', // orange-500
-        water: '#0ea5e9', // sky-500
+        water: '#0ea5e9', // sky-500 : #0ea5e9
         electric: '#fde047', // yellow-300
         grass: '#22c55e',  // green-500
         ice: '#a5f3fc', // cyan-200
