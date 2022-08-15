@@ -12,4 +12,9 @@ router
     .get(controller.read)
     .all(methodNotAllowed);
 
+router
+    .route('/:id/:game')
+    .get(controller.readGame)
+    .all(methodNotAllowed);
+
 module.exports = router;

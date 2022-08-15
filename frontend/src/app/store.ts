@@ -1,6 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
-import counterReducer from '../features/counter/counterSlice';
 import { combineReducers } from '@reduxjs/toolkit';
 import counter from '../redux/counter/counterReducer';
 import pokemon from '../redux/pokemon/pokemonReducer';

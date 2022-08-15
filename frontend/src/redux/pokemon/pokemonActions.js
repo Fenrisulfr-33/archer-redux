@@ -1,33 +1,40 @@
-export const UPDATE_NAME = 'UPDATE_NAME';
-export const UPDATE_ABILITY = 'UPDATE_ABILITY';
-export const UPDATE_MOVE_ONE = 'UPDATE_MOVE_ONE';
-export const UPDATE_MOVE_TWO = 'UPDATE_MOVE_TWO';
-export const UPDATE_MOVE_THREE = 'UPDATE_MOVE_THREE';
-export const UPDATE_MOVE_FOUR = 'UPDATE_MOVE_FOUR';
-export const UPDATE_ITEM= 'UPDATE_ITEM';
-export const UPDATE_NATURE= 'UPDATE_NATURE';
-export const UPDATE_HP_EV= 'UPDATE_HP_EV';
-export const UPDATE_ATK_EV= 'UPDATE_ATK_EV';
-export const UPDATE_DEF_EV= 'UPDATE_DEF_EV';
-export const UPDATE_SPATK_EV= 'UPDATE_SPATK_EV';
-export const UPDATE_SPDEF_EV= 'UPDATE_SPDEF_EV';
-export const UPDATE_SPD_EV= 'UPDATE_SPD_EV';
-export const UPDATE_DESC= 'UPDATE_DESC';
+export const CREATE_POKEMON = 'CREATE_POKEMON';
+export const LOAD_NATIONAL_DEX_SUCCESS = 'LOAD_NATIONAL_DEX';
+export const LOAD_POKEMON_SUCCESS = 'LOAD_POKEMON_SUCCESS';
 
-export const updateName = (name) => {
+import * as pokemonApi from '../../pages/api/pokemonApi';
+
+export const createPokemon = (pokemon) => {
     return (dispatch) => {
         dispatch({
-            type: UPDATE_NAME,
-            name,
+            type: CREATE_POKEMON,
+            pokemon,
         });
     };
 };
 
-export const updateAbility = (ability) => {
+export const loadNationalDexSuccess = (nationalDex) => {
+    return { type: LOAD_NATIONAL_DEX_SUCCESS, nationalDex };
+}
+
+export const loadNationalDex = () => {
     return (dispatch) => {
-        dispatch({
-            type: UPDATE_ABILITY,
-            ability,
-        });
+        return pokemonApi.getNationalDex().then(nationalDex => {
+            dispatch(loadNationalDexSuccess(nationalDex));
+        }).catch(error => console.log(error));
+
     };
-};
+}
+
+export const loadPokemonSuccess = (pokemon) => {
+    return { type: LOAD_POKEMON_SUCCESS, pokemon };
+}
+
+export const loadPokemon = (id, game) => {
+    return (dispatch) => {
+        return pokemonApi.getPokemon(id, game).then(pokemon => {
+            dispatch(loadPokemonSuccess(pokemon));
+        }).catch(error => console.log(error));
+
+    };
+}

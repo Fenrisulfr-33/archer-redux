@@ -1,36 +1,28 @@
 import * as types from './pokemonActions';
 
-const initialState = { 
-    form: {
-        name: '',
-        ability: '',
-        moveOne: '',
-        moveTwo: '',
-        moveThree: '',
-        moveFour: '',
-        item: '',
-        nature: '',
-        hpEV: 0,
-        atkEV: 0,
-        defEV: 0,
-        spAtkEV: 0,
-        spDefEV: 0,
-        spdEV: 0,
-        description: ''
-    }
+const initialState = {
+    nationalDexList: [],
+    pokemon: {},
 }
 
-export default function pokemonReducer(state = initialState, action){
-    switch (action.type){
-        case types.UPDATE_NAME:
+export default function pokemonReducer(state = initialState, action) {
+    switch (action.type) {
+        case types.CREATE_POKEMON:
             return {
                 ...state,
-                name: action.name,
+                pokemon: action.pokemon,
             };
-        case types.UPDATE_ABILITY:
+        case types.LOAD_NATIONAL_DEX_SUCCESS:
+            const { nationalDex } = action;
             return {
                 ...state,
-                ability: action.ability,
+                nationalDex,
+            };
+        case types.LOAD_POKEMON_SUCCESS:
+            const { pokemon } = action;
+            return {
+                ...state,
+                pokemon,
             };
         default:
             return state;

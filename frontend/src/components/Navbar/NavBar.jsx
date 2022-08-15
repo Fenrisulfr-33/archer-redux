@@ -1,7 +1,7 @@
 // import { logout, reset } from "../../redux/features/auth/authSlice";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from 'react-redux'
-import { SideBarIcon } from "../Menu/SideBarIcon";
+import { NavBarIcon } from "../Menu/NavBarIcon";
 /* React Icons */
 import { SiHomeadvisor, SiTelegraph } from 'react-icons/si'
 import { MdArticle, MdCatchingPokemon } from 'react-icons/md';
@@ -38,11 +38,11 @@ export default function NavBar(props){
         <div className='hidden tablet:flex items-center justify-end space-x-4 pr-5'>
 
             
-            <SideBarIcon icon={<SiHomeadvisor size='28' />} text={'Home'} route={'/'} />
-            <SideBarIcon icon={<MdArticle size='28' />} text={'Articles'} route={'/articles'}/>
-            <SideBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/>
-            <SideBarIcon icon={<MdCatchingPokemon size='28' />} text={'Pokemon'} route={'/pokemon'}/>
-            <SideBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/>
+            <NavBarIcon icon={<SiHomeadvisor size='28' />} text={'Home'} route={'/'} />
+            <NavBarIcon icon={<MdArticle size='28' />} text={'Articles'} route={'/articles'}/>
+            <NavBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/>
+            <NavBarIcon icon={<MdCatchingPokemon size='28' />} text={'Pokemon'} route={'/pokemon'}/>
+            <NavBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/>
             {user ? (
                 <button onClick={onLogout} className={`${styles.navbarIcon} group`}>
                 <BiLogOutCircle size='28' />
@@ -54,8 +54,8 @@ export default function NavBar(props){
             ) : 
             (
                 <>
-                    <SideBarIcon icon={<BiLogInCircle size='28' />} text={'Login'} route={'/users/login'} />
-                    <SideBarIcon icon={<FaFileSignature size='28' />} text={'Sign Up'} route={'/users/register'}/>
+                    <NavBarIcon icon={<BiLogInCircle size='28' />} text={'Login'} route={'/users/login'} />
+                    <NavBarIcon icon={<FaFileSignature size='28' />} text={'Sign Up'} route={'/users/register'}/>
                 </>
             )}
         </div>
