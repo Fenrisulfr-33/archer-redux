@@ -3,10 +3,11 @@ import { colors } from "../variables/typeColors";
 
 /**
  * Takes in a pokemons type/types and converts it into a JSX chart
- * @param {*} param0 
- * @returns 
+ * @param {typeOne} string - needs to be lowerCase to work with the colors object 
+ * @param {typeTwo} string - needs to be lowerCase to work with the colors object if present
+ * @returns a React container with a list of lists
  */
-export const TypeWeakness = ({ typeOne, typeTwo }) => {
+export const TypeWeakness = ({ typeOne = '', typeTwo = '' }) => {
     const immune = [];
     const normal = [];
     const resistant = [];
