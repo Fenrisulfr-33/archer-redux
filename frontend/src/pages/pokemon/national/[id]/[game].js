@@ -13,6 +13,7 @@ import { BaseStat } from "../../components/baseStats";
 import { NavBarIcon } from '../../../../components/Menu/NavBarIcon';
 import { SiPokemon } from 'react-icons/si'
 import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs'
+import { TypeWeakness } from '../../components/TypeWeakness';
 
 const InfoRow = ({ title, info }) => (
     <div className='flex flex-row justify-between'>
@@ -21,22 +22,21 @@ const InfoRow = ({ title, info }) => (
     </div>
 );
 
-const NationalInd = ({ pokemon, loadPokemon }) => {
+const NationalInd = ({ pokemon = {}, loadPokemon }) => {
     const { query, isReady } = useRouter();
     // Add State to determine what generation this person wants on screen
     // inital request to the server should be the param sword and shield but then can be changed
     useEffect(() => {
-        try {
-            isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
-        } catch (error) {
-            setError(error);
-        }
-    }, [isReady, pokemon]);
+            try {
+                isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
+            } catch (error) {
+                setError(error);
+            }
+    }, [isReady, query.id, query.game]);
 
     if (!pokemon) {
         return null
     } else {
-        console.log(pokemon.baseStats);
         return (
             <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12  m-auto font-mono text-center text-gray-400'>
                 <div id='toobar' className='col-span-1 tablet:col-span-2 flex flex-row justify-between pt-2'>
@@ -79,20 +79,20 @@ const NationalInd = ({ pokemon, loadPokemon }) => {
                         <div className='flex flex-row justify-between'>
                             <h4>Pokemon Type:</h4>
                             <span>
-                            {pokemon?.type?.['0'] &&
-                                <Image
-                                    src={`/types/${pokemon?.type?.['0']}.svg`}
-                                    alt={`${pokemon?.type?.['0']}`}
-                                    height={40}
-                                    width={40}
-                                />}
-                            {pokemon?.type?.['1'] &&
-                                <Image
-                                    src={`/types/${pokemon?.type?.['1']}.svg`}
-                                    alt={`${pokemon?.type?.['1']}`}
-                                    height={40}
-                                    width={40}
-                                />}
+                                {pokemon?.type?.['0'] &&
+                                    <Image
+                                        src={`/types/${pokemon?.type?.['0']}.svg`}
+                                        alt={`${pokemon?.type?.['0']}`}
+                                        height={40}
+                                        width={40}
+                                    />}
+                                {pokemon?.type?.['1'] &&
+                                    <Image
+                                        src={`/types/${pokemon?.type?.['1']}.svg`}
+                                        alt={`${pokemon?.type?.['1']}`}
+                                        height={40}
+                                        width={40}
+                                    />}
                             </span>
                         </div>
                         <InfoRow title={'Ability 1'} info={pokemon?.abilities?.['1']} />
@@ -106,6 +106,12 @@ const NationalInd = ({ pokemon, loadPokemon }) => {
                         <BaseStat title={'spdef'} stat={pokemon?.baseStats?.spdef} />
                         <BaseStat title={'spd'} stat={pokemon?.baseStats?.spd} />
                     </div>
+                </div>
+                <div className='bg-gray-600'>
+                    {pokemon?.type && <TypeWeakness
+                        typeOne={pokemon?.type?.['0']}
+                        typeTwo={pokemon?.type?.['1']}
+                    />}
                 </div>
                 {isReady && <MovesListsByType moves={pokemon.moves} />}
             </div >
