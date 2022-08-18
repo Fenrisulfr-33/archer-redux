@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "setup": "yarn install && cd backend && yarn install && cd ../frontend && yarn install"
   },
   "dependencies": {
     "concurrently": "^7.3.0"
