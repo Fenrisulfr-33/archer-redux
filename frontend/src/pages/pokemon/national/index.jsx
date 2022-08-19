@@ -148,7 +148,7 @@ const NationalDex = ({ national = [], loadNationalDex }) => {
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">
-              <table className=" min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
+              <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
                 <thead>
                   <tr className="bg-gray-500 text-gray-300 uppercase  leading-normal rounded-t-lg">
                     {headers.map((header) => (

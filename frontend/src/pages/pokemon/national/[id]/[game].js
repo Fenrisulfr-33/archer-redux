@@ -9,7 +9,7 @@ import * as pokemonActions from '../../../../redux/pokemon/pokemonActions';
 import { bindActionCreators } from 'redux';
 /* TESTING */
 import MovesListsByType from "../../components/MovesListsByType";
-import { BaseStat } from "../../components/baseStats";
+import { BaseStat } from "../../components/BaseStats";
 import { NavBarIcon } from '../../../../components/Menu/NavBarIcon';
 import { SiPokemon } from 'react-icons/si'
 import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs'
@@ -23,7 +23,8 @@ const InfoRow = ({ title, info }) => (
 );
 
 const NationalInd = ({ pokemon = {}, loadPokemon }) => {
-    const { query, isReady } = useRouter();
+    const { query, isReady } = useRouter(),
+    [loading, setLoading] = useState(false);
     // Add State to determine what generation this person wants on screen
     // inital request to the server should be the param sword and shield but then can be changed
     useEffect(() => {
@@ -34,8 +35,12 @@ const NationalInd = ({ pokemon = {}, loadPokemon }) => {
             }
     }, [isReady, query.id, query.game]);
 
-    if (!pokemon) {
-        return null
+    if (loading) {
+        return (
+            <>
+                Loading...
+            </>
+        )
     } else {
         return (
             <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12  m-auto font-mono text-center text-gray-400'>
@@ -81,14 +86,14 @@ const NationalInd = ({ pokemon = {}, loadPokemon }) => {
                             <span>
                                 {pokemon?.type?.['0'] &&
                                     <Image
-                                        src={`/types/${pokemon?.type?.['0']}.svg`}
+                                        src={`/types/${pokemon?.type?.['0'].toLowerCase()}.svg`}
                                         alt={`${pokemon?.type?.['0']}`}
                                         height={40}
                                         width={40}
                                     />}
                                 {pokemon?.type?.['1'] &&
                                     <Image
-                                        src={`/types/${pokemon?.type?.['1']}.svg`}
+                                        src={`/types/${pokemon?.type?.['1'].toLowerCase()}.svg`}
                                         alt={`${pokemon?.type?.['1']}`}
                                         height={40}
                                         width={40}
@@ -107,7 +112,7 @@ const NationalInd = ({ pokemon = {}, loadPokemon }) => {
                         <BaseStat title={'spd'} stat={pokemon?.baseStats?.spd} />
                     </div>
                 </div>
-                <div className='bg-gray-600'>
+                <div className='col-span-1 tablet:col-span-2 mt-4'>
                     {pokemon?.type && <TypeWeakness
                         typeOne={pokemon?.type?.['0']}
                         typeTwo={pokemon?.type?.['1']}

@@ -28,7 +28,7 @@ export const BaseStat = ({ title, stat }) => {
     } else if (stat > 212) {
       style = tier.six;
     }
-  } else if (title === "atk" || title === "spatk") {
+  } 
 
   /**
    * Attack is 5 - 190
@@ -36,6 +36,7 @@ export const BaseStat = ({ title, stat }) => {
    *  Attack is held by Mega Mewtwo X @ 190
    *  SpAttack is held by Mega Mewtwo Y @ 194
    */
+   else if (title === "atk" || title === "spatk") {
     if (stat <= 32) {
       style = tier.one;
     } else if (stat > 32 && stat <= 64) {
