@@ -29,24 +29,9 @@ export default function MovesList({ moves, lvl = false }){
     const moveHeader = ['Name', 'Type', 'Cat.', 'PP', 'Pwr.', 'Acc.'];
     lvl ? moveHeader.unshift('Level') : null;
 
-    // return (
-    //     <div className="bg-gray-200 shadow-md  flex items-center justify-center">
-    //         <table className="table-auto ">
-    //             <thead className={'bg-gray-500 text-stone-300 uppercase text-sm '}>
-    //                 <tr>
-    //                     {moveHeader.map((header) => (<th className={styles.th}>{header}</th>))}
-    //                 </tr>
-    //             </thead>
-    //             <tbody className="text-gray-600 text-sm font-light">
-    //                 {moves.map((move) => <MoveInd key={move._id} move={move} lvl={lvl} />)}
-    //             </tbody>
-    //         </table>
-    //     </div>       
-    // )
-
     return (
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div className="overflow-x-auto  m-2">
+            <div className="py-2 inline-block min-w-full">
                 <div className="overflow-hidden">
                     <table className=" min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
                         <thead>

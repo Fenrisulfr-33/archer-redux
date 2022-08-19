@@ -8,7 +8,7 @@ export default function Pokemon() {
                 <SideMenu />
             </div>
             <div className='w-4/5'>
-                <SwShCompForm />
+                {/* <SwShCompForm /> */}
             </div>
         </div>
     );

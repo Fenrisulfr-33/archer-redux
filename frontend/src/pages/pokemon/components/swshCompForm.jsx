@@ -4,7 +4,6 @@ import { items } from "../variables/items";
 import Select from "react-select";
 
 import { connect } from 'react-redux';
-import * as counterActions from '../../../redux/counter/counterActions';
 import { bindActionCreators } from 'redux';
 
 const styles = {
@@ -136,15 +135,15 @@ const SwShCompForm = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    const { counter } = state;
-    return {
-        counter: counter.counter,
-    }
-}
+// const mapStateToProps = (state) => {
+//     const { counter } = state;
+//     return {
+//         counter: counter.counter,
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(counterActions, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators(counterActions, dispatch)
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SwShCompForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(SwShCompForm);

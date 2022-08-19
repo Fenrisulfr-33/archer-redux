@@ -1,12 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 import { combineReducers } from '@reduxjs/toolkit';
-import counter from '../redux/counter/counterReducer';
 import pokemon from '../redux/pokemon/pokemonReducer';
+import national from '../redux/pokemon/nationalReducer';
+import apiCallsInProgress from '../redux/apiStatus/apiStatusReducer';
 
 export const reducer = combineReducers({
-  counter,
   pokemon,
+  national,
+  apiCallsInProgress
 })
 
 export function makeStore() {

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { colors } from "../variables/typeColors";
 /* REDUX IMPORTS */
 import { connect } from "react-redux";
-import * as pokemonActions from "../../../redux/pokemon/pokemonActions";
+import { loadNationalDex } from "../../../redux/pokemon/nationalActions";
 import { bindActionCreators } from "redux";
 
 import { useRouter } from "next/router";
@@ -30,10 +30,7 @@ const NationalDexRow = ({
   const router = useRouter();
   const stats = [hp, atk, def, spatk, spdef, spd];
   const game = "sword-shiled";
-  // const clickHandler = (e) => {
-  //     console.log('clicked');
-  //     router.push(`/pokemon/national/${_id}/sword-shield`);
-  // }
+
   return (
     <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
       <td>{_id}</td>
@@ -78,7 +75,7 @@ const NationalDexRow = ({
   );
 };
 /* MAIN COMPONENT */
-const NationalDex = ({ national = [], loadNationalDex }) => {
+const NationalDex = ({ national, loadNationalDex, loading }) => {
   const headers = [
       "Nat. Dex",
       "Pokemon",
@@ -105,11 +102,11 @@ const NationalDex = ({ national = [], loadNationalDex }) => {
   useEffect(() => {
     if (national.length === 0) {
       try {
-        console.log(national[0])
+        console.log(national[0]);
         loadNationalDex();
-        console.log(national[0])
+        console.log(national[0]);
       } catch (error) {
-        setError(error);
+        alert(`Loading national failed: ${error}`);
       }
     }
   }, []);
@@ -119,44 +116,47 @@ const NationalDex = ({ national = [], loadNationalDex }) => {
       <div id="side-menu" className="tablet:h-screen w-1/5">
         <SideMenu />
       </div>
-      <div id="pokemon-content" className="w-4/5 flex flex-col">
-        <div className="flex justify-between m-1">
-          <h1>Toolbar</h1>
-          <input
-            placeholder="Pokemon Name"
-            className="rounded-md"
-            name={"name"}
-            value={searchParams.name}
-            onChange={onChangeHandler}
-          />
-          <input
-            placeholder="Type 1"
-            className="rounded-md min-w-fit"
-            name={"typeOne"}
-            value={searchParams.typeOne}
-            onChange={onChangeHandler}
-          />
-          <input
-            placeholder="Type 2"
-            className="rounded-md min-w-fit"
-            name={"typeTwo"}
-            value={searchParams.typeTwo}
-            onChange={onChangeHandler}
-          />
-          <button onClick={onResetHandler}>Reset</button>
-        </div>
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden">
-              <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
-                <thead>
-                  <tr className="bg-gray-500 text-gray-300 uppercase  leading-normal rounded-t-lg">
-                    {headers.map((header) => (
-                      <th className={styles.th}>{header}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="text-gray-600  font-light">
+      {loading ? (
+        <>Laoding...</>
+      ) : (
+        <div id="pokemon-content" className="w-4/5 flex flex-col">
+          <div className="flex justify-between m-1">
+            <h1>Toolbar</h1>
+            <input
+              placeholder="Pokemon Name"
+              className="rounded-md"
+              name={"name"}
+              value={searchParams.name}
+              onChange={onChangeHandler}
+            />
+            <input
+              placeholder="Type 1"
+              className="rounded-md min-w-fit"
+              name={"typeOne"}
+              value={searchParams.typeOne}
+              onChange={onChangeHandler}
+            />
+            <input
+              placeholder="Type 2"
+              className="rounded-md min-w-fit"
+              name={"typeTwo"}
+              value={searchParams.typeTwo}
+              onChange={onChangeHandler}
+            />
+            <button onClick={onResetHandler}>Reset</button>
+          </div>
+          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="overflow-hidden">
+                <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
+                  <thead>
+                    <tr className="bg-gray-500 text-gray-300 uppercase  leading-normal rounded-t-lg">
+                      {headers.map((header) => (
+                        <th className={styles.th}>{header}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-600  font-light">
                   {national
                     .filter((pokemon) =>
                       searchParams.name === ''
@@ -189,28 +189,26 @@ const NationalDex = ({ national = [], loadNationalDex }) => {
                     .map((pokemon) => (
                       <NationalDexRow key={pokemon._id} pokemon={pokemon} />
                     ))}
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-    const { pokemon } = state;
     return {
-      national: pokemon.nationalDex,
+      national: state.national,
+      loading: state.apiCallsInProgress > 0,
     };
   },
   mapDispatchToProps = (dispatch) => {
     return {
-      loadNationalDex: bindActionCreators(
-        pokemonActions.loadNationalDex,
-        dispatch
-      ),
+      loadNationalDex: bindActionCreators(loadNationalDex, dispatch),
     };
   };
 export default connect(mapStateToProps, mapDispatchToProps)(NationalDex);

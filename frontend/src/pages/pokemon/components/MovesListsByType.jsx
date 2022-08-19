@@ -4,8 +4,8 @@ export default function MovesListsByType({ moves }) {
     return (
         <>
             {moves?.lvl && <div id='level-up-moves' className='col-span-1'>
-            <h4 className=''>Learnt on Level Up</h4>
-            <MovesList moves={moves.lvl} lvl={true} />
+                <h4 className=''>Learnt on Level Up</h4>
+                <MovesList moves={moves.lvl} lvl={true} />
             </div>}
             {moves?.egg && <div id='egg-moves' className='col-span-1'>
                 <h4 className=''>Egg Moves</h4>

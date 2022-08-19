@@ -1,33 +1,42 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react';
-import { colors } from '../variables/typeColors';
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import { colors } from "../variables/typeColors";
 
-const styles = {
-  type: "col-span-1 my-1 rounded-md px-2 space-x-1 font-bold bg-opacity-75",
-}
 
-export default function MoveModal({ move }) {
-  let [isOpen, setIsOpen] = useState(false)
 
+export default function MoveModal({ move: { _id, name, type, category, contest, pp, power, accuracy, contact, generation, target, shortEffect, priority } }) {
+  const styles = {
+    typec: " rounded-md bg-opacity-60 w-1/4 text-center",
+    test: ''
+  },{test, typec} = styles;
+
+  let [isOpen, setIsOpen] = useState(false);
+  const rows = [
+    {header: 'Type', value: type},
+    {header: 'Cat.', value: category},
+    {header: 'PP', value: pp},
+    {header: 'Power', value: power},
+    {header: 'Acc.', value: accuracy},
+    {header: 'Contact', value: contact},
+    {header: 'Gen', value: generation},
+    {header: 'Target', value: target},
+    {header: 'Priority', value: priority},
+    {header: 'Contest', value: contest},
+    {header: 'Short Eff.', value: shortEffect},
+  ];
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
-
-  
 
   return (
     <>
       <>
-        <button
-          type="button"
-          onClick={openModal}
-          className=""
-        >
-          {move.name.english}
+        <button type="button" onClick={openModal} className="">
+          {name.english}
         </button>
       </>
 
@@ -56,47 +65,26 @@ export default function MoveModal({ move }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all font-mono">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 flex justify-center"
+                    className="text-2xl font-extrabold leading-6 text-purple-300 flex justify-center"
                   >
-                    {move.name.english}
+                    {name.english}
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <div className='flex justify-between'>
-                      <h2>Type:</h2>
-                      <p className={`${styles.type} ${colors[move.type.toLowerCase()]}`}>{move.type}</p>
-                    </div>
-                    <div className='flex justify-between'>
-                      <h2>Description:</h2>
-                      <p className={''}>{move.description['sword-shield']}</p>
-                    </div>
-                    <p className="text-sm text-gray-500">
-                      {move.effect.full}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {move.effect.shortEffect}
-                    </p>
-  
-                    <p className="text-sm text-gray-500">
-                      Category: {move.category}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Contest: {move.contest}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      PP: {move.pp}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Generation: {move.generation}
-                    </p>
+                  <div className="mt-2 space-y-1">
+                    {rows.map((row) => (
+                      <div className="flex justify-between text-gray-300">
+                        <h2 className={'font-bold'}>{row.header}</h2>
+                        {row.header === 'Type' ? <p className={`${typec} ${colors[row.value.toLowerCase()]} `}>{row.value}</p> : row.value ? <p className={test}>{row.value}</p> : <p className={test}>--</p>}
+                      </div>
+                    ))}
                   </div>
 
                   <div className="mt-4 flex justify-center">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-purple-100 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Close
@@ -109,5 +97,5 @@ export default function MoveModal({ move }) {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }

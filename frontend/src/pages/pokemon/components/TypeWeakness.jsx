@@ -7,7 +7,7 @@ import { colors } from "../variables/typeColors";
  * @param {typeTwo} string - needs to be lowerCase to work with the colors object if present
  * @returns a React container with a list of lists
  */
-export const TypeWeakness = ({ typeOne = "", typeTwo = "" }) => {
+export const TypeWeakness = ({ typeOne, typeTwo }) => {
   const types = [
       "Normal",
       "Fire",
@@ -29,11 +29,13 @@ export const TypeWeakness = ({ typeOne = "", typeTwo = "" }) => {
       "Fairy",
     ],
     rows = [];
-  for (let [key, value] of Object.entries(weaknesses[typeOne.toLowerCase()])) {
-    const total =
-      typeTwo !== "" ? value * weaknesses[typeTwo.toLowerCase()][key] : value;
-    rows.push(total);
-  }
+    if (typeOne){
+      for (let [key, value] of Object.entries(weaknesses[typeOne.toLowerCase()])) {
+        const total = typeTwo ? value * weaknesses[typeTwo.toLowerCase()][key] : value;
+        rows.push(total);
+      }
+    }
+
 
   return (
     <table className="min-w-full rounded-2xl">
