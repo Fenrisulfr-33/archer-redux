@@ -9,24 +9,24 @@ import { colors } from "../variables/typeColors";
  */
 export const TypeWeakness = ({ typeOne, typeTwo }) => {
   const types = [
-      "Normal",
-      "Fire",
-      "Water",
-      "Electric",
-      "Grass",
-      "Ice",
-      "Fighting",
-      "Poison",
-      "Ground", // mid point
-      "Flying",
-      "Psychic",
-      "Bug",
-      "Rock",
-      "Ghost",
-      "Dragon",
-      "Dark",
-      "Steel",
-      "Fairy",
+      "NOR",
+      "FIR",
+      "WAT",
+      "ELE",
+      "GRA",
+      "ICE",
+      "FIG",
+      "POI",
+      "GRO", // mid point
+      "FLY",
+      "PSY",
+      "BUG",
+      "ROC",
+      "GHO",
+      "DRA",
+      "DAR",
+      "STL",
+      "FAI",
     ],
     rows = [];
     if (typeOne){
@@ -36,29 +36,22 @@ export const TypeWeakness = ({ typeOne, typeTwo }) => {
       }
     }
 
-
   return (
+    <div className={'col=span-1 tablet:col-span-2 mt-2 text-sm'}>
     <table className="min-w-full rounded-2xl">
-      <thead>
-        <tr>
-          {types.slice(0, 8).map((type) => (<th className={`${colors[type.toLocaleLowerCase()]} bg-opacity-60 rounded-t-lg`}>{type}</th>))}
-        </tr>
+      <thead> 
+        <tr>{types.slice(0, 8).map((type) => (<th className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
       </thead>
-      <tbody>
-        <tr>
-          {rows.slice(9, 17).map(row => (<td className={`bg-gray-600 rounded-b-lg`}>{row}</td>))}
-        </tr>
+      <tbody> 
+        <tr>{rows.slice(0, 8).map(row => (<td className={`bg-gray-600`}>{row}</td>))}</tr>
       </tbody>
-      <thead>
-        <tr>
-          {types.slice(9, 17).map((type) => (<th className={`${colors[type.toLocaleLowerCase()]} bg-opacity-60`}>{type}</th>))}
-        </tr>
+      <thead className={'col-span-1'}> 
+        <tr>{types.slice(9, 17).map((type) => (<th className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
       </thead>
-      <tbody>
-        <tr>
-          {rows.slice(9, 17).map(row => (<td className={`bg-gray-600 rounded-b-lg`}>{row}</td>))}
-        </tr>
+      <tbody className={'col-span-1'}> 
+        <tr>{rows.slice(9, 17).map(row => (<td className={`bg-gray-600`}>{row}</td>))}</tr>
       </tbody>
     </table>
+    </div>
   );
 };

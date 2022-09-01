@@ -13,12 +13,10 @@ const Moves = require('../../../models/movesModel');
 const readPokemonByGame = asyncHandler(async (request, response) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
     const moves = await Moves.find().lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
-
     if (!pokemon) {  // Case for if pokemon does not exsist
         response.status(400);
         throw new Error('Pokemon not found.');
     } else if (!moves) { // Case for if moves is not connecting
-
         response.status(400);
         throw new Error('Moves data not found, error on Server/Database side.');
     } else {
@@ -26,6 +24,7 @@ const readPokemonByGame = asyncHandler(async (request, response) => {
         const initialMoves = {};
         for (const move in pokemon.moves) {
             if (pokemon.moves[move].hasOwnProperty(`${game}-egg`)) {
+                
                 initialMoves.egg ? null : initialMoves['egg'] = [];
                 const found = moves.find((dexMove) => dexMove.name.english === move);
                 initialMoves.egg.push(found)

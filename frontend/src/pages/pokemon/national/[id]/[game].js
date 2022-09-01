@@ -14,6 +14,8 @@ import { NavBarIcon } from '../../../../components/Menu/NavBarIcon';
 import { SiPokemon } from 'react-icons/si'
 import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs'
 import { TypeWeakness } from '../../components/TypeWeakness';
+import GameDropDown from "../../components/GameDropDown";
+import { PokedexEntries } from "../../components/PokedexEntries";
 
 const InfoRow = ({ title, info }) => (
     <div className='flex flex-row justify-between'>
@@ -35,16 +37,17 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
         }
     }, [isReady, query.id, query.game]);
     return (
-
-        <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12  m-auto font-mono text-center text-gray-400'>
-            <div id='toobar' className='col-span-1 tablet:col-span-2 flex flex-row justify-between pt-2'>
-                {pokemon?._id - 1 > 0 ? <NavBarIcon icon={<BsFillArrowLeftSquareFill size='20' />} text={pokemon._id - 1} route={`/pokemon/national/${pokemon._id - 1}/sword-shield`} /> : <SiPokemon size='50' />}
-                {pokemon?._id + 1 <= 898 ? <NavBarIcon icon={<BsFillArrowRightSquareFill size='20' />} text={pokemon._id + 1} route={`/pokemon/national/${pokemon._id + 1}/sword-shield`} /> : <SiPokemon size='50' />}
+        <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto font-mono text-center text-gray-400'>
+            <div id='toolbar' className='col-span-1 tablet:col-span-2 flex flex-row justify-between pt-2'>
+                {pokemon?._id - 1 > 0 ? <NavBarIcon icon={<BsFillArrowLeftSquareFill size='20' />} text={pokemon._id - 1} route={`/pokemon/national/${pokemon._id - 1}/${query.game}`} /> : <SiPokemon size='50' />}
+                {query.game}
+                <GameDropDown route={`/pokemon/national/${pokemon._id}/`}/>
+                {pokemon?._id + 1 <= 898 ? <NavBarIcon icon={<BsFillArrowRightSquareFill size='20' />} text={pokemon._id + 1} route={`/pokemon/national/${pokemon._id + 1}/${query.game}`} /> : <SiPokemon size='50' />}
             </div>
             {loading ? (
-                <>Laoding...</>
+                <>Loading...</>
             ) : (
-                <>
+                <div className={'col-span-1 tablet:col-span-2'}>
                     <h1 className='col-span-1 tablet:col-span-2 text-5xl text-center py-5 text-purple-200'>{pokemon?.name?.english}</h1>
                     <div className='col-span-1 tablet:col-span-2 grid grid-col-1 tablet:grid-col-2 bg-gray-600 rounded-2xl p-2'>
                         <h1 className='col-span-1 tablet:col-span-2 text-2xl font-extrabold'>Pokedex Information</h1>
@@ -105,14 +108,13 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
                             <BaseStat title={'spd'} stat={pokemon?.baseStats?.spd} />
                         </div>
                     </div>
-                    <div className='col-span-1 tablet:col-span-2 mt-4'>
-                        <TypeWeakness
-                            typeOne={pokemon?.type?.[0]}
-                            typeTwo={pokemon?.type?.[1]}
-                        />
-                    </div>
+                    <TypeWeakness
+                        typeOne={pokemon?.type?.[0]}
+                        typeTwo={pokemon?.type?.[1]}
+                    />
                     <MovesListsByType moves={pokemon.moves} />
-                </>)}
+                    <PokedexEntries entries={pokemon.pokedexEntries} />
+                </div>)}
         </div >
     )
 }
