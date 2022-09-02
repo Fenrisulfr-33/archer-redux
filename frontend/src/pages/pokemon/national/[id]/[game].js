@@ -120,7 +120,6 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     const { pokemon, apiCallsInProgress } = state;
     return {
         pokemon: pokemon,

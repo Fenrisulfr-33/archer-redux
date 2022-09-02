@@ -20,38 +20,31 @@ const createUser = asyncHandler(async (request, response) => {
         response.status(400);
         throw new Error('All fields not filled in');
     }
-    /* {
-        "data": {
-            "username": "ArchBoii3",
-            "password": "test1234"
-        }
-    } */
-
     // Check to see if the user already exsists
     const userExists = await Users.findOne({ username });
     if (userExists) {
         response.status(400);
         throw new Error('Username already exists');
-    }
-
-    // Hash password
-    const salt = await bcrypt.genSalt(10); // takes in a number of rounds, 10 is the default
-    const hashedPassword = await bcrypt.hash(password, salt); // salt is randomly generated data that adds to the hash to always be unique
-
-    const user = await Users.create({
-        username,
-        password: hashedPassword
-    });
-
-    if (user) {
-        response.status(201).json({
-            _id: user.id,
-            username: user.username,
-            token: generateToken(user._id)
-        })
     } else {
-        response.status(400);
-        throw new Error('Invalid user data');
+        // Hash password
+        const salt = await bcrypt.genSalt(10); // takes in a number of rounds, 10 is the default
+        const hashedPassword = await bcrypt.hash(password, salt); // salt is randomly generated data that adds to the hash to always be unique
+        // Create user
+        const user = await Users.create({
+            username,
+            password: hashedPassword
+        });
+        // If user gets created return user info
+        if (user) {
+            response.status(201).json({
+                _id: user.id,
+                username: user.username,
+                token: generateToken(user._id)
+            })
+        } else { // Something went wrong
+            response.status(400);
+            throw new Error('Invalid user data');
+        }
     }
 });
 

@@ -13,7 +13,7 @@ export default function SideMenu() {
     const pokemonlinks = [
         { route: '/pokemon', name: 'Pokemon Home' },
         { route: '/pokemon/national', name: 'National Dex' },
-        { route: '/pokemon/BDSP', name: 'BDSP Comp' },
+        // { route: '/pokemon/BDSP', name: 'BDSP Comp' },
         { route: '/pokemon/moves', name: 'Move List' },
         { route: '/pokemon/swsh', name: 'Sword and Shield' },
     ];

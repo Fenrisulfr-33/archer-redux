@@ -1,5 +1,6 @@
 import SideMenu from '../../components/Menu/SideMenu';
-import SwShCompForm from './components/swshCompForm';
+import HomePage from './pokemonHome.mdx';
+import Article from '../../components/Articles/Article';
 
 export default function Pokemon() {
     return (
@@ -8,7 +9,9 @@ export default function Pokemon() {
                 <SideMenu />
             </div>
             <div className='w-4/5'>
-                {/* <SwShCompForm /> */}
+                <Article>
+                    <HomePage />
+                </Article>
             </div>
         </div>
     );

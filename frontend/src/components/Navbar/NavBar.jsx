@@ -1,16 +1,17 @@
-// import { logout, reset } from "../../redux/features/auth/authSlice";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from 'react-redux'
 import { NavBarIcon } from "../Menu/NavBarIcon";
+import MenuDropDown from "../Menu/MenuDropDown";
 /* React Icons */
 import { SiHomeadvisor, SiTelegraph } from 'react-icons/si'
 import { MdArticle, MdCatchingPokemon } from 'react-icons/md';
 import { BsFillFileCodeFill } from 'react-icons/bs';
 import { FaFileSignature } from 'react-icons/fa';
 import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
-
-
-import MenuDropDown from "../Menu/MenuDropDown";
+import { CgProfile } from 'react-icons/cg';
+/* REDUX IMPORTS */
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { logout } from '../../redux/users/userActions';
 
 const styles = {
     main: 'flex flex-row mx-5 my-auto space-x-5 space-y-2 text-center phone:text-right',
@@ -19,38 +20,33 @@ const styles = {
     darkMode: 'text-gray-500 mr-3 ml-4 transition duration-300 ease-in-out hover:text-purple-600 cursor-pointer;'
 }
 
-export default function NavBar(props){
-    // const router = useRouter(); // 
-    // const dispatch = useDispatch();
-    // const { user } = useSelector((state) => state.auth);
-    // const onLogout = () => {
-    //     dispatch(logout());
-    //     dispatch(reset());
-    //     router.push('/');
-    // }
-    const user = true; // delete when finished with user login
-    const onLogout = () => console.log('logout function');
+const NavBar = ({ user, loading, logout }) => {
+    const router = useRouter(),
+    onLogout = () => {
+        logout();
+        router.push('/');
+    }
     return (
         <>
         <div className='items-center justify-end pr-5 tablet:hidden '>
             <MenuDropDown />
         </div>
         <div className='hidden tablet:flex items-center justify-end space-x-4 pr-5'>
-
-            
             <NavBarIcon icon={<SiHomeadvisor size='28' />} text={'Home'} route={'/'} />
             <NavBarIcon icon={<MdArticle size='28' />} text={'Articles'} route={'/articles'}/>
             <NavBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/>
             <NavBarIcon icon={<MdCatchingPokemon size='28' />} text={'Pokemon'} route={'/pokemon'}/>
             <NavBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/>
             {user ? (
+            <>
+                <NavBarIcon icon={<CgProfile size='28' />} text={'MyPage'} route={'/users/me'} />
                 <button onClick={onLogout} className={`${styles.navbarIcon} group`}>
-                <BiLogOutCircle size='28' />
-    
-                <span className={`${styles.navbarToolTip} group-hover:scale-100`}>
-                    Logout
-                </span>
-            </button>
+                    <BiLogOutCircle size='28' />
+                    <span className={`${styles.navbarToolTip} group-hover:scale-100`}>
+                        Logout
+                    </span>
+                </button>
+            </>
             ) : 
             (
                 <>
@@ -62,3 +58,15 @@ export default function NavBar(props){
         </>
     )
 }
+// Redux connections
+const mapStateToProps = (state) => {
+    return {
+        user: state.user.username,
+        loading: state.apiCallsInProgress > 0,
+    }
+}, mapDispatchToProps = (dispatch) => {
+    return {
+        logout: bindActionCreators(logout, dispatch)
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
