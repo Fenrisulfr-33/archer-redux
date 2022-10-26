@@ -102,9 +102,7 @@ const NationalDex = ({ national, loadNationalDex, loading }) => {
   useEffect(() => {
     if (national.length === 0) {
       try {
-        console.log(national[0]);
         loadNationalDex();
-        console.log(national[0]);
       } catch (error) {
         alert(`Loading national failed: ${error}`);
       }
@@ -117,7 +115,7 @@ const NationalDex = ({ national, loadNationalDex, loading }) => {
         <SideMenu />
       </div>
       {loading ? (
-        <>Laoding...</>
+        <>Loading...</>
       ) : (
         <div id="pokemon-content" className="w-4/5 flex flex-col">
           <div className="flex justify-between m-1">

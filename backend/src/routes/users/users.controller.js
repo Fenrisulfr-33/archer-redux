@@ -62,7 +62,8 @@ const createUser = asyncHandler(async (request, response) => {
         response.json({
             _id: user.id,
             username: user.username,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            pokemonTeams: user.pokemonTeams
         })
     } else {
         response.status(400);

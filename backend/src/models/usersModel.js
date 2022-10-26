@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const PokemonTeam = require('../models/pokeTeamModel').schema
 
-const userSchema = mongoose.Schema({
+const userSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Please make a username'],
@@ -9,9 +11,8 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please make a password']
-    }
-}, {
-    timestamps: true
-});
+    },
+    pokemonTeams: [ PokemonTeam ]
+}, {timestamps: true}, {versionKey: false});
 
 module.exports = mongoose.model('User', userSchema);

@@ -16,6 +16,7 @@ export default function SideMenu() {
         // { route: '/pokemon/BDSP', name: 'BDSP Comp' },
         { route: '/pokemon/moves', name: 'Move List' },
         { route: '/pokemon/swsh', name: 'Sword and Shield' },
+        { route: '/pokemon/teams', name: 'Pokemon Teams' },
     ];
 
     const LinkComp = ({ route, name }) => (

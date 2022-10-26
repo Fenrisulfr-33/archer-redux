@@ -7,6 +7,7 @@ const notFound = require('./errors/notFound');
 const errorHandler = require('./errors/errorHandler')
 const nationalRouter = require('./routes/pokemon/national/national.router');
 const swshCompRouter = require('./routes/pokemon/swsh-comp/swsh-comp.router');
+const teamsRouter = require('./routes/pokemon/teams/teams.router');
 const usersRouter = require('./routes/users/users.router');
 const cors = require('cors');
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/pokemon/national', nationalRouter);
 app.use('/pokemon/swsh', swshCompRouter);
+app.use('/pokemon', teamsRouter);
 app.use('/users', usersRouter);
 
 app.use(notFound); // If path is not found send back an error

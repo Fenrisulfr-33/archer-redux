@@ -6,16 +6,7 @@ export default {
       username: '',
       id: '',
       token: '',
-      pokemonTeams: {
-        one: {
-          one: {},
-          two: {},
-          three: {},
-          four: {},
-          five: {},
-          six: {},
-        }
-      }
+      pokemonTeams: []
     }
   };
   

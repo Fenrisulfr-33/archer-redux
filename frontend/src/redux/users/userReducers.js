@@ -8,7 +8,8 @@ export default function userReducer(state = initialState.user, action) {
                 ...state,
                 username: action.user.username,
                 id: action.user._id,
-                token: action.user.token 
+                token: action.user.token,
+                pokemonTeams: action.user.pokemonTeams 
             };
         case types.USER_REGISTER_SUCCESS:
             return {
@@ -23,16 +24,7 @@ export default function userReducer(state = initialState.user, action) {
                 username: '',
                 id: '',
                 token: '', 
-                pokemonTeams: {
-                    one: {
-                      one: {},
-                      two: {},
-                      three: {},
-                      four: {},
-                      five: {},
-                      six: {},
-                    }
-                }
+                pokemonTeams: []
             };
         default:
             return state;

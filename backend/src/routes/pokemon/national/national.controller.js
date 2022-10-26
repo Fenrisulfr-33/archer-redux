@@ -3,14 +3,14 @@ const National = require('../../../models/nationalModel');
 const Moves = require('../../../models/movesModel');
 
 /* ------- Middleware Functions -------- */
-
+// is there a user  token in the request 
 /* ---------- CRUDL Functions ---------- */
 /**
  *  Finds a pokemon base upon its nationa dex _id , and reassgins its move values as object with basic move information
 
  * @returns {JSON} all data for a specific Pokemon
  */
-const readPokemonByGame = asyncHandler(async (request, response) => {
+const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
     const moves = await Moves.find().lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
     if (!pokemon) {  // Case for if pokemon does not exsist
@@ -59,6 +59,7 @@ const readPokemonByGame = asyncHandler(async (request, response) => {
         /*
             Time Complexity: O(n) - The only way the algorithm takes longer is if the pokemon moves are added or games
         */
+       next()
         response.status(200).json(pokemon);
     }
 });
