@@ -11,7 +11,7 @@ import { CgProfile } from 'react-icons/cg';
 /* REDUX IMPORTS */
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../redux/users/userActions';
+import { login, logout } from '../../redux/users/userActions';
 
 const styles = {
     main: 'flex flex-row mx-5 my-auto space-x-5 space-y-2 text-center phone:text-right',
@@ -20,7 +20,7 @@ const styles = {
     darkMode: 'text-gray-500 mr-3 ml-4 transition duration-300 ease-in-out hover:text-purple-600 cursor-pointer;'
 }
 
-const NavBar = ({ user, loading, logout }) => {
+const NavBar = ({ username, loading, logout }) => {
     const router = useRouter(),
     onLogout = () => {
         logout();
@@ -34,10 +34,10 @@ const NavBar = ({ user, loading, logout }) => {
         <div className='hidden tablet:flex items-center justify-end space-x-4 pr-5'>
             <NavBarIcon icon={<SiHomeadvisor size='28' />} text={'Home'} route={'/'} />
             <NavBarIcon icon={<MdArticle size='28' />} text={'Articles'} route={'/articles'}/>
-            <NavBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/>
+            {/* <NavBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/> */}
             <NavBarIcon icon={<MdCatchingPokemon size='28' />} text={'Pokemon'} route={'/pokemon'}/>
-            <NavBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/>
-            {user ? (
+            {/* <NavBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/> */}
+            {/* {username ? (
             <>
                 <NavBarIcon icon={<CgProfile size='28' />} text={'MyPage'} route={'/users/me'} />
                 <button onClick={onLogout} className={`${styles.navbarIcon} group`}>
@@ -53,16 +53,16 @@ const NavBar = ({ user, loading, logout }) => {
                     <NavBarIcon icon={<BiLogInCircle size='28' />} text={'Login'} route={'/users/login'} />
                     <NavBarIcon icon={<FaFileSignature size='28' />} text={'Sign Up'} route={'/users/register'}/>
                 </>
-            )}
+            )} */}
         </div>
         </>
     )
 }
 // Redux connections
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user: { username }, apiCallsInProgress}) => {
     return {
-        user: state.user.username,
-        loading: state.apiCallsInProgress > 0,
+        username,
+        loading: apiCallsInProgress > 0,
     }
 }, mapDispatchToProps = (dispatch) => {
     return {

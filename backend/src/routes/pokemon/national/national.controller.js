@@ -143,7 +143,6 @@ const readPokemon = asyncHandler(async (request, response) => {
  */
 const listNational = asyncHandler(async (request, response) => {
     const national = await National.find().select('name type abilities baseStats').sort({ _id: 1 }); // just for the list view on the natioanl view page
-    // const national = await National.find().lean().sort({_id: 1});
     response.status(200).json(national);
 });
 

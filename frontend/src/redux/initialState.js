@@ -1,5 +1,5 @@
 export default {
-    national: [],
+    dex: [],
     pokemon: {},
     apiCallsInProgress: 0,
     user: {

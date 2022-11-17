@@ -9,6 +9,10 @@ import { SiHomeadvisor } from 'react-icons/si'
 import { MdLibraryBooks, MdOutlineCatchingPokemon } from 'react-icons/md';
 import { BiMenu, BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
 import { FaCode, FaTumblr } from 'react-icons/fa';
+/* REDUX IMPORTS */
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { login, logout } from '../../redux/users/userActions';
 
 const styles = {
     menuIcon: 'relative flex items-center justify-center h-12 w-12 m-0 text-purple-300 bg-gray-600 rounded-3xl hover:rounded-2xl transition-all duration-200 ease-linear cursor-pointer',
@@ -17,22 +21,27 @@ const styles = {
     hoverIcon: 'hover:bg-purple-600 hover:text-white',
     hoverButton: 'hover:bg-purple-200 hover:text-gray-600 '
 }
+// Drop down menu items
+const MenuItem = ({ icon, text, route }) => (
+  <div className="px-1 py-1 ">
+    <Menu.Item>
+      <Link href={route} passHref>
+        <button className={`${styles.menuButtons} ${styles.hoverButton}`} aria-hidden="true">     
+          {icon}
+          <span className={``}>
+            {text}
+          </span>
+        </button>
+      </Link>
+    </Menu.Item>
+  </div>
+)
 /**
  * Dropdown Menu for the phone screen
  * @returns 
  * 
  */
-export default function MenuDropDown() {
-  // const router = useRouter(); // 
-  // const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.auth);
-  // const onLogout = () => {
-  //     dispatch(logout());
-  //     dispatch(reset());
-  //     router.push('/');
-  // }
-  const user = true;
-  const onLogout = () => console.log('logout function');
+const MenuDropDown = ({ username, loading, logout}) => {
 
   return (
       <Menu as='div' className='top-16 '>
@@ -51,10 +60,10 @@ export default function MenuDropDown() {
           <Menu.Items className={styles.menuItems}>
             <MenuItem icon={<SiHomeadvisor size='20' />} text={'Home'} route={`/`} />
             <MenuItem icon={<MdLibraryBooks size='20' />} text={'Artciles'} route={`/articles`} />
-            <MenuItem icon={<FaCode size='20' />} text={'Code'} route={`/code`} />
+            {/* <MenuItem icon={<FaCode size='20' />} text={'Code'} route={`/code`} /> */}
             <MenuItem icon={<MdOutlineCatchingPokemon size='20' />} text={'Pokemon'} route={`/pokemon`} />
-            <MenuItem icon={<FaTumblr size='20' />} text={'TemTem'} route={`/temtem`} />
-            {user ? (
+            {/* <MenuItem icon={<FaTumblr size='20' />} text={'TemTem'} route={`/temtem`} /> */}
+            {/* {username ? (
                   <div className="px-1 py-1 ">
                   <Menu.Item>
                       <button onClick={onLogout} className={`${styles.menuButtons} ${styles.hoverButton}`} aria-hidden="true">     
@@ -71,24 +80,21 @@ export default function MenuDropDown() {
                   <MenuItem icon={<BiLogInCircle size='20' />} text={'Login'} route={`/users/login`} />
                   <MenuItem icon={<BiLogOutCircle size='20' />} text={'Register'} route={`/users/register`} />  
                 </>
-            )}
+            )} */}
           </Menu.Items>
         </Transition>
       </Menu> 
   )
 }
-
-const MenuItem = ({ icon, text, route }) => (
-  <div className="px-1 py-1 ">
-    <Menu.Item>
-      <Link href={route} passHref>
-        <button className={`${styles.menuButtons} ${styles.hoverButton}`} aria-hidden="true">     
-          {icon}
-          <span className={``}>
-            {text}
-          </span>
-        </button>
-      </Link>
-    </Menu.Item>
-  </div>
-)
+// Redux connections
+const mapStateToProps = ({ user: { username }, apiCallsInProgress}) => {
+  return {
+      username,
+      loading: apiCallsInProgress > 0,
+  }
+}, mapDispatchToProps = (dispatch) => {
+  return {
+      logout: bindActionCreators(logout, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MenuDropDown);

@@ -1,25 +1,33 @@
 import SideMenu from "../../../components/Menu/SideMenu";
 import { useEffect } from "react";
-import { DexList } from "../components/DexList";
-import Loading from "../../../components/Loading";
+import { useRouter } from "next/router";
 /* REDUX IMPORTS */
 import { connect } from "react-redux";
 import { loadDex } from "../../../redux/pokemon/dexActions";
 import { bindActionCreators } from "redux";
+import { DexList } from "../components/DexList";
+import Loading from '../../../components/Loading';
+/* STYLES */
+const styles = {
+  th: "py-1 px-1 text-center",
+  tablet: "tablet:py-2 tablet:px-4",
+  laptop: "laptop:py-3 laptop:px-6",
+};
+
 /* MAIN COMPONENT */
-const NationalDex = ({ dex, loadDex, loading }) => {
+const SwShDex = ({ dex, loadDex, loading }) => {
   useEffect(() => {
-    loadDex('national');
+    loadDex('swsh');
   }, []);
 
   return (
     <>
       {loading && <Loading />}
       <div className="flex flex-col tablet:flex-row">
-          <SideMenu />
-          <div className='tablet:w-4/5'>
-            <DexList list={dex} filters={true} national={true}/>
-          </div>
+        <SideMenu />
+        <div className='tablet:w-4/5'>
+          {dex[0]?.pokedexNumber?.swsh && <DexList list={dex} filters={true} game={'swsh'}/>}
+        </div> 
       </div>
     </>
   );
@@ -36,4 +44,4 @@ const mapStateToProps = ({ dex, apiCallsInProgress}) => {
       loadDex: bindActionCreators(loadDex, dispatch),
     };
   };
-export default connect(mapStateToProps, mapDispatchToProps)(NationalDex);
+export default connect(mapStateToProps, mapDispatchToProps)(SwShDex);

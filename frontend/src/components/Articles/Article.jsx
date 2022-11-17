@@ -1,4 +1,4 @@
-import style from "./Article.module.css";
+import style from './Article.module.css';
 
 // const styles = {
 //     main: 'prose m-auto py-20 px-5 text-sm text-gray-300 text-center',
