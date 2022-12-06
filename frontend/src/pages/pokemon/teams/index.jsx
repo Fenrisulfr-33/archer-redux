@@ -1,6 +1,6 @@
 import SideMenu from "../../../components/Menu/SideMenu";
 import { useState, useEffect } from "react";
-import { colors } from "../variables/typeColors";
+import { colors } from "../../../components/pokemon/variables/typeColors";
 /* REDUX IMPORTS */
 import { connect } from "react-redux";
 import * as teamsActions from "../../../redux/teams/teamsActions";

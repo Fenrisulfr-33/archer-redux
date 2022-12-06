@@ -1,5 +1,7 @@
+/**
+ * 12-05-2022 @author Archer - This list view for a page of articles
+ */
 import Link from "next/link";
-import { data } from '../../../data/articles';
 
 const styles = {
     article: 'p-5 items-center space-y-4 border-2 border-purple-300 rounded-xl shadow-lg bg-gray-700 hover:shadow-lg hover:shadow-sky-300',
@@ -7,28 +9,33 @@ const styles = {
 }
 /**
  *  Data is hard coded as an array, will eventually upgrade to a CMS
+ * @props { articles, family } 
+ *  articles - list of articles
+ *  family - is for sub tabs that can have lists of articles
  * @returns 
  *  The list of article and their meta data
  */
-export default function ArticleList() {
+export default function ArticleList({ articles, family }) {
     return (
         <div className='w-1/2 mx-auto py-20 space-y-4'>
-            {data.map((article) => (
-                <ArticleItem key={article.id} article={article} id={article.id}/>
+            {articles.map((article) => (
+                <ArticleItem key={article.id} article={article} id={article.id} family={family}/>
             ))}
         </div>
     )
 }
 
 /**
- * @props { article, id }
- *  The article is the MDX component and it contains meta data to display in list view, including the id
+ * @props { article, id, family }
+ *  article - The article is the MDX component and it contains meta data to display in list view, including the id
+ *  id - is the articles index in the array
+ *  family - helps add the route for when clicked
  * @returns
  *  An article component with title, author, date, and brief desc
  */
-const ArticleItem = ({ article, id }) => {
+const ArticleItem = ({ article, id, family }) => {
     return (
-        <Link href='/articles/[id]' as={`/articles/${id}`} passHref>
+        <Link href={family ? `/${family}/articles/${id}`: `/articles/${id}`} as={family ? `/${family}/articles/${id}`: `/articles/${id}`} passHref>
             <div className={styles.article}>
                 <h3 className={styles.title}>{article.info.title}</h3>
                 <p className={`italic font-mono text-md text-purple-300 `}>{article.info.author} - {article.info.date}</p>

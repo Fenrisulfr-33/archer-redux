@@ -6,7 +6,7 @@ const connectDB = require('./db/connection');
 const notFound = require('./errors/notFound');
 const errorHandler = require('./errors/errorHandler')
 const nationalRouter = require('./routes/pokemon/national/national.router');
-const swshCompRouter = require('./routes/pokemon/swsh-comp/swsh-comp.router');
+const swshRouter = require('./routes/pokemon/swsh/swsh.router');
 const teamsRouter = require('./routes/pokemon/teams/teams.router');
 const usersRouter = require('./routes/users/users.router');
 const movesRouter = require('./routes/pokemon/moves/moves.router');
@@ -20,9 +20,9 @@ app.use(cors());
 app.use(express.json()); // This parse the body data as JSON to be able to use request.body, etc... A.K.A Middleware access
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/pokemon/swsh', swshRouter);
 app.use('/pokemon/national', nationalRouter);
 app.use('/pokemon/moves', movesRouter);
-app.use('/pokemon/swsh', swshCompRouter);
 app.use('/pokemon', teamsRouter);
 app.use('/users', usersRouter);
 

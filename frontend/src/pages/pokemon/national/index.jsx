@@ -1,6 +1,6 @@
 import SideMenu from "../../../components/Menu/SideMenu";
 import { useEffect } from "react";
-import { DexList } from "../components/DexList";
+import { DexList } from "../../../components/pokemon/components/DexList";
 import Loading from "../../../components/Loading";
 /* REDUX IMPORTS */
 import { connect } from "react-redux";

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('./sword-shield.controller');
+const controller = require('./swsh.controller');
 const methodNotAllowed = require('../../../errors/methodNotAllowed');
 
 router

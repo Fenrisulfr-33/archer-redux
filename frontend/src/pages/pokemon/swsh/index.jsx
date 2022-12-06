@@ -1,11 +1,10 @@
 import SideMenu from "../../../components/Menu/SideMenu";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 /* REDUX IMPORTS */
 import { connect } from "react-redux";
 import { loadDex } from "../../../redux/pokemon/dexActions";
 import { bindActionCreators } from "redux";
-import { DexList } from "../components/DexList";
+import { DexList } from "../../../components/pokemon/components/DexList";
 import Loading from '../../../components/Loading';
 /* STYLES */
 const styles = {

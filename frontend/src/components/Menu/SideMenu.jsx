@@ -43,7 +43,8 @@ export default function SideMenu() {
                 <NavBarIcon text={'Home'} route={'/pokemon'} />
                 <NavBarIcon text={'National'} route={'/pokemon/national'}/>
                 <NavBarIcon text={'Sword & Shield'} route={'/pokemon/swsh'}/>
-                <NavBarIcon text={'Moves'} route={'/pokemon/moves'}/>
+                {/* <NavBarIcon text={'Moves'} route={'/pokemon/moves'}/> */}
+                <NavBarIcon text={'Articles'} route={'/pokemon/articles'}/>
             </div>
         </>
     )

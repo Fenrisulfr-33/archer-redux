@@ -1,4 +1,3 @@
-// import { logout, reset } from "../../../redux/features/auth/authSlice";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from 'react-redux'
 import { Menu, Transition } from '@headlessui/react';

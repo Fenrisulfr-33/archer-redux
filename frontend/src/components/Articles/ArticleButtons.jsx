@@ -1,4 +1,8 @@
 
+/**
+ * 12-05-2022 @author Archer - This is a the buttons toolbar for articles
+ *  I would like to make a whole toolbar that can search all artilces and attach it to the articles itself
+ */
 import Link from 'next/link';
 /**
  * This is for the previous and next button so when you are in the articles you can contiune to read without going back

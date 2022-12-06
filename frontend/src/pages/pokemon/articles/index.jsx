@@ -1,6 +1,5 @@
-import ArticleList from '../../components/Articles/ArticleList'
-import { data } from '../../../data/articles';
-
+import ArticleList from '../../../components/Articles/ArticleList'
+import { data } from "../../../components/pokemon/data/articles";
 /**
  * The purpose of having the ArticleList componenet being called instead of just having the componenets contents here is because...
  * 
@@ -10,6 +9,6 @@ import { data } from '../../../data/articles';
  */
 export default function Articles() {
     return ( 
-        <ArticleList articles={data} />
+        <ArticleList articles={data} family={'pokemon'} />
     )
 }

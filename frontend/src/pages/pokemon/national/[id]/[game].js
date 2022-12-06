@@ -7,15 +7,14 @@ import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { loadPokemon } from "../../../../redux/pokemon/pokemonActions";
 import { bindActionCreators } from 'redux';
-/* TESTING */
-import MovesListsByType from "../../components/MovesListsByType";
-import { BaseStat } from "../../components/BaseStats";
 import { NavBarIcon } from '../../../../components/Menu/NavBarIcon';
-import { SiPokemon } from 'react-icons/si'
-import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs'
-import { TypeWeakness } from '../../components/TypeWeakness';
-import GameDropDown from "../../components/GameDropDown";
-import { PokedexEntries } from "../../components/PokedexEntries";
+import { SiPokemon } from 'react-icons/si';
+import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import { BaseStat } from "../../../../components/pokemon/components/BaseStats";
+import { TypeWeakness } from '../../../../components/pokemon/components/TypeWeakness';
+import GameDropDown from "../../../../components/pokemon/components/GameDropDown";
+import { PokedexEntries } from '../../../../components/pokemon/components/PokedexEntries';
+import MovesListsByType from "../../../../components/pokemon/components/MovesListsByType";
 
 const InfoRow = ({ title, info }) => (
     <div className='flex flex-row justify-between'>

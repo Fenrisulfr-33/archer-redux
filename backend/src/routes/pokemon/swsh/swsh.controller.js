@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler'); // This lets use use try catch without always have to catch an error
 const National = require('../../../models/nationalModel');
-
 /**
  *  lists all pokemon in order of sword and shield dex number
  * 
@@ -12,7 +11,6 @@ const listSwShDex = asyncHandler(async (request, response) => {
     // const swshDex = await National.find({ "pokedexNumber.swsh": { $exists: true } }).select('name type abilities baseStats').sort({ "pokedexNumber.swsh": 1 });
     // const swshDex = await National.find({ "pokedexNumber": { "swsh": { $exists: true } } }).select('name type abilities baseStats').sort({ "pokedexNumber": { "swsh": 1 } });
     // const swshDex = await National.find({ pokedexNumber: { swsh: { $exists: true } } }).select('name type abilities baseStats').sort({ pokedexNumber: { swsh: 1 } });
-    console.log(swshDex.length)
     response.status(200).json(swshDex);
 });
 

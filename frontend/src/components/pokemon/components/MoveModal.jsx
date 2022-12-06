@@ -2,8 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { colors } from "../variables/typeColors";
 
-
-
 export default function MoveModal({ move: { _id, name, type, category, contest, pp, power, accuracy, contact, generation, target, effect: { shortEffect }, priority } }) {
   const styles = {
     typec: " rounded-md bg-opacity-60 w-1/4 text-center",
