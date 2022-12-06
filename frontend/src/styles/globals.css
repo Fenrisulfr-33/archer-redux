@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-purple {
+        @apply 
+        font-mono
+        font-bold
+        items-center 
+        justify-center 
+        py-1
+        px-3
+        text-purple-300 
+        bg-gray-600 
+        rounded-3xl 
+        transition-all 
+        duration-200 
+        ease-linear 
+        cursor-pointer 
+        hover:bg-purple-600 
+        hover:text-white 
+        hover:rounded-2xl
+    }
+}
