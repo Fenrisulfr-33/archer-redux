@@ -13,11 +13,10 @@ app.use(express.json()); // This parse the body data as JSON to be able to use r
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+  res.send("Archers new testing playground");
 });
 
 app.use('/pokemon', pokemonRouter);
-
 
 app.use(notFound); // If path is not found send back an error
 app.use(errorHandler); // If there is a problem with the request send back the error
