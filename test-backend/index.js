@@ -2,7 +2,10 @@ const express = require("express");
 const notFound = require('./src/errors/notFound');
 const errorHandler = require('./src/errors/errorHandler');
 const cors = require('cors');
+const dotenv = require('dotenv').config();
+const colors = require('colors');
 const port = process.env.PORT || 5000;
+const pokemonRouter = require('./src/routes/pokemon/index');
 
 const app = express();
 app.use(cors());
@@ -12,6 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
+
+app.use('/pokemon', pokemonRouter);
 
 
 app.use(notFound); // If path is not found send back an error
