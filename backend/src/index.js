@@ -30,3 +30,5 @@ app.use(notFound); // If path is not found send back an error
 app.use(errorHandler); // If there is a problem with the request send back the error
 
 app.listen(port, () => console.log(`Server started on port ${port}.`)); // Listening confirmation
+// Export the Express API
+module.exports = app;

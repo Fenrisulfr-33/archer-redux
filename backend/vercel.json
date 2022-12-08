@@ -2,14 +2,18 @@
     "version": 2,
     "builds": [
         {
-            "src": "./src/server.js",
+            // Specifgy file to convert to a serveless function
+            "src": "./src/index.js",
+            // Specify the NPM module that is used for the build
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/"
+            // Specify which paths will route to a destination using a regex
+            "src": "./src/(.*)",
+            // Specify the paths' destination
+            "dest": "./src/index.js"
         }
     ]
 }
