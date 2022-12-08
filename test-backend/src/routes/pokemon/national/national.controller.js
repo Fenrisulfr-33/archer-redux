@@ -6,14 +6,14 @@ const mongoose = require('mongoose');
 // Connection process
 const connect = asyncHandler(async (request, response, next) => {
     mongoose.set('strictQuery', true);
-    mongoose.connect('mongodb+srv://archer_brendan:OdinRaven33@cluster0.spj8q.mongodb.net/pokemon_prod?retryWrites=true&w=majority')
-        .then(connection => {
-        console.log(`Mongo Connected: ${connection.connection.host}`.cyan.underline);
-    }).catch(error => {
-        console.log(`Error: ${error}`);
-    })
+    const db = await mongoose.connect(process.env.POKEMON_DB_CONNECTION);
+    console.log(`Mongo Connected: ${db.connection.host}`.cyan.underline);
     next();
 });
+const disconnect = asyncHandler(async (request, response, next) => {
+    await mongoose.connection.close();
+    console.log(`Mongo Disconnected: ${mongoose.connection.host}`.blue.underline);
+}); 
 
 /**
  *  Finds a pokemon base upon its nationa dex _id , and reassgins its move values as object with basic move information
@@ -21,7 +21,7 @@ const connect = asyncHandler(async (request, response, next) => {
  */
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
-    const moves = await Moves.find().lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
+    const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
     if (!pokemon) {  // Case for if pokemon does not exsist
         response.status(400);
         throw new Error('Pokemon not found.');
@@ -36,7 +36,10 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
                 
                 initialMoves.egg ? null : initialMoves['egg'] = [];
                 const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.egg.push(found)
+                const newMove = {
+                    _id: found._id
+                }
+                initialMoves.egg.push(newMove)
             }
             if (pokemon.moves[move].hasOwnProperty(`${game}-lvl`)) {
                 initialMoves.lvl ? null : initialMoves['lvl'] = [];
@@ -64,11 +67,7 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
             }
         }
         pokemon.moves = initialMoves;
-        // const pokemonWithMoves = await _getMoves(pokemon, 'sword-shield', moves);
-        /*
-            Time Complexity: O(n) - The only way the algorithm takes longer is if the pokemon moves are added or games
-        */
-       next()
+       disconnect();
         response.status(200).json(pokemon);
     }
 });
@@ -79,7 +78,7 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
  */
 const readPokemon = asyncHandler(async (request, response) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
-    const moves = await Moves.find().lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
+    const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
 
     if (!pokemon) {  // Case for if pokemon does not exsist
         response.status(400);
@@ -141,6 +140,7 @@ const readPokemon = asyncHandler(async (request, response) => {
         /*
             Time Complexity: O(n) - The only way the algorithm takes longer is if the pokemon moves are added or games
         */
+        disconnect();
         response.status(200).json(pokemon);
     }
 });
@@ -152,6 +152,7 @@ const readPokemon = asyncHandler(async (request, response) => {
  */
 const listNational = asyncHandler(async (request, response) => {
     const national = await National.find().select('name type abilities baseStats').sort({ _id: 1 }); // just for the list view on the natioanl view page
+    disconnect();
     response.status(200).json(national);
 });
 
