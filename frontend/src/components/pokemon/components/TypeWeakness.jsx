@@ -40,16 +40,16 @@ export const TypeWeakness = ({ typeOne, typeTwo }) => {
     <div className={'col=span-1 tablet:col-span-2 mt-2 text-sm'}>
     <table className="min-w-full rounded-2xl">
       <thead> 
-        <tr>{types.slice(0, 9).map((type) => (<th className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
+        <tr>{types.slice(0, 9).map((type) => (<th key={type} className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
       </thead>
       <tbody> 
-        <tr>{rows.slice(0, 9).map(row => (<td className={`bg-gray-600`}>{row}</td>))}</tr>
+        <tr>{rows.slice(0, 9).map((row, index) => (<td key={index} className={`bg-gray-600`}>{row}</td>))}</tr>
       </tbody>
       <thead className={'col-span-1'}> 
-        <tr>{types.slice(9, 18).map((type) => (<th className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
+        <tr>{types.slice(9, 18).map((type) => (<th key={type} className={`${colors[type]} bg-opacity-60`}>{type}</th>))}</tr>
       </thead>
       <tbody className={'col-span-1'}> 
-        <tr>{rows.slice(9, 18).map(row => (<td className={`bg-gray-600`}>{row}</td>))}</tr>
+        <tr>{rows.slice(9, 18).map((row, index) => (<td key={index} className={`bg-gray-600`}>{row}</td>))}</tr>
       </tbody>
     </table>
     </div>

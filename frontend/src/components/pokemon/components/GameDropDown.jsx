@@ -66,7 +66,7 @@ export default function GameDropDown({ route }) {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {gamesList.map((game) => (
-                    <div className="px-1 py-1 ">
+                    <div key={game} className="px-1 py-1 ">
                         <Menu.Item>
                             {({ active }) => (
                             <Link href={`${route}/${game.value}`} passHref>
