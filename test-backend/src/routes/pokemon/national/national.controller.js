@@ -27,9 +27,9 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
     }
 }), getMoves = asyncHandler(async (request, response, next) => {
     // Getting all the moves right away will be faster then requesting it everytime we need information
-    // const moves = await Moves.find().lean();
+    const moves = await Moves.find().lean();
     // Working on 
-    const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
+    // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
     if (!moves) { // Case for if moves is not connecting
         response.status(400);
         throw new Error('Moves data not found, error on Server/Database side.');
