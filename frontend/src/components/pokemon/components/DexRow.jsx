@@ -14,13 +14,13 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
         <td>{dexNumber}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/sword-shield`} passhref>
-            <a>{name.english}</a>
+            <a>{name}</a>
           </Link>
         </td>
         <td>
           <Image
             src={`/sprites/${_id}.png`}
-            alt={`${name.english}`}
+            alt={`${name}`}
             height={40}
             width={40}
             layout="intrinsic"
