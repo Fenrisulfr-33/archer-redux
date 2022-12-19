@@ -9,7 +9,6 @@ const styles = {
 
 function MoveInd({ move, lvl }){
     const { level, _id, name, type, category, pp, power, accuracy } = move;
-    console.log(move);
     const route = `/pokemon/moves/${_id}`;
     const typeOne = colors[type?.toLowerCase()];
     

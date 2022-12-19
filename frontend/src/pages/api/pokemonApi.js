@@ -3,14 +3,12 @@
 const API_BASE_URL = 'http://localhost:5000'
 
 export const getPokemon = async (id, game) => {
-    console.log(API_BASE_URL);
     const response = await fetch(`${API_BASE_URL}/pokemon/national/${id}/${game}`),
     pokemon = await response.json();
     return pokemon;
 }
 
 export const getDex = async (url) => {
-    console.log(API_BASE_URL);
     const response = await fetch(`${API_BASE_URL}/pokemon/${url}`),
     returnObj = await response.json();
     return returnObj;

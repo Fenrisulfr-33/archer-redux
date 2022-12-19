@@ -17,7 +17,6 @@ const Users = require('../../../models/usersModel');
         response.status(400)
         throw new Error('Please enter a data field')
     }
-    // console.log(request.body.data);
     const { name, ability, moveOne, moveTwo, moveThree, moveFour, item, nature, hpEV, atkEV, defEV, spAtkEV, spDefEV, spdEV, briefDesc } = request.body.data;
     const newComp = await SwSh.create({
         name,

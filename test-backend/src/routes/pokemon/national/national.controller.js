@@ -60,8 +60,7 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
     }
 }), getMoves = asyncHandler(async (request, response, next) => {
     if (local) {
-        const moves = localMoves.find((move) => move._id === Number(request.params.id));
-        response.locals.moves = moves;
+        response.locals.moves = localMoves;
         next();
     } else {
         // Getting all the moves right away will be faster then requesting it everytime we need information
@@ -85,8 +84,11 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const { pokemon, moves } = response.locals, game = request.params.game;
     if (local) {
-        pokemon.moves = getPokemonMoves(pokemon, game, localMoves);
-        response.status(200).json(pokemon);
+        const responsePokemon = {
+            ...pokemon,
+            moves: getPokemonMoves(pokemon, game, localMoves),
+        };
+        response.status(200).json(responsePokemon);
     } else {
         pokemon.moves = getPokemonMoves(pokemon, game, moves);
         disconnect();
