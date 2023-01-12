@@ -1,6 +1,6 @@
 export const FilterBar = ({ onResetHandler, searchParams, onChangeHandler }) => {
     return (
-        <div className="flex space-x-2 m-1">
+        <div className="flex flex-col space-y-2 phone:space-x-2 phone:space-y-0 phone:m-1 phone:flex-row">
             {searchParams.map((params, index) => (
                 <input
                     key={index}
@@ -20,7 +20,7 @@ export const FilterBar = ({ onResetHandler, searchParams, onChangeHandler }) => 
                     onChange={onChangeHandler}
                 />
             ))}
-            <button onClick={onResetHandler} className={`btn-purple`}>Reset</button>
+            <button onClick={onResetHandler} className={`btn-purple mx-2`}>Reset</button>
         </div>
     )
 }

@@ -137,7 +137,7 @@ const listNational = asyncHandler(async (request, response) => {
 });
 
 module.exports = {
-    read: [pokemonExists, getMoves, readPokemon],
-    readGame: [pokemonExists, getMoves, readPokemonByGame],
-    list: [listNational]
+    read: [connect, pokemonExists, getMoves, readPokemon],
+    readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
+    list: [connect, listNational]
 }

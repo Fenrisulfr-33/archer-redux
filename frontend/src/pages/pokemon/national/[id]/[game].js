@@ -23,7 +23,7 @@ const InfoRow = ({ title, info }) => (
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
     const { query, isReady } = useRouter(),
-        [error, setError] = useState(null);
+    [error, setError] = useState(null);
     // Add State to determine what generation this person wants on screen
     // inital request to the server should be the param sword and shield but then can be changed
     useEffect(() => {
