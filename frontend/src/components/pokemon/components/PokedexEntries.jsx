@@ -22,21 +22,28 @@ export const PokedexEntries = ({ entries }) => {
       {entry: entries[form].lg, game: ['LeafGreen'], desc: entries[form].lg},
       {entry: entries[form].hg, game: ['HeartGold'], desc: entries[form].hg},
       {entry: entries[form].ss, game: ['SoulSilver'], desc: entries[form].ss},
-      {entry: entries[form].bwb2w2, game: ['Black', 'White', 'Black2', 'White2'], desc: entries[form].bwb2w2},
+      {entry: entries[form].bwb2w2, game: ['Black', 'White', 'Black 2', 'White 2'], desc: entries[form].bwb2w2},
       {entry: entries[form].x, game: ['X'], desc: entries[form].x},
       {entry: entries[form].y, game: ['Y'], desc: entries[form].y},
-      {entry: entries[form].oras, game: ['OmegaRuby', 'AlphaSapphire'], desc: entries[form].oras},
-      {entry: entries[form].lgplge, game: ['LGPLGE'], desc: entries[form].lgplge},
+      {entry: entries[form].oras, game: ['Omega Ruby', 'Alpha Sapphire'], desc: entries[form].oras},
+      {entry: entries[form].lgplge, game: [`Let's Go Pikachu`, `Let's Go Eevee`], desc: entries[form].lgplge},
       {entry: entries[form].sw, game: ['Sword'], desc: entries[form].sw},
       {entry: entries[form].sh, game: ['Shield'], desc: entries[form].sh},
       {entry: entries[form].bdsp, game: ['BDSP'], desc: entries[form].bdsp},
       {entry: entries[form].la, game: ['Legends Arceus'], desc: entries[form].la},
     ];
     return (
-      <div className='col-span-2 bg-gray-500 rounded-3xl p-3 text-md'>
+      <div className='flex flex-col bg-gray-500 rounded-3xl p-3 text-xxs'>
         <h4 className={'text-left'}>{form}</h4>
         <br></br>
-        {rows.map((row) => row.entry && (<div className='flex'><div className={'w-1/12 flex flex-col'}>{row.game.map((game) => <p>{game}</p>)}</div>|<p className={'w-11/12 text-left'}>{row.desc}</p></div>))}
+        {rows.map((row) => row.entry && (
+          <div className='flex flex-row'>
+            <div className={'w-auto flex-col'}>
+              {row.game.map((game) => game)}
+            </div>
+            <p className={'w-auto text-right'}>{row.desc}</p>
+          </div>
+        ))}
       </div>
     );
   }

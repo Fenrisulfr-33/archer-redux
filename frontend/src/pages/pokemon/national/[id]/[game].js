@@ -33,12 +33,16 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
             setError(error);
         }
     }, [isReady, query.id, query.game]);
-
+    console.log(pokemon.gameDropDown)
     return (
         <>
             {loading && <Loading />}
-            <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto font-mono text-center text-gray-400'>        
-                <PokemonIndToolbar id={pokemon._id} game={query.game} />
+            <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto py-5 font-mono text-center text-gray-400'>        
+                <PokemonIndToolbar 
+                    id={pokemon._id} 
+                    game={query.game}
+                    gameDropDown={pokemon.gameDropDown}
+                />
                 <div className={'col-span-1 tablet:col-span-2'}>
                     <h1 className='col-span-1 tablet:col-span-2 text-5xl text-center py-5 text-purple-200'>{pokemon?.name?.english}</h1>
                     <div className='col-span-1 tablet:col-span-2 grid grid-col-1 tablet:grid-col-2 bg-gray-600 rounded-2xl p-2'>

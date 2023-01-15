@@ -11,6 +11,14 @@ module.exports = {
       ultrawide: '1536px',
     },
     extend: {
+      fontSize: {
+        'xxs': [
+          '8px', {
+            letterSpacing: '-0.02em',
+            lineHeight: '20px'
+          }
+        ]
+      },
       colors: {
         gray: {
           900: '#202225',

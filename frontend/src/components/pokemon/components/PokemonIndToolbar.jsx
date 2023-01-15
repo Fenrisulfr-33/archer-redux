@@ -3,7 +3,7 @@ import { NavBarIcon } from '../../Menu/NavBarIcon';
 import { BsFillArrowRightSquareFill, BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { SiPokemon } from 'react-icons/si';
 
-export const PokemonIndToolbar = ({id, game}) => (
+export const PokemonIndToolbar = ({id, game, gameDropDown}) => (
     <div id='toolbar' className='col-span-1 tablet:col-span-2 flex flex-row justify-between pt-2'>
             <div className={''}>
                 {id - 1 > 0 ? 
@@ -16,7 +16,8 @@ export const PokemonIndToolbar = ({id, game}) => (
             <div className={''}>
                 <GameDropDown 
                     route={`/pokemon/national/${id}`}
-                    input={game}    
+                    input={game}
+                    gameDropDown={gameDropDown}    
                 />
             </div>
             <div className={''}>
