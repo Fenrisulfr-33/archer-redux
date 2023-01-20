@@ -7,6 +7,21 @@ const style = {
   six: "w-full bg-green-200",
 };
 
+// const PokedexEntry = ({ form, rows }) => (
+//   <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
+//     <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
+//     <br></br>
+//     {rows.map((row) => row.entry && (
+//       <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
+//         <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
+//           {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
+//         </div>
+//         <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
+//       </div>
+//     ))
+//   </div>
+// )
+
 export const PokedexEntries = ({ entries }) => {
 
   for (const form in entries) {
@@ -26,6 +41,10 @@ export const PokedexEntries = ({ entries }) => {
       {entry: entries[form].x, game: ['X'], desc: entries[form].x},
       {entry: entries[form].y, game: ['Y'], desc: entries[form].y},
       {entry: entries[form].oras, game: ['Omega Ruby', 'Alpha Sapphire'], desc: entries[form].oras},
+      {entry: entries[form].sun, game: ['Sun'], desc: entries[form].sun},
+      {entry: entries[form].mo, game: ['Moon'], desc: entries[form].mo},
+      {entry: entries[form].us, game: ['Ultra Sun'], desc: entries[form].us},
+      {entry: entries[form].um, game: ['Ultra Moon'], desc: entries[form].um},
       {entry: entries[form].lgplge, game: [`Let's Go Pikachu`, `Let's Go Eevee`], desc: entries[form].lgplge},
       {entry: entries[form].sw, game: ['Sword'], desc: entries[form].sw},
       {entry: entries[form].sh, game: ['Shield'], desc: entries[form].sh},
@@ -33,15 +52,15 @@ export const PokedexEntries = ({ entries }) => {
       {entry: entries[form].la, game: ['Legends Arceus'], desc: entries[form].la},
     ];
     return (
-      <div className='flex flex-col bg-gray-500 rounded-3xl p-3 text-xxs'>
-        <h4 className={'text-left'}>{form}</h4>
+      <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
+        <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
         <br></br>
         {rows.map((row) => row.entry && (
-          <div className='flex flex-row'>
-            <div className={'w-auto flex-col'}>
-              {row.game.map((game) => game)}
+          <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
+            <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
+              {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
             </div>
-            <p className={'w-auto text-right'}>{row.desc}</p>
+            <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
           </div>
         ))}
       </div>
