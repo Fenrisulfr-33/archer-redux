@@ -20,6 +20,16 @@ module.exports = {
         ]
       },
       colors: {
+        // Game version colors
+        red: {
+          10: '#202225'
+        }, 
+        blue: {
+          10: '#202225'
+        },
+        yellow: {
+          10: '#202225'
+        },
         gray: {
           900: '#202225',
           800: '#2f3136',

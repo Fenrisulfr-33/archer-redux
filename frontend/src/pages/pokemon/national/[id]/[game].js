@@ -1,6 +1,6 @@
 // import MovesListsByType from "./moves/MoveListByType";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import GameDropDown from "./GameDropDown";
 import { useRouter } from 'next/router';
 /* REDUX IMPORTS */
@@ -16,28 +16,34 @@ import Loading from "../../../../components/Loading";
 
 const InfoRow = ({ title, info }) => (
     <div className='flex flex-row justify-between'>
-        <h4 className='font-bold text-black'>{title}:</h4>
+        <h4 className='font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 mb-1'>{title}:</h4>
         <p>{info}</p>
     </div>
 );
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
-    const { query, isReady } = useRouter(),
-    [error, setError] = useState(null);
-    // Add State to determine what generation this person wants on screen
-    // inital request to the server should be the param sword and shield but then can be changed
+    const router = useRouter(),
+    { query, isReady, pathname } = router,
+    handleGoBack = (event) => {
+        // TODO: would like the option to go back to the dex page that it came from, national or sword-shield
+        event.preventDefault;
+        console.log(pathname)
+        router.back();
+    }
+
     useEffect(() => {
         try {
             isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
         } catch (error) {
-            setError(error);
+            setError({error: true, errorMessage: error});
         }
     }, [isReady, query.id, query.game]);
-    console.log(pokemon.gameDropDown)
+
     return (
         <>
             {loading && <Loading />}
-            <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto py-5 font-mono text-center text-gray-400'>        
+            <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto py-5 font-mono text-center text-gray-400'>  
+                <button className={''} onClick={handleGoBack}>Go Back</button>      
                 <PokemonIndToolbar 
                     id={pokemon._id} 
                     game={query.game}
@@ -63,19 +69,13 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
                                 <InfoRow title={'Species'} info={pokemon?.species} />
                                 <InfoRow title={'height'} info={pokemon?.height} />
                                 <InfoRow title={'Weight'} info={pokemon?.weight} />
-                                <div className='flex flex-row justify-between'>
-                                    <h4 className='font-bold text-black'>{`Egg Groups:`}</h4>
-                                    <p>{`${pokemon?.eggGroups?.[0]}, ${pokemon?.eggGroups?.[1]}`}</p>
-                                </div>
-                                <div className='flex flex-row justify-between'>
-                                    <h4 className='font-bold text-black'>{`Gender Ratio:`}</h4>
-                                    {/* <p>{`M:${pokemon?.genderRatio.split(':')[0]}% F:${pokemon?.genderRatio.split(':')[1]}%`}</p> */}
-                                </div>
+                                <InfoRow title={'Egg Groups:'} info={pokemon?.eggGroups?.[1] ? `${pokemon?.eggGroups?.[0]}, ${pokemon?.eggGroups?.[1]}` : `${pokemon?.eggGroups?.[0]}`} />
+                                {/* <InfoRow title={'Gender Ratio:'} info={pokemon?.genderRatio === 'Genderless' ? pokemon?.genderRatio : `M:${pokemon?.genderRatio.split(':')[0]}% F:${pokemon?.genderRatio.split(':')[1]}%`} /> */}
                             </div>
                         </div>
                         <div className='col-span-1 p-2'>
                             <div className='flex flex-row justify-between'>
-                                <h4>Pokemon Type:</h4>
+                                <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 mb-1'}>Pokemon Type:</h4>
                                 <span>
                                     <Image
                                         src={`/types/${pokemon?.type?.['0']}.svg`}
@@ -119,13 +119,12 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
 const mapStateToProps = (state) => {
     const { pokemon, apiCallsInProgress } = state;
     return {
-        pokemon: pokemon,
+        pokemon,
         loading: apiCallsInProgress > 0,
     }
-},
-    mapDispatchToProps = (dispatch) => {
-        return {
-            loadPokemon: bindActionCreators(loadPokemon, dispatch)
-        };
-    }
+}, mapDispatchToProps = (dispatch) => {
+    return {
+        loadPokemon: bindActionCreators(loadPokemon, dispatch)
+    };
+}
 export default connect(mapStateToProps, mapDispatchToProps)(NationalInd);

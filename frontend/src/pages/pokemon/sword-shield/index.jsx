@@ -16,7 +16,7 @@ const styles = {
 /* MAIN COMPONENT */
 const SwShDex = ({ dex, loadDex, loading }) => {
   useEffect(() => {
-    loadDex('swsh');
+    loadDex('sword-shield');
   }, []);
 
   return (

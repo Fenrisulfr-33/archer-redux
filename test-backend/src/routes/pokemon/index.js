@@ -19,7 +19,7 @@ router
     .all(methodNotAllowed);
 
 router
-    .route('/swsh')
+    .route('/sword-shield')
     .get(swsh.list)
     .all(methodNotAllowed);
 

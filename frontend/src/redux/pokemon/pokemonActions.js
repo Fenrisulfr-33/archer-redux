@@ -14,7 +14,6 @@ export const loadPokemon = (id, game) => {
             dispatch(loadPokemonSuccess(pokemon));
         }).catch(error => {
             dispatch(apiCallError(error));
-            console.log(error);
         });
 
     };
