@@ -1,30 +1,25 @@
-const style = {
-  one: "w-1/6 bg-purple-900",
-  two: "w-1/3 bg-purple-400",
-  three: "w-1/2 bg-indigo-500",
-  four: "w-2/3 bg-blue-400",
-  five: "w-4/5 bg-green-600",
-  six: "w-full bg-green-200",
-};
+// For each form create a componenet that takes in the rows with the form
+const FormComponenet = ({ form = '', rows = [] }) => {
+  return (
+    <>
+      <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
+      <br></br>
+      {rows.map((row) => row.entry && (
+        <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
+          <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
+            {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
+          </div>
+          <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
+        </div>
+      ))}
+    </>
+  )
+}
 
-// const PokedexEntry = ({ form, rows }) => (
-//   <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
-//     <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
-//     <br></br>
-//     {rows.map((row) => row.entry && (
-//       <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
-//         <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
-//           {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
-//         </div>
-//         <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
-//       </div>
-//     ))
-//   </div>
-// )
-
-export const PokedexEntries = ({ entries }) => {
-
-  for (const form in entries) {
+export const PokedexEntries = ({ entries = {} }) => {
+  // Create an array that contains react componentes
+  const formsArray = [];
+  for (const [form, value] of Object.entries(entries)) {
     const rows = [
       {entry: entries[form].rb, game: ['Red', 'Blue'], desc: entries[form].rb},
       {entry: entries[form].ye, game: ['Yellow'], desc: entries[form].ye},
@@ -51,19 +46,12 @@ export const PokedexEntries = ({ entries }) => {
       {entry: entries[form].bdsp, game: ['BDSP'], desc: entries[form].bdsp},
       {entry: entries[form].la, game: ['Legends Arceus'], desc: entries[form].la},
     ];
-    return (
-      <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
-        <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
-        <br></br>
-        {rows.map((row) => row.entry && (
-          <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
-            <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
-              {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
-            </div>
-            <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
-          </div>
-        ))}
-      </div>
-    );
+    formsArray.push(<FormComponenet form={form} rows={rows} />)
   }
+
+  return (
+    <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
+      {formsArray.map((form) => form)}
+    </div>
+  );
 };

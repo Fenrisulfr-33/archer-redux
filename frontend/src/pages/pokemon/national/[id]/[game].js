@@ -1,6 +1,6 @@
 // import MovesListsByType from "./moves/MoveListByType";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import GameDropDown from "./GameDropDown";
 import { useRouter } from 'next/router';
 /* REDUX IMPORTS */
@@ -23,22 +23,21 @@ const InfoRow = ({ title, info }) => (
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
     const router = useRouter(),
-    { query, isReady, pathname } = router;
-    // Add State to determine what generation this person wants on screen
-    // inital request to the server should be the param sword and shield but then can be changed
-    useEffect(() => {
-        try {
-            isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
-        } catch (error) {
-            setError(error);
-        }
-    }, [isReady, query.id, query.game]);
-
-    const handleGoBack = (event) => {
+    { query, isReady, pathname } = router,
+    handleGoBack = (event) => {
+        // TODO: would like the option to go back to the dex page that it came from, national or sword-shield
         event.preventDefault;
         console.log(pathname)
         router.back();
     }
+
+    useEffect(() => {
+        try {
+            isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
+        } catch (error) {
+            setError({error: true, errorMessage: error});
+        }
+    }, [isReady, query.id, query.game]);
 
     return (
         <>
@@ -120,13 +119,12 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
 const mapStateToProps = (state) => {
     const { pokemon, apiCallsInProgress } = state;
     return {
-        pokemon: pokemon,
+        pokemon,
         loading: apiCallsInProgress > 0,
     }
-},
-    mapDispatchToProps = (dispatch) => {
-        return {
-            loadPokemon: bindActionCreators(loadPokemon, dispatch)
-        };
-    }
+}, mapDispatchToProps = (dispatch) => {
+    return {
+        loadPokemon: bindActionCreators(loadPokemon, dispatch)
+    };
+}
 export default connect(mapStateToProps, mapDispatchToProps)(NationalInd);

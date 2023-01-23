@@ -40,3 +40,4 @@ yarn-error.log*
 
 # Local files for dev
 ../data/local
+src\pages\api\mockData
