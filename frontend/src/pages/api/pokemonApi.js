@@ -2,9 +2,9 @@
 // Something is wrong with the .env files so use this for now
 const API_BASE_URL = 'http://localhost:5000';
 const isDevEnv = false;
-const nationalDex = require('./mockData/nationalDex.json');
-const swordShieldDex = require('./mockData/swordShield.json');
-const moves = require('./mockData/moves.json');
+// const nationalDex = require('./mockData/nationalDex.json');
+// const swordShieldDex = require('./mockData/swordShield.json');
+// const moves = require('./mockData/moves.json');
 
 export const getPokemon = async (id, game) => {
     if(isDevEnv){
