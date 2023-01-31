@@ -31,12 +31,9 @@ export const getDex = async (url) => {
 }
 
 export const getMoves = async () => {
-    if (isDevEnv){
-    } else {
-        const response = await fetch(`${API_BASE_URL}/pokemon/moves`),
-        returnObj = await response.json();
-        return returnObj;
-    }
+    const response = await fetch(`${API_BASE_URL}/pokemon/moves`),
+    returnObj = await response.json();
+    return returnObj;
 }
 
 // Dev Env Helper Functions

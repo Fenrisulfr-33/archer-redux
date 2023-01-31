@@ -1,14 +1,33 @@
 import { useState } from "react";
 import { FilterBar } from './FilterBar';
-import { DexRow } from "./DexRow";
+import { colors } from "../variables/typeColors";
+
 /* STYLES */
 const styles = {
   th: "py-1 px-1 text-center",
   tablet: "tablet:py-2 tablet:px-4",
   laptop: "laptop:py-3 laptop:px-6",
 };
+
+export const MoveRow = ({ move: {_id, name, type, category, pp, power, accuracy }}) => {
+    const styles = {
+        type: "col-span-1 my-1 rounded-md px-2 space-x-1 font-bold bg-opacity-75",      
+    }
+
+    return (
+      <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
+        <td>{_id}</td>
+        <td>{name.english}</td>
+        <td className={`${styles.type} ${colors[type.toLowerCase()]}`}>{type}</td>
+        <td>{category ? category : '-'}</td>
+        <td>{pp ? pp : '-'}</td>
+        <td>{power ? power : '-'}</td>
+        <td>{accuracy ? accuracy : '-'}</td>
+      </tr>
+    );
+  };
 /* MAIN COMPONENT */
-export const DexList = ({ list, filters = false, national = false, game }) => {
+export const AllMovesList = ({ list, filters = false, }) => {
     const initalSearchParams = {
       name: '',
       type: '',
@@ -25,6 +44,7 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
         {title: 'Power', name: 'power', value: searchParams.power, width: 'w-24'},
         {title: 'Accuracy', name: 'accuracy', value: searchParams.accuracy, width: 'w-24'},
     ], headers = [
+        "No.",
         "Name", 
         "Type",
         "Category",
@@ -49,15 +69,8 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 font-light">
-                        {filters ? 
-                                list.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type[0].toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type[1] && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
-                                .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities[1] && pokemon.abilities[1].toLowerCase().includes(searchParams.ability)) || (pokemon.abilities[2] && pokemon.abilities[2].toLowerCase().includes(searchParams.ability)) || (pokemon.abilities.h && pokemon.abilities.h.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
-                                .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>)) 
-                        :
-                        list.map((pokemon) => (
-                            <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>
+                        {list.map((move) => (
+                            <MoveRow key={move._id} move={move} />
                         ))}
                     </tbody>
                    </table>

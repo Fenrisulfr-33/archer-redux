@@ -1,8 +1,8 @@
-export const LOAD_DEX_SUCCESS = 'LOAD_DEX_SUCCESS';
-export const CLEAR_DEX_DATA = 'CLEAR_DEX_DATA';
-
 import * as pokemonApi from '../../pages/api/pokemonApi';
 import { beginApiCall, apiCallError } from "../apiStatus/apiStatusActions";
+
+export const LOAD_DEX_SUCCESS = 'LOAD_DEX_SUCCESS';
+export const CLEAR_DEX_DATA = 'CLEAR_DEX_DATA';
 
 export const loadDexSuccess = (dex) => {
     return { type: LOAD_DEX_SUCCESS, dex };

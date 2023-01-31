@@ -1,27 +1,20 @@
-import SideMenu from "../../../components/Menu/SideMenu";
 import { useEffect } from "react";
-import { DexList } from "../../../components/pokemon/components/DexList";
+import { AllMovesList } from "../../../components/pokemon/components/AllMovesList";
 import Loading from "../../../components/Loading";
-/* REDUX IMPORTS */
 import { connect } from "react-redux";
 import { loadMoves } from "../../../redux/pokemon/movesActions";
 import { bindActionCreators } from "redux";
-/* MAIN COMPONENT */
-const NationalDex = ({ moves, loadMoves, loading }) => {
+import PokemonLayout from '../PokemonLayout';
+
+const MovesList = ({ moves, loadMoves, loading }) => {
   useEffect(() => {
-    loadDex('national');
+    loadMoves();
   }, []);
 
   return (
-    <>
-      {loading && <Loading />}
-      <div className="flex flex-col tablet:flex-row">
-          <SideMenu />
-          <div className='tablet:w-4/5'>
-            <DexList list={dex} filters={true} national={true}/>
-          </div>
-      </div>
-    </>
+    <PokemonLayout>
+      {loading ?<Loading/> : <AllMovesList list={moves} />}
+    </PokemonLayout>
   );
 };
 
@@ -32,7 +25,7 @@ const mapStateToProps = ({ moves, apiCallsInProgress}) => {
     };
 }, mapDispatchToProps = (dispatch) => {
     return {
-        loadDex: bindActionCreators(loadMoves, dispatch),
+        loadMoves: bindActionCreators(loadMoves, dispatch),
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(NationalDex);
+export default connect(mapStateToProps, mapDispatchToProps)(MovesList);
