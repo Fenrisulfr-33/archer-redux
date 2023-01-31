@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const national = require('./national/national.controller');
 const swsh = require('./sword-shield/sword-shield.controller');
+const moves = require('./moves/moves.controller');
 const methodNotAllowed = require('../../errors/methodNotAllowed');
 
 router
@@ -21,6 +22,11 @@ router
 router
     .route('/sword-shield')
     .get(swsh.list)
+    .all(methodNotAllowed);
+
+router
+    .route('/moves')
+    .get(moves.list)
     .all(methodNotAllowed);
 
 module.exports = router;
