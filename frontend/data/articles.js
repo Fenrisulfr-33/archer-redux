@@ -6,22 +6,22 @@ import SOSChaining, { meta_4 } from './pokemon_ultra_sun_moon_sos.mdx';
 export const data = [
     {
         id: 4,
-        body: SOSChaining,
+        body: <SOSChaining />,
         info: meta_4
     },
     {
         id: 3,
-        body: SwShRibbons,
+        body: <SwShRibbons />,
         info: meta_3
     },
     {
         id: 2,
-        body: SSR,
+        body: <SSR />,
         info: meta_2
     },
     {
         id: 1,
-        body: Next,
+        body: <Next />,
         info: meta_1
     }
 ]

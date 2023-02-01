@@ -17,9 +17,9 @@ const styles = {
  */
 export default function ArticleList({ articles, family }) {
     return (
-        <div className='px-5 py-10 space-y-4'>
+        <div className='pt-10 px-5 flex flex-col space-y-4'>
             {articles.map((article) => (
-                <ArticleItem key={article.id} article={article} id={article.id} family={family}/>
+                <ArticleItem key={article.id} article={article} id={article.id} family={family} />
             ))}
         </div>
     )

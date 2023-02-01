@@ -14,7 +14,7 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
         <td>{dexNumber}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/sword-shield`} passhref>
-            <a>{name?.english}</a>
+            {name?.english}
           </Link>
         </td>
         <td>
