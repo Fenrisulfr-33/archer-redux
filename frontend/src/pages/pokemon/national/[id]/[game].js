@@ -11,7 +11,7 @@ import { BaseStat } from "../../../../components/pokemon/components/BaseStats";
 import { TypeWeakness } from '../../../../components/pokemon/components/TypeWeakness';
 import { PokedexEntries } from '../../../../components/pokemon/components/PokedexEntries';
 import MovesListsByType from "../../../../components/pokemon/components/MovesListsByType";
-import { PokemonIndToolbar } from "../../../../components/pokemon/components/pokemonIndToolbar";
+import { PokemonIndToolbar } from "../../../../components/pokemon/components/PokemonIndToolbar";
 import Loading from "../../../../components/Loading";
 
 const InfoRow = ({ title, info }) => (
