@@ -33,17 +33,18 @@ export default function SideMenu() {
                         <Menu.Items className={styles.menuItems}>
                             <MenuItem icon={<SiHomeadvisor size='20' />} text={'Home'} route={`/pokemon`} />
                             <MenuItem icon={<MdLibraryBooks size='20' />} text={'National'} route={`/pokemon/national`} />
-                            <MenuItem icon={<FaCode size='20' />} text={'Sword & Shield'} route={`/pokemon/swsh`} />
+                            <MenuItem icon={<FaCode size='20' />} text={'Sword & Shield'} route={`/pokemon/sword-shield`} />
                             <MenuItem icon={<MdOutlineCatchingPokemon size='20' />} text={'Moves'} route={`/pokemon/moves`} />
+                            <MenuItem icon={<MdLibraryBooks size='20' />} text={'Articles'} route={`/pokemon/articles`} />
                         </Menu.Items>
                     </Transition>
                 </Menu>
             </div> 
-            <div className='hidden tablet:flex flex-col p-2 space-y-4 w-1/5'>
+            <div className='hidden tablet:flex flex-col p-2 space-y-4'>
                 <NavBarIcon text={'Home'} route={'/pokemon'} />
                 <NavBarIcon text={'National'} route={'/pokemon/national'}/>
-                <NavBarIcon text={'Sword & Shield'} route={'/pokemon/swsh'}/>
-                {/* <NavBarIcon text={'Moves'} route={'/pokemon/moves'}/> */}
+                <NavBarIcon text={'Sword & Shield'} route={'/pokemon/sword-shield'}/>
+                <NavBarIcon text={'Moves'} route={'/pokemon/moves'}/>
                 <NavBarIcon text={'Articles'} route={'/pokemon/articles'}/>
             </div>
         </>
@@ -68,8 +69,8 @@ const MenuItem = ({ icon, text, route }) => (
 
 const NavBarIcon = ({ text, route }) => {
     return (
-        <Link href={route} passHref className={`flex`}>
-            <button className={`btn-purple`}>{text}</button>
+        <Link href={route} passHref>
+            <button className={`btn-purple w-full`}>{text}</button>
         </Link>
     )
 }

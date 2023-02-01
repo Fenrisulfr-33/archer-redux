@@ -12,7 +12,6 @@ const styles = {
 }
 
 const SwShCompForm = (props) => {
-    console.log(props);
     const initialFormData = {
         name: '',
         ability: '',
@@ -36,7 +35,6 @@ const SwShCompForm = (props) => {
     { name, ability, moveOne, moveTwo, moveThree, moveFour, item, nature, hpEV, atkEV, defEV, spAtkEV, spDefEV, spdEV, briefDesc, total } = formData,
     onSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
         setFormData({ ...initialFormData });
     },
     onInputChange = async ({ target: {name, value} }) => {

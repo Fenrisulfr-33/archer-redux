@@ -71,8 +71,8 @@ export default function MoveModal({ move: { _id, name, type, category, contest, 
                     {name.english}
                   </Dialog.Title>
                   <div className="mt-2 space-y-1">
-                    {rows.map((row) => (
-                      <div className="flex justify-between text-gray-300">
+                    {rows.map((row, index) => (
+                      <div key={index} className="flex justify-between text-gray-300">
                         <h2 className={'font-bold'}>{row.header}</h2>
                         {row.header === 'Type' ? <p className={`${typec} ${colors[row.value.toLowerCase()]} `}>{row.value}</p> : row.value ? <p className={test}>{row.value}</p> : <p className={test}>--</p>}
                       </div>

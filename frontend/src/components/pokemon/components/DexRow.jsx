@@ -14,13 +14,13 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
         <td>{dexNumber}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/sword-shield`} passhref>
-            <a>{name.english}</a>
+            {name?.english}
           </Link>
         </td>
         <td>
           <Image
             src={`/sprites/${_id}.png`}
-            alt={`${name.english}`}
+            alt={`${name?.english}`}
             height={40}
             width={40}
             layout="intrinsic"
@@ -46,8 +46,8 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
             <div className="italic">{abilities["h"]}</div>
           </div>
         </td>
-        {stats.map((stat) => (
-          <td className={styles.stat}>{stat}</td>
+        {stats.map((stat, index) => (
+          <td key={index} className={styles.stat}>{stat}</td>
         ))}
       </tr>
     );

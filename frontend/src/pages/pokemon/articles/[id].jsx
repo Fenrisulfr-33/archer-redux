@@ -1,30 +1,21 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { data } from "../../../components/pokemon/data/articles";
-import ArticleButtons from "../../../components/Articles/ArticleButtons";
 import Article from "../../../components/Articles/Article";
+import PokemonLayout from '../PokemonLayout';
 
 export default function ArticlePage() {
     const router = useRouter();
-    const { id } = router.query; // Type string
-    const [content, setContent] = useState();
-    const [error, setError] = useState();
-    useEffect(() => {
-        const found = data.find((article) => {
-            return article.id === Number(id);
-        });
-        if (found) {
-            setContent(found.body);
+    const { id } = router.query;
+    const found = data.find((article) => {
+        if(article.id === Number(id)){
+            return article.body;
         }
-    }, [id]);
+    });
     return(
-            <div className={``}>
-                <ArticleButtons id={id} length={data.length}/>
-                    <Article>
-                        {error ? error : null}
-                        {content ? content : null}
-                    </Article>
-                <ArticleButtons id={id} length={data.length}/>
-            </div>
+        <PokemonLayout>
+            <Article>
+                {found?.body ? found?.body : 'Article Not Found'}
+            </Article>
+        </PokemonLayout>
     )
 }

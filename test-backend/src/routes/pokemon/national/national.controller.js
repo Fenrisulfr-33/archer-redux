@@ -3,71 +3,95 @@ const asyncHandler = require('express-async-handler');
 const National = require('../../../models/pokemon/nationalModel');
 const Moves = require('../../../models/pokemon/movesModel');
 const mongoose = require('mongoose');
-// Connection process
-const connect = asyncHandler(async (request, response, next) => {
-    mongoose.set('strictQuery', true);
-    const db = await mongoose.connect(process.env.POKEMON_DB_CONNECTION);
-    console.log(`Mongo Connected: ${db.connection.host}`.cyan.underline);
-    next();
+const { connect, disconnect } = require('../connection');
+const local = process.env.ENV === 'local' ? true : false;
+const localNational = require('../mockData/pokedex.json');
+const localMoves = require('../mockData/moves.json');
+/* ---------- Helpers ---------- */
+const getPokemonMoves = (pokemon, game, moves) => {
+    const pokemonMoves = {};
+    for (const move in pokemon.moves) {
+        if (pokemon.moves[move].hasOwnProperty(`${game}-egg`)) {
+            // if intialMoves.egg exists skip else create it
+            pokemonMoves.egg ? null : pokemonMoves['egg'] = [];
+            // find the move in moves and add it to the egg array
+            // TODO: Look at an easier way to find the move instead of this method, potientally use a mongo query
+            const found = moves.find((dexMove) => dexMove.name.english === move);
+            pokemonMoves.egg.push(found)
+        } else if (pokemon.moves[move].hasOwnProperty(`${game}-lvl`)) {
+            pokemonMoves.lvl ? null : pokemonMoves['lvl'] = [];
+            const found = moves.find((dexMove) => dexMove.name.english === move),
+                rep = {
+                    ...found,
+                    level: pokemon.moves[move][`${game}-lvl`]
+                }
+                pokemonMoves.lvl.push(rep)
+        } else if (pokemon.moves[move].hasOwnProperty(`${game}-record`)) {
+            pokemonMoves.record ? null : pokemonMoves['record'] = [];
+            const found = moves.find((dexMove) => dexMove.name.english === move);
+            pokemonMoves.record.push(found)
+        } else if (pokemon.moves[move].hasOwnProperty(`${game}-machine`)) {
+            pokemonMoves.machine ? null : pokemonMoves['machine'] = [];
+            const found = moves.find((dexMove) => dexMove.name.english === move)
+            pokemonMoves.machine.push(found);
+        } else if (pokemon.moves[move].hasOwnProperty(`${game}-tutor`)) {
+            pokemonMoves.tutor ? null : pokemonMoves['tutor'] = [];
+            const found = moves.find((dexMove) => dexMove.name.english === move);
+            pokemonMoves.tutor.push(found);
+        }
+    }
+    return pokemonMoves;
+}
+/* ---------- Middleware ---------- */
+const pokemonExists = asyncHandler(async (request, response, next) => {
+    if (local) {
+        const pokemon = localNational.find((pokemon) => pokemon._id === Number(request.params.id));
+        response.locals.pokemon = pokemon;
+        next();
+    } else {
+        const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
+        if (!pokemon) {  // Case for if pokemon does not exsist
+            response.status(400);
+            throw new Error('Pokemon not found.');
+        } else {
+            response.locals.pokemon = pokemon;
+            next();
+        }
+    }
+}), getMoves = asyncHandler(async (request, response, next) => {
+    if (local) {
+        response.locals.moves = localMoves;
+        next();
+    } else {
+        // Getting all the moves right away will be faster then requesting it everytime we need information
+        const moves = await Moves.find().lean();
+        // Working on 
+        // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
+        if (!moves) { // Case for if moves is not connecting
+            response.status(400);
+            throw new Error('Moves data not found, error on Server/Database side.');
+        } else {
+            response.locals.moves = moves;
+            next();
+        }
+    }
 });
-const disconnect = asyncHandler(async (request, response, next) => {
-    await mongoose.connection.close();
-    console.log(`Mongo Disconnected: ${mongoose.connection.host}`.blue.underline);
-}); 
 
 /**
  *  Finds a pokemon base upon its nationa dex _id , and reassgins its move values as object with basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
-    const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
-    const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
-    if (!pokemon) {  // Case for if pokemon does not exsist
-        response.status(400);
-        throw new Error('Pokemon not found.');
-    } else if (!moves) { // Case for if moves is not connecting
-        response.status(400);
-        throw new Error('Moves data not found, error on Server/Database side.');
+    const { pokemon, moves } = response.locals, game = request.params.game;
+    if (local) {
+        const responsePokemon = {
+            ...pokemon,
+            moves: getPokemonMoves(pokemon, game, localMoves),
+        };
+        response.status(200).json(responsePokemon);
     } else {
-        const game = request.params.game
-        const initialMoves = {};
-        for (const move in pokemon.moves) {
-            if (pokemon.moves[move].hasOwnProperty(`${game}-egg`)) {
-                
-                initialMoves.egg ? null : initialMoves['egg'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                const newMove = {
-                    _id: found._id
-                }
-                initialMoves.egg.push(newMove)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-lvl`)) {
-                initialMoves.lvl ? null : initialMoves['lvl'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move),
-                    rep = {
-                        ...found,
-                        level: pokemon.moves[move][`${game}-lvl`]
-                    }
-                initialMoves.lvl.push(rep)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-record`)) {
-                initialMoves.record ? null : initialMoves['record'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.record.push(found)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-machine`)) {
-                initialMoves.machine ? null : initialMoves['machine'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.machine.push(found);
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-tutor`)) {
-                initialMoves.tutor ? null : initialMoves['tutor'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.tutor.push(found);
-            }
-        }
-        pokemon.moves = initialMoves;
-       disconnect();
+        pokemon.moves = getPokemonMoves(pokemon, game, moves);
+        disconnect();
         response.status(200).json(pokemon);
     }
 });
@@ -77,69 +101,12 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
  * @returns {JSON} all data for a specific Pokemon
  */
 const readPokemon = asyncHandler(async (request, response) => {
-    const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
-    const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean(); // Getting all the moves right away will be faster then requesting it everytime we need information
-
-    if (!pokemon) {  // Case for if pokemon does not exsist
-        response.status(400);
-        throw new Error('Pokemon not found.');
-    } else if (!moves) { // Case for if moves is not connecting
-        /* 
-            Eventually make this not required as you should still be able to get pokemon data without connecting to moves
-            But for now, I want it this way.
-        */
-        response.status(400);
-        throw new Error('Moves data not found, error on Server/Database side.');
+    const { pokemon, moves } = response.locals, game = 'sword-shield';
+    if (local) {
+        pokemon.moves = getPokemonMoves(pokemon, game, localMoves);
+        response.status(200).json(pokemon);
     } else {
-        /*
-            Moves Hierachy inside Pokemon object
-
-            --------------
-            <Move Name>: {
-                <game><move type>: <move type>
-            },
-            <Move Name>: {
-                <game><move type>: <move type>
-            }
-        */
-        const game = 'sword-shield'
-        const initialMoves = {};
-        for (const move in pokemon.moves) {
-            if (pokemon.moves[move].hasOwnProperty(`${game}-egg`)) {
-                initialMoves.egg ? null : initialMoves['egg'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.egg.push(found)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-lvl`)) {
-                initialMoves.lvl ? null : initialMoves['lvl'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move),
-                    rep = {
-                        ...found,
-                        level: pokemon.moves[move][`${game}-lvl`]
-                    }
-                initialMoves.lvl.push(rep)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-record`)) {
-                initialMoves.record ? null : initialMoves['record'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.record.push(found)
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-machine`)) {
-                initialMoves.machine ? null : initialMoves['machine'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.machine.push(found);
-            }
-            if (pokemon.moves[move].hasOwnProperty(`${game}-tutor`)) {
-                initialMoves.tutor ? null : initialMoves['tutor'] = [];
-                const found = moves.find((dexMove) => dexMove.name.english === move);
-                initialMoves.tutor.push(found);
-            }
-        }
-        pokemon.moves = initialMoves;
-        // const pokemonWithMoves = await _getMoves(pokemon, 'sword-shield', moves);
-        /*
-            Time Complexity: O(n) - The only way the algorithm takes longer is if the pokemon moves are added or games
-        */
+        pokemon.moves = getPokemonMoves(pokemon, game, moves);
         disconnect();
         response.status(200).json(pokemon);
     }
@@ -151,13 +118,26 @@ const readPokemon = asyncHandler(async (request, response) => {
  *  The Pokemon Natioanl Dex up to 898
  */
 const listNational = asyncHandler(async (request, response) => {
-    const national = await National.find().select('name type abilities baseStats').sort({ _id: 1 }); // just for the list view on the natioanl view page
-    disconnect();
-    response.status(200).json(national);
+    if (local){
+        const national = localNational.map(({_id, name, type, abilities, baseStats}) => {
+            return {
+                _id,
+                name: name.english,
+                type,
+                abilities,
+                baseStats,
+            }
+        })
+        response.status(200).json(national);
+    } else {
+        const national = await National.find().select('name.english type abilities baseStats').sort({ _id: 1 }); // just for the list view on the natioanl view page
+        disconnect();
+        response.status(200).json(national);
+    }
 });
 
 module.exports = {
-    read: [connect, readPokemon],
-    readGame: [connect, readPokemonByGame],
+    read: [connect, pokemonExists, getMoves, readPokemon],
+    readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
     list: [connect, listNational]
 }

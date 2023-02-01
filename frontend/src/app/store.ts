@@ -4,13 +4,15 @@ import { combineReducers } from '@reduxjs/toolkit';
 import pokemon from '../redux/pokemon/pokemonReducer';
 import user from '../redux/users/userReducers';
 import dex from '../redux/pokemon/dexReducers';
+import moves from '../redux/pokemon/movesReducer';
 import apiCallsInProgress from '../redux/apiStatus/apiStatusReducer';
 
 export const reducer = combineReducers({
+  user,
   pokemon,
   dex,
+  moves,
   apiCallsInProgress,
-  user,
 })
 
 export function makeStore() {

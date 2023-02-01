@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./src/**/*.{js,ts,jsx,tsx}', './src/pages/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/pages/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       phone: '480px',
@@ -11,7 +11,25 @@ module.exports = {
       ultrawide: '1536px',
     },
     extend: {
+      fontSize: {
+        'xxs': [
+          '8px', {
+            letterSpacing: '-0.02em',
+            lineHeight: '20px'
+          }
+        ]
+      },
       colors: {
+        // Game version colors
+        red: {
+          10: '#202225'
+        }, 
+        blue: {
+          10: '#202225'
+        },
+        yellow: {
+          10: '#202225'
+        },
         gray: {
           900: '#202225',
           800: '#2f3136',

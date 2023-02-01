@@ -37,3 +37,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Local files for dev
+../data/local
+src\pages\api\mockData

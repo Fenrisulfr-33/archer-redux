@@ -14,7 +14,6 @@ export const addPokemonTeam = (userId) => {
             dispatch(addPokemonTeamSuccess(newTeam));
         }).catch(error => {
             dispatch(apiCallError(error));
-            console.log(error);
         });
 
     };

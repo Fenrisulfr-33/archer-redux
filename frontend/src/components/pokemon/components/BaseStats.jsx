@@ -93,7 +93,7 @@ export const BaseStat = ({ title, stat }) => {
 
   return (
     <div className="flex flex-row justify-between">
-      <h4 className="font-bold text-left">
+      <h4 className="font-extrabold text-left bg-gray-800 rounded-md text-purple-600 px-1 mb-1">
         {title.toUpperCase()}:{stat}
       </h4>
       <div className={`mx-1 my-1.5 ${style} rounded-md`}></div>

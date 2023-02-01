@@ -26,7 +26,6 @@ const checkUser = asyncHandler(async (request, response, next) => {
     const {newValues:{name}} = request.body.data;
     const pokemon = await National.find({ "name.english": name }).exec();
     if (pokemon){
-        console.log(pokemon.name);
         response.status(201).json(pokemon);
         response.locals.pokemon = pokemon;
         return next();
@@ -133,12 +132,9 @@ const updateTeam = asyncHandler(async (request, response) => {
  const deleteTeam = asyncHandler(async (request, response) => {
     const { teamId } = request.body.data;
     const { foundUser } = response.locals;
-    console.log('teams', foundUser.pokemonTeams);
     const team = await user.pokemonTeams.id(teamId);
-    console.log('team', team);
     await team.remove();
     let finalResult = await user.save()
-    console.log(finalResult)
 });
 
 module.exports = {

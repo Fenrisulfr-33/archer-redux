@@ -26,7 +26,6 @@ const LoginPage = ({ user, login, loading }) => {
     }
 
     const handleLogin = async (event) => {
-        console.log('trying to login');
         event.preventDefault();
         const userData = {
             username,

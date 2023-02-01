@@ -15,7 +15,6 @@ const protect = asyncHandler(async (request, response, next) => {
             request.user = await Users.findById(decoded.id).select('-password') // this will decoded it and give us the id, and the password is hashed so we dont want that included
             next();
         } catch (error) {
-            console.log(error);
             response.status(401);
             throw new Error('Not Authorized');
         }

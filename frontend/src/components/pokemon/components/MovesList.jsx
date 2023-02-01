@@ -1,5 +1,5 @@
 import { colors } from "../variables/typeColors";
-import MoveModal from "./MoveModal";
+import MoveModal from "../components/MoveModal";
 
 const styles = {
     stat: 'py-2 px-1 text-center',
@@ -10,7 +10,7 @@ const styles = {
 function MoveInd({ move, lvl }){
     const { level, _id, name, type, category, pp, power, accuracy } = move;
     const route = `/pokemon/moves/${_id}`;
-    const typeOne = colors[type.toLowerCase()];
+    const typeOne = colors[type?.toLowerCase()];
     
     return(
         <tr className={styles.tr}>
@@ -36,7 +36,7 @@ export default function MovesList({ moves, lvl = false }){
                     <table className=" min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
                         <thead>
                             <tr className="bg-gray-500 text-gray-300 uppercase  leading-normal rounded-t-lg">
-                                {moveHeader.map((header) => (<th className={styles.th}>{header}</th>))}
+                                {moveHeader.map((header) => (<th key={header} className={styles.th}>{header}</th>))}
                             </tr>
                         </thead>
                         <tbody className="text-gray-600  font-light">
