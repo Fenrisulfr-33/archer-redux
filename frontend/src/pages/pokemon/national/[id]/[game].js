@@ -57,7 +57,7 @@ const NationalInd = ({
 
     return (
         <>
-            {loading && <Loading />}
+            {loading ? <Loading /> :
             <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto py-5 font-mono text-center text-gray-400'>  
                 <button className={''} onClick={handleGoBack}>Go Back</button>      
                 <PokemonIndToolbar 
@@ -127,7 +127,7 @@ const NationalInd = ({
                     <MovesListsByType moves={moves} />
                     <PokedexEntries entries={pokedexEntries} />
                 </div>
-            </div >
+            </div >}
         </>
     )
 }
