@@ -64,9 +64,9 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
                     <tbody className="text-gray-600 font-light">
                         {filters ? 
                                 list.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type[0].toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type[1] && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
-                                .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities[1] && pokemon.abilities[1].toLowerCase().includes(searchParams.ability)) || (pokemon.abilities[2] && pokemon.abilities[2].toLowerCase().includes(searchParams.ability)) || (pokemon.abilities.h && pokemon.abilities.h.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
+                                .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type.one.toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
+                                .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type.two && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
+                                .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities?.one.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.two.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.hidden.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
                                 .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>)) 
                         :
                         list.map((pokemon) => (

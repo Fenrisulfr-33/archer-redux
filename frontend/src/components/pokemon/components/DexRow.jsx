@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { colors } from "../variables/typeColors";
 
-export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef, spd },name,type,abilities,}, dexNumber}) => {
+export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef, spd },name,type: {one,two}, abilities,}, dexNumber}) => {
     const stats = [hp, atk, def, spatk, spdef, spd],
     styles = {
         stat: "py-1 px-1 border-l border-gray-400 text-center text-gray-800 whitespace-nowrap bg-opacity-75",
@@ -29,21 +29,20 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
         </td>
         <td>
           <div className="font-bold flex flex-col">
-            <div className={`${styles.type} ${colors[type[0].toLowerCase()]}`}>
-              {type[0]}
+            <div className={`${styles.type} ${colors[one.toLowerCase()]}`}>
+              {one}
             </div>
-            {type[1] ? (
-              <div className={`${styles.type} ${colors[type[1].toLowerCase()]}`}>
-                {type[1]}
-              </div>
-            ) : null}
+            {two &&
+              <div className={`${styles.type} ${colors[two.toLowerCase()]}`}>
+                {two}
+              </div>}
           </div>
         </td>
         <td>
           <div className="flex flex-col">
-            <div className="">{abilities[1]}</div>
-            <div className="">{abilities[2]}</div>
-            <div className="italic">{abilities["h"]}</div>
+            <div className="">{abilities.one}</div>
+            <div className="">{abilities.two}</div>
+            <div className="italic">{abilities.hidden}</div>
           </div>
         </td>
         {stats.map((stat, index) => (

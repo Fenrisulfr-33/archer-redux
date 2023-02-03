@@ -94,23 +94,23 @@ const NationalInd = ({
                                 <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 mb-1'}>Pokemon Type:</h4>
                                 <span>
                                     <Image
-                                        src={`/types/${type?.['0']}.svg`}
-                                        alt={`${type?.['0']}`}
+                                        src={`/types/${type?.one}.svg`}
+                                        alt={`${type?.one}`}
                                         height={40}
                                         width={40}
                                     />
-                                    {type?.['1'] &&
+                                    {type?.two &&
                                         <Image
-                                            src={`/types/${type?.['1']}.svg`}
-                                            alt={`${type?.['1']}`}
+                                            src={`/types/${type?.two}.svg`}
+                                            alt={`${type?.two}`}
                                             height={40}
                                             width={40}
                                         />}
                                 </span>
                             </div>
-                            {abilities?.['1'] ? <InfoRow title={'Ability 1'} info={abilities?.['1']} /> : null}
-                            {abilities?.['2'] ? <InfoRow title={'Ability 2'} info={abilities?.['2']} /> : null}
-                            {abilities?.h ? <InfoRow title={'Hidden'} info={abilities?.h} /> : null}
+                            {abilities?.one ? <InfoRow title={'Ability 1'} info={abilities?.one} /> : null}
+                            {abilities?.two ? <InfoRow title={'Ability 2'} info={abilities?.two} /> : null}
+                            {abilities?.hidden ? <InfoRow title={'Hidden'} info={abilities?.hidden} /> : null}
                             <h4>Base Stats:</h4>
                             <BaseStat title={'hp'} stat={baseStats?.hp} />
                             <BaseStat title={'atk'} stat={baseStats?.atk} />
