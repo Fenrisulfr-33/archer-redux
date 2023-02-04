@@ -8,6 +8,7 @@ export default {
     dex: [],
     moves: [],
     pokemon: {},
+    searchResults: [],
     apiCallsInProgress: 0,
   };
   

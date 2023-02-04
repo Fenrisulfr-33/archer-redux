@@ -16,3 +16,8 @@ export const getMoves = async () => {
     returnObj = await response.json();
     return returnObj;
 }
+export const getSearchResults = async (query) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/search${query}`),
+    returnObj = await response.json();
+    return returnObj;
+}

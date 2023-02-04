@@ -5,6 +5,7 @@ import pokemon from '../redux/pokemon/pokemonReducer';
 import user from '../redux/users/userReducers';
 import dex from '../redux/pokemon/dexReducers';
 import moves from '../redux/pokemon/movesReducer';
+import searchResults from '../redux/pokemon/searchResults/searchResultsReducer';
 import apiCallsInProgress from '../redux/apiStatus/apiStatusReducer';
 
 export const reducer = combineReducers({
@@ -12,6 +13,7 @@ export const reducer = combineReducers({
   pokemon,
   dex,
   moves,
+  searchResults,
   apiCallsInProgress,
 })
 

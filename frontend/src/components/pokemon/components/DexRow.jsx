@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { colors } from "../variables/typeColors";
 
-export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef, spd },name,type: {one,two}, abilities,}, dexNumber}) => {
-    const stats = [hp, atk, def, spatk, spdef, spd],
+export const DexRow = ({pokemon:{ _id,baseStats:{total,hp,atk,def,spatk,spdef,spd},name,type:{one,two},abilities,},dexNumber}) => {
+    const stats = [total, hp, atk, def, spatk, spdef, spd],
     styles = {
         stat: "py-1 px-1 border-l border-gray-400 text-center text-gray-800 whitespace-nowrap bg-opacity-75",
         type: "col-span-1 my-1 rounded-md px-2 space-x-1 font-bold bg-opacity-75",      
@@ -11,7 +11,7 @@ export const DexRow = ({pokemon: { _id, baseStats: { hp, atk, def, spatk, spdef,
 
     return (
       <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
-        <td>{dexNumber}</td>
+        <td>{dexNumber ? dexNumber : '--'}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/sword-shield`} passhref>
             {name?.english}

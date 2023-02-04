@@ -8,7 +8,7 @@ const styles = {
   laptop: "laptop:py-3 laptop:px-6",
 };
 /* MAIN COMPONENT */
-export const DexList = ({ list, filters = false, national = false, game }) => {
+export const DexList = ({ list = [], filters = false, national = false, game }) => {
     const initalSearchParams = {
       name: '',
       typeOne: '',
@@ -26,6 +26,7 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
         "Sprite",
         "Type",
         "Abilities",
+        "Total",
         "HP",
         "Atk",
         "Def",
@@ -38,6 +39,7 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
         "Sprite",
         "Type",
         "Abilities",
+        "Total",
         "HP",
         "Atk",
         "Def",
@@ -70,7 +72,8 @@ export const DexList = ({ list, filters = false, national = false, game }) => {
                                 .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>)) 
                         :
                         list.map((pokemon) => (
-                            <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>
+                            // <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>
+                            <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : '--'}/>
                         ))}
                     </tbody>
                    </table>

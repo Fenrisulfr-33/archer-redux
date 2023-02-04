@@ -1,35 +1,72 @@
  // This lets use use try catch without always have to catch an error
  const asyncHandler = require('express-async-handler');
  const National = require('../../../models/pokemon/nationalModel');
- const mongoose = require('mongoose');
  const { connect, disconnect } = require('../connection');
 
- const readPokemon = asyncHandler(async (request, response) => {
-    console.log(request.query);
-    // Shadow Punch
-    // Spite
-    // Curse
-    // Hex
-    const {move1, move2, move3, move4} = request.query;
-    const moveQuery = `moves.${move1}`;
-    // const found = await National.find({ "name.english": "Gengar" });
-    const found = await National
-    // .find()
-    .find()
-    .where(`moves.${move1}`)
-    .exists(true)
-    .where(`moves.${move2}`)
-    .exists(true)
-    .where(`moves.${move3}`)
-    .exists(true)
-    .where(`moves.${move4}`)
-    .exists(true)
-    .select('name.english')
-    .sort({ _id: 1 });
-    disconnect();
-    response.status(200).json(found);
+ const searchPokemon = asyncHandler(async (request, response) => {
+    // const move1 = request.params.move1;
+    // const move2 = request.params.move2;
+    // const move3 = request.params.move3;
+    // const move4 = request.params.move4;
+    const {
+        move1, 
+        move2, 
+        move3, 
+        move4,
+        // game,
+    } = request.query;
+    const game = 'scarlet-violet';
+    if (move4){
+        const found = await National
+        .find()
+        .where(`moves.${move1}.${game}-lvl` || `moves.${move1}.${game}-machine` ||`moves.${move1}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move2}.${game}-lvl` || `moves.${move2}.${game}-machine` ||`moves.${move2}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move3}.${game}-lvl` || `moves.${move3}.${game}-machine` ||`moves.${move3}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move4}.${game}-lvl` || `moves.${move4}.${game}-machine` ||`moves.${move4}.${game}-tutor`)
+        .exists(true)
+        .select('name.english type abilities baseStats')
+        .sort({ _id: 1 });
+        disconnect();
+        response.status(200).json(found);
+    } else if (move3){
+        const found = await National
+        .find()
+        .where(`moves.${move1}.${game}-lvl` || `moves.${move1}.${game}-machine` ||`moves.${move1}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move2}.${game}-lvl` || `moves.${move2}.${game}-machine` ||`moves.${move2}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move3}.${game}-lvl` || `moves.${move3}.${game}-machine` ||`moves.${move3}.${game}-tutor`)
+        .exists(true)
+        .select('name.english type abilities baseStats')
+        .sort({ _id: 1 });
+        disconnect();
+        response.status(200).json(found);
+    } else if (move2){
+        const found = await National
+        .find()
+        .where(`moves.${move1}.${game}-lvl` || `moves.${move1}.${game}-machine` ||`moves.${move1}.${game}-tutor`)
+        .exists(true)
+        .where(`moves.${move2}.${game}-lvl` || `moves.${move2}.${game}-machine` ||`moves.${move2}.${game}-tutor`)
+        .exists(true)
+        .select('name.english type abilities baseStats')
+        .sort({ _id: 1 });
+        disconnect();
+        response.status(200).json(found);
+    } else {
+        const found = await National
+        .find()
+        .where(`moves.${move1}.${game}-lvl` || `moves.${move1}.${game}-machine` ||`moves.${move1}.${game}-tutor`)
+        .exists(true)
+        .select('name.english type abilities baseStats')
+        .sort({ _id: 1 });
+        disconnect();
+        response.status(200).json(found);
+    }
  });
  
  module.exports = {
-     read: [connect, readPokemon]
+     read: [connect, searchPokemon]
  }

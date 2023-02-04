@@ -36,6 +36,7 @@ export default function SideMenu() {
                             <MenuItem icon={<FaCode size='20' />} text={'Sword & Shield'} route={`/pokemon/sword-shield`} />
                             <MenuItem icon={<MdOutlineCatchingPokemon size='20' />} text={'Moves'} route={`/pokemon/moves`} />
                             <MenuItem icon={<MdLibraryBooks size='20' />} text={'Articles'} route={`/pokemon/articles`} />
+                            <MenuItem icon={<MdLibraryBooks size='20' />} text={'Search'} route={`/pokemon/search`} />
                         </Menu.Items>
                     </Transition>
                 </Menu>
@@ -46,6 +47,7 @@ export default function SideMenu() {
                 <NavBarIcon text={'Sword & Shield'} route={'/pokemon/sword-shield'}/>
                 <NavBarIcon text={'Moves'} route={'/pokemon/moves'}/>
                 <NavBarIcon text={'Articles'} route={'/pokemon/articles'}/>
+                <NavBarIcon text={'Move Search'} route={'/pokemon/search'}/>
             </div>
         </>
     )
