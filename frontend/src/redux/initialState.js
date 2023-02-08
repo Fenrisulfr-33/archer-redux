@@ -5,7 +5,10 @@ export default {
       token: '',
       pokemonTeams: []
     },
-    dex: [],
+    dexes: {
+      national: [],
+      sword_shield: [],
+    },
     moves: [],
     pokemon: {},
     searchResults: [],

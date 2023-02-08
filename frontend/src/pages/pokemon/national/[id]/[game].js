@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from 'next/router';
 /* REDUX IMPORTS */
 import { connect } from 'react-redux';
-import { loadPokemon } from "../../../../redux/pokemon/pokemonActions";
+import { loadPokemon } from "../../../../redux/pokemon/pokemon/pokemonActions";
 import { bindActionCreators } from 'redux';
 import { BaseStat } from "../../../../components/pokemon/components/BaseStats";
 import { TypeWeakness } from '../../../../components/pokemon/components/TypeWeakness';

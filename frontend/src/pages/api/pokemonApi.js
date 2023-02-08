@@ -6,8 +6,13 @@ export const getPokemon = async (id, game) => {
     pokemon = await response.json();
     return pokemon;
 }
-export const getDex = async (url) => {
+export const getNationalDex = async (url) => {
     const response = await fetch(`${API_BASE_URL}/pokemon/${url}`),
+    returnObj = await response.json();
+    return returnObj;
+}
+export const getGameDex = async (url) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/${url}/pokedex`),
     returnObj = await response.json();
     return returnObj;
 }

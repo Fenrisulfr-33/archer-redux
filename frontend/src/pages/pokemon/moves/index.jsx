@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AllMovesList } from "../../../components/pokemon/components/AllMovesList";
 import Loading from "../../../components/Loading";
 import { connect } from "react-redux";
-import { loadMoves } from "../../../redux/pokemon/movesActions";
+import { loadMoves } from "../../../redux/pokemon/moves/movesActions";
 import { bindActionCreators } from "redux";
 import PokemonLayout from '../PokemonLayout';
 

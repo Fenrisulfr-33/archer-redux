@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { DexList } from "../../../components/pokemon/components/DexList";
 import Loading from "../../../components/Loading";
 import { connect } from "react-redux";
-import { loadDex } from "../../../redux/pokemon/dexActions";
+import { loadNationalDex } from "../../../redux/pokemon/dexes/dexActions";
 import { bindActionCreators } from "redux";
 import PokemonLayout from '../PokemonLayout';
 
-const NationalDex = ({ dex, loadDex, loading }) => {
+const NationalDex = ({ dex, loadNationalDex, loading }) => {
   useEffect(() => {
-    loadDex('national');
+    if (dex.length === 0){
+      loadNationalDex('national');
+    }
   }, []);
 
   return (
@@ -18,14 +20,14 @@ const NationalDex = ({ dex, loadDex, loading }) => {
   );
 };
 
-const mapStateToProps = ({ dex, apiCallsInProgress}) => {
+const mapStateToProps = ({ dexes:{national}, apiCallsInProgress}) => {
   return {
-    dex,
+    dex: national,
     loading: apiCallsInProgress > 0,
   };
 }, mapDispatchToProps = (dispatch) => {
   return {
-    loadDex: bindActionCreators(loadDex, dispatch),
+    loadNationalDex: bindActionCreators(loadNationalDex, dispatch),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NationalDex);

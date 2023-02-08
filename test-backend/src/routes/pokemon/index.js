@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const national = require('./national/national.controller');
-const swsh = require('./sword-shield/sword-shield.controller');
+const dexes = require('./gameDexes/game-dexes.controller');
 const moves = require('./moves/moves.controller');
 const search = require('./search/search.controller');
 const methodNotAllowed = require('../../errors/methodNotAllowed');
@@ -21,8 +21,8 @@ router
     .all(methodNotAllowed);
 
 router
-    .route('/sword-shield')
-    .get(swsh.list)
+    .route('/:game/pokedex')
+    .get(dexes.list)
     .all(methodNotAllowed);
 
 router

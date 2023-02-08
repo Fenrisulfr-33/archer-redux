@@ -5,6 +5,7 @@ const nationalSchema = mongoose.Schema({
         type: Number,
         required: [true, 'Please add a text value']
     },
+    pokedexNumber: { type: Object },
     name: { type: Object },
     moves: { type: Object },
 });

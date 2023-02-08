@@ -1,5 +1,5 @@
-import * as pokemonApi from '../../pages/api/pokemonApi';
-import { beginApiCall, apiCallError } from "../apiStatus/apiStatusActions";
+import * as pokemonApi from '../../../pages/api/pokemonApi';
+import { beginApiCall, apiCallError } from "../../apiStatus/apiStatusActions";
 
 export const LOAD_MOVES_SUCCESS = 'LOAD_MOVES_SUCCESS';
 
