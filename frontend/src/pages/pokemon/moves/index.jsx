@@ -8,7 +8,9 @@ import PokemonLayout from '../PokemonLayout';
 
 const MovesList = ({ moves, loadMoves, loading }) => {
   useEffect(() => {
-    loadMoves();
+    if(moves.length === 0){
+      loadMoves();
+    }
   }, []);
 
   return (

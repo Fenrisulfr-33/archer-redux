@@ -40,7 +40,7 @@ const NationalInd = ({
     loadPokemon 
 }) => {
     const router = useRouter(),
-    { query, isReady, pathname } = router,
+    { query, isReady } = router,
     handleGoBack = (event) => {
         // TODO: would like the option to go back to the dex page that it came from, national or sword-shield
         event.preventDefault;
@@ -48,10 +48,8 @@ const NationalInd = ({
     }
 
     useEffect(() => {
-        try {
-            isReady ? loadPokemon(`${query.id}`, `${query.game}`) : null;
-        } catch (error) {
-            setError({error: true, errorMessage: error});
+        if(isReady && _id !== Number(query.id)){
+            loadPokemon(`${query.id}`, `${query.game}`)
         }
     }, [isReady, query.id, query.game]);
 
@@ -59,7 +57,7 @@ const NationalInd = ({
         <>
             {loading ? <Loading /> :
             <div className='grid grid-cols-1 tablet:grid-cols-2 w-11/12 m-auto py-5 font-mono text-center text-gray-400'>  
-                <button className={''} onClick={handleGoBack}>Go Back</button>      
+                <button className={''} onClick={handleGoBack}>Go Back</button> 
                 <PokemonIndToolbar 
                     id={_id} 
                     game={query.game}
@@ -76,7 +74,6 @@ const NationalInd = ({
                                     alt={`${name?.english}`}
                                     height={100}
                                     width={100}
-                                    layout='intrinsic'
                                     className='col-span-1 tablet:col-span-2'
                                 />
                             </div>

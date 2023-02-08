@@ -1,0 +1,30 @@
+export const greninjaCounters = [
+    {
+        id: 423, 
+        name: 'Gastrodon', 
+        type: 'Water/Ground',
+        ability: 'Storm Drain',
+        terraType: 'Ground',
+        nature: 'Calm',
+        heldItem: 'Cowards Cloak',
+        role: 'All around',
+        moves: [{name:'Earth Power',type:'ground-bg'},{name:'Acid Armor',type:'poison-bg'},{name:'Clear Smog',type:'poison-bg'},{name:'Recover',type:'normal-bg'}],
+        otherMoves: [{name:'Stockpile',type:'normal-bg'}],
+        evs: [{name:'HP',value:252},{name:'SpD',value:252},{name:'Def',value:4}],
+        notes: `High Special defense protects you from Ice Beam, Acid armor is for all the physical attacks. Any Hydro Pumps boost special attack. Clear smog knocks Greninja's evasivness back down to 0. If Greninja doesn't use Hydro Pump boost your stats using a cheer then ground terra earht power your way after he clears all stats after turn 3.`,
+    },
+    {
+        id: 980, 
+        name: 'Clodsire', 
+        type: 'Poison/Ground',
+        ability: 'Water Absorb',
+        terraType: 'Ground',
+        nature: 'Adamant',
+        heldItem: 'Leftovers',
+        role: 'Physical Attacker/Natural Defense',
+        moves: [{name:'Earthquake',type:'ground-bg'},{name:'Curse',type:'ghost-bg'},{name:'Yawn',type:'normal-bg'},{name:'Recover',type:'normal-bg'}],
+        otherMoves: [{name:'Stockpile',type:'normal-bg'},{name:'Helping Hand',type:'normal-bg'}],
+        evs: [{name:'HP',value:252},{name:'Atk',value:252},{name:'SpD',value:4}],
+        notes: ``,
+    }
+];

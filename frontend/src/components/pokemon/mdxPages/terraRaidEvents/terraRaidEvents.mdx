@@ -1,12 +1,5 @@
-export const meta_2 = {
-  date: '2023-01-20',
-  author: 'Gin Silver',
-  description: 'Terra Raid Events in Pokemon Scarlet & Violet',
-  image: '',
-  slug: 'tre_pokemon_sv',
-  title: 'Terra Raid Events',
-  id: 5
-}
+import PokemonBuildModal from '../../components/modals/PokemonBuildModal';
+import {greninjaCounters} from './terraRaidEventCounters';
 
 # Terra Raid Events Pokemon Scarlet and Violet
 
@@ -17,7 +10,7 @@ Global: February 13th - 15th 2023
 The ninth Tera Raid Battle event offers a challenge to face battles against Tandemaus, to celebrate Valentine's Day.
 
 ## Armarouge & Ceruledge Spotlight
-### Release Dates:
+#### Release Dates:
 Global: February 3rd - 5th 2023
 
 The ninth Tera Raid Battle event offers a challenge to face 4 and 5 Star Tera Raid Battles for Armarouge in Pokémon Scarlet and Ceruledge in Pokémon Violet.
@@ -29,6 +22,25 @@ Global: January 27th - 29th 2023
 Global: February 10th - 12th 2023
 
 The eighth Tera Raid Battle event offers a challenge in Black Tera Raid Crystals against a 7 Star Raid Boss. This Raid Boss is Greninja with the Poison-type which comes with the Mightiest Mark for defeating it.
+
+<div className={'flex flex-row space-x-2'}>
+    {greninjaCounters.map(({id, name, type, ability, terraType, nature, heldItem, role, moves, otherMoves, evs, notes }) => (
+        <PokemonBuildModal 
+            id={id}
+            name={name} 
+            type={type}
+            ability={ability}
+            terraType={terraType}
+            nature={nature}
+            heldItem={heldItem}
+            role={role}
+            moves={moves}
+            otherMoves={otherMoves}
+            evs={evs}
+            notes={notes}
+        />
+    ))}
+</div>
 
 ## Drifblim & Mismagius Spotlight
 #### Release Dates:

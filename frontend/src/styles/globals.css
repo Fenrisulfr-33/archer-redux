@@ -7,8 +7,8 @@
         @apply 
         font-mono
         font-bold
-        items-center 
-        justify-center 
+        w-fit
+
         py-1
         px-3
         text-purple-300 
@@ -22,4 +22,73 @@
         hover:text-white 
         hover:rounded-2xl
     }
+    .test-btn {
+        @apply
+        bg-purple-500
+        hover:bg-purple-700
+        text-white 
+        font-bold 
+        py-1 
+        px-4
+        rounded-full
+        w-fit
+    }
+    .test-label{
+        @apply
+        bg-gray-500
+        text-black 
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .test-button{
+        @apply
+        bg-purp-500
+        text-gray-400 
+        hover:bg-purp-300
+        hover:text-gray-700
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .NOR-bg{@apply bg-gray-400}
+    .FIR-bg{@apply bg-orange-500}
+    .WAT-bg{@apply bg-sky-500}
+    .ELE-bg{@apply bg-yellow-300}
+    .GRA-bg{@apply bg-green-500}
+    .ICE-bg{@apply bg-cyan-200}
+    .FIG-bg{@apply bg-pink-800}
+    .POI-bg{@apply bg-purple-500}
+    .GRO-bg{@apply bg-amber-700}
+    .FLY-bg{@apply bg-blue-300}
+    .PSY-bg{@apply bg-rose-400}
+    .BUG-bg{@apply bg-lime-400}
+    .ROC-bg{@apply bg-orange-300}
+    .GHO-bg{@apply bg-indigo-500}
+    .DRA-bg{@apply bg-blue-600}
+    .DAR-bg{@apply bg-zinc-700}
+    .STE-bg{@apply bg-cyan-800}
+    .FAI-bg{@apply bg-fuchsia-300}
+    .normal-bg{@apply bg-gray-400}
+    .fire-bg{@apply bg-orange-500}
+    .water-bg{@apply bg-sky-500}
+    .electric-bg{@apply bg-yellow-300}
+    .grass-bg{@apply bg-green-500}
+    .ice-bg{@apply bg-cyan-200}
+    .fighting-bg{@apply bg-pink-800}
+    .poison-bg{@apply bg-purple-500}
+    .ground-bg{@apply bg-amber-700}
+    .flying-bg{@apply bg-blue-300}
+    .psychic-bg{@apply bg-rose-400}
+    .bug-bg{@apply bg-lime-400}
+    .rock-bg{@apply bg-orange-300}
+    .ghost-bg{@apply bg-indigo-500}
+    .dragon-bg{@apply bg-blue-600}
+    .dark-bg{@apply bg-zinc-700}
+    .steel-bg{@apply bg-cyan-800}
+    .fairy-bg{@apply bg-fuchsia-300}
 }

@@ -1,15 +1,15 @@
 import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
-import { BsChevronUp, BsChevronDown, BsChevronExpand } from 'react-icons/bs';
+import { BsChevronExpand } from 'react-icons/bs';
 import { BsCheck } from 'react-icons/bs';
-import { movesDropDownList } from './movesDropDownList';
+import { movesDropDownScarletViolet } from '../movesDropDowns/movesDropDownScareletViolet';
 
 export const InputBox = ({ move, setMove }) => {
   const [query, setQuery] = useState('')
   const filteredMoves =
     query === ''
-      ? movesDropDownList
-      : movesDropDownList.filter((move) =>
+      ? movesDropDownScarletViolet
+      : movesDropDownScarletViolet.filter((move) =>
           move
             .toLowerCase()
             .replace(/\s+/g, '')
