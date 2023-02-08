@@ -9,7 +9,7 @@ import PokemonLayout from '../PokemonLayout';
 const NationalDex = ({ dex, loadNationalDex, loading }) => {
   useEffect(() => {
     if (dex.length === 0){
-      loadNationalDex('national');
+      loadNationalDex();
     }
   }, []);
 

@@ -12,10 +12,10 @@ export const loadSwShSuccess = (dex) => {
     return { type: LOAD_SWSH_SUCCESS, dex };
 }
 
-export const loadNationalDex = (url) => {
+export const loadNationalDex = () => {
     return (dispatch) => {
         dispatch(beginApiCall());
-        return pokemonApi.getNationalDex(url)
+        return pokemonApi.getNationalDex()
         .then(dex => {
             dispatch(loadNationalSuccess(dex));
         }).catch(error => {

@@ -22,6 +22,10 @@
         hover:text-white 
         hover:rounded-2xl
     }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
     .test-btn {
         @apply
         bg-purple-500

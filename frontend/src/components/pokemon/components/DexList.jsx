@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { FilterBar } from './FilterBar';
 import { DexRow } from "./DexRow";
+import Pagination from "../../pagination/Pagination";
+import ToolBar from "./toolbars/Toolbar";
 /* STYLES */
 const styles = {
   th: "py-1 px-1 text-center",
@@ -51,10 +52,26 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
       setSearchParams({ ...searchParams, [name]: value.toLowerCase() }),
     onResetHandler = () => setSearchParams({ ...initalSearchParams });
 
+    // Pagination
+    const [recordsPerPage, setRcordsPerPage] = useState(100);
+    const [currentPage, setCurrentPage] = useState(1);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = list.slice(indexOfFirstRecord, indexOfLastRecord);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <div id="pokemon-content" className="flex flex-col">
-        {filters ? <FilterBar onResetHandler={onResetHandler} searchParams={searchParamsList} onChangeHandler={onChangeHandler} /> : null}
-        <div className='rounded-lg border-2 border-purp-100 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+    <div id="pokemon-content" className="flex flex-col space-y-2 pb-4">
+        <ToolBar 
+          onResetHandler={onResetHandler} 
+          searchParams={searchParamsList} 
+          onChangeHandler={onChangeHandler}
+          recordsPerPage={recordsPerPage} 
+          currentPage={currentPage}
+          totalCount={list.length} 
+          paginate={paginate}
+        />
+        <div className='rounded-lg border-2 border-purp-100 overflow-x-auto scrollbar-hide sm:-mx-6 lg:-mx-8'>
             <div className="inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
                     <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
@@ -65,13 +82,13 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
                     </thead>
                     <tbody className="text-gray-600 font-light">
                         {filters ? 
-                                list.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
+                                currentRecords.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
                                 .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type.one.toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
                                 .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type.two && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
                                 .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities?.one.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.two.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.hidden.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
                                 .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>)) 
                         :
-                        list.map((pokemon) => (
+                        currentRecords.map((pokemon) => (
                             // <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>
                             <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : '--'}/>
                         ))}
@@ -79,6 +96,15 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
                    </table>
                 </div>
             </div>
+        </div>
+        <div className={'flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300'}>
+          <h2 className={'test-label'}>Page</h2>
+            <Pagination 
+                recordsPerPage={recordsPerPage} 
+                totalCount={list.length} 
+                paginate={paginate} 
+                currentPage={currentPage}
+            />
         </div>
     </div>
 )};

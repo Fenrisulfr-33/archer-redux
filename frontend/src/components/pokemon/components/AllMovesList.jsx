@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FilterBar } from './FilterBar';
+import ToolBar from "./toolbars/Toolbar";
 import { colors } from "../variables/typeColors";
 
 /* STYLES */
@@ -56,9 +56,25 @@ export const AllMovesList = ({ list, filters = false, }) => {
       setSearchParams({ ...searchParams, [name]: value.toLowerCase() }),
     onResetHandler = () => setSearchParams({ ...initalSearchParams });
 
+  // Pagination
+  const [recordsPerPage, setRcordsPerPage] = useState(100);
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = list.slice(indexOfFirstRecord, indexOfLastRecord);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div id="pokemon-content" className="flex flex-col">
-        {filters ? <FilterBar onResetHandler={onResetHandler} searchParams={searchParamsList} onChangeHandler={onChangeHandler} /> : null}
+        {/* <ToolBar 
+          onResetHandler={onResetHandler} 
+          searchParams={searchParamsList} 
+          onChangeHandler={onChangeHandler}
+          recordsPerPage={recordsPerPage} 
+          currentPage={currentPage}
+          totalCount={list.length} 
+          paginate={paginate}
+        /> */}
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
@@ -69,7 +85,7 @@ export const AllMovesList = ({ list, filters = false, }) => {
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 font-light">
-                        {list.map((move) => (
+                        {currentRecords.map((move) => (
                             <MoveRow key={move._id} move={move} />
                         ))}
                     </tbody>
