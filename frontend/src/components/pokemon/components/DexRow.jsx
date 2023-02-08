@@ -5,12 +5,12 @@ import { colors } from "../variables/typeColors";
 export const DexRow = ({pokemon:{ _id,baseStats:{total,hp,atk,def,spatk,spdef,spd},name,type:{one,two},abilities,},dexNumber}) => {
     const stats = [total, hp, atk, def, spatk, spdef, spd],
     styles = {
-        stat: "py-1 px-1 border-l border-gray-400 text-center text-gray-800 whitespace-nowrap bg-opacity-75",
+        stat: "py-1 px-1 whitespace-nowrap bg-opacity-75",
         type: "col-span-1 my-1 rounded-md px-2 space-x-1 font-bold bg-opacity-75",      
     }
 
     return (
-      <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
+      <tr className="text-center hover:bg-purp-300 hover:text-gray-300 hover:font-bold">
         <td>{dexNumber ? dexNumber : '--'}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/sword-shield`} passhref>
@@ -23,7 +23,6 @@ export const DexRow = ({pokemon:{ _id,baseStats:{total,hp,atk,def,spatk,spdef,sp
             alt={`${name?.english}`}
             height={40}
             width={40}
-            layout="intrinsic"
             className="col-span-1"
           />
         </td>

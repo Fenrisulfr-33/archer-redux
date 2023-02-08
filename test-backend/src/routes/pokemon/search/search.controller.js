@@ -4,10 +4,6 @@
  const { connect, disconnect } = require('../connection');
 
  const searchPokemon = asyncHandler(async (request, response) => {
-    // const move1 = request.params.move1;
-    // const move2 = request.params.move2;
-    // const move3 = request.params.move3;
-    // const move4 = request.params.move4;
     const {
         move1, 
         move2, 

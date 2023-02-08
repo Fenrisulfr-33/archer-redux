@@ -16,38 +16,35 @@ const styles = {
 
 const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
     const router = useRouter();
-    const { query, isReady, params } = router;
+    const { query, isReady } = router;
     const { move1, move2, move3, move4 } = query;
     const [moveOne, setMoveOne] = useState('');
     const [moveTwo, setMoveTwo] = useState('')    
     const [moveThree, setMoveThree] = useState('')    
     const [moveFour, setMoveFour] = useState('')    
     const onSubmitHandler = (event) => {
+      let searchRoute = '/pokemon/search?'
+      // make it so you can enter 4 moves anywhere
+      const moves = [moveOne, moveTwo, moveThree, moveFour];
+      const checkMoves = [];
+      moves.forEach((move, index) => { move !== '' ? checkMoves.push(move) : null });
+      checkMoves.forEach((move, index) => { 
+        index === 0 ? 
+        searchRoute += `move${index+1}=${move}` : 
+        searchRoute += `&move${index+1}=${move}` 
+      })
       event.preventDefault();
-      if (moveFour !== ''){
-        router.push(`/pokemon/search?move1=${moveOne}&move2=${moveTwo}&move3=${moveThree}&move4=${moveFour}`);
-      } else if (moveThree !== ''){
-        router.push(`/pokemon/search?move1=${moveOne}&move2=${moveTwo}&move3=${moveThree}`);
-      } else if (moveTwo !== ''){
-        router.push(`/pokemon/search?move1=${moveOne}&move2=${moveTwo}`);
-      } else if (moveOne !== ''){
-        router.push(`/pokemon/search?move1=${moveOne}`);
-      }
+      router.push(searchRoute);
     }
 
     useEffect(() => {
       if (isReady){
-        if (move4){
-          loadSearchResults(`?move1=${move1}&move2=${move2}&move3=${move3}&move4=${move4}`);
-        } else if (move3){
-          loadSearchResults(`?move1=${move1}&move2=${move2}&move3=${move3}`);
-        } else if (move2){
-          loadSearchResults(`?move1=${move1}&move2=${move2}`);
-        } else if (move1){
-          loadSearchResults(`?move1=${move1}`);
-        } else {
-          loadSearchResults(``);
-        }
+        let loadString = '';
+        move1 ? loadString += `?move1=${move1}` : '';
+        move2 ? loadString += `&move2=${move2}` : '';
+        move3 ? loadString += `?move1=${move3}` : '';
+        move4 ? loadString += `&move2=${move4}` : '';
+        loadSearchResults(loadString);
       }
     }, [isReady, query]);
 
@@ -57,33 +54,39 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
         <MDXWrapper>
           <SearchPage />
         </MDXWrapper>
-        <h1 className={'text-purple-400 font-mono text-center py-2'}>Search for Pokemon by Moves</h1>
+        <div className={'bg-gray-600 rounded-lg'}>
+          <h1 className={'text-center py-1 font-mono bg-gray-800 m-2 rounded-lg text-purp-200'}>
+            Search for Pokemon by Moves
+          </h1>
+        </div>   
             <label className={'flex flex-row space-x-2'}>
-                    <button className={styles.button} disabled={true}>Move 1:</button>
+                    <button className={'test-label'} disabled={true}>Move 1:</button>
                     <InputBox move={moveOne} setMove={setMoveOne}/>
             </label>
             <label className={'flex flex-row space-x-2'}>
-                    <button className={styles.button} disabled={true}>Move 2:</button>
+                    <button className={'test-label'} disabled={true}>Move 2:</button>
                     <InputBox move={moveTwo} setMove={setMoveTwo}/>
             </label>
             <label className={'flex flex-row space-x-2'}>
-                    <button className={styles.button} disabled={true}>Move 3:</button>
+                    <button className={'test-label'} disabled={true}>Move 3:</button>
                     <InputBox move={moveThree} setMove={setMoveThree}/>
             </label>
             <label className={'flex flex-row space-x-2'}>
-                    <button className={styles.button} disabled={true}>Move 4:</button>
+                    <button className={'test-label'} disabled={true}>Move 4:</button>
                     <InputBox move={moveFour} setMove={setMoveFour}/>
             </label>
-        <button onClick={onSubmitHandler} className={styles.button}>Search</button>
-        <div className={'bg-gray-500 mt-4'}>
-            Pokemon Search Results
+        <button onClick={onSubmitHandler} className={'test-button'}>Search</button>
+          <div className={'bg-gray-600 rounded-lg'}>
+            <h2 className={'text-center font-mono bg-gray-800 m-2 py-2 rounded-lg text-purp-200'}>
+              Pokemon Search Results
+            </h2>
+          </div>
             {loading ? <Loading /> :
               <DexList 
                 list={searchResults}
                 game={'scarlet-violet'}
               />
             }
-        </div>
         </div>
     </PokemonLayout>
   );

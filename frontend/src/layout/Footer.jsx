@@ -18,7 +18,6 @@ export default function Header() {
             <Image 
                 src={`/sprites/94.png`}
                 alt='Archer'
-                layout={'fixed'}
                 height={100}
                 width={100}
                 className={styles.img}

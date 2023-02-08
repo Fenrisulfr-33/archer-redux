@@ -54,12 +54,12 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
   return (
     <div id="pokemon-content" className="flex flex-col">
         {filters ? <FilterBar onResetHandler={onResetHandler} searchParams={searchParamsList} onChangeHandler={onChangeHandler} /> : null}
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div className='rounded-lg border-2 border-purp-100 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+            <div className="inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
                     <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
                     <thead>
-                        <tr className="bg-gray-500 text-gray-300 uppercase  leading-normal rounded-t-lg">
+                        <tr className="bg-gray-600 text-gray-300 uppercase leading-normal">
                             {headers.map((header, index) => (<th key={index} className={styles.th}>{header}</th>))}
                         </tr>
                     </thead>
