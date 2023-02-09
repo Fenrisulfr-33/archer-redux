@@ -232,7 +232,7 @@ export const regionalTeam_01_08_2023 = [
     },
     {
         id: 128.3, 
-        name: 'Tauros - Water', 
+        name: 'Tauros(Aqua)', 
         type: 'Fighting/Water',
         ability: 'Intimidate',
         terraType: 'Water',

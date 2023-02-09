@@ -98,7 +98,7 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
             </div>
         </div>
         <div className={'flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300'}>
-          <h2 className={'test-label'}>Page</h2>
+          <h2 className={'label'}>Page</h2>
             <Pagination 
                 recordsPerPage={recordsPerPage} 
                 totalCount={list.length} 

@@ -10,9 +10,20 @@ import { useRouter } from "next/router";
 import SearchPage from '../../../components/pokemon/mdxPages/searchPage/searchPage.mdx';
 import MDXWrapper from "../../../components/MDXWrapper";
 
-const styles = {
-  button: 'text-purple-400 bg-gray-600 rounded-md px-2 font-mono',
-}
+const Box = ({ label }) => (
+  <div className={'bg-gray-600 rounded-lg border-2 border-purp-300 shadow-md shadow-gray-500'}>
+    <h2 className={'text-center py-1 font-mono bg-gray-800 m-2 rounded-lg text-purp-200'}>
+      {label}
+    </h2>
+  </div> 
+)
+
+const MoveBox = ({ title, move, setMove }) => (
+  <label className={'flex flex-row space-x-2'}>
+    <div className={'label'} disabled={true}>{title}</div>
+    <InputBox move={move} setMove={setMove}/>
+  </label>
+)
 
 const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
     const router = useRouter();
@@ -23,6 +34,7 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
     const [moveThree, setMoveThree] = useState('')    
     const [moveFour, setMoveFour] = useState('')    
     const onSubmitHandler = (event) => {
+      event.preventDefault();
       let searchRoute = '/pokemon/search?'
       // make it so you can enter 4 moves anywhere
       const moves = [moveOne, moveTwo, moveThree, moveFour];
@@ -33,7 +45,6 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
         searchRoute += `move${index+1}=${move}` : 
         searchRoute += `&move${index+1}=${move}` 
       })
-      event.preventDefault();
       router.push(searchRoute);
     }
 
@@ -51,42 +62,22 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
   return (
     <PokemonLayout>
         <div className={'flex flex-col m-2 space-y-4'}>
-        <MDXWrapper>
-          <SearchPage />
-        </MDXWrapper>
-        <div className={'bg-gray-600 rounded-lg'}>
-          <h1 className={'text-center py-1 font-mono bg-gray-800 m-2 rounded-lg text-purp-200'}>
-            Search for Pokemon by Moves
-          </h1>
-        </div>   
-            <label className={'flex flex-row space-x-2'}>
-                    <button className={'test-label'} disabled={true}>Move 1:</button>
-                    <InputBox move={moveOne} setMove={setMoveOne}/>
-            </label>
-            <label className={'flex flex-row space-x-2'}>
-                    <button className={'test-label'} disabled={true}>Move 2:</button>
-                    <InputBox move={moveTwo} setMove={setMoveTwo}/>
-            </label>
-            <label className={'flex flex-row space-x-2'}>
-                    <button className={'test-label'} disabled={true}>Move 3:</button>
-                    <InputBox move={moveThree} setMove={setMoveThree}/>
-            </label>
-            <label className={'flex flex-row space-x-2'}>
-                    <button className={'test-label'} disabled={true}>Move 4:</button>
-                    <InputBox move={moveFour} setMove={setMoveFour}/>
-            </label>
-        <button onClick={onSubmitHandler} className={'test-button'}>Search</button>
-          <div className={'bg-gray-600 rounded-lg'}>
-            <h2 className={'text-center font-mono bg-gray-800 m-2 py-2 rounded-lg text-purp-200'}>
-              Pokemon Search Results
-            </h2>
-          </div>
-            {loading ? <Loading /> :
-              <DexList 
-                list={searchResults}
-                game={'scarlet-violet'}
-              />
-            }
+          <MDXWrapper>
+            <SearchPage />
+          </MDXWrapper>
+          <Box label={'Search for Pokemon by Moves'} />
+          <MoveBox title={'Move 1:'} move={moveOne} setMove={setMoveOne} />
+          <MoveBox title={'Move 2:'} move={moveTwo} setMove={setMoveTwo} />
+          <MoveBox title={'Move 3:'} move={moveThree} setMove={setMoveThree} />
+          <MoveBox title={'Move 4:'} move={moveFour} setMove={setMoveFour} />
+          <button onClick={onSubmitHandler} className={'button'}>Search</button>
+          <Box label={'Pokemon Search Results'} />
+          {loading ? <Loading /> :
+            <DexList 
+              list={searchResults}
+              game={'scarlet-violet'}
+            />
+          }
         </div>
     </PokemonLayout>
   );

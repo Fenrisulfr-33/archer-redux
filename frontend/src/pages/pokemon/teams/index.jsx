@@ -1,4 +1,3 @@
-import SideMenu from "../../../components/Menu/SideMenu";
 import { useState, useEffect } from "react";
 import { colors } from "../../../components/pokemon/variables/typeColors";
 /* REDUX IMPORTS */
@@ -60,7 +59,6 @@ const PokemonTeams = ({ teams, userId, loading, teamsActions }) => {
     return (
         <div className="flex">
         <div id="side-menu" className="tablet:h-screen w-1/5">
-            <SideMenu />
         </div>
         {loading ? (
             <>Loading...</>

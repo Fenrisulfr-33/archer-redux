@@ -33,21 +33,23 @@ import Top16Table from './Top16Table';
 
 <h4>Winner {regional_01_08_2023.winner}'s Team</h4>
 
-<div className={'flex flex-col tablet:flex-row space-y-2'}>
-    {regional_01_08_2023.winningTeam.map(({id, name, type, ability, terraType, nature, heldItem, role, moves, otherMoves, evs, notes }) => (
-        <PokemonBuildModal 
-            id={id}
-            name={name} 
-            type={type}
-            ability={ability}
-            terraType={terraType}
-            nature={nature}
-            heldItem={heldItem}
-            role={role}
-            moves={moves}
-            otherMoves={otherMoves}
-            evs={evs}
-            notes={notes}
-        />
-    ))}
+<div className={'bg-gray-600 rounded-lg border-2 border-purp-100'}>
+    <div className={'flex flex-row p-2 space-x-2 overflow-auto scrollbar-hide'}>
+        {regional_01_08_2023.winningTeam.map(({id, name, type, ability, terraType, nature, heldItem, role, moves, otherMoves, evs, notes }) => (
+            <PokemonBuildModal 
+                id={id}
+                name={name} 
+                type={type}
+                ability={ability}
+                terraType={terraType}
+                nature={nature}
+                heldItem={heldItem}
+                role={role}
+                moves={moves}
+                otherMoves={otherMoves}
+                evs={evs}
+                notes={notes}
+            />
+        ))}
+    </div>
 </div>

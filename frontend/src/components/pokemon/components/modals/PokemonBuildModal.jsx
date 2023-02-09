@@ -34,7 +34,7 @@ export default function PokemonBuildModal({
   return (
     <>
       <>
-        <button type="button" onClick={openModal} className={'test-button'}>
+        <button type="button" onClick={openModal} className={'button'}>
           {name}
         </button>
       </>
@@ -82,7 +82,7 @@ export default function PokemonBuildModal({
                   <div className="mt-4 flex justify-center">
                     <button
                       type="button"
-                      className="inline-flex justify-center test-button"
+                      className="inline-flex justify-center button"
                       onClick={closeModal}
                     >
                       Close
