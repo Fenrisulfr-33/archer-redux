@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DexRow } from "./DexRow";
 import Pagination from "../../pagination/Pagination";
 import ToolBar from "./toolbars/Toolbar";
+import TableLayout from "./tableLayout/tableLayout";
 /* STYLES */
 const styles = {
   th: "py-1 px-1 text-center",
@@ -9,7 +10,7 @@ const styles = {
   laptop: "laptop:py-3 laptop:px-6",
 };
 /* MAIN COMPONENT */
-export const DexList = ({ list = [], filters = false, national = false, game }) => {
+export const DexList = ({ list = [], filters = false, national = false, game, search = false, pushRoute }) => {
     const initalSearchParams = {
       name: '',
       typeOne: '',
@@ -71,32 +72,24 @@ export const DexList = ({ list = [], filters = false, national = false, game }) 
           totalCount={list.length} 
           paginate={paginate}
         />
-        <div className='rounded-lg border-2 border-purp-100 overflow-x-auto scrollbar-hide sm:-mx-6 lg:-mx-8'>
-            <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="overflow-hidden">
-                    <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm">
-                    <thead>
-                        <tr className="bg-gray-600 text-gray-300 uppercase leading-normal">
-                            {headers.map((header, index) => (<th key={index} className={styles.th}>{header}</th>))}
-                        </tr>
-                    </thead>
-                    <tbody className="text-gray-600 font-light">
-                        {filters ? 
-                                currentRecords.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type.one.toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
-                                .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type.two && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
-                                .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities?.one.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.two.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.hidden.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
-                                .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>)) 
-                        :
-                        currentRecords.map((pokemon) => (
-                            // <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]}/>
-                            <DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : '--'}/>
-                        ))}
-                    </tbody>
-                   </table>
-                </div>
-            </div>
-        </div>
+        <TableLayout 
+          thead={headers.map((header, index) => (<th key={index} className={styles.th}>{header}</th>))}
+          tbody={filters ? 
+                    currentRecords.filter((pokemon) => searchParams.name === '' ? pokemon : pokemon.name?.english.toLowerCase().includes(searchParams.name) ? pokemon : null)
+                    .filter((pokemon) => searchParams.typeOne === '' ? pokemon : pokemon.type.one.toLowerCase().includes(searchParams.typeOne) ? pokemon : null)
+                    .filter((pokemon) => searchParams.typeTwo === '' ? pokemon : pokemon.type.two && pokemon.type[1].toLowerCase().includes(searchParams.typeTwo) ? pokemon : null)
+                    .filter((pokemon) => searchParams.ability === '' ? pokemon : (pokemon.abilities?.one.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.two.toLowerCase().includes(searchParams.ability)) || (pokemon.abilities?.hidden.toLowerCase().includes(searchParams.ability)) ? pokemon : null)
+                    .map((pokemon) => (<DexRow key={pokemon._id} pokemon={pokemon} dexNumber={national ? pokemon._id : pokemon.pokedexNumber[`${game}`]} pushRoute={pushRoute}/>)) 
+            :
+            currentRecords.map((pokemon) => (
+                <DexRow 
+                  key={pokemon._id} 
+                  pokemon={pokemon} 
+                  dexNumber={national ? pokemon._id : search ? '--' : pokemon.pokedexNumber[`${game}`]}
+                  pushRoute={pushRoute}
+                  />
+            ))}
+        />
         <div className={'flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300'}>
           <h2 className={'label'}>Page</h2>
             <Pagination 

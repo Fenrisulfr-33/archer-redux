@@ -16,7 +16,7 @@ const FormComponenet = ({ form = '', rows = [] }) => {
   )
 }
 
-export const PokedexEntries = ({ entries = {} }) => {
+export default function PokedexEntries({ entries = {} }){
   // Create an array that contains react componentes
   const formsArray = [];
   for (const [form, value] of Object.entries(entries)) {
@@ -45,6 +45,8 @@ export const PokedexEntries = ({ entries = {} }) => {
       {entry: entries[form].sh, game: ['Shield'], desc: entries[form].sh},
       {entry: entries[form].bdsp, game: ['BDSP'], desc: entries[form].bdsp},
       {entry: entries[form].la, game: ['Legends Arceus'], desc: entries[form].la},
+      {entry: entries[form].scarlet, game: ['Scarlet'], desc: entries[form].scarlet},
+      {entry: entries[form].violet, game: ['Violet'], desc: entries[form].violet},
     ];
     formsArray.push(<FormComponenet form={form} rows={rows} />)
   }

@@ -75,7 +75,8 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
           {loading ? <Loading /> :
             <DexList 
               list={searchResults}
-              game={'scarlet-violet'}
+              game={'scvi'}
+              search={true}
             />
           }
         </div>

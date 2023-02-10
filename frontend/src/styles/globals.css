@@ -28,6 +28,18 @@
         rounded
         w-fit
     }
+    .col-flex{@apply
+        flex flex-col
+    }
+    .row-flex{@apply
+        flex flex-row
+    }
+    .gray-border{@apply
+        border-2 border-gray-800
+    }
+    .purp-border{@apply
+        border-2 border-purp-100
+    }
     .NOR-bg{@apply 
         bg-gray-400
         font-bold

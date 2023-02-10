@@ -2,9 +2,16 @@ const API_BASE_URL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_B
 const env = process.env.NODE_ENV;
 
 export const getPokemon = async (id, game) => {
-    const response = await fetch(`${API_BASE_URL}/pokemon/national/${id}/${game}`),
-    pokemon = await response.json();
-    return pokemon;
+    if (game) {
+        const response = await fetch(`${API_BASE_URL}/pokemon/national/${id}/${game}`),
+        pokemon = await response.json();
+        return pokemon;
+    } else {
+        const response = await fetch(`${API_BASE_URL}/pokemon/national/${id}`),
+        pokemon = await response.json();
+        return pokemon;
+    }
+
 }
 export const getNationalDex = async () => {
     const response = await fetch(`${API_BASE_URL}/pokemon/national`),

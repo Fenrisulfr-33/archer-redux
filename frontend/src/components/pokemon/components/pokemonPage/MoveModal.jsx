@@ -1,8 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { colors } from "../variables/typeColors";
+import { colors } from "../../variables/typeColors";
 
-export default function MoveModal({ move: { _id, name, type, category, contest, pp, power, accuracy, contact, generation, target, effect: { shortEffect }, priority } }) {
+export default function MoveModal({ move: { _id, name, type, category, contest, pp, power, accuracy, contact, generation, target, priority } }) {
   const styles = {
     typec: " rounded-md bg-opacity-60 w-1/4 text-center",
     test: ''
@@ -20,7 +20,6 @@ export default function MoveModal({ move: { _id, name, type, category, contest, 
     {header: 'Target', value: target},
     {header: 'Priority', value: priority},
     {header: 'Contest', value: contest},
-    {header: 'Short Eff.', value: shortEffect},
   ];
   function closeModal() {
     setIsOpen(false);
@@ -34,7 +33,7 @@ export default function MoveModal({ move: { _id, name, type, category, contest, 
     <>
       <>
         <button type="button" onClick={openModal} className="">
-          {name.english}
+          {name}
         </button>
       </>
 

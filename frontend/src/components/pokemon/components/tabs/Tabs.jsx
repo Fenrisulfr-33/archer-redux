@@ -39,25 +39,39 @@ const scarletVioletMenu = [
     {title:'Terra Raid Events',route:'/pokemon/scarlet-violet/articles/terra-raid-events'},
     {title:'Regionals',route:'/pokemon/scarlet-violet/articles/regionals'},
 ];
+const swordShieldtMenu = [
+    {title:'Pokedex',route:'/pokemon/sword-shield/pokedex'},
+    {title:'Isle of Armor Dex.',route:'/pokemon/isle-of-armor/pokedex'},
+];
 
 export default function Tabs(){
     const [menuOne, setMenuOne] = useState(false);
+    const [menuTwo, setMenuTwo] = useState(false);
+    const [menuThree, setMenuThree] = useState(false);
+    const [menuFour, setMenuFour] = useState(false);
     const handleMenuOne = () => {
         if (menuTwo) setMenuTwo(false);
         if (menuThree) setMenuThree(false);
+        if (menuFour) setMenuFour(false);
         setMenuOne(!menuOne);
     }
-    const [menuTwo, setMenuTwo] = useState(false);
     const handleMenuTwo = () => {
         if (menuOne) setMenuOne(false);
         if (menuThree) setMenuThree(false);
+        if (menuFour) setMenuFour(false);
         setMenuTwo(!menuTwo);
     }
-    const [menuThree, setMenuThree] = useState(false);
     const handleMenuThree = () => {
         if (menuOne) setMenuOne(false);
         if (menuTwo) setMenuTwo(false);
+        if (menuFour) setMenuFour(false);
         setMenuThree(!menuThree);
+    }
+    const handleMenuFour = () => {
+        if (menuOne) setMenuOne(false);
+        if (menuTwo) setMenuTwo(false);
+        if (menuThree) setMenuThree(false);
+        setMenuFour(!menuFour);
     }
 
     return (
@@ -79,6 +93,10 @@ export default function Tabs(){
                 <div>
                     <DropDownButton title={'Scarlet & Violet'} handler={handleMenuThree} />
                     {menuThree ? (<DropDownMenu list={scarletVioletMenu}/>) : null}
+                </div>
+                <div>
+                    <DropDownButton title={'Sword & Shield'} handler={handleMenuFour} />
+                    {menuFour ? (<DropDownMenu list={swordShieldtMenu}/>) : null}
                 </div>
             </div>
         </div>

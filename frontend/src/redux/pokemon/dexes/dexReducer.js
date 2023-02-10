@@ -13,6 +13,11 @@ export default function dexReducer(state = initialState.dexes, action) {
                 ...state,
                 sword_shield: action.dex
             }
+        case types.LOAD_IOA_SUCCESS:
+            return {
+                ...state,
+                isle_of_armor: action.dex
+            }
         default:
             return state;
     }

@@ -7,10 +7,24 @@ export const loadPokemonSuccess = (pokemon) => {
     return { type: LOAD_POKEMON_SUCCESS, pokemon };
 }
 
-export const loadPokemon = (id, game) => {
+export const loadPokemon = (id) => {
     return (dispatch) => {
         dispatch(beginApiCall());
-        return pokemonApi.getPokemon(id, game).then(pokemon => {
+        return pokemonApi.getPokemon(id)
+        .then(pokemon => {
+            dispatch(loadPokemonSuccess(pokemon));
+        }).catch(error => {
+            dispatch(apiCallError(error));
+        });
+
+    };
+}
+
+export const loadPokemonByGame = (id, game) => {
+    return (dispatch) => {
+        dispatch(beginApiCall());
+        return pokemonApi.getPokemon(id, game)
+        .then(pokemon => {
             dispatch(loadPokemonSuccess(pokemon));
         }).catch(error => {
             dispatch(apiCallError(error));

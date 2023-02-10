@@ -1,4 +1,4 @@
-export const BaseStat = ({ title, stat }) => {
+export default function BaseStats({ title, stat }){
   let style;
   const tier = {
     one: "w-1/6 bg-purple-900",
@@ -93,7 +93,7 @@ export const BaseStat = ({ title, stat }) => {
 
   return (
     <div className="flex flex-row justify-between">
-      <h4 className="font-extrabold text-left bg-gray-800 rounded-md text-purple-600 px-1 mb-1">
+      <h4 className="label gray-border">
         {title.toUpperCase()}:{stat}
       </h4>
       <div className={`mx-1 my-1.5 ${style} rounded-md`}></div>

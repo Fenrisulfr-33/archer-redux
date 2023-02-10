@@ -40,6 +40,7 @@ export default function PokemonSideMenu() {
                     <div className={`pl-4`}><div className={`label`}>Sword & Shield</div></div>
                         <div className={'pl-8  flex flex-col space-y-1'}>
                             <NavBarIcon route={'/pokemon/sword-shield/pokedex'} text={'Pokedex'}/>
+                            <NavBarIcon route={'/pokemon/isle-of-armor/pokedex'} text={'Isle of Armor Dex.'}/>
                             <NavBarIcon route={''} text={'Raid Dens'}/>
                         </div>
         </div>

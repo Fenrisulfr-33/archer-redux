@@ -14,6 +14,10 @@ const listDex = asyncHandler(async (request, response) => {
         const swshDex = await National.find().where("pokedexNumber.swsh").exists(true).select('pokedexNumber name type abilities baseStats').sort({ "pokedexNumber.swsh": 1 });
         disconnect();
         response.status(200).json(swshDex);
+    } else if (game === 'isle-of-armor'){
+        const swshDex = await National.find().where("pokedexNumber.ioa").exists(true).select('pokedexNumber name type abilities baseStats').sort({ "pokedexNumber.ioa": 1 });
+        disconnect();
+        response.status(200).json(swshDex);
     }
 });
 

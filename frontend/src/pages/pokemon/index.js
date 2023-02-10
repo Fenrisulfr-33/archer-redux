@@ -1,4 +1,4 @@
-import HomePage from './pokemonHome.mdx';
+import HomePage from '../../components/pokemon/mdxPages/homePage/homePage.mdx'
 import MDXWrapper from '../../components/MDXWrapper';
 import PokemonLayout from './PokemonLayout';
 

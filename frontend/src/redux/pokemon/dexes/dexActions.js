@@ -3,13 +3,16 @@ import { beginApiCall, apiCallError } from "../../apiStatus/apiStatusActions";
 
 export const LOAD_NATIONAL_SUCCESS = 'LOAD_NATIONAL_SUCCESS';
 export const LOAD_SWSH_SUCCESS = 'LOAD_SWSH_SUCCESS';
+export const LOAD_IOA_SUCCESS = 'LOAD_IOA_SUCCESS';
 
 export const loadNationalSuccess = (dex) => {
     return { type: LOAD_NATIONAL_SUCCESS, dex };
 }
-
 export const loadSwShSuccess = (dex) => {
     return { type: LOAD_SWSH_SUCCESS, dex };
+}
+export const loadIoaSuccess = (dex) => {
+    return { type: LOAD_IOA_SUCCESS, dex };
 }
 
 export const loadNationalDex = () => {
@@ -30,6 +33,18 @@ export const loadSwShDex = (url) => {
         return pokemonApi.getGameDex(url)
         .then(dex => {
             dispatch(loadSwShSuccess(dex));
+        }).catch(error => {
+            dispatch(apiCallError(error));
+        });
+    };
+}
+
+export const loadIoaDex = (url) => {
+    return (dispatch) => {
+        dispatch(beginApiCall());
+        return pokemonApi.getGameDex(url)
+        .then(dex => {
+            dispatch(loadIoaSuccess(dex));
         }).catch(error => {
             dispatch(apiCallError(error));
         });

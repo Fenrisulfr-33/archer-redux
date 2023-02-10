@@ -8,6 +8,7 @@ export default {
     dexes: {
       national: [],
       sword_shield: [],
+      isle_of_armor: [],
     },
     moves: [],
     pokemon: {},
