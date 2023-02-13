@@ -16,6 +16,18 @@
         rounded
         w-fit
     }
+    .label-purp{
+        @apply
+        bg-purp-500
+        text-gray-400 
+        border-2
+        border-purp-100
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
     .button{
         @apply
         bg-purp-500
@@ -144,12 +156,11 @@
         prose-h2:pl-2
         prose-h2:py-2
         prose-h2:ml-8 
-        prose-h2:text-gray-200 
+        prose-h2:font-extrabold 
         prose-h2:bg-purp-600 
         prose-h2:border-2 
         prose-h2:border-purp-100 
         prose-h2:rounded-lg 
-        prose-h2:font-extrabold 
         prose-h2:phone:text-3xl 
     }
     .h3-prose{@apply
@@ -176,6 +187,7 @@
         prose-h4:phone:text-2xl
     }
     .wrap-prose{@apply
+        text-purple-50
         prose
         py-10 
         text-sm 

@@ -4,10 +4,10 @@ const FormComponenet = ({ form = '', rows = [] }) => {
     <>
       <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
       <br></br>
-      {rows.map((row) => row.entry && (
+      {rows.map((row, index) => row.entry && (
         <div className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
-          <div className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
-            {row.game.map((game) => (<span className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
+          <div key={index} className={' w-2/12 desktop:w-1/12 flex flex-col mb-2 border-r-2 border-gray-700'}>
+            {row.game.map((game, index) => (<span key={index} className={`text-right pr-1 text-${game.toLowerCase()}-200`}>{game}</span>))}
           </div>
           <p className={'w-10/12 desktop:w-11/12 pl-1 text-left break-words'}>{row.desc}</p>
         </div>

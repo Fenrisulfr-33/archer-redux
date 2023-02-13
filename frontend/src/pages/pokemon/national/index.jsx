@@ -15,7 +15,7 @@ const NationalDex = ({ dex, loadNationalDex, loading }) => {
 
   return (
     <PokemonLayout>
-      {loading ? <Loading /> : <DexList list={dex} filters={true} national={true}/>}
+      {loading ? <Loading /> : <DexList list={dex} filters={true} national={true} pushRoute={''}/>}
     </PokemonLayout>
   );
 };

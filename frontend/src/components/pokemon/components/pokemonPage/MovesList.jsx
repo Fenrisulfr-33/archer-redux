@@ -32,7 +32,7 @@ export default function MovesList({ moves, lvl = false }){
 
     return (
         <TableLayout 
-            thead={moveHeader.map((header) => (<th key={header} className={styles.th}>{header}</th>))}
+            thead={moveHeader.map((header, index) => (<th key={index} className={styles.th}>{header}</th>))}
             tbody={moves.map((move) => <MoveInd key={move._id} move={move} lvl={lvl} />)}
         />
     )

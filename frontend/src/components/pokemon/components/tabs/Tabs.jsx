@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
+import { dataMenu, mechanicsMenu, scarletVioletMenu, swordShieldtMenu } from "../menus";
 
 const DropDownButton = ({ title, handler }) => (
     <button className={'flex flex-row label border-2 border-gray-800'}
@@ -21,28 +22,6 @@ const DropDownMenu = ({ list }) => (
         </div>
     </div>
 )
-
-const dataMenu = [
-    {title:'National Dex',route:'/pokemon/national'},
-    {title:'Moves',route:'/pokemon/moves'},
-    {title:'Abilities',route:'/pokemon/abilities'},
-    {title:'Move Search',route:'/pokemon/search'},
-];
-const mechanicsMenu = [
-    {title:'Type Chart',route:'/pokemon/typechart'},
-    {title:'EVs',route:'/pokemon/effort-values'},
-    {title:'IVs',route:'/pokemon/individual-values'},
-    {title:'Breeding',route:'/pokemon/breeding'},
-];
-const scarletVioletMenu = [
-    {title:'Pokedex',route:'/pokemon/scarlet-violet/pokedex'},
-    {title:'Terra Raid Events',route:'/pokemon/scarlet-violet/articles/terra-raid-events'},
-    {title:'Regionals',route:'/pokemon/scarlet-violet/articles/regionals'},
-];
-const swordShieldtMenu = [
-    {title:'Pokedex',route:'/pokemon/sword-shield/pokedex'},
-    {title:'Isle of Armor Dex.',route:'/pokemon/isle-of-armor/pokedex'},
-];
 
 export default function Tabs(){
     const [menuOne, setMenuOne] = useState(false);
