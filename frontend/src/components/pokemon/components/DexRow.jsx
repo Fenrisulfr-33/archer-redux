@@ -20,7 +20,7 @@ export const DexRow = ({ pokemon, dexNumber, pushRoute}) => {
         </td>
         <td>
           <Image
-            src={`/sprites/${_id}.png`}
+            src={`/sprites/gen_9/${_id}.png`}
             alt={`${name?.english}`}
             height={40}
             width={40}
@@ -40,9 +40,9 @@ export const DexRow = ({ pokemon, dexNumber, pushRoute}) => {
         </td>
         <td>
           <div className="flex flex-col">
-            <div className="">{abilities.one}</div>
-            <div className="">{abilities.two}</div>
-            <div className="italic">{abilities.hidden}</div>
+            <div className="">{abilities.one.name}</div>
+            <div className="">{abilities?.two?.name}</div>
+            <div className="italic">{abilities?.hidden?.name}</div>
           </div>
         </td>
         {stats.map((stat, index) => (

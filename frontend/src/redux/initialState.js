@@ -11,6 +11,11 @@ export default {
       isle_of_armor: [],
     },
     moves: [],
+    move: {},
+    abilities: {
+      ability: {},
+      list: [],
+    },
     pokemon: {},
     searchResults: [],
     apiCallsInProgress: 0,

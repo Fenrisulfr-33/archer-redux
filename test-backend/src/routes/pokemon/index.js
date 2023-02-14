@@ -2,6 +2,7 @@ const router = require('express').Router();
 const national = require('./national/national.controller');
 const dexes = require('./gameDexes/game-dexes.controller');
 const moves = require('./moves/moves.controller');
+const abilities = require('./abilities/abilities.controller');
 const search = require('./search/search.controller');
 const methodNotAllowed = require('../../errors/methodNotAllowed');
 
@@ -28,6 +29,16 @@ router
 router
     .route('/moves')
     .get(moves.list)
+    .all(methodNotAllowed);
+
+router
+    .route('/abilities')
+    .get(abilities.list)
+    .all(methodNotAllowed);
+
+router
+    .route('/abilities/:id')
+    .get(abilities.read)
     .all(methodNotAllowed);
 
 router

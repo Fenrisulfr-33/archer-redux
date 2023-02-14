@@ -9,29 +9,18 @@ import PokemonLayout from "../../PokemonLayout";
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
   const { query, isReady } = useRouter();
-  const [forceRender, setForceRender] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-        if (isReady && pokemon._id !== Number(query.id)) {
-            await loadPokemon(query.id);
-            setForceRender(!forceRender);
-          }
+      if (isReady && pokemon._id !== Number(query.id)) {
+      loadPokemon(query.id);
     }
-
-    fetchData()
-
-    // if (!pokemon.baseStats){
-    //     console.log('exists');
-    //     setForceRender(!forceRender);
-    // }
-  }, [isReady, query.id, forceRender]);
+  }, [isReady, query.id]);
 
   return (
     <PokemonLayout>
       {loading ? (
         <Loading />
-      ) : Object.keys(pokemon).length > 0 && pokemon.baseStats.hp ? (
+      ) : Object.keys(pokemon).length > 0 ? (
         <PokemonPage
           pokemon={pokemon}
           query={query}

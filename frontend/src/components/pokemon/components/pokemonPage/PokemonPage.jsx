@@ -5,12 +5,12 @@ import TypeWeakness from "./TypeWeakness";
 import PokedexEntries from "./PokedexEntries";
 import MovesListsByType from "./MovesListsByType";
 import PokemonIndToolbar from "./PokemonIndToolbar";
-import Loading from "../../../Loading";
+import Link from "next/link";
 
-const InfoRow = ({ title, info }) => (
+const InfoRow = ({ title, info, ability }) => (
   <div className="flex flex-row justify-between">
     <div className="label border-2 border-gray-900">{title}:</div>
-    <p>{info}</p>
+    {ability ? <Link href={`/pokemon/abilities/${info.id}`} passHref>{info.name}</Link> : <p>{info}</p>}
   </div>
 );
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
@@ -105,14 +105,14 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
                   )}
                 </span>
               </div>
-              {pokemon.abilities.one ? (
-                <InfoRow title={"Ability 1"} info={pokemon.abilities.one} />
+              {pokemon.abilities.one.name ? (
+                <InfoRow title={"Ability 1"} info={pokemon.abilities.one} ability={true} />
               ) : null}
-              {pokemon.abilities.two ? (
-                <InfoRow title={"Ability 2"} info={pokemon.abilities.two} />
+              {pokemon.abilities?.two?.name ? (
+                <InfoRow title={"Ability 2"} info={pokemon.abilities.two} ability={true} />
               ) : null}
-              {pokemon.abilities.hidden ? (
-                <InfoRow title={"Hidden"} info={pokemon.abilities.hidden} />
+              {pokemon.abilities?.hidden?.name ? (
+                <InfoRow title={"Hidden"} info={pokemon.abilities.hidden} ability={true} />
               ) : null}
               <div className={"col-flex space-y-1"}>
                 <div className={"label-purp"}>Evs:</div>

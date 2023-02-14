@@ -16,7 +16,7 @@ export default function Header() {
     return (
         <div className={styles.main}>
             <Image 
-                src={`/sprites/94.png`}
+                src={`/sprites/gen_9/94.png`}
                 alt='Archer'
                 height={100}
                 width={100}
