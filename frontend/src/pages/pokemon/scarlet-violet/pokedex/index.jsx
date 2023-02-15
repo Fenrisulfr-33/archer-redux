@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadSwShDex } from "../../../../redux/pokemon//dexes/dexActions";
+import { loadScViDex } from "../../../../redux/pokemon//dexes/dexActions";
 import { bindActionCreators } from "redux";
 import { DexList } from "../../../../components/pokemon/components/DexList";
 import Loading from "../../../../components/Loading";
 import PokemonLayout from "../../PokemonLayout";
 
-const SwShDex = ({ dex, loadSwShDex, loading }) => {
+const ScViDex = ({ dex, loadScViDex, loading }) => {
   useEffect(() => {
     if (dex.length === 0) {
-      loadSwShDex("sword-shield");
+      loadScViDex("scarlet-violet");
     }
   }, []);
 
@@ -21,23 +21,23 @@ const SwShDex = ({ dex, loadSwShDex, loading }) => {
         <DexList
           list={dex}
           filters={true}
-          game={"swsh"}
-          pushRoute={"sword-shield"}
+          game={"scvi"}
+          pushRoute={"scarlet_violet"}
         />
       )}
     </PokemonLayout>
   );
 };
 
-const mapStateToProps = ({ dexes: { sword_shield }, apiCallsInProgress }) => {
+const mapStateToProps = ({ dexes: { scarlet_violet }, apiCallsInProgress }) => {
     return {
-      dex: sword_shield,
+      dex: scarlet_violet,
       loading: apiCallsInProgress > 0,
     };
   },
   mapDispatchToProps = (dispatch) => {
     return {
-      loadSwShDex: bindActionCreators(loadSwShDex, dispatch),
+      loadScViDex: bindActionCreators(loadScViDex, dispatch),
     };
   };
-export default connect(mapStateToProps, mapDispatchToProps)(SwShDex);
+export default connect(mapStateToProps, mapDispatchToProps)(ScViDex);

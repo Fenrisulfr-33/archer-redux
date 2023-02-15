@@ -21,13 +21,13 @@ export default function PokemonSideMenu() {
         <div className={`label`}>Data</div>
         <div className={"pl-4  flex flex-col space-y-1"}>
           {dataMenu.map((page, index) => (
-            <NavBarIcon route={page.route} text={page.title} />
+            <NavBarIcon key={index} route={page.route} text={page.title} />
           ))}
         </div>
         <div className={`label`}>Mechanics</div>
         <div className={"pl-4 flex flex-col space-y-1"}>
           {mechanicsMenu.map((page, index) => (
-            <NavBarIcon route={page.route} text={page.title} />
+            <NavBarIcon key={index} route={page.route} text={page.title} />
           ))}
         </div>
         <div className={`label`}>Games</div>
@@ -36,7 +36,7 @@ export default function PokemonSideMenu() {
         </div>
         <div className={"pl-8 flex flex-col space-y-1"}>
           {scarletVioletMenu.map((page, index) => (
-            <NavBarIcon route={page.route} text={page.title} />
+            <NavBarIcon key={index} route={page.route} text={page.title} />
           ))}
         </div>
         <div className={`pl-4`}>
@@ -44,7 +44,7 @@ export default function PokemonSideMenu() {
         </div>
         <div className={"pl-8  flex flex-col space-y-1"}>
           {swordShieldtMenu.map((page, index) => (
-            <NavBarIcon route={page.route} text={page.title} />
+            <NavBarIcon key={index} route={page.route} text={page.title} />
           ))}
         </div>
       </div>
