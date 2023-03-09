@@ -16,7 +16,7 @@ export default function PokemonSideMenu() {
       <div className={"laptop:hidden"}>
         <Tabs />
       </div>
-      <div className="hidden laptop:flex flex-col space-y-2 p-2 text-left text-sm border border-red-200">
+      <div className="hidden laptop:flex flex-col space-y-2 p-2 text-left text-sm border bg-gray-700 m-2 rounded-xl border-purp-400">
         <NavBarIcon route={"/pokemon"} text={"Home"} />
         <div className={`label`}>Data</div>
         <div className={"pl-4  flex flex-col space-y-1"}>

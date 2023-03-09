@@ -22,7 +22,7 @@ const ScViDex = ({ dex, loadScViDex, loading }) => {
           list={dex}
           filters={true}
           game={"scvi"}
-          pushRoute={"scarlet_violet"}
+          pushRoute={"scarlet-violet"}
         />
       )}
     </PokemonLayout>

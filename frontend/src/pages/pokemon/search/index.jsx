@@ -53,8 +53,8 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
         let loadString = '';
         move1 ? loadString += `?move1=${move1}` : '';
         move2 ? loadString += `&move2=${move2}` : '';
-        move3 ? loadString += `?move1=${move3}` : '';
-        move4 ? loadString += `&move2=${move4}` : '';
+        move3 ? loadString += `&move3=${move3}` : '';
+        move4 ? loadString += `&move4=${move4}` : '';
         loadSearchResults(loadString);
       }
     }, [isReady, query]);

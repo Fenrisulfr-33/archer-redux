@@ -4,7 +4,7 @@ export default function BaseStats({ stats }) {
   return (
     <div
       id="base_stats"
-      className={"bg-gray-600 rounded-2xl border-2 border-purp-100 laptop:w-1/3"}
+      className={"bg-gray-600 rounded-2xl border-2 border-purp-100"}
     >
       <div className={"m-2 bg-gray-700 rounded-lg"}>
         <div className={"p-2 col-flex space-y-2"}>

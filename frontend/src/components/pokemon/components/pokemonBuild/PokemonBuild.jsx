@@ -20,6 +20,7 @@ export default function PokemonBuild({
     moves = [],
     otherMoves = [],
     evs,
+    terra = false,
 }){
     return (
         <div className={'flex flex-col w-full text-xs text-gray-200 bg-gray-700 rounded-xl border-2 border-purp-100'}>
@@ -37,7 +38,7 @@ export default function PokemonBuild({
             <div className={'flex flex-row'}>
                 <div className={'flex w-1/2 m-2 justify-center items-center'}>
                     <Image
-                        src={`/hires/${id}.png`}
+                        src={`/sprites/gen_9/${id}.png`}
                         alt={name}
                         height={150}
                         width={150}
@@ -55,18 +56,18 @@ export default function PokemonBuild({
                 </div>
             </div>
             <div className={'flex flex-row'}>
-                <div className={'w-1/2 m-2 bg-gray-600 rounded-lg border border-purp-100'}>
+                <div className={`${terra ? 'w-1/2' : 'w-full'} m-2 bg-gray-600 rounded-lg border border-purp-100`}>
                     <div className={'flex flex-col p-2 space-y-1 justify-center'}>
                         <h2 className={'underline text-purp-100'}>Recommended Moves</h2>
                         {moves.map((move, index) => <button key={index} className={`${move.type} text-black border font-bold border-gray-800 w-full rounded-lg px-1`}>{move.name}</button>)}
                     </div>
                 </div>
-                <div className={'w-1/2 m-2 bg-gray-600 rounded-lg border border-purp-100'}>
+                {terra && <div className={'w-1/2 m-2 bg-gray-600 rounded-lg border border-purp-100'}>
                     <div className={'flex flex-col p-2 space-y-1 justify-center'}>
                         <h2 className={'underline text-purp-100'}>Other Moves</h2>
                         {otherMoves.map((move, index) => <button key={index} className={`${move.type} text-black border font-bold border-gray-80 w-full rounded-lg px-1`}>{move.name}</button>)}
                     </div>
-                </div>
+                </div>}
             </div>
             <div className={'flex flex-col m-2 bg-gray-600 rounded-lg border border-purp-100'}>
                 <div className={'p-2 space-y-1'}>

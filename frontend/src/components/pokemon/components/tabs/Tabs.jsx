@@ -70,11 +70,11 @@ export default function Tabs(){
                     {menuTwo ? (<DropDownMenu list={mechanicsMenu}/>) : null}
                 </div>
                 <div>
-                    <DropDownButton title={'Scarlet & Violet'} handler={handleMenuThree} />
+                    <DropDownButton title={'Scarlet/Violet'} handler={handleMenuThree} />
                     {menuThree ? (<DropDownMenu list={scarletVioletMenu}/>) : null}
                 </div>
                 <div>
-                    <DropDownButton title={'Sword & Shield'} handler={handleMenuFour} />
+                    <DropDownButton title={'Sword/Shield'} handler={handleMenuFour} />
                     {menuFour ? (<DropDownMenu list={swordShieldtMenu}/>) : null}
                 </div>
             </div>

@@ -16,6 +16,7 @@ export default function PokemonBuildModal({
     moves = [],
     otherMoves = [],
     evs,
+    terra,
  }) {
   const styles = {
     typec: " rounded-md bg-opacity-60 w-1/4 text-center",
@@ -78,6 +79,7 @@ export default function PokemonBuildModal({
                         otherMoves={otherMoves}
                         evs={evs}
                         notes={notes}
+                        terra={terra}
                     />
                   <div className="mt-4 flex justify-center">
                     <button

@@ -1,7 +1,23 @@
-import PokemonBuildModal from '../../components/modals/PokemonBuildModal';
-import {greninjaCounters} from './terraRaidEventCounters';
+import PokemonSideScroller from '../../components/pokemonSideScroller/PokemonSideScroller';
+import {greninjaCounters, pikachuCounters} from './terraRaidEventCounters';
 
 # Terra Raid Events Pokemon Scarlet and Violet
+
+## Mighty Pikachu
+#### Release Dates:
+Global: February 24th - 27th 2023
+
+The twelfth Tera Raid Battle event offers a challenge offers a challenge in Black Tera Raid Crystals against a 7 Star Raid Boss. This Raid Boss is Pikachu with the Water-type which comes with the Mightiest Mark for defeating it.
+
+The Pikachu comes holding a Ligt Ball with max IVs and is EV trained: 252 HP / 6 Atk / 252 SpA. It also ranges in size from 240 to 255 giving it a 1 in 16 chance of being eligible for the Jumbo Mark.
+
+<PokemonSideScroller list={pikachuCounters} terra={true}/>
+
+## Garchomp & Sylveon Spotlight
+#### Release Dates:
+Global: February 17th - 19th 2023
+
+The eleventh Tera Raid Battle event offers a challenge to face 4 and 5 Star Tera Raid Battles for Garchomp & Sylveon across both games.
 
 ## Valentine's Event
 #### Release Dates:
@@ -23,24 +39,7 @@ Global: February 10th - 12th 2023
 
 The eighth Tera Raid Battle event offers a challenge in Black Tera Raid Crystals against a 7 Star Raid Boss. This Raid Boss is Greninja with the Poison-type which comes with the Mightiest Mark for defeating it.
 
-<div className={'flex flex-row space-x-2'}>
-    {greninjaCounters.map(({id, name, type, ability, terraType, nature, heldItem, role, moves, otherMoves, evs, notes }) => (
-        <PokemonBuildModal 
-            id={id}
-            name={name} 
-            type={type}
-            ability={ability}
-            terraType={terraType}
-            nature={nature}
-            heldItem={heldItem}
-            role={role}
-            moves={moves}
-            otherMoves={otherMoves}
-            evs={evs}
-            notes={notes}
-        />
-    ))}
-</div>
+<PokemonSideScroller list={greninjaCounters} terra={true}/>
 
 ## Drifblim & Mismagius Spotlight
 #### Release Dates:
