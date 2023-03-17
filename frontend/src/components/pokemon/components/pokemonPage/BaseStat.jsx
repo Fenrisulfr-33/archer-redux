@@ -30,7 +30,7 @@ export default function BaseStat({ title, stat }) {
     <div className={'row-flex justify-between'}>
       <div className="text-xxs phone:text-xs">
         <span className={'row-flex space-x-1'}>
-            <div className={'label-purp px-1 phone:px-2 '}>
+            <div className={'label-purple px-1 phone:px-2 '}>
                 {title.toUpperCase()}: {stat}
             </div>
             <div className={'hidden phone:flex px-2 label gray-border'}>

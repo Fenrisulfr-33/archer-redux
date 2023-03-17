@@ -6,7 +6,7 @@ const { connect, disconnect } = require("../connection");
 const abilityExists = asyncHandler(async (request, response, next) => {
   const ability = await Abilities.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
   if (!ability) {
-    // Case for if pokemon does not exsist
+    // Case for if ability does not exsist
     response.status(400);
     throw new Error("Ability not found.");
   } else {

@@ -22,7 +22,7 @@ const Moves = ({ moves, loadMoves, loading }) => {
 
 const mapStateToProps = ({ moves, apiCallsInProgress}) => {
     return {
-        moves,
+        moves: moves.list,
         loading: apiCallsInProgress > 0,
     };
 }, mapDispatchToProps = (dispatch) => {

@@ -95,7 +95,6 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals,
     game = request.params.game;
   let mainGame = null;
-  console.log(request.params);
   if (
     game === "isle-of-armor" ||
     game === "crown-tundra" ||

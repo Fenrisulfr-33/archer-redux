@@ -23,6 +23,11 @@ export const getGameDex = async (url) => {
     returnObj = await response.json();
     return returnObj;
 }
+export const getMove = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/moves/${id}`),
+    returnObj = await response.json();
+    return returnObj;
+}
 export const getMoves = async () => {
     const response = await fetch(`${API_BASE_URL}/pokemon/moves`),
     returnObj = await response.json();

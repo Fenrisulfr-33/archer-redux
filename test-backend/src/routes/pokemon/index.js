@@ -32,6 +32,11 @@ router
     .all(methodNotAllowed);
 
 router
+    .route('/moves/:id')
+    .get(moves.read)
+    .all(methodNotAllowed);
+
+router
     .route('/abilities')
     .get(abilities.list)
     .all(methodNotAllowed);

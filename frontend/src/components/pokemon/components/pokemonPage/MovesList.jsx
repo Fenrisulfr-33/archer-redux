@@ -4,7 +4,7 @@ import TableLayout from "../tableLayout/tableLayout";
 
 const styles = {
     stat: 'py-2 px-1 text-center',
-    tr: 'border-b border-stone-400 hover:bg-purp-300 hover:text-gray-300 hover:font-bold',
+    tr: 'border-b border-stone-400 hover:bg-purple-300 hover:text-gray-300 hover:font-bold',
     th: 'py-3 px-1 text-center'
 }
 

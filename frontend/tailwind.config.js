@@ -138,7 +138,8 @@ module.exports = {
           200: "#ebedef",
           100: "#f2f3f5",
         },
-        purp: {
+        purple: {
+          50: "#B289F3",
           100: "#b289f3",
           200: "#9c78d5",
           300: "#8567b6",
@@ -147,17 +148,6 @@ module.exports = {
           600: "#43335b",
           700: "#2c223d",
           800: "#16111e",
-        },
-        purple: {
-          900: "#633974", // main color, tinits pallet
-          800: "#775285",
-          700: "#8A6B97",
-          600: "#9E83A8",
-          400: "#B19CBA",
-          300: "#C4B5CB",
-          200: "#D8CEDC",
-          100: "#EBE6EE",
-          50: "#B289F3",
         },
         teal: {
           300: "#47E9BA",
@@ -206,7 +196,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    require("tailwind-scrollbar")({ nocompatible: true }),
+    require("tailwind-scrollbar-hide"),
     // require('@tailwindcss/forms')
   ],
 };

@@ -54,10 +54,10 @@ export default function Tabs(){
     }
 
     return (
-        <div className={'bg-gray-600 m-2 rounded-lg border-2 border-purp-100'}>
+        <div className={'bg-gray-600 m-2 rounded-lg border-2 border-purple-100'}>
             <div className={'flex flex-row p-2 space-x-2 overflow-auto scrollbar-hide'}>
                 <Link href={'/pokemon'} passHref>
-                    <button className={'button border-2 border-gray-800 shadow-sm shadow-purp-100'}>
+                    <button className={'button border-2 border-gray-800 shadow-sm shadow-purple-100'}>
                         Home
                     </button>
                 </Link>

@@ -7,8 +7,8 @@ export const statWidth = (stat) => {
     three: "bg-green-300 ",
     four: "bg-sky-500 ",
     five: "bg-sky-300 ",
-    six: "bg-purp-200 ",
-    seven: "bg-purp-50 ",
+    six: "bg-purple-200 ",
+    seven: "bg-purple-50 ",
   };
 
   switch (statDivded) {

@@ -12,7 +12,7 @@ import MDXWrapper from "../../../components/MDXWrapper";
 
 const Box = ({ label }) => (
   <div className={'bg-gray-600 rounded-lg border-2 border-purp-300 shadow-md shadow-gray-500'}>
-    <h2 className={'text-center py-1 font-mono bg-gray-800 m-2 rounded-lg text-purp-200'}>
+    <h2 className={'text-center py-1 font-mono bg-gray-800 m-2 rounded-lg text-purple-200'}>
       {label}
     </h2>
   </div> 
@@ -77,6 +77,7 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
               list={searchResults}
               game={'scvi'}
               search={true}
+              pushRoute={'scarlet-violet'}
             />
           }
         </div>

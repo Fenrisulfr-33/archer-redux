@@ -2,7 +2,7 @@ import { types, normal, fire, water, electric, grass, ice, fighting, flying, gro
 
 export const TypeChartTable = () => (
     <div className={'w-max-fit bg-gray-700 rounded-lg  overflow-x-auto scrollbar-hide'}>
-        <table className={'text-sm w-full bg-gray-600 border-2 border-purp-100 text-center rounded-lg border-separate'}>
+        <table className={'text-sm w-full bg-gray-600 border-2 border-purple-100 text-center rounded-lg border-separate'}>
             <tr>{types.map((type, index) => (<th className={type.class} key={index}>{type.value}</th>))}</tr>
             <tr>{normal.map((data, index) => (<td className={data.class} key={index}>{data.value}</td>))}</tr>
             <tr>{fire.map((data, index) => (<td className={data.class} key={index}>{data.value}</td>))}</tr>

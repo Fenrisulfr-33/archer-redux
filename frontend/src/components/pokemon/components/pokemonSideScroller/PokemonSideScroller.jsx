@@ -2,7 +2,7 @@ import PokemonBuildModal from '../modals/PokemonBuildModal';
 
 export default function PokemonSideScroller({ list, margin, terra }) {
   return (
-    <div className={`bg-gray-600 rounded-lg border-2 border-purp-100 ${margin}`}>
+    <div className={`bg-gray-600 rounded-lg border-2 border-purple-100 ${margin}`}>
       <div
         className={"flex flex-row p-2 space-x-2 overflow-auto scrollbar-hide"}
       >

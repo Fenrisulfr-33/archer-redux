@@ -2,7 +2,7 @@ import Pagination from "../../../pagination/Pagination";
 
 export default function ToolBar({ onResetHandler, searchParams, onChangeHandler, recordsPerPage, totalCount, paginate, currentPage }){
     return (
-        <div className="flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300">
+        <div className="flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
             <div className={'flex flex-row space-x-2'}>
                 <h2 className={'label'}>Filters</h2>
                 <button onClick={onResetHandler} className={`button`}>Reset</button>
@@ -18,11 +18,11 @@ export default function ToolBar({ onResetHandler, searchParams, onChangeHandler,
                             rounded-md 
                             bg-gray-600 
                             border-2 
-                            border-purp-400 
+                            border-purple-400 
                             text-sm 
                             font-mono
                             placeholder:italic
-                            placeholder:text-purp-100
+                            placeholder:text-purple-100
                             hover:font-bold
                             pl-2`}
                             name={params.name}

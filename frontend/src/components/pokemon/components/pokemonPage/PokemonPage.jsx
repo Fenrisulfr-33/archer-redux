@@ -43,11 +43,11 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         gameDropDown={pokemon.gameDropDown}
       />
       <div className={"col-flex space-y-2"}>
-        <h1 className="text-5xl font-bold text-center py-5 text-purp-200">
+        <h1 className="text-5xl font-bold text-center py-5 text-purple-200">
           {pokemon.name.english}
         </h1>
-        <div className={"col-flex space-y-2 col-flex"}>
-          <div className="col-flex p-2 space-y-2 bg-gray-600 rounded-2xl border-2 border-purp-100">
+        <div className={"col-flex space-y-2"}>
+          <div className="col-flex p-2 space-y-2 bg-gray-600 rounded-2xl border-2 border-purple-100">
             <h1 className="text-2xl font-extrabold">Pokedex Information</h1>
             <div className={"col-flex text-sm tablet:text-md tablet:flex-row "}>
               <div className="col-flex m-1 rounded-lg bg-gray-800 space-y-2 p-2 tablet:w-1/2">
@@ -55,8 +55,8 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
                   <Image
                     src={`/hires/${pokemon._id}.png`}
                     alt={`${pokemon.name.english}`}
-                    height={100}
-                    width={100}
+                    height={200}
+                    width={200}
                     className="rounded-md border-2 border-gray-500"
                   />
                 </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { colors } from "../../variables/typeColors";
+import Link from "next/link";
 import TableLayout from "../tableLayout/tableLayout";
 import Pagination from "../../../pagination/Pagination";
 
@@ -19,7 +20,7 @@ const MoveRow = ({
   return (
     <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
       <td>{_id}</td>
-      <td>{name.english}</td>
+      <td><Link href={`/pokemon/moves/${_id}}`} passHref >{name.english}</Link></td>
       <td className={`${styles.type} ${colors[type.toLowerCase()]}`}>{type}</td>
       <td>{category ? category : "-"}</td>
       <td>{pp ? pp : "-"}</td>
@@ -30,7 +31,7 @@ const MoveRow = ({
 };
 
 export default function MovesList({ list }){
-const   headers = ["No.", "Name", "Type", "Category", "PP", "Power", "Accuracy"];
+  const headers = ["No.", "Name", "Type", "Category", "PP", "Power", "Accuracy"];
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,7 @@ const   headers = ["No.", "Name", "Type", "Category", "PP", "Power", "Accuracy"]
 
   return (
     <>
-        <div className={'flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300'}>
+        <div className={'flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purple-300'}>
           <h2 className={'label'}>Page</h2>
             <Pagination 
                 recordsPerPage={recordsPerPage} 

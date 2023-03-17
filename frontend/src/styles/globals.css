@@ -18,10 +18,10 @@
     }
     .label-purp{
         @apply
-        bg-purp-500
+        bg-purple-500
         text-gray-400 
         border-2
-        border-purp-100
+        border-purple-100
         font-bold 
         py-1 
         px-4
@@ -30,11 +30,11 @@
     }
     .button{
         @apply
-        bg-purp-500
+        bg-purple-500
         text-gray-400 
-        hover:bg-purp-300
+        hover:bg-purple-300
         hover:text-gray-700
-        font-bold 
+        font-bold
         py-1 
         px-4
         rounded
@@ -50,7 +50,7 @@
         border-2 border-gray-800
     }
     .purp-border{@apply
-        border-2 border-purp-100
+        border-2 border-purple-100
     }
     .NOR-bg{@apply 
         bg-gray-400
@@ -121,7 +121,7 @@
     .electric-bg{@apply bg-yellow-300}
     .grass-bg{@apply bg-green-500}
     .ice-bg{@apply bg-cyan-200}
-    .fighting-bg{@apply bg-pink-800}
+    .fighting-bg{@apply bg-pink-800 text-gray-100}
     .poison-bg{@apply bg-purple-500}
     .ground-bg{@apply bg-amber-700}
     .flying-bg{@apply bg-blue-300}
@@ -141,13 +141,12 @@
         prose-p:text-gray-300 
         prose-p:phone:px-20 
     }
-    .h1-prose{@apply
+    .h1-prose{@apply       
         prose-h1:pl-2
-        prose-h1:py-2
-        prose-h1:text-gray-200 
-        prose-h1:bg-purp-600 
+        prose-h1:py-2 
+        prose-h1:bg-purple-600 
         prose-h1:border-2 
-        prose-h1:border-purp-100 
+        prose-h1:border-purple-100 
         prose-h1:rounded-lg 
         prose-h1:font-extrabold 
         prose-h1:phone:text-3xl    
@@ -157,9 +156,9 @@
         prose-h2:py-2
         prose-h2:ml-8 
         prose-h2:font-extrabold 
-        prose-h2:bg-purp-600 
+        prose-h2:bg-purple-600 
         prose-h2:border-2 
-        prose-h2:border-purp-100 
+        prose-h2:border-purple-100 
         prose-h2:rounded-lg 
         prose-h2:phone:text-3xl 
     }
@@ -167,10 +166,9 @@
         prose-h3:pl-2
         prose-h3:py-2
         prose-h3:ml-16
-        prose-h3:text-gray-200 
-        prose-h3:bg-purp-600 
+        prose-h3:bg-purple-600 
         prose-h3:border-2 
-        prose-h3:border-purp-100 
+        prose-h3:border-purple-100 
         prose-h3:rounded-lg  
         prose-h3:font-extrabold 
         prose-h3:phone:text-2xl    
@@ -179,15 +177,14 @@
         prose-h4:pl-2
         prose-h4:py-2
         prose-h4:ml-24 
-        prose-h4:bg-purp-600 
+        prose-h4:bg-purple-600 
         prose-h4:border-2 
-        prose-h4:border-purp-100 
+        prose-h4:border-purple-100 
         prose-h4:rounded-lg  
         prose-h4:font-extrabold 
         prose-h4:phone:text-2xl
     }
     .wrap-prose{@apply
-        text-purple-50
         prose
         py-10 
         text-sm 
@@ -196,7 +193,7 @@
         font-mono 
     }
     .a-prose{@apply
-        prose-a:text-purp-100 
+        prose-a:text-purple-100 
         prose-a:italic 
         prose-a:no-underline
     }

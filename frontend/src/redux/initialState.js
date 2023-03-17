@@ -12,7 +12,10 @@ export default {
     isle_of_armor: [],
     crown_tundra: [],
   },
-  moves: [],
+  moves: {
+    move: {},
+    list: [],
+  },
   move: {},
   abilities: {
     ability: {},
