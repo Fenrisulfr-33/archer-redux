@@ -13,8 +13,8 @@ export const getPokemon = async (id, game) => {
     }
 
 }
-export const getNationalDex = async () => {
-    const response = await fetch(`${API_BASE_URL}/pokemon/national`),
+export const getNationalDex = async (query) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/national${query}`),
     returnObj = await response.json();
     return returnObj;
 }

@@ -52,14 +52,6 @@ const getPokemonMoves = (inMoves, searchGame, moves) => {
   }
   return pokemonMoves;
 };
-
-const getBaseStatsWidth = (baseStats) => {
-    const newBaseStats = {};
-    for (const [key, value] of Object.entries(baseStats)){
-        key !== 'total' ? newBaseStats[key] = {value: value, width: `w-${Math.ceil(value/2)}`} : newBaseStats[key] = value; 
-    }
-    return newBaseStats;
-}
 /* ---------- Middleware ---------- */
 const pokemonExists = asyncHandler(async (request, response, next) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
@@ -130,11 +122,37 @@ const readPokemon = asyncHandler(async (request, response) => {
  *  The Pokemon Natioanl Dex up to 898
  */
 const listNational = asyncHandler(async (request, response) => {
-  const national = await National.find()
-    .select("name.english type abilities baseStats")
-    .sort({ _id: 1 }); // just for the list view on the natioanl view page
-  disconnect();
-  response.status(200).json(national);
+  console.log(request.query)
+  // create parammeters for types, and stats
+  const { typeOne, typeTwo } = request.query
+  if (typeOne && typeTwo) {
+    const national = await National.find()
+      .or([{'type.one': typeOne, 'type.two': typeTwo}, {'type.one': typeTwo, 'type.two': typeOne}])
+      .select("name.english type abilities baseStats")
+      .sort({ _id: 1 }); // just for the list view on the natioanl view page
+    disconnect();
+    response.status(200).json(national);
+  } else if (!typeOne && typeTwo) {
+    const national = await National.find()
+      .or([{'type.one': typeTwo}, {'type.two': typeTwo}])
+      .select("name.english type abilities baseStats")
+      .sort({ _id: 1 }); // just for the list view on the natioanl view page
+    disconnect();
+    response.status(200).json(national);
+  } else if (!typeTwo && typeOne) {
+    const national = await National.find()
+      .or([{'type.one': typeOne}, {'type.two': typeOne}])
+      .select("name.english type abilities baseStats")
+      .sort({ _id: 1 }); // just for the list view on the natioanl view page
+    disconnect();
+    response.status(200).json(national);
+  } else {
+    const national = await National.find()
+      .select("name.english type abilities baseStats")
+      .sort({ _id: 1 }); // just for the list view on the natioanl view page
+    disconnect();
+    response.status(200).json(national);
+  }
 });
 
 module.exports = {

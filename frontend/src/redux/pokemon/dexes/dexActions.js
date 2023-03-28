@@ -23,10 +23,10 @@ export const loadCtSuccess = (dex) => {
     return { type: LOAD_CT_SUCCESS, dex };
 }
 
-export const loadNationalDex = () => {
+export const loadNationalDex = (query) => {
     return (dispatch) => {
         dispatch(beginApiCall());
-        return pokemonApi.getNationalDex()
+        return pokemonApi.getNationalDex(query)
         .then(dex => {
             dispatch(loadNationalSuccess(dex));
         }).catch(error => {

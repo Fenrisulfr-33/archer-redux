@@ -7,6 +7,10 @@ const nationalSchema = mongoose.Schema({
     },
     pokedexNumber: { type: Object },
     name: { type: Object },
+    type: {
+        one: String,
+        two: String,
+    },
     moves: { type: Object },
 });
 
