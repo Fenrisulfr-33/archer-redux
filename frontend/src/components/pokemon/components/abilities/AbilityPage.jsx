@@ -6,13 +6,9 @@ export default function AbilityPage({ ability }) {
       <div>Short Effect: {ability.effect.shortEffect}</div>
       <div>Full Effect: {ability.effect.full}</div>
       <div>Pokemon With Ability</div>
-      <div className={"row-flex"}>
-        {ability.pokemonWithAbility.normal}
-      </div>
+      <div className={"row-flex"}>{ability.pokemonWithAbility.normal}</div>
       <div>Pokemon With Ability as Hidden Ability</div>
-      <div className={"row-flex"}>
-        {ability.pokemonWithAbility.hidden}
-      </div>
+      <div className={"row-flex"}>{ability.pokemonWithAbility.hidden}</div>
     </div>
   );
 }

@@ -12,3 +12,17 @@ export const national = [
     "SpDef",
     "Spd",
 ];
+
+export const abilities = [
+    "No.", "Name", "Short Eff."
+];
+
+export const moves = [
+    "No.",
+    "Name",
+    "Type",
+    "Category",
+    "PP",
+    "Power",
+    "Accuracy",
+  ];
