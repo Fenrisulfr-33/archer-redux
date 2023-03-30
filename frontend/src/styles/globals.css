@@ -6,10 +6,28 @@
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
+    .xxs-label{
+        @apply
+        bg-gray-500
+        text-black 
+        font-bold 
+        py-0.5 
+        px-1
+        rounded
+        w-fit
+    }
     .label{
         @apply
         bg-gray-500
         text-black 
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .blank-label{
+        @apply
         font-bold 
         py-1 
         px-4
@@ -122,7 +140,7 @@
     .grass-bg{@apply bg-green-500}
     .ice-bg{@apply bg-cyan-200}
     .fighting-bg{@apply bg-pink-800 text-gray-100}
-    .poison-bg{@apply bg-purple-500}
+    .poison-bg{@apply bg-purple-300}
     .ground-bg{@apply bg-amber-700}
     .flying-bg{@apply bg-blue-300}
     .psychic-bg{@apply bg-rose-400}

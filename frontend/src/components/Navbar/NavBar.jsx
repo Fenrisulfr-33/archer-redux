@@ -13,13 +13,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, logout } from '../../redux/users/userActions';
 
-const styles = {
-    main: 'flex flex-row mx-5 my-auto space-x-5 space-y-2 text-center phone:text-right',
-    navbarIcon: 'relative flex items-center justify-center h-12 w-12 m-0 text-purple-300 bg-gray-600 hover:bg-purple-600 hover:text-white rounded-3xl hover:rounded-2xl transition-all duration-200 ease-linear cursor-pointer',
-    navbarToolTip: 'absolute w-auto p-2 m-2 min-w-max -bottom-12 rounded-md shadow-md text-gray-200 bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-bottom',
-    darkMode: 'text-gray-500 mr-3 ml-4 transition duration-300 ease-in-out hover:text-purple-600 cursor-pointer;'
-}
-
 const NavBar = ({ username, loading, logout }) => {
     const router = useRouter(),
     onLogout = () => {

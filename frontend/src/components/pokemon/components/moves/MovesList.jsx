@@ -20,7 +20,7 @@ const MoveRow = ({
   return (
     <tr className="text-center hover:bg-purple-200 hover:text-gray-900 hover:font-bold">
       <td>{_id}</td>
-      <td><Link href={`/pokemon/moves/${_id}}`} passHref >{name.english}</Link></td>
+      <td><Link href={`/pokemon/moves/${_id}`} passHref >{name.english}</Link></td>
       <td className={`${styles.type} ${colors[type.toLowerCase()]}`}>{type}</td>
       <td>{category ? category : "-"}</td>
       <td>{pp ? pp : "-"}</td>

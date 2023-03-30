@@ -11,7 +11,7 @@ export const DexRow = ({ pokemon, dexNumber, pushRoute}) => {
     }
 
     return (
-      <tr className="text-center hover:bg-purp-300 hover:text-gray-300 hover:font-bold">
+      <tr className="text-center hover:bg-purple-300 hover:text-gray-300 hover:font-bold">
         <td>{dexNumber ? dexNumber : '--'}</td>
         <td>
           <Link href={`/pokemon/national/${_id}/${pushRoute}`} passhref>

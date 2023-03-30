@@ -5,70 +5,17 @@ import { connect } from "react-redux";
 import { loadNationalDex } from "../../../redux/pokemon/dexes/dexActions";
 import { bindActionCreators } from "redux";
 import PokemonLayout from "../PokemonLayout";
-//
 import { DexRow } from "../../../components/pokemon/components/DexRow";
 import Pagination from "../../../components/pagination/Pagination";
 import TableLayout from "../../../components/pokemon/components/tableLayout/tableLayout";
 import { InputBox } from "../../../components/pokemon/components/inputBoxes/InputBox";
+import { national } from "../../../components/pokemon/variables/headers";
+import { types } from "../../../components/pokemon/variables/dropdowns";
 
 const List = ({ list = [], pushRoute }) => {
-  console.log('list', list);
-  const router = useRouter();
   const styles = {
     th: "py-1 px-1 text-center",
   };
-  const headers = [
-    "Nat. Dex",
-    "Pokemon",
-    "Sprite",
-    "Type",
-    "Abilities",
-    "Total",
-    "HP",
-    "Atk",
-    "Def",
-    "SpAtk",
-    "SpDef",
-    "Spd",
-  ];
-  const types = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Grass',
-    'Electric',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dark',
-    'Dragon',
-    'Steel',
-    'Fairy',
-  ];
-  const [typeOne, setTypeOne] = useState('');
-  const [typeTwo, setTypeTwo] = useState('');
-  const onResetHandler = () => setSearchParams({ ...initalSearchParams });
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    let searchRoute = '/pokemon/national?'
-    // make it so you can enter 4 moves anywhere
-    const types = [typeOne, typeTwo];
-    const checkTypes = () => {
-      types.forEach((type) => {
-        if (type !== ''){
-          searchRoute += `typeOne=${type}`
-        }
-      })
-    }
-    checkTypes();
-    router.push(searchRoute);
-  }
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -79,27 +26,6 @@ const List = ({ list = [], pushRoute }) => {
 
   return (
     <div id="pokemon-content" className="flex flex-col space-y-2 pb-4">
-      <div className="flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
-        <div className={"flex flex-row space-x-2"}>
-          <h2 className={"label"}>Filters</h2>
-          <button onClick={onResetHandler} className={`button`}>
-            Reset
-          </button>
-        </div>
-        <div
-          className={
-            "flex flex-row justify-between overflow-auto scrollbar-hide"
-          }
-        >
-          <div className={"flex flex-row space-x-2 h-10"}>
-            <label className={'flex flex-row space-x-2'}>
-              <div className={'label'} disabled={true}>{'Type One'}</div>
-              <InputBox value={typeOne} setValue={setTypeOne} placeholder={'Type One'} list={types} />
-            </label>
-            <button onClick={onSubmitHandler} className={'button'}>Search</button>
-          </div>
-        </div>
-      </div>
       <div
         className={
           "flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purp-300"
@@ -113,7 +39,7 @@ const List = ({ list = [], pushRoute }) => {
         />
       </div>
       <TableLayout
-        thead={headers.map((header, index) => (
+        thead={national.map((header, index) => (
           <th key={index} className={styles.th}>
             {header}
           </th>
@@ -146,24 +72,82 @@ const List = ({ list = [], pushRoute }) => {
 const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
   const router = useRouter();
   const { query, isReady } = router;
-  useEffect(() => {
-    if (isReady) {
-      console.log(query);
-      let searchQuery = '';
-      if (Object.keys(query).length > 0){
-        for (const [key, value] of Object.entries(query)){
-          searchQuery += '?'
-          searchQuery += `${key}=${value}`
+
+  const [typeOne, setTypeOne] = useState("");
+  const [typeTwo, setTypeTwo] = useState("");
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    let searchRoute = "/pokemon/national";
+    const types = [typeOne, typeTwo];
+    types.forEach((type, index) => {
+      if (type !== ''){
+        if (index === 0){
+          searchRoute += `?typeOne=${type}`
+        } else {
+          searchRoute += `&typeTwo=${type}`
         }
       }
-      console.log(searchQuery)
+    })
+    console.log(searchRoute);
+    router.push(searchRoute);
+  };
+
+  const onResetHandler = () => {};
+
+  useEffect(() => {
+    if (isReady) {
+      let searchQuery = "";
+      if (Object.keys(query).length > 0) {
+        searchQuery += "?";
+        let index = 0;
+        for (const [key, value] of Object.entries(query)) {
+          if (index !== 0) {
+            searchQuery += `&${key}=${value}`;
+          } else {
+            searchQuery += `${key}=${value}`;
+          }
+          index++;
+        }
+      }
       loadNationalDex(searchQuery);
     }
   }, [isReady, query]);
 
   return (
     <PokemonLayout>
-      {loading ? <Loading /> : <List list={dex} pushRoute={""} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+
+          <div className="flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
+            <div className={"flex flex-row space-x-2"}>
+              <h2 className={"label"}>Filters</h2>
+              <button onClick={onResetHandler} className={`button`}>
+                Reset
+              </button>
+                  <InputBox
+                    value={typeOne}
+                    setValue={setTypeOne}
+                    placeholder={"Type One"}
+                    list={types}
+                  />
+                                    <InputBox
+                    value={typeTwo}
+                    setValue={setTypeTwo}
+                    placeholder={"Type Two"}
+                    list={types}
+                  />
+                <button onClick={onSubmitHandler} className={"button"}>
+                  Search
+                </button>
+            </div>
+          </div>
+
+          <List list={dex} pushRoute={""} />
+        </div>
+      )}
     </PokemonLayout>
   );
 };
