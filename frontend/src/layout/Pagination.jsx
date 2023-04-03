@@ -9,19 +9,24 @@ export default function PaginationLayout({
 }) {
   return (
     <>
-      <Pagination
-        recordsPerPage={recordsPerPage}
-        totalCount={totalCount}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
+      {totalCount > 0 ? (
+        <Pagination
+          recordsPerPage={recordsPerPage}
+          totalCount={totalCount}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      ) : null}
+
       {children}
-      <Pagination
-        recordsPerPage={recordsPerPage}
-        totalCount={totalCount}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
+      {totalCount > 0 ? (
+        <Pagination
+          recordsPerPage={recordsPerPage}
+          totalCount={totalCount}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      ) : null}
     </>
   );
 }

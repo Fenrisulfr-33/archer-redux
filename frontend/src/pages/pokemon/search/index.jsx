@@ -9,6 +9,9 @@ import { InputBox } from "../../../components/pokemon/components/inputBoxes/Inpu
 import { useRouter } from "next/router";
 import SearchPage from '../../../components/pokemon/mdxPages/searchPage/searchPage.mdx';
 import MDXWrapper from "../../../components/MDXWrapper";
+import { movesDropDownScarletViolet } from '../../../components/pokemon/components/movesDropDowns/movesDropDownScareletViolet';
+import List from "../../../components/pokemon/components/List";
+import { search } from "../../../components/pokemon/variables/headers";
 
 const Box = ({ label }) => (
   <div className={'bg-gray-600 rounded-lg border-2 border-purp-300 shadow-md shadow-gray-500'}>
@@ -21,7 +24,7 @@ const Box = ({ label }) => (
 const MoveBox = ({ title, move, setMove }) => (
   <label className={'flex flex-row space-x-2'}>
     <div className={'label'} disabled={true}>{title}</div>
-    <InputBox move={move} setMove={setMove}/>
+    <InputBox value={move} setValue={setMove} list={movesDropDownScarletViolet}/>
   </label>
 )
 
@@ -73,11 +76,18 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
           <button onClick={onSubmitHandler} className={'button'}>Search</button>
           <Box label={'Pokemon Search Results'} />
           {loading ? <Loading /> :
-            <DexList 
-              list={searchResults}
-              game={'scvi'}
-              search={true}
-              pushRoute={'scarlet-violet'}
+            // <DexList 
+            //   list={searchResults}
+            //   game={'scvi'}
+            //   search={true}
+            //   pushRoute={'scarlet-violet'}
+            // />
+            <List 
+            list={searchResults}
+            headers={search}
+            game={'scvi'}
+            search={true}
+            pushRoute={'scarlet-violet'}
             />
           }
         </div>

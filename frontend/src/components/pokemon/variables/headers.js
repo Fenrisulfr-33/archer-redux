@@ -13,6 +13,21 @@ export const national = [
     "Spd",
 ];
 
+export const search = [
+    "Pokedex",
+    "Pokemon",
+    "Sprite",
+    "Type",
+    "Abilities",
+    "Total",
+    "HP",
+    "Atk",
+    "Def",
+    "SpAtk",
+    "SpDef",
+    "Spd",
+]
+
 export const abilities = [
     "No.", "Name", "Short Eff."
 ];

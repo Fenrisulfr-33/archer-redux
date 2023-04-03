@@ -48,7 +48,7 @@ const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
         <div>
 
           <div className="flex flex-col space-y-2 p-2 bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
-            <div className={"flex flex-row space-x-2"}>
+            <div className={"flex flex-row space-x-2 overflow-auto scrollbar-hide"}>
               <h2 className={"label"}>Filters</h2>
               <button onClick={onResetHandler} className={`button`}>
                 Reset

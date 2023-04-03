@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { BsChevronExpand } from 'react-icons/bs';
 import { BsCheck } from 'react-icons/bs';
-import { movesDropDownScarletViolet } from '../movesDropDowns/movesDropDownScareletViolet';
 
 export const InputBox = ({ value, setValue, placeholder, list }) => {
   const [query, setQuery] = useState('')
@@ -17,10 +16,10 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
         )
 
   return (
-    <div className="w-72">
+    <div className="w-49 bg-purple-100">
       <Combobox value={value} onChange={setValue}>
-        <div className="absolute">
-          <div className=" w-full cursor-default overflow-hidden rounded-lg bg-gray-500 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+        <div className="relative">
+          <div className="w-full cursor-default overflow-hidden rounded-lg bg-gray-500 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               displayValue={(value) => value}
@@ -55,7 +54,7 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
                     key={index}
                     className={({ active }) =>
                       `relative cursor-default font-mono select-none py-2 pl-4  ${
-                        active ? 'bg-gray-600 text-purp-100 rounded-lg mx-1' : 'text-gray-900'
+                        active ? 'bg-gray-600 text-purple-100 rounded-lg mx-1' : 'text-gray-900'
                       }`
                     }
                     value={value}
