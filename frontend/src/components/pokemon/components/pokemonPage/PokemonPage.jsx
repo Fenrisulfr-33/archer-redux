@@ -6,6 +6,7 @@ import PokedexEntries from "./PokedexEntries";
 import MovesListsByType from "./MovesListsByType";
 import PokemonIndToolbar from "./PokemonIndToolbar";
 import Link from "next/link";
+import FormsTabs from "./FormTabs";
 
 const InfoRow = ({ title, info, ability }) => (
   <div className="flex flex-row justify-between">
@@ -46,6 +47,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <h1 className="text-5xl font-bold text-center py-5 text-purple-200">
           {pokemon.name.english}
         </h1>
+        {pokemon.forms ? <FormsTabs forms={pokemon.forms} /> : null}
         <div className={"col-flex space-y-2"}>
           <div className="col-flex p-2 space-y-2 bg-gray-600 rounded-2xl border-2 border-purple-100">
             <h1 className="text-2xl font-extrabold">Pokedex Information</h1>
