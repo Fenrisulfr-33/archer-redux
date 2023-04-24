@@ -9,7 +9,7 @@ export const mechanicsMenu = [
     {title: 'Natures', route: '/pokemon/articles/natures'},
     {title:'EVs',route:'/pokemon/articles/effort-values'},
     {title:'IVs',route:'/pokemon/articles/individual-values'},
-    {title:'Breeding',route:'/pokemon/breeding'},
+    {title:'Breeding',route:'/pokemon/articles/breeding'},
 ];
 export const scarletVioletMenu = [
     {title:'Pokedex',route:'/pokemon/scarlet-violet/pokedex'},

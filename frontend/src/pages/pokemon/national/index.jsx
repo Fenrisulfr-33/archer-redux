@@ -58,12 +58,14 @@ const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
                     setValue={setTypeOne}
                     placeholder={"Type One"}
                     list={types}
+                    width={26}
                   />
                   <InputBox
                     value={typeTwo}
                     setValue={setTypeTwo}
                     placeholder={"Type Two"}
                     list={types}
+                    width={26}
                   />
                 <button onClick={(event) => onFilterSubmitHandler(event, router, searchRoute, queries)} className={"button"}>
                   Search

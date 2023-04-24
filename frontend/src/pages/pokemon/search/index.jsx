@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { DexList } from "../../../components/pokemon/components/DexList";
 import Loading from "../../../components/Loading";
 import { connect } from "react-redux";
 import { loadSearchResults } from "../../../redux/pokemon/searchResults/searchResultsActions";
@@ -24,7 +23,13 @@ const Box = ({ label }) => (
 const MoveBox = ({ title, move, setMove }) => (
   <label className={'flex flex-row space-x-2'}>
     <div className={'label'} disabled={true}>{title}</div>
-    <InputBox value={move} setValue={setMove} list={movesDropDownScarletViolet}/>
+    <InputBox 
+      value={move} 
+      setValue={setMove}
+      placeholder={'Enter move here'}
+      list={movesDropDownScarletViolet}
+      width={40}
+    />
   </label>
 )
 
@@ -33,9 +38,9 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
     const { query, isReady } = router;
     const { move1, move2, move3, move4 } = query;
     const [moveOne, setMoveOne] = useState('');
-    const [moveTwo, setMoveTwo] = useState('')    
-    const [moveThree, setMoveThree] = useState('')    
-    const [moveFour, setMoveFour] = useState('')    
+    const [moveTwo, setMoveTwo] = useState('');   
+    const [moveThree, setMoveThree] = useState('');    
+    const [moveFour, setMoveFour] = useState('');    
     const onSubmitHandler = (event) => {
       event.preventDefault();
       let searchRoute = '/pokemon/search?'
@@ -76,12 +81,6 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
           <button onClick={onSubmitHandler} className={'button'}>Search</button>
           <Box label={'Pokemon Search Results'} />
           {loading ? <Loading /> :
-            // <DexList 
-            //   list={searchResults}
-            //   game={'scvi'}
-            //   search={true}
-            //   pushRoute={'scarlet-violet'}
-            // />
             <List 
             list={searchResults}
             headers={search}
