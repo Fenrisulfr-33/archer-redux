@@ -8,6 +8,14 @@ import PokemonIndToolbar from "./PokemonIndToolbar";
 import Link from "next/link";
 import FormsTabs from "./FormTabs";
 
+const Container = ({ children }) => {
+  return (
+    <div className={"bg-gray-600 rounded-2xl border-2 border-purple-100"}>
+      <div className={"m-2 bg-gray-700 rounded-lg"}>{children}</div>
+    </div>
+  );
+};
+
 const InfoRow = ({ title, info, ability }) => (
   <div className="flex flex-row justify-between">
     <div className="label border-2 border-gray-900">{title}:</div>
@@ -33,8 +41,8 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         "flex flex-col w-11/12 m-auto py-5 font-mono text-center text-white"
       }
     >
-      <div className='flex justify-center'>
-        <button className={'button flex'} onClick={handleGoBack}>
+      <div className="flex justify-center">
+        <button className={"button flex"} onClick={handleGoBack}>
           Go Back
         </button>
       </div>
@@ -47,7 +55,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <h1 className="text-5xl font-bold text-center py-5 text-purple-200">
           {pokemon.name.english}
         </h1>
-        {pokemon.forms ? <FormsTabs forms={pokemon.forms} /> : null}
+        {/* {pokemon.forms ? <FormsTabs forms={pokemon.forms} /> : null} */}
         <div className={"col-flex space-y-2"}>
           <div className="col-flex p-2 space-y-2 bg-gray-600 rounded-2xl border-2 border-purple-100">
             <h1 className="text-2xl font-extrabold">Pokedex Information</h1>
@@ -172,18 +180,29 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           <BaseStats stats={pokemon.baseStats} />
         </div>
         <TypeWeakness typeOne={pokemon.type.one} typeTwo={pokemon.type?.two} />
-        <div>
-          <h2>Comp Pages</h2>
+        {/* <Container>
+          <div className='label'>Comp Pages</div>
           <a
             target="_blank"
             href={`https://www.smogon.com/dex/sv/pokemon/${pokemon.name.english.toLowerCase()}`}
             rel="noopener noreferrer"
-          >
-            Scarlet/Violet
+          >            Scarlet/Violet
           </a>
-        </div>
+        </Container> */}
         <MovesListsByType moves={pokemon.moves} />
         <PokedexEntries entries={pokemon.pokedexEntries} />
+        <div className={" border-4 border-pink-500 shadow shadow-pink-400 rounded-xl"}>
+          <div className={"border-4 border-violet-500 shadow shadow-violet-400 rounded-lg m-1"}>
+            <div className={"border-4 border-cyan-500 shadow shadow-cyan-400 rounded-md m-1"}>
+              <div className={'m-1 col-flex space-y-1'}>
+                <div className=" font-PressStart2P h-14 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500">Archer</div>
+                <div className="h-14 rounded-md bg-gradient-to-r from-sky-500 to-indigo-500"></div>
+                <div className="h-14 rounded-md bg-gradient-to-r from-violet-500 to-fuchsia-500"></div>
+                <div className="h-14 rounded-md bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,18 @@
+const Container = ({ children }) => {
+  return(
+    <div className={"bg-gray-600 rounded-2xl border-2 border-purple-100"}>
+      <div className={"m-2 bg-gray-700 rounded-lg"}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
 // For each form create a componenet that takes in the rows with the form
 const FormComponenet = ({ form = '', rows = [] }) => {
   return (
     <>
-      <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-600 px-1 text-left w-fit'}>{form}</h4>
+      <h4 className={'font-extrabold bg-gray-800 rounded-md text-purple-300 px-1 text-left w-fit'}>{form}</h4>
       <br></br>
       {rows.map((row, index) => row.entry && (
         <div  key={index} className='flex flex-row text-xxs phone:text-xs desktop:text-base'>
@@ -52,8 +62,11 @@ export default function PokedexEntries({ entries = {} }){
   }
 
   return (
-    <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
+    // <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
+    //   {formsArray.map((form) => form)}
+    // </div>
+    <Container>
       {formsArray.map((form) => form)}
-    </div>
+    </Container>
   );
 };

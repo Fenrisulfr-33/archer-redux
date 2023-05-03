@@ -9,23 +9,28 @@ import PokemonLayout from "../../PokemonLayout";
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
   const { query, isReady } = useRouter();
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
+    console.log(refresh)
       if (isReady && pokemon._id !== Number(query.id)) {
       loadPokemon(query.id);
     }
-  }, [isReady, query.id]);
+  }, [isReady, query.id, refresh]);
 
   return (
     <PokemonLayout>
       {loading ? (
         <Loading />
       ) : Object.keys(pokemon).length > 0 ? (
+        <>
+        <button onClick={() => setRefresh(!refresh)}>Refresh</button>
         <PokemonPage
           pokemon={pokemon}
           query={query}
           goBackRoute={"/pokemon/national"}
         />
+        </>
       ) : null}
     </PokemonLayout>
   );

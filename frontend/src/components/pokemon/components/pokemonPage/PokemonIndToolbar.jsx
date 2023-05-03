@@ -16,7 +16,7 @@ export default function PokemonIndToolbar({ id, game, gameDropDown }) {
         <NavBarIcon
           icon={<BsFillArrowLeftSquareFill size="20" />}
           text={id - 1}
-          route={`/pokemon/national/${id - 1}/${game}`}
+          route={`/pokemon/national/${id - 1}/${game ? game : ''}`}
         />
       ) : (
         <SiPokemon size="50" />
@@ -30,7 +30,7 @@ export default function PokemonIndToolbar({ id, game, gameDropDown }) {
         <NavBarIcon
           icon={<BsFillArrowRightSquareFill size="20" />}
           text={id + 1}
-          route={`/pokemon/national/${id + 1}/${game}`}
+          route={`/pokemon/national/${id + 1}/${game ? game : ''}`}
         />
       ) : (
         <SiPokemon size="50" />

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadIoaDex } from "../../../../redux/pokemon//dexes/dexActions";
+import { loadIoaDex } from "../../../../../redux/pokemon//dexes/dexActions";
 import { bindActionCreators } from "redux";
-import { DexList } from "../../../../components/pokemon/components/DexList";
-import Loading from "../../../../components/Loading";
-import PokemonLayout from "../../PokemonLayout";
+import { DexList } from "../../../../../components/pokemon/components/DexList";
+import Loading from "../../../../../components/Loading";
+import PokemonLayout from "../../../PokemonLayout";
 
 const IoaDex = ({ dex, loadIoaDex, loading }) => {
   useEffect(() => {

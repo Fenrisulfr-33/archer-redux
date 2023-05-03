@@ -24,6 +24,7 @@
     "react-redux": "8.0.5",
     "react-select": "5.7.0",
     "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss-percentage-width": "^1.0.3",
     "webpack": "^5.75.0"
   },
   "devDependencies": {
