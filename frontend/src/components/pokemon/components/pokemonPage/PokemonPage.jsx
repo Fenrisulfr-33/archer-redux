@@ -191,7 +191,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         </Container> */}
         <MovesListsByType moves={pokemon.moves} />
         <PokedexEntries entries={pokemon.pokedexEntries} />
-        <div className={" border-4 border-pink-500 shadow shadow-pink-400 rounded-xl"}>
+        {/* <div className={" border-4 border-pink-500 shadow shadow-pink-400 rounded-xl"}>
           <div className={"border-4 border-violet-500 shadow shadow-violet-400 rounded-lg m-1"}>
             <div className={"border-4 border-cyan-500 shadow shadow-cyan-400 rounded-md m-1"}>
               <div className={'m-1 col-flex space-y-1'}>
@@ -202,7 +202,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

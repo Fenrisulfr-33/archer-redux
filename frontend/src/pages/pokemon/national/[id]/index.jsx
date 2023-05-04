@@ -23,14 +23,11 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
       {loading ? (
         <Loading />
       ) : Object.keys(pokemon).length > 0 ? (
-        <>
-        <button onClick={() => setRefresh(!refresh)}>Refresh</button>
         <PokemonPage
           pokemon={pokemon}
           query={query}
           goBackRoute={"/pokemon/national"}
         />
-        </>
       ) : null}
     </PokemonLayout>
   );
