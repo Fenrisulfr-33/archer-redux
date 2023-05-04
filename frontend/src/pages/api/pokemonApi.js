@@ -1,5 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL ? process.env.REACT_APP_BACKEND_URL : 'http://localhost:5000';
-const env = process.env.NODE_ENV;
+const API_BASE_URL = 'https://archer-test-backend.vercel.app';
 
 export const getPokemon = async (id, game) => {
     if (game) {
