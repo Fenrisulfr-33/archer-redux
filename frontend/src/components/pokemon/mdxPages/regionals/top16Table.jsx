@@ -1,4 +1,4 @@
-export default function Top16Table({ regionalResults}){
+export default function Top16Table({ regionalResults }){
     return (
         <div className={'flex flex-row'}>
             <table className={'table-row'}>
