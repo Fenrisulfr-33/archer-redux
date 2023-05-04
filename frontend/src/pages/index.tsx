@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import HomePage from "../components/mdxPages/HomePage.mdx";
+import HomePage from "../components/mdxPages/homePage.mdx";
 import MDXWrapper from "../components/MDXWrapper";
 
 const IndexPage: NextPage = () => {

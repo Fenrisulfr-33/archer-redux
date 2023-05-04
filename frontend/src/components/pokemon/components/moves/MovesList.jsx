@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TableLayout from "../tableLayout/tableLayout";
+import TableLayout from "../tableLayout/TableLayout";
 import PaginationLayout from "../../../../layout/Pagination";
 import MovesRow from "./MovesRow";
 import { moves } from "../../variables/headers";
