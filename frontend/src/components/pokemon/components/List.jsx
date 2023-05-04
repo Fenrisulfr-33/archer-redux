@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TableLayout from "../../../components/pokemon/components/tableLayout/tableLayout";
+import TableLayout from "../../../components/pokemon/components/tableLayout/TableLayout";
 import { DexRow } from "../../../components/pokemon/components/DexRow";
 import PaginationLayout from "../../../layout/Pagination";
 

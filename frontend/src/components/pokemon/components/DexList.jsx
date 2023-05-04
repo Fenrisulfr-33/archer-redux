@@ -2,7 +2,7 @@ import { useState } from "react";
 import { DexRow } from "./DexRow";
 import Pagination from "../../pagination/Pagination";
 import ToolBar from "./toolbars/Toolbar";
-import TableLayout from "./tableLayout/tableLayout";
+import TableLayout from "./tableLayout/TableLayout";
 /* STYLES */
 const styles = {
   th: "py-1 px-1 text-center",

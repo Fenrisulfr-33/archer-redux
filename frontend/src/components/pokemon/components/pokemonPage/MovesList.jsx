@@ -1,6 +1,6 @@
 import { colors } from "../../variables/typeColors";
 import MoveModal from "./MoveModal";
-import TableLayout from "../tableLayout/tableLayout";
+import TableLayout from "../tableLayout/TableLayout";
 
 const styles = {
     stat: 'py-2 px-1 text-center',
