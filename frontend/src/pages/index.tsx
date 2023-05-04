@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import HomePage from "./homePage.mdx";
-import Article from "../components/Articles/Article";
+import HomePage from "../components/mdxPages/homePage.mdx";
+import MDXWrapper from "../components/MDXWrapper";
 
 const IndexPage: NextPage = () => {
   return (
@@ -10,9 +10,9 @@ const IndexPage: NextPage = () => {
         <title>Archer Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Article>
+      <MDXWrapper>
         <HomePage />
-      </Article>
+      </MDXWrapper>
     </div>
   );
 };

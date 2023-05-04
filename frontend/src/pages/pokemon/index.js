@@ -1,16 +1,13 @@
-import SideMenu from '../../components/Menu/SideMenu';
-import HomePage from './pokemonHome.mdx';
-import Article from '../../components/Articles/Article';
+import HomePage from '../../components/pokemon/mdxPages/homePage/homePage.mdx'
+import MDXWrapper from '../../components/MDXWrapper';
+import PokemonLayout from './PokemonLayout';
 
 export default function Pokemon() {
-    return (
-        <div className='flex flex-col tablet:flex-row'>
-                <SideMenu />
-            <div className='tablet:w-4/5'>
-                <Article>
-                    <HomePage />
-                </Article>
-            </div>
-        </div>
+    return (  
+        <PokemonLayout>
+            <MDXWrapper>
+                <HomePage />
+            </MDXWrapper>
+        </PokemonLayout>
     );
 }

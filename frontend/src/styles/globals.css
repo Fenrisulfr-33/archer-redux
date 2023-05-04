@@ -3,23 +3,228 @@
 @tailwind utilities;
 
 @layer components {
-    .btn-purple {
-        @apply 
-        font-mono
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .xxs-label{
+        @apply
+        bg-gray-500
+        text-black 
+        font-bold 
+        py-0.5 
+        px-1
+        rounded
+        w-fit
+    }
+    .label{
+        @apply
+        bg-gray-500
+        text-black 
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .blank-label{
+        @apply
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .label-purp{
+        @apply
+        bg-purple-500
+        text-gray-400 
+        border-2
+        border-purple-100
+        font-bold 
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .button{
+        @apply
+        bg-purple-500
+        text-gray-400 
+        hover:bg-purple-300
+        hover:text-gray-700
         font-bold
-        items-center 
-        justify-center 
-        py-1
-        px-3
-        text-purple-300 
-        bg-gray-600 
-        rounded-3xl 
-        transition-all 
-        duration-200 
-        ease-linear 
-        cursor-pointer 
-        hover:bg-purple-600 
-        hover:text-white 
-        hover:rounded-2xl
+        py-1 
+        px-4
+        rounded
+        w-fit
+    }
+    .col-flex{@apply
+        flex flex-col
+    }
+    .row-flex{@apply
+        flex flex-row
+    }
+    .gray-border{@apply
+        border-2 border-gray-800
+    }
+    .purp-border{@apply
+        border-2 border-purple-100
+    }
+    .NOR-bg{@apply 
+        bg-gray-400
+        font-bold
+    }.FIR-bg{@apply 
+        bg-orange-500
+        font-bold
+    }.WAT-bg{@apply 
+        bg-sky-500
+        font-bold
+    }.ELE-bg{@apply 
+        bg-yellow-300
+        font-bold
+    }.GRA-bg{@apply 
+        bg-green-500
+        font-bold
+    }.ICE-bg{@apply 
+        bg-cyan-200
+        font-bold
+    }.FIG-bg{@apply 
+        bg-pink-800
+        font-bold 
+        text-gray-300
+    }.POI-bg{@apply 
+        bg-purple-500 
+        font-bold
+        text-gray-300
+    }.GRO-bg{@apply 
+        bg-amber-700 
+        font-bold
+        text-gray-300
+    }.FLY-bg{@apply 
+        bg-blue-300
+        font-bold
+    }.PSY-bg{@apply 
+        bg-rose-400
+        font-bold
+    }.BUG-bg{@apply 
+        bg-lime-400
+        font-bold
+    }.ROC-bg{@apply 
+        bg-orange-300
+        font-bold
+    }.GHO-bg{@apply 
+        bg-indigo-500 
+        font-bold
+        text-gray-300
+    }.DRA-bg{@apply 
+        bg-blue-600 
+        font-bold
+        text-gray-300
+    }.DAR-bg{@apply 
+        bg-zinc-700 
+        font-bold
+        text-gray-300
+    }.STE-bg{@apply 
+        bg-cyan-800 
+        font-bold
+        text-gray-300
+    }.FAI-bg{@apply 
+        bg-fuchsia-300
+        font-bold
+    }
+    
+    .normal-bg{@apply bg-gray-400}
+    .fire-bg{@apply bg-orange-500}
+    .water-bg{@apply bg-sky-500}
+    .electric-bg{@apply bg-yellow-300}
+    .grass-bg{@apply bg-green-500}
+    .ice-bg{@apply bg-cyan-200}
+    .fighting-bg{@apply bg-pink-800 text-gray-100}
+    .poison-bg{@apply bg-purple-300}
+    .ground-bg{@apply bg-amber-700}
+    .flying-bg{@apply bg-blue-300}
+    .psychic-bg{@apply bg-rose-400}
+    .bug-bg{@apply bg-lime-400}
+    .rock-bg{@apply bg-orange-300}
+    .ghost-bg{@apply bg-indigo-500}
+    .dragon-bg{@apply bg-blue-600}
+    .dark-bg{@apply bg-zinc-700}
+    .steel-bg{@apply bg-cyan-800}
+    .fairy-bg{@apply bg-fuchsia-300}
+
+    .p-prose{@apply
+        prose-p:bg-gray-600 
+        prose-p:p-2 
+        prose-p:rounded-xl
+        prose-p:text-gray-300 
+        prose-p:phone:px-20 
+    }
+    .h1-prose{@apply       
+        prose-h1:pl-2
+        prose-h1:py-2 
+        prose-h1:bg-purple-600 
+        prose-h1:border-2 
+        prose-h1:border-purple-100 
+        prose-h1:rounded-lg 
+        prose-h1:font-extrabold 
+        prose-h1:phone:text-3xl    
+    }
+    .h2-prose{@apply
+        prose-h2:pl-2
+        prose-h2:py-2
+        prose-h2:ml-8 
+        prose-h2:font-extrabold 
+        prose-h2:bg-purple-600 
+        prose-h2:border-2 
+        prose-h2:border-purple-100 
+        prose-h2:rounded-lg 
+        prose-h2:phone:text-3xl 
+    }
+    .h3-prose{@apply
+        prose-h3:pl-2
+        prose-h3:py-2
+        prose-h3:ml-16
+        prose-h3:bg-purple-600 
+        prose-h3:border-2 
+        prose-h3:border-purple-100 
+        prose-h3:rounded-lg  
+        prose-h3:font-extrabold 
+        prose-h3:phone:text-2xl    
+    }
+    .h4-prose{@apply
+        prose-h4:pl-2
+        prose-h4:py-2
+        prose-h4:ml-24 
+        prose-h4:bg-purple-600 
+        prose-h4:border-2 
+        prose-h4:border-purple-100 
+        prose-h4:rounded-lg  
+        prose-h4:font-extrabold 
+        prose-h4:phone:text-2xl
+    }
+    .wrap-prose{@apply
+        prose
+        py-10 
+        text-sm 
+        text-left 
+        mx-5 
+        font-mono 
+    }
+    .a-prose{@apply
+        prose-a:text-purple-100 
+        prose-a:italic 
+        prose-a:no-underline
+    }
+    .code-prose{@apply
+        prose-code:text-sky-300 
+        prose-code:rounded-xl 
+        prose-code:px-2
+    }
+    .width-prose{@apply
+        phone:max-w-xl 
+        tablet:max-w-4xl 
+        laptop:max-w-5xl 
+        desktop:max-w-6xl 
+        wide:max-w-7xl
     }
 }

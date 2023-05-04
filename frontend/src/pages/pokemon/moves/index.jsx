@@ -1,26 +1,28 @@
 import { useEffect } from "react";
-import { AllMovesList } from "../../../components/pokemon/components/AllMovesList";
 import Loading from "../../../components/Loading";
 import { connect } from "react-redux";
-import { loadMoves } from "../../../redux/pokemon/movesActions";
+import { loadMoves } from "../../../redux/pokemon/moves/movesActions";
 import { bindActionCreators } from "redux";
 import PokemonLayout from '../PokemonLayout';
+import MovesList from "../../../components/pokemon/components/moves/MovesList";
 
-const MovesList = ({ moves, loadMoves, loading }) => {
+const Moves = ({ moves, loadMoves, loading }) => {
   useEffect(() => {
-    loadMoves();
+    if(moves.length === 0){
+      loadMoves();
+    }
   }, []);
 
   return (
     <PokemonLayout>
-      {loading ?<Loading/> : <AllMovesList list={moves} />}
+      {loading ?<Loading/> : <MovesList list={moves} />}
     </PokemonLayout>
   );
 };
 
 const mapStateToProps = ({ moves, apiCallsInProgress}) => {
     return {
-        moves,
+        moves: moves.list,
         loading: apiCallsInProgress > 0,
     };
 }, mapDispatchToProps = (dispatch) => {
@@ -28,4 +30,4 @@ const mapStateToProps = ({ moves, apiCallsInProgress}) => {
         loadMoves: bindActionCreators(loadMoves, dispatch),
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(MovesList);
+export default connect(mapStateToProps, mapDispatchToProps)(Moves);

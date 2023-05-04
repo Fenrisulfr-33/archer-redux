@@ -6,7 +6,7 @@ export const colors = {
     grass: "bg-green-500",
     ice: "bg-teal-300",
     fighting: "bg-pink-700",
-    poison: "bg-purple-500",
+    poison: "bg-purple-500 text-gray-300",
     ground: "bg-amber-700",
     flying: "bg-blue-300",
     psychic: "bg-rose-400",

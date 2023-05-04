@@ -5,7 +5,13 @@ const nationalSchema = mongoose.Schema({
         type: Number,
         required: [true, 'Please add a text value']
     },
-    pokedexNumber: {}
+    pokedexNumber: { type: Object },
+    name: { type: Object },
+    type: {
+        one: String,
+        two: String,
+    },
+    moves: { type: Object },
 });
 
 module.exports = mongoose.model('National', nationalSchema, 'national_dex');
