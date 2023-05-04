@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import { loadAbility } from "../../../redux/pokemon/abilities/abilitiesActions";
 import { bindActionCreators } from 'redux';
-import Loading from "../../../components/Loading";
-import PokemonLayout from "../PokemonLayout";
+import { loadAbility } from "../../../redux/pokemon/abilities/abilitiesActions";
 import AbilityPage from "../../../components/pokemon/components/abilities/AbilityPage";
+import { PokemonPage } from "../../../components/pokemon/components/layout/PokemonPage";
 
 const AbilityInd = ({ ability, loading, loadAbility }) => {
     const { query, isReady } = useRouter();
@@ -17,13 +16,10 @@ const AbilityInd = ({ ability, loading, loadAbility }) => {
     }, [isReady, query.id,]);
 
     return (
-            <PokemonLayout>
-            {loading ? (
-              <Loading />
-            ) : Object.keys(ability).length > 0 ? (
-              <AbilityPage ability={ability}/>
-            ) : null}
-          </PokemonLayout>
+          <PokemonPage 
+                loading={loading}
+                content={<AbilityPage ability={ability}/>}
+          />
     )
 }
 

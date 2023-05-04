@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://archer-test-backend.vercel.app';
+const local = false;
+const API_BASE_URL = local ? 'http://localhost:5000' : 'https://archer-test-backend.vercel.app';
 
 export const getPokemon = async (id, game) => {
     if (game) {
