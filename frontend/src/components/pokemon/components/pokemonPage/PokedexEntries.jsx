@@ -62,9 +62,6 @@ export default function PokedexEntries({ entries = {} }){
   }
 
   return (
-    // <div className='flex flex-col bg-gray-600 rounded-3xl p-3 text-xs'>
-    //   {formsArray.map((form) => form)}
-    // </div>
     <Container>
       {formsArray.map((form) => form)}
     </Container>

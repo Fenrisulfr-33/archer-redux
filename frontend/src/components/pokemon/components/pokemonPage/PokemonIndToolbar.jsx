@@ -1,4 +1,3 @@
-import GameDropDown from "./GameDropDown";
 import { NavBarIcon } from "../../../Menu/NavBarIcon";
 import {
   BsFillArrowRightSquareFill,
@@ -21,11 +20,6 @@ export default function PokemonIndToolbar({ id, game, gameDropDown }) {
       ) : (
         <SiPokemon size="50" />
       )}
-      <GameDropDown
-        route={`/pokemon/national/${id}`}
-        input={game}
-        gameDropDown={gameDropDown}
-      />
       {id + 1 <= 898 ? (
         <NavBarIcon
           icon={<BsFillArrowRightSquareFill size="20" />}

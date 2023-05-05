@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loadAbility } from "../../../redux/pokemon/abilities/abilitiesActions";
 import AbilityPage from "../../../components/pokemon/components/abilities/AbilityPage";
-import { PokemonPage } from "../../../components/pokemon/components/layout/PokemonPage";
+import { PokemonPageLayout } from "../../../components/pokemon/components/layout/PokemonPageLayout";
 
 const AbilityInd = ({ ability, loading, loadAbility }) => {
     const { query, isReady } = useRouter();
@@ -16,7 +16,7 @@ const AbilityInd = ({ ability, loading, loadAbility }) => {
     }, [isReady, query.id,]);
 
     return (
-          <PokemonPage 
+          <PokemonPageLayout 
                 loading={loading}
                 content={<AbilityPage ability={ability}/>}
           />

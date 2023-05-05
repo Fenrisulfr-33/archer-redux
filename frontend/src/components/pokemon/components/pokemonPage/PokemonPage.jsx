@@ -55,7 +55,6 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <h1 className="text-5xl font-bold text-center py-5 text-purple-200">
           {pokemon.name.english}
         </h1>
-        {/* {pokemon.forms ? <FormsTabs forms={pokemon.forms} /> : null} */}
         <div className={"col-flex space-y-2"}>
           <div className="col-flex p-2 space-y-2 bg-gray-600 rounded-2xl border-2 border-purple-100">
             <h1 className="text-2xl font-extrabold">Pokedex Information</h1>
@@ -177,18 +176,9 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
               </div>
             </div>
           </div>
-          <BaseStats stats={pokemon.baseStats} />
+          {pokemon.baseStats && <BaseStats stats={pokemon.baseStats} />}
         </div>
         <TypeWeakness typeOne={pokemon.type.one} typeTwo={pokemon.type?.two} />
-        {/* <Container>
-          <div className='label'>Comp Pages</div>
-          <a
-            target="_blank"
-            href={`https://www.smogon.com/dex/sv/pokemon/${pokemon.name.english.toLowerCase()}`}
-            rel="noopener noreferrer"
-          >            Scarlet/Violet
-          </a>
-        </Container> */}
         <MovesListsByType moves={pokemon.moves} />
         <PokedexEntries entries={pokemon.pokedexEntries} />
         {/* <div className={" border-4 border-pink-500 shadow shadow-pink-400 rounded-xl"}>

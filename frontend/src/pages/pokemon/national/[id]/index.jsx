@@ -9,14 +9,12 @@ import PokemonLayout from "../../PokemonLayout";
 
 const NationalInd = ({ pokemon, loading, loadPokemon }) => {
   const { query, isReady } = useRouter();
-  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    console.log(refresh)
       if (isReady && pokemon._id !== Number(query.id)) {
       loadPokemon(query.id);
     }
-  }, [isReady, query.id, refresh]);
+  }, [isReady, query.id]);
 
   return (
     <PokemonLayout>
