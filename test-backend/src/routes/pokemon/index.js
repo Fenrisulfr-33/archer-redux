@@ -51,4 +51,9 @@ router
     .get(search.read)
     .all(methodNotAllowed);
 
+router
+    .route('/national/:id/test/:game')
+    .get(national.test)
+    .all(methodNotAllowed);
+
 module.exports = router;
