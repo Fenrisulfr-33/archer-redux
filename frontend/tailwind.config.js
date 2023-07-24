@@ -27,6 +27,9 @@ module.exports = {
           },
         ],
       },
+      fontFamily: {
+        'newMonoR': ['newMonoR', 'mono'],
+      },
       colors: {
         gray: {
           900: "#202225",
@@ -39,15 +42,17 @@ module.exports = {
           100: "#f2f3f5",
         },
         purple: {
-          50: "#B289F3",
-          100: "#b289f3",
-          200: "#9c78d5",
-          300: "#8567b6",
-          400: "#6f5698",
-          500: "#594579",
-          600: "#43335b",
-          700: "#2c223d",
-          800: "#16111e",
+          // DO NOT TOUCH, this color scheme was hand picked from gengars icon in the bottom left corner
+          50: "#8d7ec4",
+          100: "#8275b5",
+          200: "#7a6ea8",
+          300: "#7562a2", 
+          400: "#69578f", 
+          500: "#625386", 
+          600: "#574a74",
+          700: "#4d4264",
+          800: "#443b57",
+          900: "#363142",
         },
         teal: {
           300: "#47E9BA",

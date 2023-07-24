@@ -21,7 +21,7 @@ const NavBar = ({ username, loading, logout }) => {
     }
     return (
         <>
-        <div className='items-center justify-end pr-5 tablet:hidden '>
+        <div className='items-center justify-end phone:pr-5 tablet:hidden '>
             <MenuDropDown />
         </div>
         <div className='hidden tablet:flex items-center justify-end space-x-4 pr-5'>

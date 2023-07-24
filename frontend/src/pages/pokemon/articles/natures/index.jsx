@@ -1,13 +1,12 @@
-import Natures from '../../../../components/pokemon/mdxPages/natures/natures.mdx';
-import MDXWrapper from '../../../../components/MDXWrapper';
+import Natures from "../../../../components/pokemon/mdxPages/natures/natures.mdx";
 import PokemonLayout from "../../PokemonLayout";
 
-export default function NaturesPage(){
-    return (
-        <PokemonLayout>
-            <MDXWrapper>
-                <Natures />
-            </MDXWrapper>
-        </PokemonLayout>
-    )
+export default function NaturesPage() {
+  return (
+    <PokemonLayout>
+      <div className={`article-container`}>
+        <Natures />
+      </div>
+    </PokemonLayout>
+  );
 }

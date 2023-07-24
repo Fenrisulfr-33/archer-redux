@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { data } from "../../../data/articles";
-import ArticleButtons from "../../components/Articles/ArticleButtons";
-import Article from "../../components/Articles/Article";
+import Link from "next/link";
+
+const ArticlesLink = () => (
+  <div className={`p-2 text-center`}>
+    <Link href={`/articles`} passHref>
+      <button className={`button`}>{`< Articles`}</button>
+    </Link>
+  </div>
+);
 
 export default function ArticlePage() {
-    const router = useRouter();
-    const { id } = router.query; // Type string
-    const [content, setContent] = useState();
-    useEffect(() => {
-            const found = data.find((article) => {
-                return article.id === Number(id);
-            });
-            setContent(found.body);
-    }, [id]);
-    return(
-            <div className={``}>
-                <ArticleButtons id={id} length={data.length}/>
-                    <Article>
-                        {content ? content : null}
-                    </Article>
-                <ArticleButtons id={id} length={data.length}/>
-            </div>
-    )
+  const { query, isReady } = useRouter();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    if (isReady) {
+      const found = data.find((article) => {
+        return article.id === Number(query.id);
+      });
+      setContent(found.body);
+    }
+  }, [query.id]);
+  return (
+    <div className={`flex flex-col`}>
+      <ArticlesLink />
+      <div className={`article-container`}>{content ? content : null}</div>
+      <ArticlesLink />
+    </div>
+  );
 }
