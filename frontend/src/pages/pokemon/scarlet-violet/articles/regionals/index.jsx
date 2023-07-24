@@ -1,13 +1,12 @@
-import Regionals from '../../../../../components/pokemon/mdxPages/regionals/masterDivision.mdx';
-import MDXWrapper from '../../../../../components/MDXWrapper';
+import Regionals from "../../../../../components/pokemon/mdxPages/regionals/masterDivision.mdx";
 import PokemonLayout from "../../../PokemonLayout";
 
-export default function TypeChartPage(){
-    return (
-        <PokemonLayout>
-            <MDXWrapper>
-                <Regionals />
-            </MDXWrapper>
-        </PokemonLayout>
-    )
+export default function TypeChartPage() {
+  return (
+    <PokemonLayout>
+      <div className={`article-container`}>
+        <Regionals />
+      </div>
+    </PokemonLayout>
+  );
 }

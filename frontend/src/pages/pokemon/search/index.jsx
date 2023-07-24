@@ -7,7 +7,6 @@ import PokemonLayout from '../PokemonLayout';
 import { InputBox } from "../../../components/pokemon/components/inputBoxes/InputBox";
 import { useRouter } from "next/router";
 import SearchPage from '../../../components/pokemon/mdxPages/searchPage/searchPage.mdx';
-import MDXWrapper from "../../../components/MDXWrapper";
 import { movesDropDownScarletViolet } from '../../../components/pokemon/components/movesDropDowns/movesDropDownScareletViolet';
 import List from "../../../components/pokemon/components/List";
 import { search } from "../../../components/pokemon/variables/headers";
@@ -70,9 +69,9 @@ const PokemonSearchResults = ({ searchResults, loadSearchResults, loading}) => {
   return (
     <PokemonLayout>
         <div className={'flex flex-col m-2 space-y-4'}>
-          <MDXWrapper>
+          <div className={`article-container`}>
             <SearchPage />
-          </MDXWrapper>
+          </div>
           <Box label={'Search for Pokemon by Moves'} />
           <MoveBox title={'Move 1:'} move={moveOne} setMove={setMoveOne} />
           <MoveBox title={'Move 2:'} move={moveTwo} setMove={setMoveTwo} />
