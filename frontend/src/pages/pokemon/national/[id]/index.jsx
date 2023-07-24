@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import { loadPokemon } from "../../../../redux/pokemon/pokemon/pokemonActions";
+import { loadPokemon, loadPokemonByGame } from "../../../../redux/pokemon/pokemon/pokemonActions";
 import { bindActionCreators } from "redux";
 import Loading from "../../../../components/Loading";
 import PokemonPage from "../../../../components/pokemon/components/pokemonPage/PokemonPage";
 import PokemonLayout from "../../PokemonLayout";
 
-const NationalInd = ({ pokemon, loading, loadPokemon }) => {
+const NationalInd = ({ pokemon, loading, loadPokemon, loadPokemonMovesByGame }) => {
   const { query, isReady } = useRouter();
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const NationalInd = ({ pokemon, loading, loadPokemon }) => {
           pokemon={pokemon}
           query={query}
           goBackRoute={"/pokemon/national"}
+          loadPokemonMovesByGame={loadPokemonMovesByGame}
         />
       ) : null}
     </PokemonLayout>
@@ -41,6 +42,7 @@ const mapStateToProps = (state) => {
   mapDispatchToProps = (dispatch) => {
     return {
       loadPokemon: bindActionCreators(loadPokemon, dispatch),
+      loadPokemonMovesByGame: bindActionCreators(loadPokemonByGame, dispatch),
     };
   };
 export default connect(mapStateToProps, mapDispatchToProps)(NationalInd);

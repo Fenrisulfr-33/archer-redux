@@ -8,7 +8,6 @@ const { connect, disconnect } = require("../connection");
 const getPokemonMoves = (inMoves, searchGame, moves) => {
     const pokemonMoves = {};
     if (inMoves[searchGame]) {
-        console.log('here');
         const foundGame = inMoves[searchGame];
         for (const [key, value] of Object.entries(foundGame)) {
             pokemonMoves[key] = [];

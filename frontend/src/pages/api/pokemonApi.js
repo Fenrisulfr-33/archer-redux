@@ -11,7 +11,11 @@ export const getPokemon = async (id, game) => {
         pokemon = await response.json();
         return pokemon;
     }
-
+}
+export const getPokemonMoves = async (id, game) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/national/${id}/test/${game}`),
+    moves = await response.json();
+    return moves;
 }
 export const getNationalDex = async (query) => {
     const response = await fetch(`${API_BASE_URL}/pokemon/national${query}`),

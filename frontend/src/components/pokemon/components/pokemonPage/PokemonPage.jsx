@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Image from "next/image";
 import BaseStats from "./BaseStats";
 import TypeWeakness from "./TypeWeakness";
@@ -6,6 +7,7 @@ import PokedexEntries from "./PokedexEntries";
 import MovesListsByType from "./MovesListsByType";
 import PokemonIndToolbar from "./PokemonIndToolbar";
 import Link from "next/link";
+import { InputBox } from '../inputBoxes/InputBox';
 import FormsTabs from "./FormTabs";
 
 const Container = ({ children }) => {
@@ -28,13 +30,17 @@ const InfoRow = ({ title, info, ability }) => (
     )}
   </div>
 );
-export default function PokemonPage({ pokemon, game, goBackRoute }) {
+
+export default function PokemonPage({ pokemon, game, goBackRoute, loadPokemonMovesByGame }) {
   const router = useRouter();
   const handleGoBack = (event) => {
     event.preventDefault();
     router.push(goBackRoute);
   };
+  const games = pokemon.gameDropDown.map((game) => game.game);
+  const [gameSelected, setGameSelected] = useState('scarlet-violet');
 
+  
   return (
     <div
       className={
@@ -72,7 +78,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
                 <div className="flex flex-col space-y-1">
                   <InfoRow title={"National Dex"} info={pokemon._id} />
                   <InfoRow title={"Species"} info={pokemon.species} />
-                  <InfoRow title={"height"} info={pokemon.info.height} />
+                  <InfoRow title={"Height"} info={pokemon.info.height} />
                   <InfoRow title={"Weight"} info={pokemon.info.weight} />
                   <InfoRow
                     title={"Egg Groups"}
@@ -179,6 +185,13 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           {pokemon.baseStats && <BaseStats stats={pokemon.baseStats} />}
         </div>
         <TypeWeakness typeOne={pokemon.type.one} typeTwo={pokemon.type?.two} />
+        {/* <InputBox 
+          placeholder={''}
+          list={games}
+        /> */}
+        {/* <button onClick={() => loadPokemonMovesByGame(pokemon._id, 'red-blue')}>
+          Load red blue moves
+        </button> */}
         <MovesListsByType moves={pokemon.moves} />
         <PokedexEntries entries={pokemon.pokedexEntries} />
         {/* <div className={" border-4 border-pink-500 shadow shadow-pink-400 rounded-xl"}>

@@ -12,6 +12,7 @@ import { CgProfile } from 'react-icons/cg';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, logout } from '../../redux/users/userActions';
+import Image from "next/image";
 
 const NavBar = ({ username, loading, logout }) => {
     const router = useRouter(),
@@ -28,6 +29,16 @@ const NavBar = ({ username, loading, logout }) => {
             <NavBarIcon icon={<SiHomeadvisor size='28' />} text={'Home'} route={'/'} />
             <NavBarIcon icon={<MdArticle size='28' />} text={'Articles'} route={'/articles'}/>
             {/* <NavBarIcon icon={<BsFillFileCodeFill size='28' />} text={'Code'} route={'/code'}/> */}
+            {/* <NavBarIcon icon={<Image             
+                    src={`/destiny.svg`}
+                    alt={`Destiny 2`}
+                    height={25}
+                    width={25}
+                    className={'text-purple-300'}
+                />} 
+                text={'Destiny 2'}
+                route={'/destiny'}
+            /> */}
             <NavBarIcon icon={<MdCatchingPokemon size='28' />} text={'Pokemon'} route={'/pokemon'}/>
             {/* <NavBarIcon icon={<SiTelegraph size='28' />} text={'TemTem'} route={'/temtem'}/> */}
             {/* {username ? (

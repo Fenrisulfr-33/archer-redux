@@ -12,12 +12,12 @@ export default function BaseStats({ stats: {hp, atk, def, spatk, spdef, spd, tot
             <div className={"label"}>Base Stats:</div>
             <div className={'label'}>Tiers</div>
           </div>
-          <BaseStat title={"hp"} stat={hp} width={`w-${Math.round([hp*100]/255)}%`} />
-          <BaseStat title={"atk"} stat={atk} width={`w-${Math.round([atk*100]/180)}%`} />
-          <BaseStat title={"def"} stat={def} width={`w-${Math.round([def*100]/230)}%`} />
-          <BaseStat title={"spatk"} stat={spatk} width={`w-${Math.round([spatk*100]/180)}%`} />
-          <BaseStat title={"spdef"} stat={spdef} width={`w-${Math.round([spdef*100]/230)}%`} />
-          <BaseStat title={"spd"} stat={spd} width={`w-${Math.round([spd*100]/200)}%`} />
+          <BaseStat title={"hp"} stat={hp} />
+          <BaseStat title={"atk"} stat={atk} />
+          <BaseStat title={"def"} stat={def} />
+          <BaseStat title={"spatk"} stat={spatk} />
+          <BaseStat title={"spdef"} stat={spdef} />
+          <BaseStat title={"spd"} stat={spd} />
           <div className={'label'}>Total: {total}</div>
         </div>
       </div>

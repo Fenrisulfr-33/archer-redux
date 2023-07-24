@@ -1,6 +1,6 @@
 import { tierColor, tierWidth } from "./helperFunctions";
 
-export default function BaseStat({ title, stat }) {
+export default function BaseStat({ title, stat, width }) {
   // Generation 3 onwards
   const hpFormula = (baseStat, IV, EV, level) => {
     return Math.floor(

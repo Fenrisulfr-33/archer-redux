@@ -22,7 +22,16 @@
         text-black 
         font-bold 
         py-1 
-        px-4
+        px-2
+        rounded
+        w-fit
+    }
+    .field{
+        @apply
+        bg-purple-500
+        text-white  
+        py-1 
+        px-2
         rounded
         w-fit
     }

@@ -64,7 +64,7 @@ export const tierWidth = (title, stat) => {
     const statRounded = Math.round([stat*100]/180);
     return statWidth(statRounded);
   } else if (title === "def" || title === "spdef") {
-    const statRounded =Math.round([stat*100]/230);
+    const statRounded = Math.round([stat*100]/230);
     return statWidth(statRounded);
   } else if (title === "spd") {
     const statRounded = Math.round([stat*100]/200);
@@ -74,8 +74,10 @@ export const tierWidth = (title, stat) => {
 
 export const statWidth = (width) => {
   let returnWidth = '';
-
-  if (width <= 9){
+  
+  if (width === 0){
+    returnWidth = 'w-[1px]'
+  } else if (width <= 9){
     returnWidth = 'w-1/8';
   } else if(width <= 17){
     returnWidth = 'w-2/12';
