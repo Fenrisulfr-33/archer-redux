@@ -10,6 +10,7 @@ import { createSearchQuery } from "../../../helperFunctions/createSearchQuery";
 import List from "../../../components/pokemon/components/List";
 import { national } from "../../../components/pokemon/variables/headers";
 import ListFilters from "../../../components/pokemon/components/filters/Filters";
+import { onFilterSubitHandler } from '../../../helperFunctions/onFilterSubmitHandler';
 
 const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
   // Get query and isReady for useEffect
