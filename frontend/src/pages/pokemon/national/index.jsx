@@ -12,6 +12,7 @@ import { onFilterSubmitHandler } from "../../../helperFunctions/onFilterSubmitHa
 import List from "../../../components/pokemon/components/List";
 import { national } from "../../../components/pokemon/variables/headers";
 import ListDropDown from "../../../components/pokemon/components/inputBoxes/ListDropDown";
+import Box from "../../../components/pokemon/components/inputBoxes/ComboBox";
 
 const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
   // Get query and isReady for useEffect
@@ -85,6 +86,14 @@ const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
                 list={["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Speed"]}
                 width={26}
               />
+              {/* <select
+                class="block appearance-none w-full bg-gray-900 border-2 border-purple-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-state"
+              >
+                <option className={`px-2 py-1 rounded-lg text-purple-300`}>Total</option>
+                <option>Missouri</option>
+                <option>Texas</option>
+              </select> */}
               {/* <ListDropDown list={["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Speed"]} /> */}
               <button
                 onClick={(event) =>

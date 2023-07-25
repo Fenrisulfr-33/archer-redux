@@ -4,9 +4,6 @@ import { DexRow } from "../../../components/pokemon/components/DexRow";
 import PaginationLayout from "../../../layout/Pagination";
 
 export default function List({ list = [], pushRoute, headers }) {
-  const styles = {
-    th: "py-1 px-1 text-center",
-  };
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +22,7 @@ export default function List({ list = [], pushRoute, headers }) {
         children={
           <TableLayout
             thead={headers.map((header, index) => (
-              <th key={index} className={styles.th}>
+              <th key={index} className={'py-1 px-1 text-center bg-purple-900'}>
                 {header}
               </th>
             ))}
