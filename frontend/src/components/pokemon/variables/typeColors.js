@@ -36,3 +36,45 @@ export const colors = {
     STL: "bg-cyan-800",
     FAI: "bg-fuchsia-300"
 };
+
+export const typeButtons = {
+    normal: "bg-gray-200 text-gray-900",
+    fire: "bg-orange-400 text-gray-300",
+    water: "bg-sky-500 text-gray-300",
+    electric: "bg-yellow-300 text-gray-900",
+    grass: "bg-green-500 text-gray-300",
+    ice: "bg-teal-300 text-gray-900",
+    fighting: "bg-pink-700 text-gray-300",
+    poison: "bg-purple-500 text-gray-300",
+    ground: "bg-amber-700 text-gray-300",
+    flying: "bg-blue-300 text-gray-900",
+    psychic: "bg-rose-400 text-gray-300",
+    bug: "bg-lime-400 text-gray-900",
+    rock: "bg-orange-200 text-gray-900",
+    ghost: "bg-indigo-500 text-gray-300",
+    dragon: "bg-blue-600 text-gray-300",
+    dark: "bg-zinc-700 text-gray-300",
+    steel: "bg-cyan-800 text-gray-300",
+    fairy: "bg-fuchsia-300 text-gray-900",
+};
+
+export const activeTypeButtons = {
+    normal: "bg-gray-400 text-gray-900",
+    fire: "bg-orange-400 text-gray-300",
+    water: "bg-sky-500 text-gray-300",
+    electric: "bg-yellow-300 text-gray-900",
+    grass: "bg-green-500 text-gray-300",
+    ice: "bg-teal-300 text-gray-900",
+    fighting: "bg-pink-700 text-gray-300",
+    poison: "bg-purple-500 text-gray-300",
+    ground: "bg-amber-700 text-gray-300",
+    flying: "bg-blue-300 text-gray-900",
+    psychic: "bg-rose-400 text-gray-300",
+    bug: "bg-lime-400 text-gray-900",
+    rock: "bg-orange-200 text-gray-900",
+    ghost: "bg-indigo-500 text-gray-300",
+    dragon: "bg-blue-600 text-gray-300",
+    dark: "bg-zinc-700 text-gray-300",
+    steel: "bg-cyan-800 text-gray-300",
+    fairy: "bg-fuchsia-300 text-gray-900",
+};

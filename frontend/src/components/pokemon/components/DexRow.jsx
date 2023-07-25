@@ -20,7 +20,7 @@ export const DexRow = ({ pokemon, dexNumber, pushRoute }) => {
     <tr className="text-center bg-gray-900 text-purple-100 hover:bg-gray-600 hover:text-gray-300 hover:font-bold">
       <td>{dexNumber ? dexNumber : "--"}</td>
       <td>
-        <Link href={`/pokemon/national/${_id}/${pushRoute}`} passhref>
+        <Link href={`/pokemon/national/${_id}/${pushRoute}`} passhref='true'>
           {name?.english}
         </Link>
       </td>
@@ -47,7 +47,7 @@ export const DexRow = ({ pokemon, dexNumber, pushRoute }) => {
       </td>
       <td>
         <div className="flex flex-col">
-          <div className="">{abilities.one.name}</div>
+          <div className="">{abilities?.one?.name}</div>
           <div className="">{abilities?.two?.name}</div>
           <div className="italic">{abilities?.hidden?.name}</div>
         </div>
