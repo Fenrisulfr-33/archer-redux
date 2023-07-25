@@ -19,7 +19,7 @@ export default function PaginationLayout({
       ) : null}
 
       {children}
-      {totalCount > 0 ? (
+      {totalCount > 15 ? (
         <Pagination
           recordsPerPage={recordsPerPage}
           totalCount={totalCount}
