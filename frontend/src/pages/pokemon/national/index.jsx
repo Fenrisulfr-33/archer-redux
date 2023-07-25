@@ -36,23 +36,13 @@ const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
   };
 
   const onFilterSubmit = (event) => {
-    event.preventDefault();
-
-    const queries = [];
-    typeOne !== '' ? queries.push(["typeOne", typeOne]) : null;
-    typeTwo !== '' ? queries.push(["typeTwo", typeTwo]) : null;
-    stat !== '' && sort !== '' ? queries.push([`${sort.toLowerCase()}`,`baseStats.${stat.toLowerCase()}`]) : null;
-
-    queries.forEach((query, index) => {
-      if (query[1] !== "") {
-        if (index === 0) {
-          searchRoute += `?${query[0]}=${query[1]}`;
-        } else {
-          searchRoute += `&${query[0]}=${query[1]}`;
-        }
-      }
-    });
-    router.push(searchRoute);
+    const params = {
+      typeOne: typeOne,
+      typeTwo: typeTwo,
+      sort: sort,
+      stat: stat,
+    };
+    onFilterSubitHandler(event, router, params, searchRoute)
   };
 
   useEffect(() => {

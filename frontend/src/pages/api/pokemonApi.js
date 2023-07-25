@@ -22,8 +22,8 @@ export const getNationalDex = async (query) => {
     returnObj = await response.json();
     return returnObj;
 }
-export const getGameDex = async (url) => {
-    const response = await fetch(`${API_BASE_URL}/pokemon/${url}/pokedex`),
+export const getGameDex = async (url, query) => {
+    const response = await fetch(`${API_BASE_URL}/pokemon/${url}/pokedex${query}`),
     returnObj = await response.json();
     return returnObj;
 }

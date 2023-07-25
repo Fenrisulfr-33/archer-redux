@@ -35,10 +35,10 @@ export const loadNationalDex = (query) => {
     };
 }
 
-export const loadScViDex = (url) => {
+export const loadScViDex = (url, query) => {
     return (dispatch) => {
         dispatch(beginApiCall());
-        return pokemonApi.getGameDex(url)
+        return pokemonApi.getGameDex(url, query)
         .then(dex => {
             dispatch(loadScViSuccess(dex));
         }).catch(error => {
