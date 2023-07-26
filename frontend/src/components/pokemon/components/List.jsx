@@ -3,7 +3,7 @@ import TableLayout from "../../../components/pokemon/components/tableLayout/Tabl
 import { DexRow } from "../../../components/pokemon/components/DexRow";
 import PaginationLayout from "../../../layout/Pagination";
 
-export default function List({ list = [], pushRoute, headers }) {
+export default function List({ list = [], pushRoute, headers, dexNumber }) {
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +30,7 @@ export default function List({ list = [], pushRoute, headers }) {
               <DexRow
                 key={pokemon._id}
                 pokemon={pokemon}
-                dexNumber={pokemon._id}
+                dexNumber={dexNumber ? pokemon.pokedexNumber[dexNumber] : pokemon._id}
                 pushRoute={pushRoute}
               />
             ))}

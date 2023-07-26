@@ -29,7 +29,7 @@ const listDex = asyncHandler(async (request, response) => {
   } else if (!typeTwo && typeOne) {
     typeStatment = [{ "type.one": typeOne }, { "type.two": typeOne }];
   }
-
+  // TODO: Write databases names as games variables
   let dex = "";
   if (game === "scarlet-violet") {
     dex = "pokedexNumber.scvi";
