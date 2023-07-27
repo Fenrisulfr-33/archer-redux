@@ -19,4 +19,5 @@ export const scarletVioletMenu = [
 export const swordShieldtMenu = [
     {title:'Pokedex',route:'/pokemon/sword-shield/pokedex'},
     {title:'Isle of Armor Dex.',route:'/pokemon/isle-of-armor/pokedex'},
+    {title:'Crown Tundra Dex.',route:'/pokemon/crown-tundra/pokedex'},
 ];

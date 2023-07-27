@@ -29,25 +29,13 @@ const listDex = asyncHandler(async (request, response) => {
   } else if (!typeTwo && typeOne) {
     typeStatment = [{ "type.one": typeOne }, { "type.two": typeOne }];
   }
-  // TODO: Write databases names as games variables
-  let dex = "";
-  if (game === "scarlet-violet") {
-    dex = "pokedexNumber.scvi";
-  } else if (game === "sword-shield") {
-    dex = "pokedexNumber.swsh";
-  } else if (game === "isle-of-armor") {
-    dex = "pokedexNumber.ioa";
-  } else if (game === "crown-tundra") {
-    dex = "pokedexNumber.ct";
-  }
-
   // Create sorting object for array return
-  const sort = asc ? { [asc]: 1 } : desc ? { [desc]: -1 } : { [dex]: 1 };
+  const sort = asc ? { [asc]: 1 } : desc ? { [desc]: -1 } : { [`pokedexNumber.${game}`]: 1 };
 
   // if the typeStatement exists apply typeStatement
   if (typeStatment) {
     gameDex = await National.find()
-      .where(dex)
+      .where(`pokedexNumber.${game}`)
       .exists(true)
       .or(typeStatment)
       .select(gameSelect)
@@ -55,7 +43,7 @@ const listDex = asyncHandler(async (request, response) => {
   } else {
     // return national dex without filters
     gameDex = await National.find()
-      .where(dex)
+      .where(`pokedexNumber.${game}`)
       .exists(true)
       .select(gameSelect)
       .sort(sort);

@@ -91,13 +91,8 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const { pokemon, moves } = response.locals,
         game = request.params.game;
     let mainGame = null;
-    if (
-        game === "isle-of-armor" ||
-        game === "crown-tundra" ||
-        game === "swsh-other"
-    ) {
-        mainGame = "sword-shield";
-    }
+    game === "isle-of-armor" || "crown-tundra" ? mainGame = "sword-shield" : null;
+    
     const newMoves = mainGame
         ? getPokemonMoves(pokemon.moves, mainGame, moves)
         : getPokemonMoves(pokemon.moves, game, moves);

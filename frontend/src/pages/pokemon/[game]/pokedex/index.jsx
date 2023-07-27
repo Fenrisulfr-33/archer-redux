@@ -8,14 +8,14 @@ import PokemonLayout from "../../PokemonLayout";
 import List from "../../../../components/pokemon/components/List";
 import { createSearchQuery } from "../../../../helperFunctions/helperFunctions";
 
-const ScViDex = ({ dex, loadDex, loading }) => {
+const PokedexPage = ({ dex, loadDex, loading }) => {
   const router = useRouter();
   const { query, isReady } = router;
 
   useEffect(() => {
     if (isReady) {
       const searchQuery = createSearchQuery(query);
-      loadDex("scarlet-violet", searchQuery);
+      loadDex(query.game, searchQuery);
     }
   }, [isReady, query]);
 
@@ -27,9 +27,9 @@ const ScViDex = ({ dex, loadDex, loading }) => {
         <div>
           <List
             list={dex}
-            pushRoute={"scarlet-violet"}
-            dexNumber={"scvi"}
-            searchRoute={"/pokemon/scarlet-violet/pokedex"}
+            pushRoute={query.game}
+            dexNumber={query.game}
+            searchRoute={`/pokemon/${query.game}/pokedex`}
           />
         </div>
       )}
@@ -48,4 +48,4 @@ const mapStateToProps = ({ dexes: { dex }, apiCallsInProgress }) => {
       loadDex: bindActionCreators(loadDex, dispatch),
     };
   };
-export default connect(mapStateToProps, mapDispatchToProps)(ScViDex);
+export default connect(mapStateToProps, mapDispatchToProps)(PokedexPage);
