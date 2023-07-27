@@ -1,43 +1,48 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadSwShDex } from "../../../../redux/pokemon//dexes/dexActions";
+import { loadDex } from "../../../../redux/pokemon//dexes/dexActions";
 import { bindActionCreators } from "redux";
-import { DexList } from "../../../../components/pokemon/components/DexList";
 import Loading from "../../../../components/Loading";
 import PokemonLayout from "../../PokemonLayout";
+import List from "../../../../components/pokemon/components/List";
+import { createSearchQuery } from "../../../../helperFunctions/helperFunctions";
+import { useRouter } from "next/router";
 
-const SwShDex = ({ dex, loadSwShDex, loading }) => {
+const SwShDex = ({ dex, loadDex, loading }) => {
+  const router = useRouter();
+  const { query, isReady } = router;
   useEffect(() => {
-    if (dex.length === 0) {
-      loadSwShDex("sword-shield");
+    if (isReady) {
+      const searchQuery = createSearchQuery(query);
+      loadDex("sword-shield", searchQuery);
     }
-  }, []);
+  }, [isReady, query]);
 
   return (
     <PokemonLayout>
       {loading ? (
         <Loading />
       ) : (
-        <DexList
+        <List
           list={dex}
-          filters={true}
-          game={"swsh"}
+          dexNumber={"swsh"}
           pushRoute={"sword-shield"}
+          searchRoute={"/pokemon/sword-shield/pokedex"}
         />
       )}
     </PokemonLayout>
   );
 };
 
-const mapStateToProps = ({ dexes: { sword_shield }, apiCallsInProgress }) => {
+const mapStateToProps = ({ dexes: { dex }, apiCallsInProgress }) => {
     return {
-      dex: sword_shield,
+      dex,
       loading: apiCallsInProgress > 0,
     };
   },
   mapDispatchToProps = (dispatch) => {
     return {
-      loadSwShDex: bindActionCreators(loadSwShDex, dispatch),
+      loadDex: bindActionCreators(loadDex, dispatch),
     };
   };
 export default connect(mapStateToProps, mapDispatchToProps)(SwShDex);

@@ -6,7 +6,6 @@ import { loadNationalDex } from "../../../redux/pokemon/dexes/dexActions";
 import { bindActionCreators } from "redux";
 import PokemonLayout from "../PokemonLayout";
 import List from "../../../components/pokemon/components/List";
-import { national } from "../../../components/pokemon/variables/headers";
 import { createSearchQuery } from "../../../helperFunctions/helperFunctions";
 
 const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
@@ -27,7 +26,7 @@ const NationalDex = ({ dex = [], loadNationalDex, loading }) => {
         <Loading />
       ) : (
         <div>
-          <List list={dex} pushRoute={""} headers={national} searchRoute={'/pokemon/national'} />
+          <List list={dex} pushRoute={""} headers={'national'} searchRoute={'/pokemon/national'} />
         </div>
       )}
     </PokemonLayout>

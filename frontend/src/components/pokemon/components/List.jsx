@@ -6,22 +6,24 @@ import PaginationLayout from "../../../layout/Pagination";
 import ListFilters from "./filters/Filters";
 import { onFilterSubmitHandler } from "../../../helperFunctions/helperFunctions";
 import { types } from "../variables/dropdowns";
+import { national, dexes } from "../variables/headers";
 
 export default function List({
   list = [],
   pushRoute,
-  headers,
+  header,
   dexNumber,
   searchRoute,
 }) {
   const router = useRouter();
   const { asPath } = router;
-  console.log('router', router)
   // Generic Filter code ----- START
   const [typeOne, setTypeOne] = useState("");
   const [typeTwo, setTypeTwo] = useState("");
   const [sort, setSort] = useState("");
   const [stat, setStat] = useState("");
+  // Set headers variables
+  const headers = header === 'national' ? national : dexes;
   // Reset filter variables
   const onResetHandler = () => {
     setTypeOne("");

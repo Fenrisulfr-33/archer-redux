@@ -1,43 +1,48 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import { loadIoaDex } from "../../../../redux/pokemon//dexes/dexActions";
+import { loadDex } from "../../../../redux/pokemon/dexes/dexActions";
 import { bindActionCreators } from "redux";
-import { DexList } from "../../../../components/pokemon/components/DexList";
 import Loading from "../../../../components/Loading";
 import PokemonLayout from "../../PokemonLayout";
+import List from "../../../../components/pokemon/components/List";
+import { createSearchQuery } from "../../../../helperFunctions/helperFunctions";
 
-const IoaDex = ({ dex, loadIoaDex, loading }) => {
+const IoaDex = ({ dex, loadDex, loading }) => {
+  const router = useRouter();
+  const { query, isReady } = router;
   useEffect(() => {
-    if (dex.length === 0) {
-      loadIoaDex("isle-of-armor");
+    if (isReady) {
+      const searchQuery = createSearchQuery(query);
+      loadDex("isle-of-armor", searchQuery);
     }
-  }, []);
+  }, [isReady, query]);
 
   return (
     <PokemonLayout>
       {loading ? (
         <Loading />
       ) : (
-        <DexList
-          list={dex}
-          filters={true}
-          game={"ioa"}
-          pushRoute={"isle-of-armor"}
-        />
+        <List
+        list={dex}
+        dexNumber={"ioa"}
+        pushRoute={"isle-of-armor"}
+        searchRoute={"/pokemon/isle-of-armor/pokedex"}
+      />
       )}
     </PokemonLayout>
   );
 };
 
-const mapStateToProps = ({ dexes: { isle_of_armor }, apiCallsInProgress }) => {
+const mapStateToProps = ({ dexes: { dex }, apiCallsInProgress }) => {
     return {
-      dex: isle_of_armor,
+      dex,
       loading: apiCallsInProgress > 0,
     };
   },
   mapDispatchToProps = (dispatch) => {
     return {
-      loadIoaDex: bindActionCreators(loadIoaDex, dispatch),
+      loadDex: bindActionCreators(loadDex, dispatch),
     };
   };
 export default connect(mapStateToProps, mapDispatchToProps)(IoaDex);

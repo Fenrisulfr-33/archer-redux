@@ -8,26 +8,11 @@ export default function dexReducer(state = initialState.dexes, action) {
         ...state,
         national: action.dex,
       };
-    case types.LOAD_SCVI_SUCCESS:
+    case types.LOAD_DEX_SUCCESS:
       return {
         ...state,
-        scarlet_violet: action.dex,
-      };
-    case types.LOAD_SWSH_SUCCESS:
-      return {
-        ...state,
-        sword_shield: action.dex,
-      };
-    case types.LOAD_IOA_SUCCESS:
-      return {
-        ...state,
-        isle_of_armor: action.dex,
-      };
-    case types.LOAD_CT_SUCCESS:
-      return {
-        ...state,
-        crown_tundra: action.dex,
-      };
+        dex: action.dex
+      }
     default:
       return state;
   }
