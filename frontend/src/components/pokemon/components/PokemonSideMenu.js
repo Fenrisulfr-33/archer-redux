@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Tabs from "./tabs/Tabs";
-import { dataMenu, mechanicsMenu, scarletVioletMenu, swordShieldtMenu } from "./menus";
+import { dataMenu, genOneMenu, genTwoMenu, mechanicsMenu, scarletVioletMenu, swordShieldtMenu } from "./menus";
 
 const NavBarIcon = ({ text, route }) => {
   return (
@@ -11,6 +11,14 @@ const NavBarIcon = ({ text, route }) => {
 };
 
 export default function PokemonSideMenu() {
+  const menu = [
+    { title: 'Data', list: dataMenu },
+    { title: 'Mechanics', list: mechanicsMenu },
+    { title: 'Scarlet & Violet', list: scarletVioletMenu },
+    { title: 'Sword & Shield', list: swordShieldtMenu },
+    { title: 'Gen Two', list: genTwoMenu },
+    { title: 'Gen One', list: genOneMenu },
+  ]
   return (
     <>
       <div className={"laptop:hidden"}>
@@ -18,35 +26,16 @@ export default function PokemonSideMenu() {
       </div>
       <div className="hidden laptop:flex flex-col space-y-2 p-2 text-left text-sm border bg-gray-700 m-2 rounded-xl border-purp-400">
         <NavBarIcon route={"/pokemon"} text={"Home"} />
-        <div className={`label`}>Data</div>
-        <div className={"pl-4  flex flex-col space-y-1"}>
-          {dataMenu.map((page, index) => (
-            <NavBarIcon key={index} route={page.route} text={page.title} />
-          ))}
-        </div>
-        <div className={`label`}>Mechanics</div>
-        <div className={"pl-4 flex flex-col space-y-1"}>
-          {mechanicsMenu.map((page, index) => (
-            <NavBarIcon key={index} route={page.route} text={page.title} />
-          ))}
-        </div>
-        <div className={`label`}>Games</div>
-        <div className={`pl-4`}>
-          <div className={`label`}>Scarlet & Violet</div>
-        </div>
-        <div className={"pl-8 flex flex-col space-y-1"}>
-          {scarletVioletMenu.map((page, index) => (
-            <NavBarIcon key={index} route={page.route} text={page.title} />
-          ))}
-        </div>
-        <div className={`pl-4`}>
-          <div className={`label`}>Sword & Shield</div>
-        </div>
-        <div className={"pl-8  flex flex-col space-y-1"}>
-          {swordShieldtMenu.map((page, index) => (
-            <NavBarIcon key={index} route={page.route} text={page.title} />
-          ))}
-        </div>
+        {menu.map((menuItem) => (
+          <>
+            <div className={`label`}>{menuItem.title}</div>
+            <div className={"pl-4  flex flex-col space-y-1"}>
+              {menuItem.list.map((page, index) => (
+                <NavBarIcon key={index} route={page.route} text={page.title} />
+              ))}
+            </div>
+          </>
+        ))}
       </div>
     </>
   );
