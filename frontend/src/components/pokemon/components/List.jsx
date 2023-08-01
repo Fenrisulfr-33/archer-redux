@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import TableLayout from "../../../components/pokemon/components/tableLayout/TableLayout";
 import { DexRow } from "../../../components/pokemon/components/DexRow";
-import PaginationLayout from "../../../layout/Pagination";
+import PaginationLayout from "./PaginationLayout";
 import ListFilters from "./filters/Filters";
 import { onFilterSubmitHandler } from "../../../helperFunctions/helperFunctions";
 import { types } from "../variables/dropdowns";
@@ -23,7 +23,7 @@ export default function List({
   const [sort, setSort] = useState("");
   const [stat, setStat] = useState("");
   // Set headers variables
-  const headers = header === 'national' ? national : dexes;
+  const headers = header === "national" ? national : dexes;
   // Reset filter variables
   const onResetHandler = () => {
     setTypeOne("");
@@ -56,7 +56,7 @@ export default function List({
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div id="pokemon-content" className="flex flex-col space-y-2 pb-4">
+    <div id="dex-list-content" className="flex flex-col space-y-2 pb-4">
       <ListFilters
         inputs={[
           {

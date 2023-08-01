@@ -1,5 +1,5 @@
-import HomePage from '../../components/pokemon/mdxPages/homePage/homePage.mdx'
 import PokemonLayout from './PokemonLayout';
+import HomePage from '../../articles/pokemon/home-page.mdx';
 
 export default function Pokemon() {
     return (  

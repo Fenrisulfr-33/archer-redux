@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import PokemonLayout from '../PokemonLayout';
 import { InputBox } from "../../../components/pokemon/components/inputBoxes/InputBox";
 import { useRouter } from "next/router";
-import SearchPage from '../../../components/pokemon/mdxPages/searchPage/searchPage.mdx';
+import SearchPage from '../../../articles/searchPage/searchPage.mdx';
 import { movesDropDownScarletViolet } from '../../../components/pokemon/components/movesDropDowns/movesDropDownScareletViolet';
 import List from "../../../components/pokemon/components/List";
 import { search } from "../../../components/pokemon/variables/headers";

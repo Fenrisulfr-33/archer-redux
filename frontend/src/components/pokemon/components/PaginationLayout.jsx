@@ -1,4 +1,4 @@
-import Pagination from "../components/pagination/Pagination";
+import Pagination from "./Pagination";
 
 export default function PaginationLayout({
   children,

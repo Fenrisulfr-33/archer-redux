@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import HomePage from "../components/mdxPages/homePage.mdx";
+import HomePage from '../articles/homePage.mdx';
 
 const IndexPage: NextPage = () => {
   return (

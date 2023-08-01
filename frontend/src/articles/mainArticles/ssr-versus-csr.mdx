@@ -1,0 +1,27 @@
+## SSR vs CSR
+
+in this article, I want to share with you the difference between server-side rendering(SSR) and client-side rendering(CSR). knowing the difference between those two things is very important, especially when you are developing on the web. first of all, I will explain the definition of SSR and CSR, then I will cover the difference between them, and for the last, what kind of circumstances are suitable for each.
+
+## what is SSR ?
+
+SSR stands for server-side rendering. it is the ability of a web application to render the web page on the server instead of rendering it in the browser. when the page arrived on the client-side, it is fully rendered. it is because the server-side has fully rendered the page before it was sent by the server to the client. when the request is received on the server-side, it will compile everything, if the content of the page needed data from the database, the server will do that, then render the data into the fully rendered page and then send it to the client as the response. now, what if the client navigates to a different route? every time the client navigates to a different route, the server will do the work all over again.
+
+## what is CSR ?
+
+CSR stands for client-side rendering. overall, CSR is the opposite of SSR. If the SSR renders the page on the server-side, CSR renders the page on the client-side. when the request is received on the server, it will not render the page, instead, the server will send a single page that will be the skeleton of the page to the client. the server sends the page along with the javascript file. later, the js will turn the page into a fully rendered page. so where is the content? what if the page needs to take data from the database? Then, the api comes in. the client will make a request to the api to take the data and then render it to the page. Lastly, what if the client navigates to a different route? do the server will send the page again ? the server will not send the page again, instead, the client will re-render the page according to the route that client requested. so the page that is used, is always the same page as the first request.
+
+## the difference
+
+the main difference between CSR and SSR is where the page is rendered. SSR renders the page on the server-side and CSR renders the page on the client-side. Client-side manages the routing dynamically without refreshing the page every time the client requests a different route.
+
+## use SSR
+
+- if SEO is your priority, typically when you are building a blog site and you want everyone who searching on google go to your website, then SSR is your choice.
+- if your website needs a faster initial loading.
+- if the content of your website doesn't need much user interaction.
+
+## use CSR
+
+- when SEO is not your priority
+- if your site has rich interactions
+- if you are building a web application

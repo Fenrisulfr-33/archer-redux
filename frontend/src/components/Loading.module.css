@@ -1,21 +1,3 @@
-.ball {
-    @apply
-    bg-gray-800
-    w-5 
-    h-5 
-    rounded-full 
-    animate-bounce
-}
-
-.pill {
-    @apply
-    bg-purple-200
-    p-5 
-    rounded-full 
-    flex 
-    space-x-3 
-}
-
 .loader {
     @apply
     min-h-screen 

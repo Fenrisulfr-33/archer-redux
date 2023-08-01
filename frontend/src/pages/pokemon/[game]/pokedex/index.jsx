@@ -24,14 +24,12 @@ const PokedexPage = ({ dex, loadDex, loading }) => {
       {loading ? (
         <Loading />
       ) : (
-        <div>
-          <List
-            list={dex}
-            pushRoute={query.game}
-            dexNumber={query.game}
-            searchRoute={`/pokemon/${query.game}/pokedex`}
-          />
-        </div>
+        <List
+          list={dex}
+          pushRoute={query.game}
+          dexNumber={query.game}
+          searchRoute={`/pokemon/${query.game}/pokedex`}
+        />
       )}
     </PokemonLayout>
   );
