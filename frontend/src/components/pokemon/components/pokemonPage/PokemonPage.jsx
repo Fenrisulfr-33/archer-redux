@@ -7,8 +7,9 @@ import PokedexEntries from "./PokedexEntries";
 import MovesListsByType from "./MovesListsByType";
 import PokemonIndToolbar from "./PokemonIndToolbar";
 import Link from "next/link";
-import { InputBox } from '../inputBoxes/InputBox';
+import { InputBox } from "../inputBoxes/InputBox";
 import FormsTabs from "./FormTabs";
+import PokemonInfoSection from "./TestPokemonInfoSection";
 
 const Container = ({ children }) => {
   return (
@@ -31,16 +32,20 @@ const InfoRow = ({ title, info, ability }) => (
   </div>
 );
 
-export default function PokemonPage({ pokemon, game, goBackRoute, loadPokemonMovesByGame }) {
+export default function PokemonPage({
+  pokemon,
+  game,
+  goBackRoute,
+  loadPokemonMovesByGame,
+}) {
   const router = useRouter();
   const handleGoBack = (event) => {
     event.preventDefault();
     router.push(goBackRoute);
   };
   const games = pokemon.gameDropDown.map((game) => game.game);
-  const [gameSelected, setGameSelected] = useState('scarlet-violet');
+  const [gameSelected, setGameSelected] = useState("scarlet-violet");
 
-  
   return (
     <div
       className={
@@ -182,9 +187,10 @@ export default function PokemonPage({ pokemon, game, goBackRoute, loadPokemonMov
               </div>
             </div>
           </div>
+          <PokemonInfoSection pokemon={pokemon} />
+          <TypeWeakness typeOne={pokemon.type.one} typeTwo={pokemon.type?.two} />
           {pokemon.baseStats && <BaseStats stats={pokemon.baseStats} />}
         </div>
-        <TypeWeakness typeOne={pokemon.type.one} typeTwo={pokemon.type?.two} />
         {/* <InputBox 
           placeholder={''}
           list={games}
