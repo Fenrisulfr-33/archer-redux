@@ -119,8 +119,8 @@ const getMovesTest = asyncHandler(async (request, response, next) => {
  * @returns {JSON} all data for a specific Pokemon
  */
 const readPokemon = asyncHandler(async (request, response) => {
-    const { pokemon, moves } = response.locals,
-        game = "scarlet-violet";
+    const { pokemon, moves } = response.locals;
+    const game = pokemon.gameDropDown[0].query;
     pokemon.moves = getPokemonMoves(pokemon.moves, game, moves);
     // pokemon.baseStats = getBaseStatsWidth(pokemon.baseStats);
     disconnect();

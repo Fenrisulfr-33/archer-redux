@@ -3,13 +3,14 @@ import { Combobox, Transition } from "@headlessui/react";
 import { BsChevronExpand } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 
-export const InputBox = ({ value, setValue, placeholder, list }) => {
+export const CustomBox = ({ selected, setSelected, placeholder, list }) => {
   const [query, setQuery] = useState("");
+
   const filteredList =
     query === ""
       ? list
-      : list.filter((items) =>
-          items
+      : list.filter((value) =>
+          value.game
             .toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -17,14 +18,13 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
 
   return (
     <div className={`relative`}>
-      <Combobox value={value} onChange={setValue}>
+      <Combobox value={selected} onChange={setSelected}>
         <div className="bg-gray-900 row-flex justify-between cursor-default border-2 border-purple-100 overflow-hidden rounded-md ">
           <Combobox.Input
             className={`bg-gray-900 w-[98%] p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
             displayValue={(value) => value.game}
             onChange={(event) => {
               setQuery(event.target.value);
-              setValue(event.target.value);
             }}
             placeholder={placeholder}
           />
@@ -42,15 +42,17 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
           leaveTo="opacity-0"
           afterLeave={() => setQuery("")}
         >
-          <Combobox.Options className={`absolute w-full mt-1 phone:test-base max-h-60 overflow-auto border-purple-400 border-2 rounded-md bg-gray-900 scrollbar-hide`}>
+          <Combobox.Options
+            className={`absolute w-full mt-1 phone:test-base max-h-60 overflow-auto border-purple-400 border-2 rounded-md bg-gray-900 scrollbar-hide`}
+          >
             {filteredList.length === 0 && query !== "" ? (
               <div className="relative cursor-default select-none text-gray-300 p-2">
                 Nothing found.
               </div>
             ) : (
-              filteredList.map((value, index) => (
+              filteredList.map((value) => (
                 <Combobox.Option
-                  key={index}
+                  key={value.query}
                   className={({ active }) =>
                     ` cursor-default select-none ${
                       active
@@ -62,11 +64,7 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
                 >
                   {({ selected, active }) => (
                     <>
-                      <span
-                        className={`block truncate`}
-                      >
-                        {value}
-                      </span>
+                      <span className={`block truncate`}>{value.game}</span>
                       {selected ? (
                         <span
                           className={`absolute right-0 flex items-center ${
@@ -78,7 +76,6 @@ export const InputBox = ({ value, setValue, placeholder, list }) => {
                       ) : null}
                     </>
                   )}
-                  {value}
                 </Combobox.Option>
               ))
             )}

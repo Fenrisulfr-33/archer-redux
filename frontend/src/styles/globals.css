@@ -48,11 +48,12 @@
     }
     hr {
         @apply
+        w-[90%]
         h-px
         my-8
         border-0
         bg-gradient-to-r 
-        from-purple-600
+        from-purple-100
         to-purple-50
     }
     a {

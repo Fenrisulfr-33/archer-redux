@@ -8,7 +8,7 @@ const styles = {
     th: 'py-3 px-1 text-center'
 }
 
-function MoveInd({ move, lvl }){
+function MoveInd({ move, lvl, tm }){
     const { level, _id, name, type, category, pp, power, accuracy } = move;
     const route = `/pokemon/moves/${_id}`;
     const typeOne = colors[type?.toLowerCase()];
@@ -16,6 +16,7 @@ function MoveInd({ move, lvl }){
     return(
         <tr className={styles.tr}>
             {lvl && <th className={styles.th}>{level}</th>}
+            {tm && <th className={styles.th}>{level}</th>}
             <td className={`${styles.stat}`}><MoveModal move={move} /></td>
             <td className={`${styles.stat} ${typeOne} bg-opacity-60`}>{type}</td>
             <td className={styles.stat}>{category}</td>

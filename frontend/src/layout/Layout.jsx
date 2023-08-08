@@ -2,7 +2,7 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 
 const styles = {
-    main: 'min-h-screen bg-gray-800 border-8 border-gray-900 rounded-3xl'
+    main: 'min-h-screen '
 }
 /**
  * This is the layout for our whole site, we will always have a header, the basic Navbar, and a footer.

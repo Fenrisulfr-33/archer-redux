@@ -12,13 +12,15 @@ import FormsTabs from "./FormTabs";
 
 const InfoRow = ({ title, info, ability }) => (
   <div className="flex flex-row p-1">
-    <div className={"w-1/2 text-left font-bold"}>{title}</div>
+    <div className={`w-1/2 font-bold ${ability ? "italic" : null}`}>
+      {title}
+    </div>
     {ability ? (
       <Link href={`/pokemon/abilities/${info.id}`} passHref>
         {info.name}
       </Link>
     ) : (
-      <div className={"w-1/2 text-left"}>{info}</div>
+      <div className={"w-1/2"}>{info}</div>
     )}
   </div>
 );
@@ -36,14 +38,16 @@ const getEvString = (evs) => {
 };
 
 export default function PokemonInfoSection({ pokemon }) {
+  console.log(pokemon.abilities);
+  console.log(pokemon.abilities.two !== undefined);
   return (
-    <div className="col-flex space-y-2 bg-gray-600 rounded border-2 border-purple-100">
+    <div className="col-flex space-y-2 bg-gray-600 rounded border-2 border-purple-100 text-left">
       <div className={" bg-gradient-to-r from-purple-100 to-purple-600 w-full"}>
         <div className={"text-center text-2xl font-extrabold w-[30%]"}>
           Pokedex Information:
         </div>
       </div>
-      <div className={"flex justify-center"}>
+      <div className={"flex justify-center bg-gray-800 mx-1 rounded-md"}>
         <Image
           src={`/hires/${pokemon._id}.png`}
           alt={`${pokemon.name.english}`}
@@ -85,38 +89,38 @@ export default function PokemonInfoSection({ pokemon }) {
               )
             }
           />
-
-          <div className="text-left w-[90%] border-b">Abilities</div>
-          <hr />
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Ability 1</div>
-            <div className={"w-1/2 text-left"}>
-              {pokemon.abilities.one.name ? pokemon.abilities.one.name : null}
-            </div>
+          <div className="p-1">
+            <div className="text-lg font-bold text-gray-900">Abilities</div>
+            <hr className=" m-0" />
           </div>
-          {pokemon?.abilities?.two?.name ? (
+          {pokemon.abilities.one && (
             <InfoRow
-              title={"Ability 2"}
-              info={pokemon.abilities.two.name}
+              title={"Ability 1"}
+              info={pokemon.abilities.one}
               ability={true}
             />
-          ) : null}
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Hidden</div>
-            <div className={"w-1/2 text-left"}>
-              {pokemon.abilities.hidden.name
-                ? pokemon.abilities.hidden.name
-                : null}
-            </div>
-          </div>
+          )}
+          {pokemon.abilities.two && (
+            <InfoRow
+              title={"Ability 2"}
+              info={pokemon.abilities.two}
+              ability={true}
+            />
+          )}
+          {pokemon.abilities.hidden && (
+            <InfoRow
+              title={"Hidden"}
+              info={pokemon.abilities.hidden}
+              ability={true}
+            />
+          )}
         </div>
-
-        <div className="bg-gray-600 m-2 w-1/2 flex flex-col rounded-md">
+        <div className="bg-gray-600 m-2 w-1/2 max-h-fit flex flex-col rounded-md">
           <div className="flex flex-row p-1">
-            <div className={"flex w-1/2 text-left font-bold items-center"}>
+            <div className={"flex w-1/2  font-bold items-center"}>
               Pokemon Type
             </div>
-            <div className={"w-1/2 text-left"}>
+            <div className={"w-1/2"}>
               <span className={"flex flex-row space-x-1"}>
                 <Image
                   src={`/types/${pokemon.type.one}.svg`}
@@ -135,31 +139,12 @@ export default function PokemonInfoSection({ pokemon }) {
               </span>
             </div>
           </div>
-
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Catch Rate</div>
-            <div className={"w-1/2 text-left"}>{pokemon.catchRate}</div>
-          </div>
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Base Friendship</div>
-            <div className={"w-1/2 text-left"}>{pokemon.baseFriendship}</div>
-          </div>
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Base Exp</div>
-            <div className={"w-1/2 text-left"}>{pokemon.baseExp}</div>
-          </div>
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Growth Rate</div>
-            <div className={"w-1/2 text-left"}>{pokemon.growthRate}</div>
-          </div>
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Egg Cycles</div>
-            <div className={"w-1/2 text-left"}>{pokemon.eggCycles}</div>
-          </div>
-          <div className="flex flex-row p-1">
-            <div className={"w-1/2 text-left font-bold"}>Evs</div>
-            <div className={"w-1/2 text-left"}>{getEvString(pokemon.evs)}</div>
-          </div>
+          <InfoRow title={"Catch Rate"} info={pokemon.catchRate} />
+          <InfoRow title={"Base Friendship"} info={pokemon.baseFriendship} />
+          <InfoRow title={"Base Exp"} info={pokemon.baseExp} />
+          <InfoRow title={"Growth Rate"} info={pokemon.growthRate} />
+          <InfoRow title={"Egg Cycles"} info={pokemon.eggCycles} />
+          <InfoRow title={"Evs"} info={getEvString(pokemon.evs)} />
         </div>
       </div>
     </div>
