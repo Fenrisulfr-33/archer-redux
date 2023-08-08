@@ -1,17 +1,10 @@
-import { useRouter } from "next/router";
-import { useSelector, useDispatch } from 'react-redux'
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment, } from 'react';
 import Link from 'next/link';
 /* React Icons */
 import { SiHomeadvisor } from 'react-icons/si'
 import { MdLibraryBooks, MdOutlineCatchingPokemon } from 'react-icons/md';
-import { BiMenu, BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
-import { FaCode, FaTumblr } from 'react-icons/fa';
-/* REDUX IMPORTS */
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { login, logout } from '../../redux/users/userActions';
+import { BiMenu } from 'react-icons/bi';
 
 const styles = {
     menuIcon: 'relative flex items-center justify-center h-12 w-12 m-0 text-purple-300 bg-gray-600 rounded-3xl hover:rounded-2xl transition-all duration-200 ease-linear cursor-pointer',
@@ -35,13 +28,8 @@ const MenuItem = ({ icon, text, route }) => (
     </Menu.Item>
   </div>
 )
-/**
- * Dropdown Menu for the phone screen
- * @returns 
- * 
- */
-const MenuDropDown = ({ username, loading, logout}) => {
 
+export default function MenuDropDown(){
   return (
       <Menu as='div' className='top-16 '>
           <Menu.Button className={`${styles.menuIcon} ${styles.hoverIcon}`}>
@@ -59,41 +47,9 @@ const MenuDropDown = ({ username, loading, logout}) => {
           <Menu.Items className={styles.menuItems}>
             <MenuItem icon={<SiHomeadvisor size='20' />} text={'Home'} route={`/`} />
             <MenuItem icon={<MdLibraryBooks size='20' />} text={'Artciles'} route={`/articles`} />
-            {/* <MenuItem icon={<FaCode size='20' />} text={'Code'} route={`/code`} /> */}
             <MenuItem icon={<MdOutlineCatchingPokemon size='20' />} text={'Pokemon'} route={`/pokemon`} />
-            {/* <MenuItem icon={<FaTumblr size='20' />} text={'TemTem'} route={`/temtem`} /> */}
-            {/* {username ? (
-                  <div className="px-1 py-1 ">
-                  <Menu.Item>
-                      <button onClick={onLogout} className={`${styles.menuButtons} ${styles.hoverButton}`} aria-hidden="true">     
-                        <BiLogOutCircle size='20' />
-                        <span className={``}>
-                          Logout
-                        </span>
-                      </button>
-                  </Menu.Item>
-                </div>
-            ) : 
-            (
-                <>
-                  <MenuItem icon={<BiLogInCircle size='20' />} text={'Login'} route={`/users/login`} />
-                  <MenuItem icon={<BiLogOutCircle size='20' />} text={'Register'} route={`/users/register`} />  
-                </>
-            )} */}
           </Menu.Items>
         </Transition>
       </Menu> 
   )
 }
-// Redux connections
-const mapStateToProps = ({ user: { username }, apiCallsInProgress}) => {
-  return {
-      username,
-      loading: apiCallsInProgress > 0,
-  }
-}, mapDispatchToProps = (dispatch) => {
-  return {
-      logout: bindActionCreators(logout, dispatch)
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(MenuDropDown);

@@ -98,15 +98,13 @@
     }
     .article-container {
         @apply
-        bg-gray-900
         w-[95%]
-        phone:w-[80%]
         p-2
+        phone:w-[80%]
         phone:p-8
         font-mono
         rounded-lg
         mx-auto
-        my-4
         border-2
         border-purple-500
     }
