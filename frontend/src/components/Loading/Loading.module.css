@@ -19,7 +19,7 @@
     flex 
     justify-center 
     items-center 
-    bg-gray-800;
+    bg-gray-900;
 }
 
 .loader div:first-child {

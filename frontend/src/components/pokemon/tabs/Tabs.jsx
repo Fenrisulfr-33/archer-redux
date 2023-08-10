@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-import { dataMenu, mechanicsMenu, scarletVioletMenu, swordShieldtMenu } from "../sideMenu/menus";
+import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "../sideMenu/menus";
 
 const DropDownButton = ({ title, handler }) => (
     <button className={'flex flex-row label border-2 border-gray-800'}
@@ -71,11 +71,11 @@ export default function Tabs(){
                 </div>
                 <div>
                     <DropDownButton title={'Scarlet/Violet'} handler={handleMenuThree} />
-                    {menuThree ? (<DropDownMenu list={scarletVioletMenu}/>) : null}
+                    {menuThree ? (<DropDownMenu list={genNineMenu}/>) : null}
                 </div>
                 <div>
                     <DropDownButton title={'Sword/Shield'} handler={handleMenuFour} />
-                    {menuFour ? (<DropDownMenu list={swordShieldtMenu}/>) : null}
+                    {menuFour ? (<DropDownMenu list={genEightMenu}/>) : null}
                 </div>
             </div>
         </div>
