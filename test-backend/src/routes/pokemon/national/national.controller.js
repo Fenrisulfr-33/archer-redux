@@ -93,7 +93,7 @@ const getMoves = asyncHandler(async (request, response, next) => {
  *  basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
-// TODO: Make this page work so when you go from a dex to that page it will work.
+// TODO: Make this page work so when you go from a dex to that page it has the moves
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const { pokemon, moves } = response.locals,
         game = request.params.game;

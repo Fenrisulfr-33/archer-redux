@@ -1,4 +1,5 @@
-import PokemonSideMenu from "../../components/pokemon/sideMenu/PokemonSideMenu";
+import { Suspense } from "react";
+import PokemonSideMenu from "../sideMenu/PokemonSideMenu";
 
 export default function PokemonLayout({ children }) {
   return (
@@ -6,7 +7,9 @@ export default function PokemonLayout({ children }) {
       <div className="laptop:w-1/5">
         <PokemonSideMenu />
       </div>
-      <div className="laptop:w-4/5">{children}</div>
+      <div className="laptop:w-4/5">
+        <Suspense fallback={<p>Loading....</p>}>{children}</Suspense>
+      </div>
     </div>
   );
 }

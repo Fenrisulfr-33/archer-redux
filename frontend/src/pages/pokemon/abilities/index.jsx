@@ -1,33 +1,20 @@
-import { useEffect } from "react";
-import AllAbilitiesList from "../../../components/pokemon/components/abilities/AllAbilitiesList";
-import Loading from "../../../components/Loading";
-import { connect } from "react-redux";
-import { loadAbilities } from "../../../redux/pokemon/abilities/abilitiesActions";
-import { bindActionCreators } from "redux";
-import PokemonLayout from '../PokemonLayout';
+import AllAbilitiesList from "../../../components/pokemon/abilities/AllAbilitiesList";
+import PokemonLayout from "../PokemonLayout";
 
-const AbilitiesList = ({ abilities, loadAbilities, loading }) => {
-  useEffect(() => {
-    if(abilities.length === 0){
-      loadAbilities();
-    }
-  }, []);
+export default function AbilitiesPage({ abilities, query }) {
 
   return (
     <PokemonLayout>
-      {loading ?<Loading/> : <AllAbilitiesList list={abilities} />}
+      <AllAbilitiesList list={abilities} />
     </PokemonLayout>
   );
-};
+}
 
-const mapStateToProps = ({ abilities, apiCallsInProgress}) => {
-    return {
-        abilities: abilities.list,
-        loading: apiCallsInProgress > 0,
-    };
-}, mapDispatchToProps = (dispatch) => {
-    return {
-        loadAbilities: bindActionCreators(loadAbilities, dispatch),
-    };
+export const getServerSideProps = async (context) => {
+  const query = context.query;
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_URL}/pokemon/abilities`
+  );
+  const abilities = await response.json();
+  return { props: { abilities, query } };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AbilitiesList);

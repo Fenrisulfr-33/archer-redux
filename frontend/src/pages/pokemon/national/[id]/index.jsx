@@ -1,45 +1,26 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { connect } from "react-redux";
-import { loadPokemon } from "../../../../redux/pokemon/pokemon/pokemonActions";
-import { bindActionCreators } from "redux";
-import Loading from "../../../../components/Loading";
-import PokemonPage from "../../../../components/pokemon/components/pokemonPage/PokemonPage";
+import PokemonPage from "../../../../components/pokemon/pokemonPage/PokemonPage";
 import PokemonLayout from "../../PokemonLayout";
 
-const NationalInd = ({ pokemon, loading, loadPokemon }) => {
-  const { query, isReady } = useRouter();
-
-  useEffect(() => {
-    if (isReady && pokemon._id !== Number(query.id)) {
-      loadPokemon(query.id);
-    }
-  }, [isReady, query.id]);
+export default function NationalInd({ pokemon, query }) {
+  const router = useRouter();
 
   return (
     <PokemonLayout>
-      {loading ? (
-        <Loading />
-      ) : Object.keys(pokemon).length > 0 ? (
-        <PokemonPage
-          pokemon={pokemon}
-          query={query}
-          goBackRoute={"/pokemon/national"}
-        />
-      ) : null}
+      <PokemonPage
+        key={router.asPath}
+        pokemon={pokemon}
+        query={query}
+        goBackRoute={"/pokemon/national"}
+      />
     </PokemonLayout>
   );
-};
+}
 
-const mapStateToProps = ({ pokemon, apiCallsInProgress }) => {
-    return {
-      pokemon,
-      loading: apiCallsInProgress > 0,
-    };
-  },
-  mapDispatchToProps = (dispatch) => {
-    return {
-      loadPokemon: bindActionCreators(loadPokemon, dispatch),
-    };
-  };
-export default connect(mapStateToProps, mapDispatchToProps)(NationalInd);
+export const getServerSideProps = async (context) => {
+  const query = context.query;
+  const id = context.query.id;
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/national/${id}`);
+  const pokemon = await response.json();
+  return { props: { pokemon, query } };
+};

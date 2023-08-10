@@ -18,7 +18,7 @@ router
 
 router
     .route('/national/:id/:game')
-    .get(national.readGame)
+    .get(national.read)
     .all(methodNotAllowed);
 
 router
