@@ -1,49 +1,12 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
+
 import Image from "next/image";
-import BaseStats from "./BaseStats";
-import TypeWeakness from "./TypeWeakness";
-import PokedexEntries from "./PokedexEntries";
-import MovesListsByType from "./MovesListsByType";
-import PokemonIndToolbar from "./PokemonIndToolbar";
 import Link from "next/link";
-import { InputBox } from "../inputBoxes/InputBox";
-import FormsTabs from "./FormTabs";
-
-const InfoRow = ({ title, info, ability }) => (
-  <div className="flex flex-row p-1">
-    <div className={`w-1/2 font-bold ${ability ? "italic" : null}`}>
-      {title}
-    </div>
-    {ability ? (
-      <Link href={`/pokemon/abilities/${info.id}`} passHref>
-        {info.name}
-      </Link>
-    ) : (
-      <div className={"w-1/2"}>{info}</div>
-    )}
-  </div>
-);
-
-const getEvString = (evs) => {
-  const evsArray = [];
-  evs.hp ? evsArray.push(`HP ${evs.hp}`) : null;
-  evs.atk ? evsArray.push(`Atk ${evs.atk}`) : null;
-  evs.def ? evsArray.push(`HP ${evs.def}`) : null;
-  evs.spatk ? evsArray.push(`HP ${evs.spatk}`) : null;
-  evs.spdef ? evsArray.push(`HP ${evs.spdef}`) : null;
-  evs.spd ? evsArray.push(`HP ${evs.spd}`) : null;
-  const evString = evsArray.join("/");
-  return evString;
-};
 
 export default function PokemonInfoSection({ pokemon }) {
-  console.log(pokemon.abilities);
-  console.log(pokemon.abilities.two !== undefined);
   return (
     <div className="col-flex space-y-2 bg-gray-600 rounded border-2 border-purple-100 text-left">
-      <div className={" bg-gradient-to-r from-purple-100 to-purple-600 w-full"}>
-        <div className={"text-center text-2xl font-extrabold w-[30%]"}>
+      <div className={"bg-gradient-to-r from-purple-100 to-purple-600 rounded-tr w-full"}>
+        <div className={"text-2xl font-extrabold break-normal"}>
           Pokedex Information:
         </div>
       </div>
@@ -55,10 +18,13 @@ export default function PokemonInfoSection({ pokemon }) {
           width={400}
         />
       </div>
+
       <div
-        className={"flex flex-col phone:flex-row bg-gray-800 m-1 rounded-md"}
+        className={
+          "flex flex-col space-y-2 phone:space-y-0 phone:flex-row phone:space-x-2 m-1"
+        }
       >
-        <div className="bg-gray-600 m-2 w-1/2 flex flex-col rounded-md">
+        <div className="bg-gray-800 flex flex-col rounded-md phone:w-1/2 p-1">
           <InfoRow title={"National Dex."} info={pokemon._id} />
           <InfoRow title={"Species"} info={pokemon.species} />
           <InfoRow title={"Height"} info={pokemon.info.height} />
@@ -89,9 +55,8 @@ export default function PokemonInfoSection({ pokemon }) {
               )
             }
           />
-          <div className="p-1">
-            <div className="text-lg font-bold text-gray-900">Abilities</div>
-            <hr className=" m-0" />
+          <div className="mt-1 p-1 text-lg font-bold bg-gradient-to-r from-purple-100 to-purple-600 rounded-md">
+            Abilities
           </div>
           {pokemon.abilities.one && (
             <InfoRow
@@ -115,7 +80,8 @@ export default function PokemonInfoSection({ pokemon }) {
             />
           )}
         </div>
-        <div className="bg-gray-600 m-2 w-1/2 max-h-fit flex flex-col rounded-md">
+
+        <div className="bg-gray-800 flex flex-col rounded-md phone:w-1/2 p-1">
           <div className="flex flex-row p-1">
             <div className={"flex w-1/2  font-bold items-center"}>
               Pokemon Type
@@ -150,3 +116,32 @@ export default function PokemonInfoSection({ pokemon }) {
     </div>
   );
 }
+
+const InfoRow = ({ title, info, ability }) => (
+  <div className="flex flex-row p-1 border-b border-purple-300">
+    <div className={`w-1/2 font-bold`}>{title}</div>
+    {ability ? (
+      <Link
+        href={`/pokemon/abilities/${info.id}`}
+        className={`${ability ? "italic" : null}`}
+        passHref
+      >
+        {info.name}
+      </Link>
+    ) : (
+      <div className={"w-1/2"}>{info}</div>
+    )}
+  </div>
+);
+
+const getEvString = (evs) => {
+  const evsArray = [];
+  evs.hp ? evsArray.push(`HP ${evs.hp}`) : null;
+  evs.atk ? evsArray.push(`Atk ${evs.atk}`) : null;
+  evs.def ? evsArray.push(`HP ${evs.def}`) : null;
+  evs.spatk ? evsArray.push(`HP ${evs.spatk}`) : null;
+  evs.spdef ? evsArray.push(`HP ${evs.spdef}`) : null;
+  evs.spd ? evsArray.push(`HP ${evs.spd}`) : null;
+  const evString = evsArray.join("/");
+  return evString;
+};

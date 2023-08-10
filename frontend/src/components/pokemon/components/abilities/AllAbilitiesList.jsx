@@ -10,7 +10,7 @@ const styles = {
   laptop: "laptop:py-3 laptop:px-6",
 };
 
-export default function AllAbilitiesList({ list }) {
+export default function AllAbilitiesList({ list = [] }) {
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);

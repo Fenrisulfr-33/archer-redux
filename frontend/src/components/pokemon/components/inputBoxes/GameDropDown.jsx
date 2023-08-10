@@ -3,14 +3,19 @@ import { Combobox, Transition } from "@headlessui/react";
 import { BsChevronExpand } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 
-export const CustomBox = ({ selected, setSelected, placeholder, list }) => {
+export default function GameDropDown({
+  selected,
+  setSelected,
+  placeholder,
+  list,
+}) {
   const [query, setQuery] = useState("");
 
   const filteredList =
     query === ""
       ? list
       : list.filter((value) =>
-          value.game
+          value.title
             .toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -22,9 +27,11 @@ export const CustomBox = ({ selected, setSelected, placeholder, list }) => {
         <div className="bg-gray-900 row-flex justify-between cursor-default border-2 border-purple-100 overflow-hidden rounded-md ">
           <Combobox.Input
             className={`bg-gray-900 w-[98%] p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
-            displayValue={(value) => value.game}
+            displayValue={(value) => value.title}
             onChange={(event) => {
+              console.log("event", event);
               setQuery(event.target.value);
+              // setSelected(event.target.value)
             }}
             placeholder={placeholder}
           />
@@ -64,7 +71,7 @@ export const CustomBox = ({ selected, setSelected, placeholder, list }) => {
                 >
                   {({ selected, active }) => (
                     <>
-                      <span className={`block truncate`}>{value.game}</span>
+                      <span className={`block truncate`}>{value.title}</span>
                       {selected ? (
                         <span
                           className={`absolute right-0 flex items-center ${
@@ -84,4 +91,4 @@ export const CustomBox = ({ selected, setSelected, placeholder, list }) => {
       </Combobox>
     </div>
   );
-};
+}

@@ -5,53 +5,58 @@ const Moves = require("../../../models/pokemon/movesModel");
 const { connect, disconnect } = require("../connection");
 
 /* ---------- Helpers ---------- */
-const getPokemonMoves = (inMoves, searchGame, moves) => {
-    const pokemonMoves = {};
-    if (inMoves[searchGame]) {
-        const foundGame = inMoves[searchGame];
-        for (const [key, value] of Object.entries(foundGame)) {
-            pokemonMoves[key] = [];
-            inMoves[searchGame][key].forEach((rawMove) => {
-                if (key === "level-up") {
-                    const found = moves.find(
-                        (dexMove) => dexMove.name.english === rawMove.name
-                    );
-                    if (found) {
-                        pokemonMoves[key].push({
-                            name: found.name.english,
-                            level: rawMove.lvl,
-                            type: found.type,
-                            category: found.category,
-                            pp: found.pp,
-                            power: found.pp,
-                            accuracy: found.accuracy,
-                            contact: found.contact,
-                            shortEffect: found.effect?.shortEffect,
-                            priority: found.priority,
-                        });
+const getPokemonMoves = (pokemonMoves, dbMoves) => {
+    const returnMoves = {};
+    // console.log(pokemonMoves);
+    for (const [game, methodList] of Object.entries(pokemonMoves)) {
+        returnMoves[game] = {};
+        // console.log(`Game: ${game} - Type: ${methodList}`);
+        for (const [method, list] of Object.entries(pokemonMoves[game])) {
+            // console.log(`Method: ${method}`)
+            // console.log(`List: ${list}`)
+            if (typeof (list[0]) === typeof ({})) {
+                // console.log('object')
+                const returnList = list.map((move) => {
+                    const foundMove = dbMoves.find((dbMove) => dbMove.name.english === move.name);
+                    if (foundMove) {
+                        return {
+                            ...move,
+                            name: foundMove.name.english,
+                            type: foundMove.type,
+                            category: foundMove.category,
+                            pp: foundMove.pp,
+                            power: foundMove.pp,
+                            accuracy: foundMove.accuracy,
+                            contact: foundMove.contact,
+                            shortEffect: foundMove.effect?.shortEffect,
+                            priority: foundMove.priority,
+                        }
                     }
-                } else {
-                    const found = moves.find(
-                        (dexMove) => dexMove.name.english === rawMove
-                    );
-                    if (found) {
-                        pokemonMoves[key].push({
-                            name: found.name.english,
-                            type: found.type,
-                            category: found.category,
-                            pp: found.pp,
-                            power: found.pp,
-                            accuracy: found.accuracy,
-                            contact: found.contact,
-                            shortEffect: found.effect?.shortEffect,
-                            priority: found.priority,
-                        });
+                })
+                returnMoves[game][method] = returnList;
+            } else {
+                // Must be an array
+                const returnList = list.map((move) => {
+                    const foundMove = dbMoves.find((dbMove) => dbMove.name.english === move);
+                    if (foundMove) {
+                        return {
+                            name: foundMove.name.english,
+                            type: foundMove.type,
+                            category: foundMove.category,
+                            pp: foundMove.pp,
+                            power: foundMove.pp,
+                            accuracy: foundMove.accuracy,
+                            contact: foundMove.contact,
+                            shortEffect: foundMove.effect?.shortEffect,
+                            priority: foundMove.priority,
+                        }
                     }
-                }
-            });
+                })
+                returnMoves[game][method] = returnList;
+            }
         }
     }
-    return pokemonMoves;
+    return returnMoves;
 };
 
 /* ---------- Middleware ---------- */
@@ -65,21 +70,22 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
         response.locals.pokemon = pokemon;
         next();
     }
-}),
-    getMoves = asyncHandler(async (request, response, next) => {
-        // Getting all the moves right away will be faster then requesting it everytime we need information
-        const moves = await Moves.find().lean();
-        // Working on
-        // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
-        if (!moves) {
-            // Case for if moves is not connecting
-            response.status(400);
-            throw new Error("Moves data not found, error on Server/Database side.");
-        } else {
-            response.locals.moves = moves;
-            next();
-        }
-    });
+});
+
+const getMoves = asyncHandler(async (request, response, next) => {
+    // Getting all the moves right away will be faster then requesting it everytime we need information
+    const moves = await Moves.find().lean();
+    // Working on
+    // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
+    if (!moves) {
+        // Case for if moves is not connecting
+        response.status(400);
+        throw new Error("Moves data not found, error on Server/Database side.");
+    } else {
+        response.locals.moves = moves;
+        next();
+    }
+});
 
 /**
  *  Finds a pokemon base upon its nationa dex _id,
@@ -87,27 +93,19 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
  *  basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
+// TODO: Make this page work so when you go from a dex to that page it will work.
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
     const { pokemon, moves } = response.locals,
         game = request.params.game;
     let mainGame = null;
     game === "isle-of-armor" || "crown-tundra" ? mainGame = "sword-shield" : null;
-    
+
     const newMoves = mainGame
         ? getPokemonMoves(pokemon.moves, mainGame, moves)
         : getPokemonMoves(pokemon.moves, game, moves);
     pokemon.moves = newMoves;
     disconnect();
     response.status(200).json(pokemon);
-});
-
-const getMovesTest = asyncHandler(async (request, response, next) => {
-    const { pokemon, moves } = response.locals,
-        game = request.params.game;
-
-    const newMoves = getPokemonMoves(pokemon.moves, game, moves);
-    disconnect();
-    response.status(200).json(newMoves);
 });
 
 /* ----------- CRUD Ops ----------- */
@@ -120,8 +118,8 @@ const getMovesTest = asyncHandler(async (request, response, next) => {
  */
 const readPokemon = asyncHandler(async (request, response) => {
     const { pokemon, moves } = response.locals;
-    const game = pokemon.gameDropDown[0].query;
-    pokemon.moves = getPokemonMoves(pokemon.moves, game, moves);
+
+    pokemon.moves = getPokemonMoves(pokemon.moves, moves);
     // pokemon.baseStats = getBaseStatsWidth(pokemon.baseStats);
     disconnect();
     response.status(200).json(pokemon);
@@ -177,5 +175,4 @@ module.exports = {
     read: [connect, pokemonExists, getMoves, readPokemon],
     readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
     list: [connect, listNational],
-    test: [connect, pokemonExists, getMoves, getMovesTest]
 };
