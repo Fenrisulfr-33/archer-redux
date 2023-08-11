@@ -7,7 +7,7 @@ import { colors } from "../variables/typeColors";
  * @param {typeTwo} string - needs to be lowerCase to work with the colors object if present
  * @returns a React container with a list of lists
  */
-export default function TypeWeakness({ typeOne, typeTwo }){
+export default function TypeWeakness({ typeOne, typeTwo }) {
   const types = [
       "NOR",
       "FIR",
@@ -29,29 +29,84 @@ export default function TypeWeakness({ typeOne, typeTwo }){
       "FAI",
     ],
     rows = [];
-    if (typeOne){
-      for (let [key, value] of Object.entries(weaknesses[typeOne.toLowerCase()])) {
-        const total = typeTwo ? value * weaknesses[typeTwo.toLowerCase()][key] : value;
-        rows.push(total);
-      }
+  for (const [key, value] of Object.entries(
+    weaknesses[typeOne.toLowerCase()]
+  )) {
+    const total = typeTwo
+      ? value * weaknesses[typeTwo.toLowerCase()][key]
+      : value;
+    let color = "";
+    if (total === 4) {
+      color = "bg-green-500";
+    } else if (total === 2) {
+      color = "bg-green-300";
+    } else if (total === 1) {
+      color = "bg-neutral-300";
+    } else if (total === 0.5) {
+      color = "bg-red-300";
+    } else if (total === 0.25) {
+      color = "bg-red-500";
     }
+    rows.push({ total, color });
+  }
 
   return (
-    <div className={'text-sm'}>
-    <table className="min-w-full rounded-2xl">
-      <thead> 
-        <tr>{types.slice(0, 9).map((type) => (<th key={type} className={`${type}-bg`}>{type}</th>))}</tr>
-      </thead>
-      <tbody> 
-        <tr>{rows.slice(0, 9).map((row, index) => (<td key={index} className={`bg-gray-600`}>{row}</td>))}</tr>
-      </tbody>
-      <thead className={'col-span-1'}> 
-        <tr>{types.slice(9, 18).map((type) => (<th key={type} className={`${type}-bg`}>{type}</th>))}</tr>
-      </thead>
-      <tbody className={'col-span-1'}> 
-        <tr>{rows.slice(9, 18).map((row, index) => (<td key={index} className={`bg-gray-600`}>{row}</td>))}</tr>
-      </tbody>
-    </table>
+    <div
+      className={
+        "bg-gray-600  rounded border-2 border-purple-100 overflow-x-auto scrollbar-hide"
+      }
+    >
+
+      <div
+        className={
+          "bg-gradient-to-r from-purple-100 to-purple-600 rounded-tr w-full"
+        }
+      >
+        <div className={"text-2xl text-left pl-2 font-extrabold break-normal"}>
+          Type Weaknesses:
+        </div>
+      </div>
+
+      <table className="min-w-full ">
+        <thead className="border-2 border-purple-50 bg-gray-700">
+          <tr>
+            {types.slice(0, 9).map((type) => (
+              <th key={type} className="p-1">
+                <div className={`rounded ${colors[type]}`}>{type}</div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {rows.slice(0, 9).map((row, index) => (
+              <td key={index} className={`p-1`}>
+                <div className={`rounded text-gray-900 ${row.color}`}>{row.total}</div>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+        <thead className="border-2 border-purple-50 bg-gray-700">
+          <tr>
+            {types.slice(9, 18).map((type) => (
+              <th key={type} className="p-1">
+                <div className={`rounded ${colors[type]}`}>{type}</div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className={"col-span-1"}>
+          <tr>
+            {rows.slice(9, 18).map((row, index) => (
+              <td key={index} className="p-1">
+                <div className={`rounded text-gray-900 ${row.color}`}>
+                  {row.total}
+                </div>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
-};
+}

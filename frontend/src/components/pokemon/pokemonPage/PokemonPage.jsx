@@ -9,16 +9,14 @@ import GameDropDown from "../inputBoxes/GameDropDown";
 import PokemonInfoSection from "./PokemonInfoSection";
 import { gameDropDown } from "../variables/gameDropDown";
 
-export default function PokemonPage({
-  pokemon,
-  game,
-  goBackRoute,
-}) {
+export default function PokemonPage({ pokemon, game, goBackRoute }) {
   const router = useRouter();
   // This is for Form Changes, in the future we can limit it if there is no form change.
   const pokemonInitial = () => pokemon;
-  const gameInitial = () => game ? gameDropDown[game] : pokemon.gameDropDown[0];
-  const movesInitial = () => game ? pokemon.moves[game] : pokemon.moves[pokemon.gameDropDown[0].key];
+  const gameInitial = () =>
+    game ? gameDropDown[game] : pokemon.gameDropDown[0];
+  const movesInitial = () =>
+    game ? pokemon.moves[game] : pokemon.moves[pokemon.gameDropDown[0].key];
 
   const [selectedPokemon, setSelectedPokemon] = useState(() =>
     pokemonInitial()
@@ -53,7 +51,7 @@ export default function PokemonPage({
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>
-        <div className={"col-flex space-y-2"}>
+        {/* <div className={"col-flex space-y-2"}> */}
           <PokemonInfoSection pokemon={selectedPokemon} />
           <TypeWeakness
             typeOne={selectedPokemon.type.one}
@@ -62,15 +60,13 @@ export default function PokemonPage({
           {selectedPokemon.baseStats && (
             <BaseStats stats={selectedPokemon.baseStats} />
           )}
-        </div>
-        <div className="">
-          <GameDropDown
-            selected={selectedGame}
-            setSelected={changeSelectedGame}
-            placeholder={`Default: ${selectedGame.game} - select a game`}
-            list={selectedPokemon.gameDropDown}
-          />
-        </div>
+        {/* </div> */}
+        <GameDropDown
+          selected={selectedGame}
+          setSelected={changeSelectedGame}
+          placeholder={`Default: ${selectedGame.game} - select a game`}
+          list={selectedPokemon.gameDropDown}
+        />
         <MovesListsByType
           moves={selectedMoves}
           pokemonName={selectedPokemon.name.english}
