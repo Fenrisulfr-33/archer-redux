@@ -6,7 +6,7 @@ export default function PokemonInfoSection({ pokemon }) {
   return (
     <div className="col-flex space-y-2 bg-gray-600 rounded border-2 border-purple-100 text-left">
       <div className={"bg-gradient-to-r from-purple-100 to-purple-600 rounded-tr w-full"}>
-        <div className={"text-2xl font-extrabold break-normal"}>
+        <div className={"text-2xl pl-2 font-extrabold break-normal"}>
           Pokedex Information:
         </div>
       </div>
