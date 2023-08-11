@@ -9,7 +9,8 @@ export default function PokedexPage({ pokedex, game }){
         <List
           list={pokedex}
           pushRoute={game}
-          dexNumber={game}
+          national={false}
+          game={game}
           searchRoute={`/pokemon/${game}/pokedex`}
         />
     </PokemonLayout>

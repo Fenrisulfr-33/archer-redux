@@ -21,6 +21,7 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
                     if (foundMove) {
                         return {
                             ...move,
+                            id: foundMove._id,
                             name: foundMove.name.english,
                             type: foundMove.type,
                             category: foundMove.category,
@@ -29,6 +30,8 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
                             accuracy: foundMove.accuracy,
                             contact: foundMove.contact,
                             shortEffect: foundMove.effect?.shortEffect,
+                            target: foundMove.target,
+                            contest: foundMove.contest,
                             priority: foundMove.priority,
                         }
                     }
@@ -40,6 +43,7 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
                     const foundMove = dbMoves.find((dbMove) => dbMove.name.english === move);
                     if (foundMove) {
                         return {
+                            id: foundMove._id,
                             name: foundMove.name.english,
                             type: foundMove.type,
                             category: foundMove.category,
@@ -48,6 +52,8 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
                             accuracy: foundMove.accuracy,
                             contact: foundMove.contact,
                             shortEffect: foundMove.effect?.shortEffect,
+                            target: foundMove.target,
+                            contest: foundMove.contest,
                             priority: foundMove.priority,
                         }
                     }

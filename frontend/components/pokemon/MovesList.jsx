@@ -20,7 +20,9 @@ export default function MovesList({
   return (
     <TableLayout
       thead={moveHeader.map((header, index) => (
-        <th key={index}>{header}</th>
+        <th key={index} className={styles.th}>
+          {header}
+        </th>
       ))}
       tbody={moves.map((move) => (
         <MoveInd
@@ -53,26 +55,28 @@ function MoveInd({ move, levelUp, hmTrue, tmTrue, trTrue, transfer }) {
     method,
   } = move;
   const route = `/pokemon/moves/${_id}`;
+  const typeOne = colors[type?.toLowerCase()];
 
   return (
-    <tr className=" odd:bg-gray-600 hover:bg-purple-50 hover:font-bold ">
-      {levelUp && <td className="px-2">{lvl}</td>}
-      {hmTrue && <td className="px-2">{hm}</td>}
-      {tmTrue && <td className="px-2">{tm}</td>}
-      {trTrue && <td className="px-2">{tr}</td>}
-      <td className="p-2">
+    <tr className={styles.tr}>
+      {levelUp && <td className={styles.th}>{lvl}</td>}
+      {hmTrue && <td className={styles.th}>{hm}</td>}
+      {tmTrue && <td className={styles.th}>{tm}</td>}
+      {trTrue && <td className={styles.th}>{tr}</td>}
+      <td className="py-2 px-1 text-center">
         <MoveModal move={move} />
       </td>
-      <td>
-        <div className={`rounded my-1 ${colors[type.toLowerCase()]}`}>
-          {type}
-        </div>
-      </td>
-      <td>{category}</td>
-      <td>{pp}</td>
-      <td>{power}</td>
-      <td>{accuracy}</td>
-      {transfer && <td className="py-2">{method}</td>}
+      <td className={`${styles.stat} ${typeOne} bg-opacity-60`}>{type}</td>
+      <td className={styles.stat}>{category}</td>
+      <td className={styles.stat}>{pp}</td>
+      <td className={styles.stat}>{power}</td>
+      <td className={styles.stat}>{accuracy}</td>
+      {transfer && <td className={styles.th}>{method}</td>}
     </tr>
   );
 }
+
+const styles = {
+  tr: "border-b border-stone-400 hover:bg-purple-300 hover:text-gray-300 hover:font-bold",
+  th: "py-3 px-1 text-center",
+};

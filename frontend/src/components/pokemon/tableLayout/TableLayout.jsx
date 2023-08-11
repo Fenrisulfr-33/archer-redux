@@ -1,13 +1,13 @@
 export default function TableLayout({ thead, tbody }) {
   return (
-    <div className="m-2 rounded-lg border-2 border-purple-100 overflow-x-auto scrollbar-hide ">
+    <div className="m-2 rounded border-4 border-purple-100 overflow-x-auto scrollbar-hide ">
       <div className="inline-block min-w-full sm:px-6 lg:px-8">
         <div className="overflow-hidden">
-          <table className="min-w-full font-mono bg-gray-300 text-xs laptop:text-sm border-collapse border border-slate-500">
-            <thead className="bg-gray-600 text-gray-300 uppercase leading-normal">
+          <table className="min-w-full font-mono text-sm phone:text-lg border-collapse">
+            <thead className="p-2 text-center text-gray-300 font-extrabold font-mono bg-gray-900 border-b border-purple-50">
               <tr>{thead}</tr>
             </thead>
-            <tbody className="text-gray-600 font-light">{tbody}</tbody>
+            <tbody className="bg-gray-700 text-gray-100 text-center">{tbody}</tbody>
           </table>
         </div>
       </div>

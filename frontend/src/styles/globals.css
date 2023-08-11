@@ -58,7 +58,7 @@
     }
     a {
         @apply
-        font-medium text-purple-50 hover:text-purple-300
+        font-medium
     }
     pre {
         @apply

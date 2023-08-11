@@ -8,7 +8,7 @@ export default function NationalDex({ national }) {
       <List
         list={national}
         pushRoute={""}
-        headers={"national"}
+        national={true}
         searchRoute={"/pokemon/national"}
       />
     </PokemonLayout>

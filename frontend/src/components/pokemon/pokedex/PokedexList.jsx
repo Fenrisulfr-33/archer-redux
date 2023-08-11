@@ -6,13 +6,13 @@ import PaginationLayout from "../pagination/PaginationLayout";
 import ListFilters from "../filters/Filters";
 import { onFilterSubmitHandler } from "../../../helperFunctions/helperFunctions";
 import { types } from "../variables/dropdowns";
-import { nationalHeaders, pokedexHeaders } from "../variables/headers";
+import { national, dexes } from "../variables/headers";
 
 export default function List({
   list = [],
   pushRoute,
-  national,
-  game,
+  header,
+  dexNumber,
   searchRoute,
 }) {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function List({
   const [sort, setSort] = useState("");
   const [stat, setStat] = useState("");
   // Set headers variables
-  const headers = national ? nationalHeaders : pokedexHeaders;
+  const headers = header === "national" ? national : dexes;
   // Reset filter variables
   const onResetHandler = () => {
     setTypeOne("");
@@ -97,7 +97,7 @@ export default function List({
         children={
           <TableLayout
             thead={headers.map((header, index) => (
-              <th key={index}>
+              <th key={index} className={"py-1 px-1 text-center bg-purple-900"}>
                 {header}
               </th>
             ))}
@@ -105,8 +105,9 @@ export default function List({
               <PokedexRow
                 key={pokemon._id}
                 pokemon={pokemon}
-                dexNo={game ? pokemon.pokedexNumber[game] : null}
-                national={national}
+                dexNumber={
+                  dexNumber ? pokemon.pokedexNumber[dexNumber] : pokemon._id
+                }
                 pushRoute={pushRoute}
               />
             ))}

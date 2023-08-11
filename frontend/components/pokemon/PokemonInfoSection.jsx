@@ -82,7 +82,7 @@ export default function PokemonInfoSection({ pokemon }) {
         </div>
 
         <div className="bg-gray-800 flex flex-col rounded-md phone:w-1/2 p-1">
-          <div className="flex flex-row p-1 border-b border-purple-300">
+          <div className="flex flex-row p-1">
             <div className={"flex w-1/2  font-bold items-center"}>
               Pokemon Type
             </div>
@@ -138,10 +138,10 @@ const getEvString = (evs) => {
   const evsArray = [];
   evs.hp ? evsArray.push(`HP ${evs.hp}`) : null;
   evs.atk ? evsArray.push(`Atk ${evs.atk}`) : null;
-  evs.def ? evsArray.push(`Def ${evs.def}`) : null;
-  evs.spatk ? evsArray.push(`SpAtk ${evs.spatk}`) : null;
-  evs.spdef ? evsArray.push(`SpDef ${evs.spdef}`) : null;
-  evs.spd ? evsArray.push(`Spd ${evs.spd}`) : null;
-  const evString = evsArray.join(" / ");
+  evs.def ? evsArray.push(`HP ${evs.def}`) : null;
+  evs.spatk ? evsArray.push(`HP ${evs.spatk}`) : null;
+  evs.spdef ? evsArray.push(`HP ${evs.spdef}`) : null;
+  evs.spd ? evsArray.push(`HP ${evs.spd}`) : null;
+  const evString = evsArray.join("/");
   return evString;
 };

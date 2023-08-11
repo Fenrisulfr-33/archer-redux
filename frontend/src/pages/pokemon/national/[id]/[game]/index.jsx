@@ -1,5 +1,5 @@
-import PokemonPage from "../../../../components/pokemon/pokemonPage/PokemonPage";
-import PokemonLayout from "../../PokemonLayout";
+import PokemonPage from "../../../../../components/pokemon/pokemonPage/PokemonPage";
+import PokemonLayout from "../../../PokemonLayout";
 
 export default function NationalIndByGame({ pokemon, game }){
     return (

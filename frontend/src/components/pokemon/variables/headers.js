@@ -1,5 +1,5 @@
-export const national = [
-    "Nat. Dex",
+export const nationalHeaders = [
+    "Nat. No.",
     "Pokemon",
     "Sprite",
     "Type",
@@ -13,8 +13,9 @@ export const national = [
     "Spd",
 ];
 
-export const dexes = [
+export const pokedexHeaders = [
     "Dex No.",
+    "Nat No.",
     "Pokemon",
     "Sprite",
     "Type",
