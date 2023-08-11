@@ -46,6 +46,8 @@ export default function TypeWeakness({ typeOne, typeTwo }) {
       color = "bg-red-300";
     } else if (total === 0.25) {
       color = "bg-red-500";
+    } else if (total === 0) {
+      color = "bg-black text-white";
     }
     rows.push({ total, color });
   }

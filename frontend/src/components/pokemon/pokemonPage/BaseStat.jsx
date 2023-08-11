@@ -30,23 +30,24 @@ export default function BaseStat({ title, stat, width }) {
   const statWidth = tierWidth(title, stat);
 
   return (
-    <div className={"row-flex justify-between items-center"}>
-      <div className="text-xxs phone:text-xs w-2/12 tablet:w-1/12">
-        <div className={"label-purp px-1"}>
+    <div className={"row-flex items-center"}>
+      <div className="w-4/12 flex flex-row">
+        <div className={"border w-1/4 m-1 rounded p-1 bg-purple-100"}>
           {title.toUpperCase()}
         </div>
-      </div>
-      <div className={"w-10/12 tablet:w-11/12 space-y-1"}>
-        <div className={"row-flex"}>
-          <div className={`border border-green-600 w-1/6`}></div>
-          <div className={`border border-green-400 w-1/6`}></div>
-          <div className={`border border-green-300 w-1/6`}></div>
-          <div className={`border border-sky-500 w-1/6`}></div>
-          <div className={`border border-sky-300 w-1/6`}></div>
-          <div className={`border border-purple-200 w-1/6`}></div>
+        <div className={"border w-1/4 m-1 p-1 rounded"}>
+          {forumlaStatMin(title, stat)}
         </div>
-        <div className={`rounded-md ${statColor} ${statWidth}`}>
+        <div className={"border w-1/4 m-1 p-1 rounded"}>
           {stat}
+        </div>
+        <div className={"border w-1/4 m-1 p-1 rounded"}>
+          {forumlaStatMax(title, stat)}
+        </div>
+      </div>
+      <div className={"w-8/12"}>
+        <div className={` rounded-md h-full ${statColor} ${statWidth}`}>
+        <span className="inline-block"></span>
         </div>
       </div>
     </div>

@@ -82,7 +82,7 @@ export default function List({
           {
             value: stat,
             setValue: setStat,
-            list: ["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Speed"],
+            list: ["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Spd"],
             placeholder: "Stats",
           },
         ]}

@@ -37,7 +37,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
   return (
     <div
       className={
-        "flex flex-col w-11/12 m-auto py-5 font-mono text-center text-white"
+        "flex flex-col m-2 font-mono text-center text-white"
       }
     >
       <div className="flex justify-center">
@@ -51,16 +51,12 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>
-        {/* <div className={"col-flex space-y-2"}> */}
-          <PokemonInfoSection pokemon={selectedPokemon} />
-          <TypeWeakness
-            typeOne={selectedPokemon.type.one}
-            typeTwo={selectedPokemon.type?.two}
-          />
-          {selectedPokemon.baseStats && (
-            <BaseStats stats={selectedPokemon.baseStats} />
-          )}
-        {/* </div> */}
+        <PokemonInfoSection pokemon={selectedPokemon} />
+        <TypeWeakness
+          typeOne={selectedPokemon.type.one}
+          typeTwo={selectedPokemon.type?.two}
+        />
+        <BaseStats stats={selectedPokemon.baseStats} />
         <GameDropDown
           selected={selectedGame}
           setSelected={changeSelectedGame}
