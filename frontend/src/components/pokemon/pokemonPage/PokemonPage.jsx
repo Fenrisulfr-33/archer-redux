@@ -60,7 +60,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <GameDropDown
           selected={selectedGame}
           setSelected={changeSelectedGame}
-          placeholder={`Default: ${selectedGame.game} - select a game`}
+          placeholder={`Default: ${selectedGame.title} - select a game`}
           list={selectedPokemon.gameDropDown}
         />
         <MovesListsByType

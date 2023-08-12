@@ -62,14 +62,14 @@ export default function MoveModal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-1/2 flex flex-col border-2 items-center space-y-2 border-purple-100 transform overflow-hidden rounded-lg bg-gray-900 p-6 text-left align-middle shadow-xl transition-all font-mono">
+                <Dialog.Panel className="tablet:w-1/2 flex flex-col border-2 items-center space-y-2 border-purple-100 transform overflow-hidden rounded-lg bg-gray-900 p-6 text-left align-middle shadow-xl transition-all font-mono">
                   <Dialog.Title
                     as="h3"
                     className="text-2xl font-extrabold leading-6 text-purple-300 flex "
                   >
                     {name}
                   </Dialog.Title>
-                  <div className="bg-gray-800 font-lg w-1/2 p-2 rounded space-y-1">
+                  <div className="bg-gray-800 font-lg tablet:w-1/2 p-2 rounded space-y-1">
                     <InfoRow title={"Type:"} info={type} type={true} />
                     <InfoRow title={"Cat."} info={category} />
                     <InfoRow title={"PP."} info={pp} />

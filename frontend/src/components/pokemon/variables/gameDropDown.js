@@ -1,4 +1,9 @@
 export const gameDropDown = {
+    "scarlet-violet":
+    {
+        "key": "scarlet-violet",
+        "title": "Scarlet & Violet"
+    },
     "legends-arceus":
     {
         "key": "legends-arceus",
