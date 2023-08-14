@@ -8,6 +8,7 @@ import PokemonIndToolbar from "./PokemonIndToolbar";
 import GameDropDown from "../inputBoxes/GameDropDown";
 import PokemonInfoSection from "./PokemonInfoSection";
 import { gameDropDown } from "../variables/gameDropDown";
+import Link from "next/link";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
   const router = useRouter();
@@ -35,11 +36,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
   };
 
   return (
-    <div
-      className={
-        "flex flex-col m-2 font-mono text-center text-white"
-      }
-    >
+    <div className={"flex flex-col m-2 font-mono text-center text-white"}>
       <div className="flex justify-center">
         <button className={"button flex"} onClick={handleGoBack}>
           Go Back
@@ -51,6 +48,21 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>
+        {selectedPokemon.formsTab && (
+          <div className="border flex flex-row space-x-2">
+            {selectedPokemon.formsTab.map((form) => (
+              <Link
+                href={`/pokemon/national/${form.id}${game ? `/${game}` : ""}`}
+                passHref
+              >
+                <button className="bg-purple-600 py-1 px-2 rounded">
+                  {form.name}
+                </button>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <PokemonInfoSection pokemon={selectedPokemon} />
         <TypeWeakness
           typeOne={selectedPokemon.type.one}

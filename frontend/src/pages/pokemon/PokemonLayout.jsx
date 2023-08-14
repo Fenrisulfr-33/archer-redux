@@ -2,7 +2,7 @@ import PokemonSideMenu from "../../components/pokemon/sideMenu/PokemonSideMenu";
 
 export default function PokemonLayout({ children }) {
   return (
-    <div className="flex flex-col laptop:flex-row">
+    <div className="flex flex-col laptop:flex-row w-">
       <div className="laptop:w-1/5">
         <PokemonSideMenu />
       </div>

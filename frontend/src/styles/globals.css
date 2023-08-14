@@ -91,9 +91,9 @@
   }
   .article-container {
     @apply w-[95%]
+    phone:w-[80%]
         p-2
-        phone:w-[80%]
-        phone:p-8
+        bg-gray-900
         font-mono
         rounded-lg
         mx-auto

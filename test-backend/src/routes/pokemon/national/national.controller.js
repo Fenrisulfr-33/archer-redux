@@ -5,6 +5,7 @@ const Moves = require("../../../models/pokemon/movesModel");
 const { connect, disconnect } = require("../connection");
 
 /* ---------- Helpers ---------- */
+
 const getPokemonMoves = (pokemonMoves, dbMoves) => {
     const returnMoves = {};
     // console.log(pokemonMoves);
@@ -65,11 +66,16 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
     return returnMoves;
 };
 
+const getPokemonForms = async (formsTab) => {
+    const newFormsTab = formsTab.map((form) => {
+    })
+}
+
 /* ---------- Middleware ---------- */
 const pokemonExists = asyncHandler(async (request, response, next) => {
     const pokemon = await National.findById(Number(request.params.id)).lean(); // Get the requested pokemon by natioinal dex id
     if (!pokemon) {
-        // Case for if pokemon does not exsist
+        // Case for if pokemon does not exist
         response.status(400);
         throw new Error("Pokemon not found.");
     } else {
@@ -79,7 +85,7 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
 });
 
 const getMoves = asyncHandler(async (request, response, next) => {
-    // Getting all the moves right away will be faster then requesting it everytime we need information
+    // Getting all the moves right away will be faster then requesting it every time we need information
     const moves = await Moves.find().lean();
     // Working on
     // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
@@ -94,8 +100,8 @@ const getMoves = asyncHandler(async (request, response, next) => {
 });
 
 /**
- *  Finds a pokemon base upon its nationa dex _id,
- *  and reassgins its move values as object with
+ *  Finds a pokemon base upon its national dex _id,
+ *  and reassigns its move values as object with
  *  basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
@@ -117,16 +123,20 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
 /* ----------- CRUD Ops ----------- */
 
 /**
- *  Finds a pokemon base upon its nationa dex _id ,
- *  and reassgins its move values as object with
+ *  Finds a pokemon base upon its national dex _id ,
+ *  and reassigns its move values as object with
  *  basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
 const readPokemon = asyncHandler(async (request, response) => {
     const { pokemon, moves } = response.locals;
-
+    // Get more detailed information for each pokemon move for MoveModal.
     pokemon.moves = getPokemonMoves(pokemon.moves, moves);
-    // pokemon.baseStats = getBaseStatsWidth(pokemon.baseStats);
+    // Get pokemon forms tab data if formsTab exists.
+    if (pokemon.formsTab){
+        
+    }
+
     disconnect();
     response.status(200).json(pokemon);
 });
@@ -134,10 +144,10 @@ const readPokemon = asyncHandler(async (request, response) => {
  *  lists all pokemon in order of national dex _id
  *
  * @returns {JSON}
- *  The Pokemon Natioanl Dex up to 898
+ *  The Pokemon National Dex up to 898
  */
 const listNational = asyncHandler(async (request, response) => {
-    // Define parammeters for types, and stats
+    // Define parameters for types, and stats
     const { typeOne, typeTwo, asc, desc } = request.query
     // Create return array to avoid repetitive code
     let national = [];
@@ -148,22 +158,22 @@ const listNational = asyncHandler(async (request, response) => {
         : desc ? { [desc]: -1 }
             : { _id: 1 }
     // Checks for pokemon types from parameters
-    let typeStatment = null;
-    // Type check else statment
+    let typeStatement = null;
+    // Type check else statement
     if (typeOne && typeTwo) {
-        typeStatment = [
+        typeStatement = [
             { 'type.one': typeOne, 'type.two': typeTwo },
             { 'type.one': typeTwo, 'type.two': typeOne },
         ];
     } else if (!typeOne && typeTwo) {
-        typeStatment = [{ 'type.one': typeTwo }, { 'type.two': typeTwo }];
+        typeStatement = [{ 'type.one': typeTwo }, { 'type.two': typeTwo }];
     } else if (!typeTwo && typeOne) {
-        typeStatment = [{ 'type.one': typeOne }, { 'type.two': typeOne }];
+        typeStatement = [{ 'type.one': typeOne }, { 'type.two': typeOne }];
     }
     // if the typeStatement exists apply typeStatement
-    if (typeStatment) {
+    if (typeStatement) {
         national = await National.find()
-            .or(typeStatment)
+            .or(typeStatement)
             .select(nationalSelect)
             .sort(sort);
     } else {

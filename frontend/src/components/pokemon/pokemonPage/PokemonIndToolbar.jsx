@@ -15,7 +15,7 @@ export default function PokemonIndToolbar({ id }) {
         <NavBarIcon
           icon={<BsFillArrowLeftSquareFill size="20" />}
           text={id - 1}
-          route={`/pokemon/national/${id - 1}`}
+          route={`/pokemon/national/${Math.floor(id - 1)}`}
         />
       ) : (
         <SiPokemon size="50" />
@@ -24,7 +24,7 @@ export default function PokemonIndToolbar({ id }) {
         <NavBarIcon
           icon={<BsFillArrowRightSquareFill size="20" />}
           text={id + 1}
-          route={`/pokemon/national/${id + 1}`}
+          route={`/pokemon/national/${Math.floor(id + 1)}`}
         />
       ) : (
         <SiPokemon size="50" />
