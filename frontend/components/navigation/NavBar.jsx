@@ -1,15 +1,47 @@
 import { NavBarIcon } from "./NavBarIcon";
-import MenuDropDown from "./NavDropDown";
 import { SiHomeadvisor } from "react-icons/si";
 import { MdArticle, MdCatchingPokemon } from "react-icons/md";
+import { AiTwotoneHome } from "react-icons/ai";
+import { BsNewspaper } from "react-icons/bs";
+import { useRouter } from "next/router";
 
-export default function NavBar(){
+export default function NavBar() {
+  const router = useRouter();
+  const tabBarTitle = "text-sm";
+  const tabBarButton =
+    "flex flex-col rounded border border-gray-900 p-1 items-center text-purple-100 bg-gray-800";
+
   return (
-    <>
-      <div className="p-2 phone:p-5 tablet:hidden ">
-        <MenuDropDown />
+    <div>
+      <div className="mx-2 tablet:hidden">
+        <div className="font-mono">
+          <div
+            className={
+              "grid grid-flow-col justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
+            }
+          >
+            <button className={tabBarButton} onClick={() => router.push("/")}>
+              <AiTwotoneHome size="25" />
+              <div className={tabBarTitle}>Home</div>
+            </button>
+            <button
+              className={tabBarButton}
+              onClick={() => router.push("/articles")}
+            >
+              <BsNewspaper size="25" />
+              <div className={tabBarTitle}>Articles</div>
+            </button>
+            <button
+              className={tabBarButton}
+              onClick={() => router.push("/pokemon")}
+            >
+              <MdCatchingPokemon size="25" />
+              <div className={tabBarTitle}>Pokemon</div>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="hidden tablet:flex items-center justify-end space-x-4 pr-5">
+      <div className="hidden tablet:flex items-center justify-end space-x-4 p-5">
         <NavBarIcon
           icon={<SiHomeadvisor size="28" />}
           text={"Home"}
@@ -26,6 +58,6 @@ export default function NavBar(){
           route={"/pokemon"}
         />
       </div>
-    </>
+    </div>
   );
-};
+}
