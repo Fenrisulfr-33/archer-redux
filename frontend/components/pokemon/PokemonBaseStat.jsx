@@ -12,14 +12,14 @@ export default function BaseStat({ title, stat, width }) {
       (((2 * baseStat + IV + EV / 4) * level) / 100 + 5) * nature
     );
   };
-  const forumlaStatMax = (title, stat) => {
+  const maxStatFormula = (title, stat) => {
     if (title === "hp") {
       return hpFormula(stat, 31, 252, 100);
     } else {
       return otherStat(stat, 31, 252, 100, 1.1);
     }
   };
-  const forumlaStatMin = (title, stat) => {
+  const minStatFormula = (title, stat) => {
     if (title === "hp") {
       return hpFormula(stat, 0, 0, 100);
     } else {
@@ -36,13 +36,13 @@ export default function BaseStat({ title, stat, width }) {
           {title.toUpperCase()}
         </div>
         <div className={"border w-1/4 m-1 p-1 rounded"}>
-          {forumlaStatMin(title, stat)}
+          {minStatFormula(title, stat)}
         </div>
         <div className={"border w-1/4 m-1 p-1 rounded"}>
           {stat}
         </div>
         <div className={"border w-1/4 m-1 p-1 rounded"}>
-          {forumlaStatMax(title, stat)}
+          {maxStatFormula(title, stat)}
         </div>
       </div>
       <div className={"w-8/12"}>

@@ -1,83 +1,82 @@
-import { useState } from "react"
-import Link from "next/link";
-import { BsChevronDown } from "react-icons/bs";
-import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "../variables/PokemonMenus";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import {
+  dataMenu,
+  mechanicsMenu,
+  allGamesMenu,
+} from "../variables/PokemonMenus";
+import { IoLogoGameControllerA } from "react-icons/io";
+import { AiTwotoneHome, AiFillDatabase } from "react-icons/ai";
+import { FaScrewdriver } from "react-icons/fa";
 
-const DropDownButton = ({ title, handler }) => (
-    <button className={'flex flex-row label border-2 border-gray-800'}
-    onClick={handler}>
-        {title}
-        <BsChevronDown className="justify-end pt-2 pl-2 text-gray-900 h-5 w-5"/>
-    </button>
-);
+export default function PokemonTabs() {
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(() => false);
+  const [selectedMenu, setSelectedMenu] = useState(() => []);
 
-const DropDownMenu = ({ list }) => (
-    <div className="absolute mt-1 bg-gray-500 border-2 border-gray-800 rounded-lg">
-        <div className={'flex flex-col p-2 space-y-2'}>
-            {list.map((item) => (<Link href={item.route} passHref>
-                <button className={'button'}>
-                    {item.title}
-                </button>
-            </Link>))}
-        </div>
+  const handleMenuButton = (menu) => {
+    if (menuOpen) {
+      setMenuOpen(false);
+    } else {
+      setSelectedMenu(menu);
+      setMenuOpen(true);
+    }
+  };
+
+  const tabBarTitle = "text-sm";
+  const tabBarButton =
+    "flex flex-col rounded border border-gray-900 p-1 items-center text-purple-100 bg-gray-800";
+
+  return (
+    <div className="relative m-2 font-mono">
+      <div
+        className={
+          "grid grid-flow-col justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
+        }
+      >
+        <button
+          className={tabBarButton}
+          onClick={() => router.push("/pokemon")}
+        >
+          <AiTwotoneHome size="25" />
+          <div className={tabBarTitle}>Pokemon</div>
+        </button>
+        <button
+          className={tabBarButton}
+          onClick={() => handleMenuButton(dataMenu)}
+        >
+          <AiFillDatabase size="25" />
+          <div className={tabBarTitle}>Data</div>
+        </button>
+        <button
+          className={tabBarButton}
+          onClick={() => handleMenuButton(mechanicsMenu)}
+        >
+          <FaScrewdriver size="25" />
+          <div className={tabBarTitle}>Mechanics</div>
+        </button>
+        <button
+          className={tabBarButton}
+          onClick={() => handleMenuButton(allGamesMenu)}
+        >
+          <IoLogoGameControllerA size="25" />
+          <div className={tabBarTitle}>Games</div>
+        </button>
+      </div>
+      <div
+        className={`${
+          menuOpen ? "" : "hidden"
+        } absolute w-full bg-gray-600 flex flex-col mt-1 rounded border border-purple-50`}
+      >
+        {selectedMenu.map((menuItem) => (
+          <button
+            className="m-1 p-2 rounded hover:bg-purple-200 hover:border-2 hover:border-gray-900 hover:text-gray-900 hover:font-bold hover:shadow-sm hover:shadow-purple-50 bg-gray-800 border border-gray-900 text-purple-100"
+            onClick={() => router.push(menuItem.route)}
+          >
+            {menuItem.title}
+          </button>
+        ))}
+      </div>
     </div>
-)
-
-export default function PokemonTabs(){
-    const [menuOne, setMenuOne] = useState(false);
-    const [menuTwo, setMenuTwo] = useState(false);
-    const [menuThree, setMenuThree] = useState(false);
-    const [menuFour, setMenuFour] = useState(false);
-    const handleMenuOne = () => {
-        if (menuTwo) setMenuTwo(false);
-        if (menuThree) setMenuThree(false);
-        if (menuFour) setMenuFour(false);
-        setMenuOne(!menuOne);
-    }
-    const handleMenuTwo = () => {
-        if (menuOne) setMenuOne(false);
-        if (menuThree) setMenuThree(false);
-        if (menuFour) setMenuFour(false);
-        setMenuTwo(!menuTwo);
-    }
-    const handleMenuThree = () => {
-        if (menuOne) setMenuOne(false);
-        if (menuTwo) setMenuTwo(false);
-        if (menuFour) setMenuFour(false);
-        setMenuThree(!menuThree);
-    }
-    const handleMenuFour = () => {
-        if (menuOne) setMenuOne(false);
-        if (menuTwo) setMenuTwo(false);
-        if (menuThree) setMenuThree(false);
-        setMenuFour(!menuFour);
-    }
-
-    return (
-        <div className={'bg-gray-600 m-2 rounded-lg border-2 border-purple-100'}>
-            <div className={'flex flex-row p-2 space-x-2 overflow-auto scrollbar-hide'}>
-                <Link href={'/pokemon'} passHref>
-                    <button className={'button border-2 border-gray-800 shadow-sm shadow-purple-100'}>
-                        Home
-                    </button>
-                </Link>
-                <div>
-                    <DropDownButton title={'Data'} handler={handleMenuOne} />
-                    {menuOne ? (<DropDownMenu list={dataMenu}/>) : null}
-                </div>
-                <div>
-                    <DropDownButton title={'Mechanics'} handler={handleMenuTwo} />
-                    {menuTwo ? (<DropDownMenu list={mechanicsMenu}/>) : null}
-                </div>
-                <div>
-                    <DropDownButton title={'Scarlet/Violet'} handler={handleMenuThree} />
-                    {menuThree ? (<DropDownMenu list={genNineMenu}/>) : null}
-                </div>
-                <div>
-                    <DropDownButton title={'Sword/Shield'} handler={handleMenuFour} />
-                    {menuFour ? (<DropDownMenu list={genEightMenu}/>) : null}
-                </div>
-            </div>
-        </div>
-    )
+  );
 }

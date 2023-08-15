@@ -30,21 +30,10 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
     setSelectedMoves(selectedPokemon.moves[event.key]);
   };
 
-  const handleGoBack = (event) => {
-    event.preventDefault();
-    router.push(goBackRoute);
-  };
-
   return (
     <div className={"flex flex-col m-2 font-mono text-center text-white"}>
-      <div className="flex justify-center">
-        <button className={"button flex"} onClick={handleGoBack}>
-          Go Back
-        </button>
-      </div>
-
       <div className={"col-flex space-y-2"}>
-        <PokemonPageToolbar id={selectedPokemon._id} />
+        <PokemonPageToolbar id={selectedPokemon._id} goBackRoute={goBackRoute} />
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>

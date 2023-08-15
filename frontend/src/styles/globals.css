@@ -33,14 +33,14 @@
         text-left 
         text-purple-50 
         font-bold 
-        text-[min(3vw,100px)];
+        text-[min(4vw,100px)];
   }
   h3 {
     @apply leading-tight
         mt-4
         text-left
         text-purple-50
-        text-[min(2vw,100px)];
+        text-[min(3vw,100px)];
   }
   hr {
     @apply w-[90%]

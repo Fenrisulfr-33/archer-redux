@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PokemonTabs from "./PokemonTabs";
+import PokemonTabs from '@/components/pokemon/PokemonTabs';
 
 const dataMenu = [
     {title:'National Dex',route:'/pokemon/national'},
@@ -52,10 +52,10 @@ const SideBarIcon = ({ text, route }) => {
 export default function PokemonSideMenu() {
   return (
     <div>
-      <div className={"phone:hidden"}>
+      <div className={"tablet:hidden"}>
         <PokemonTabs />
       </div>
-      <div className="hidden phone:visible phone:flex flex-col font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
+      <div className="hidden tablet:visible tablet:flex flex-col font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
         <SideBarIcon route={"/pokemon"} text={"Pokemon Home"} />
         {menus.map((menuItem) => (
           <div className=" space-y-2 pb-2 border-b border-purple-100">
