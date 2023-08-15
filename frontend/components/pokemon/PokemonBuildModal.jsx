@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import PokemonBuild from "../pokemonBuild/PokemonBuild";
-import { colors } from "../variables/typeColors";
+import PokemonBuild from ".//PokemonBuild";
 
 export default function PokemonBuildModal({     
     id,

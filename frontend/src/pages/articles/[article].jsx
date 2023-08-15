@@ -10,7 +10,7 @@ const ArticlesLink = () => (
 );
 
 export default function ArticlePage({ query }) {
-  const Content = dynamic(() => import(`../../articles/mainArticles/${query.article}.mdx`));
+  const Content = dynamic(() => import(`../../../articles/main/${query.article}.mdx`));
 
   return (
     <div className={`flex flex-col`}>

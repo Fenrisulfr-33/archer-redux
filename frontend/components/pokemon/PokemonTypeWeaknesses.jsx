@@ -68,7 +68,7 @@ export default function TypeWeakness({ typeOne, typeTwo }) {
           <tr>
             {typeWeaknesses.slice(9, 18).map((type) => (
               <th key={type} className="p-1">
-                <div className={`rounded ${colors[type]}`}>{type}</div>
+                <div className={`rounded ${typeColors[type]}`}>{type}</div>
               </th>
             ))}
           </tr>

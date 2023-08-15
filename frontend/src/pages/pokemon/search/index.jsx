@@ -1,12 +1,12 @@
 import { useState } from "react";
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
-import { InputBox } from "../../../components/pokemon/inputBoxes/InputBox";
+import PokemonSearchInputBox from "@/components/pokemon/PokemonSearchInputBox";
 import { useRouter } from "next/router";
 import SearchPage from "@/articles/pokemon/search/search-page.mdx";
-import { movesDropDownScarletViolet } from "../../../components/pokemon/movesDropDowns/movesDropDownScareletViolet";
+import { movesDropDownScarletViolet } from "@/components/variables/movesDropDownScareletViolet";
 import PokedexList from "@/components/pokemon/PokedexList";
-import { search } from "@/components/pokemon/variables/pokemonHeaders";
+import { search } from "@/components/variables/pokemonHeaders";
 import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
+import PokemonLayout from "../../../layout/PokemonLayout";
 
 const Box = ({ label }) => (
   <div
@@ -29,7 +29,7 @@ const MoveBox = ({ title, move, setMove }) => (
     <div className={"label"} disabled={true}>
       {title}
     </div>
-    <InputBox
+    <PokemonSearchInputBox
       value={move}
       setValue={setMove}
       placeholder={"Enter move here"}

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
 import ArticleContainer from "@/components/articles/ArticleContainer";
+import PokemonLayout from "../../../../layout/PokemonLayout";
 
 export default function ArticlePage({ query }) {
   const Content = dynamic(() =>

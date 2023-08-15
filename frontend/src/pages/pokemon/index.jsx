@@ -1,12 +1,13 @@
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
-import HomePage from "../../articles/pokemon/home-page.mdx";
+import HomePage from "@/articles/pokemon/home-page.mdx";
+import ArticleContainer from '@/components/articles/ArticleContainer';
+import PokemonLayout from "../../layout/PokemonLayout";
 
 export default function Pokemon() {
   return (
     <PokemonLayout>
-      <div className={`article-container`}>
+      <ArticleContainer>
         <HomePage />
-      </div>
+      </ArticleContainer>
     </PokemonLayout>
   );
 }

@@ -1,11 +1,11 @@
-import { NavBarIcon } from "../../Nav/NavBarIcon";
+import { NavBarIcon } from "../navigation/NavBarIcon";
 import {
   BsFillArrowRightSquareFill,
   BsFillArrowLeftSquareFill,
 } from "react-icons/bs";
 import { SiPokemon } from "react-icons/si";
 
-export default function PokemonIndToolbar({ id }) {
+export default function PokemonPageToolbar({ id }) {
   return (
     <div
       id="toolbar"

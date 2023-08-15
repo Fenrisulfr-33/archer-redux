@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { colors } from "../variables/typeColors";
+import { typeColors } from "../variables/typeColors";
 
 export default function MoveModal({
   move: {
@@ -81,7 +81,12 @@ export default function MoveModal({
                     <InfoRow title={"Priority"} info={priority} />
                     <InfoRow title={"Contest"} info={contest} />
                     <InfoRow title={"Effect"} info={shortEffect} />
-                    <InfoRow title={'Link'} info={name} move={true} moveId={id}/>
+                    <InfoRow
+                      title={"Link"}
+                      info={name}
+                      move={true}
+                      moveId={id}
+                    />
                   </div>
 
                   <div className="mt-4 flex justify-center">
@@ -115,7 +120,13 @@ const InfoRow = ({ title, info, type, move, moveId }) => (
         {info}
       </Link>
     ) : (
-      <div className={`w-1/2 ${type ? `${colors[info.toLowerCase()]} text-center rounded` : ''}`}>{info}</div>
+      <div
+        className={`w-1/2 ${
+          type ? `${typeColors[info.toLowerCase()]} text-center rounded` : ""
+        }`}
+      >
+        {info}
+      </div>
     )}
   </div>
 );

@@ -3,7 +3,7 @@ import { Combobox, Transition } from "@headlessui/react";
 import { BsChevronExpand } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 
-export default function GameDropDown({
+export default function PokemonPageGameDropDown({
   selected,
   setSelected,
   placeholder,

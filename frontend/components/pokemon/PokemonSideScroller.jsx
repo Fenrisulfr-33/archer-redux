@@ -1,4 +1,4 @@
-import PokemonBuildModal from '../modals/PokemonBuildModal';
+import PokemonBuildModal from './PokemonBuildModal';
 
 export default function PokemonSideScroller({ list, margin, terra }) {
   return (

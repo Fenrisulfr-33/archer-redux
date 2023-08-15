@@ -3,7 +3,7 @@ import { Combobox, Transition } from "@headlessui/react";
 import { BsChevronExpand } from "react-icons/bs";
 import { BsCheck } from "react-icons/bs";
 
-export const InputBox = ({ value, setValue, placeholder, list }) => {
+export default function PokemonSearchInputBox({ value, setValue, placeholder, list }){
   const [query, setQuery] = useState("");
   const filteredList =
     query === ""

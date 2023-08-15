@@ -6,7 +6,7 @@ import Layout from "../layout/Layout";
 import store from "../app/store";
 
 import Router from "next/router";
-import Loading from "../components/Loading/Loading";
+import Loading from '@/components/loading/Loading';
 import { useState } from "react";
 
 export default function MyApp({ Component, pageProps }: AppProps) {

@@ -1,6 +1,6 @@
 import Regionals from "@/articles/pokemon/scarlet-violet/master-division.mdx";
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
 import ArticleContainer from "@/components/articles/ArticleContainer";
+import PokemonLayout from "../../../../../layout/PokemonLayout";
 
 export default function TypeChartPage() {
   return (

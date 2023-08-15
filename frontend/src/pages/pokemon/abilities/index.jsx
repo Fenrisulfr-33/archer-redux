@@ -1,5 +1,5 @@
 import AllAbilitiesList from "@/components/pokemon/AbilitiesList";
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
+import PokemonLayout from "../../../layout/PokemonLayout";
 
 export default function AbilitiesPage({ abilities, query }) {
 

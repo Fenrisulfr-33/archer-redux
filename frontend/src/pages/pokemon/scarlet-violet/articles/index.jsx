@@ -1,6 +1,6 @@
 import ArticlesList from "@/components/Articles/ArticlesList";
 import { scarletVioletList } from "@/articles/pokemon/scarlet-violet/scarletVioletList";
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
+import PokemonLayout from "../../../../layout/PokemonLayout";
 
 export default function Articles() {
   return (

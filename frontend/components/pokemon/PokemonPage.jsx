@@ -3,11 +3,11 @@ import { useState } from "react";
 import PokemonBaseStats from "./PokemonBaseStats";
 import PokemonTypeWeaknesses from "./PokemonTypeWeaknesses";
 import PokedexEntries from "./PokedexEntries";
-import MovesListsByType from "./MovesListsByType";
-import PokemonIndToolbar from "./PokemonIndToolbar";
-import GameDropDown from "../inputBoxes/GameDropDown";
-import PokemonInfoSection from "./PokemonInfoSection";
-import { gameDropDown } from "../variables/gameDropDown";
+import PokemonMovesListByType from "./PokemonMovesListByType";
+import PokemonPageToolbar from "./PokemonPageToolbar";
+import PokemonPageGameDropDown from "./PokemonPageGameDropDown";
+import PokemonPageInfoSection from "./PokemonPageInfoSection";
+import { gameDropDown } from "../variables/pokemonDropDowns";
 import Link from "next/link";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
@@ -44,7 +44,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
       </div>
 
       <div className={"col-flex space-y-2"}>
-        <PokemonIndToolbar id={selectedPokemon._id} />
+        <PokemonPageToolbar id={selectedPokemon._id} />
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>
@@ -63,19 +63,19 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           </div>
         )}
 
-        <PokemonInfoSection pokemon={selectedPokemon} />
+        <PokemonPageInfoSection pokemon={selectedPokemon} />
         <PokemonTypeWeaknesses
           typeOne={selectedPokemon.type.one}
           typeTwo={selectedPokemon.type?.two}
         />
         <PokemonBaseStats stats={selectedPokemon.baseStats} />
-        <GameDropDown
+        <PokemonPageGameDropDown
           selected={selectedGame}
           setSelected={changeSelectedGame}
           placeholder={`Default: ${selectedGame.title} - select a game`}
           list={selectedPokemon.gameDropDown}
         />
-        <MovesListsByType
+        <PokemonMovesListByType
           moves={selectedMoves}
           pokemonName={selectedPokemon.name.english}
         />

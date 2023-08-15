@@ -1,5 +1,5 @@
-import PokemonLayout from "@/components/pokemon/PokemonLayout";
 import MovePage from "@/components/pokemon/MovePage";
+import PokemonLayout from "../../../layout/PokemonLayout";
 
 export default function MoveInd({ move }) {
   return (
