@@ -28,6 +28,7 @@
       "@/*": ["./*"],
       "@/components/*": ["components/*"],
       "@/articles/*": ["articles/*"],
+      "@helperFunctions/*": ["helperFunctions/*"],
     }
   },
   "include": [

@@ -1,11 +1,11 @@
-import PokemonLayout from "../PokemonLayout";
-import List from "../../../components/pokemon/pokedex/List";
-import { createSearchQuery } from "../../../helperFunctions/helperFunctions";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
+import PokedexList from "@/components/pokemon/PokedexList";
+import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
 
 export default function NationalDex({ national }) {
   return (
     <PokemonLayout>
-      <List
+      <PokedexList
         list={national}
         pushRoute={""}
         national={true}

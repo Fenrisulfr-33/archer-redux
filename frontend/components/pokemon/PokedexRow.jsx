@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { colors } from "../variables/typeColors";
+import { typeColors } from "../variables/typeColors";
 
-export default function DexRow({ pokemon, dexNo, national, pushRoute }) {
+export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
   const {
     _id,
     baseStats: { total, hp, atk, def, spatk, spdef, spd },
@@ -14,7 +14,7 @@ export default function DexRow({ pokemon, dexNo, national, pushRoute }) {
 
   return (
     <tr className="text-center odd:bg-gray-600 hover:bg-purple-50 hover:font-bold">
-      {national ? <td>{_id}</td> : <><td>{dexNo ? dexNo : "--"}</td><td>{_id}</td></>}
+      {national ? <td>{_id}</td> : <><td>{dexNo}</td><td>{_id}</td></>}
       <td>
         <Link
           href={`/pokemon/national/${_id}/${pushRoute}`}
@@ -38,7 +38,7 @@ export default function DexRow({ pokemon, dexNo, national, pushRoute }) {
         <div className="font-bold flex flex-col">
           <div
             className={`col-span-1 my-1 bg-opacity-100 rounded-md px-2 space-x-1 font-bold ${
-              colors[one.toLowerCase()]
+                typeColors[one.toLowerCase()]
             }`}
           >
             {one}
@@ -46,7 +46,7 @@ export default function DexRow({ pokemon, dexNo, national, pushRoute }) {
           {two && (
             <div
               className={`col-span-1 my-1 rounded-md px-2 space-x-1 font-bold ${
-                colors[two.toLowerCase()]
+                typeColors[two.toLowerCase()]
               }`}
             >
               {two}

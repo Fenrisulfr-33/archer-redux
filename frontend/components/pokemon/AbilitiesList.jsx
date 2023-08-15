@@ -1,16 +1,10 @@
 import { useState } from "react";
-import TableLayout from "../tableLayout/TableLayout";
 import PaginationLayout from "../pagination/PaginationLayout";
 import AbilitiesRow from "./AbilitiesRow";
-import { abilities } from "../variables/headers";
+import { abilities } from "../variables/pokemonHeaders";
+import PokemonTableLayout from "./PokemonTableLayout";
 
-const styles = {
-  th: "py-1 px-1 text-center",
-  tablet: "tablet:py-2 tablet:px-4",
-  laptop: "laptop:py-3 laptop:px-6",
-};
-
-export default function AllAbilitiesList({ list = [] }) {
+export default function AllAbilitiesList({ list }) {
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,9 +20,9 @@ export default function AllAbilitiesList({ list = [] }) {
       paginate={paginate}
       currentPage={currentPage}
       children={
-        <TableLayout
+        <PokemonTableLayout
           thead={abilities.map((header, index) => (
-            <th key={index} className={styles.th}>
+            <th key={index} className="text-left">
               {header}
             </th>
           ))}

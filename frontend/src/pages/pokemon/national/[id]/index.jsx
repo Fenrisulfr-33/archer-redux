@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import PokemonPage from "../../../../components/pokemon/pokemonPage/PokemonPage";
-import PokemonLayout from "../../PokemonLayout";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 // import PokemonPage from '@/components/pokemon/PokemonPage'
 
 export default function NationalInd({ pokemon, query }) {

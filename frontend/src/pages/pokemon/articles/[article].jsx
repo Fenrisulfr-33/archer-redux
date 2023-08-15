@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
-import PokemonLayout from "../PokemonLayout";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 
 export default function Article({query}) {
-  const Content = dynamic(() => import(`../../../articles/pokemon/${query.article}.mdx`), {});
+  const Content = dynamic(() => import(`@/articles/pokemon/${query.article}.mdx`), {});
 
   return (
     <PokemonLayout>

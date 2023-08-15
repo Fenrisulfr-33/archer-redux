@@ -1,6 +1,6 @@
 import { colors } from "../variables/typeColors";
 import MoveModal from "./MoveModal";
-import TableLayout from "../tableLayout/TableLayout";
+import PokemonTableLayout from "@/components/pokemon/PokemonTableLayout";
 
 export default function MovesList({
   moves,
@@ -18,7 +18,7 @@ export default function MovesList({
   transfer ? moveHeader.push("Method") : null;
 
   return (
-    <TableLayout
+    <PokemonTableLayout
       thead={moveHeader.map((header, index) => (
         <th key={index}>{header}</th>
       ))}

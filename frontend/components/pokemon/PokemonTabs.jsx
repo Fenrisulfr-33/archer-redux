@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "../sideMenu/menus";
+import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "../variables/PokemonMenus";
 
 const DropDownButton = ({ title, handler }) => (
     <button className={'flex flex-row label border-2 border-gray-800'}
@@ -23,7 +23,7 @@ const DropDownMenu = ({ list }) => (
     </div>
 )
 
-export default function Tabs(){
+export default function PokemonTabs(){
     const [menuOne, setMenuOne] = useState(false);
     const [menuTwo, setMenuTwo] = useState(false);
     const [menuThree, setMenuThree] = useState(false);

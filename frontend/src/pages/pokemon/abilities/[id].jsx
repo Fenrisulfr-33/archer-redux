@@ -1,11 +1,11 @@
-import AbilityPage from "../../../components/pokemon/abilities/AbilityPage";
-import PokemonLayout from "../PokemonLayout";
+import AbilitiesPage from "@/components/pokemon/AbilitiesPage";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 
 export default function Ability({ ability }) {
 
   return (
     <PokemonLayout>
-      <AbilityPage ability={ability} />
+      <AbilitiesPage ability={ability} />
     </PokemonLayout>
   );
 }

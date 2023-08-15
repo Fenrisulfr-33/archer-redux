@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import PokemonLayout from '../../PokemonLayout';
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 import ArticleContainer from "@/components/articles/ArticleContainer";
 
 export default function ArticlePage({ query }) {

@@ -1,4 +1,4 @@
-export const articlesData = [
+export const mainArticles = [
     {
         date: '2022-02-16',
         author: 'Gin Silver',

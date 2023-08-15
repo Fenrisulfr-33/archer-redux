@@ -1,4 +1,4 @@
-import PokemonSideMenu from "../../components/pokemon/sideMenu/PokemonSideMenu";
+import PokemonSideMenu from "./PokemonSideMenu";
 
 export default function PokemonLayout({ children }) {
   return (

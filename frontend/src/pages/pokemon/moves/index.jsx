@@ -1,5 +1,5 @@
-import PokemonLayout from "../PokemonLayout";
-import MovesList from "../../../components/pokemon/moves/MovesList";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
+import MovesList from "@/components/pokemon/MovesList";
 
 export default function Moves({ moves }) {
   return (

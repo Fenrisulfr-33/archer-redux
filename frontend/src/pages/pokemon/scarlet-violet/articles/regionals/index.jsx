@@ -1,5 +1,5 @@
 import Regionals from "../../../../../components/pokemon/mdxPages/regionals/masterDivision.mdx";
-import PokemonLayout from "../../../PokemonLayout";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 
 export default function TypeChartPage() {
   return (

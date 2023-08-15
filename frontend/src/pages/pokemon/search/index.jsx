@@ -1,12 +1,12 @@
 import { useState } from "react";
-import PokemonLayout from "../PokemonLayout";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 import { InputBox } from "../../../components/pokemon/inputBoxes/InputBox";
 import { useRouter } from "next/router";
-import SearchPage from "../../../articles/searchPage/searchPage.mdx";
+import SearchPage from "@/articles/pokemon/search/search-page.mdx";
 import { movesDropDownScarletViolet } from "../../../components/pokemon/movesDropDowns/movesDropDownScareletViolet";
-import List from "../../../components/pokemon/pokedex/List";
-import { search } from "../../../components/pokemon/variables/headers";
-import { createSearchQuery } from "../../../helperFunctions/helperFunctions";
+import PokedexList from "@/components/pokemon/PokedexList";
+import { search } from "@/components/pokemon/variables/pokemonHeaders";
+import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
 
 const Box = ({ label }) => (
   <div
@@ -77,10 +77,10 @@ export default function PokemonSearchResults({ searchResults }) {
           Search
         </button>
         <Box label={"Pokemon Search Results"} />
-        <List
+        <PokedexList
           list={searchResults}
           headers={search}
-          game={"scvi"}
+          game={"scarlet-violet"}
           search={true}
           pushRoute={"scarlet-violet"}
         />

@@ -1,14 +1,8 @@
 import { useState } from "react";
-import TableLayout from "../tableLayout/TableLayout";
+import PokemonTableLayout from "./PokemonTableLayout";
 import PaginationLayout from "../pagination/PaginationLayout";
 import MovesRow from "./MovesRow";
-import { moves } from "../variables/headers";
-
-const styles = {
-  th: "py-1 px-1 text-center",
-  tablet: "tablet:py-2 tablet:px-4",
-  laptop: "laptop:py-3 laptop:px-6",
-};
+import { moves } from "../variables/pokemonHeaders";
 
 export default function MovesList({ list }) {
   // Pagination
@@ -26,9 +20,9 @@ export default function MovesList({ list }) {
       paginate={paginate}
       currentPage={currentPage}
       children={
-        <TableLayout
+        <PokemonTableLayout
           thead={moves.map((header, index) => (
-            <th key={index} className={styles.th}>
+            <th key={index} className="py-1 px-1 text-center">
               {header}
             </th>
           ))}

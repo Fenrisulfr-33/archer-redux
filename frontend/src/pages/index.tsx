@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import HomePage from "../articles/homePage.mdx";
+import LandingPage from "@/articles/landing-page.mdx";
 
 const IndexPage: NextPage = () => {
   return (
@@ -11,7 +11,7 @@ const IndexPage: NextPage = () => {
       </Head>
       <div className="py-2 bg-gray-900">
         <div className={`article-container`}>
-          <HomePage />
+          <LandingPage />
         </div>
       </div>
     </div>

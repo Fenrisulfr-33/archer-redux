@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Tabs from "../tabs/Tabs";
-import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "./menus";
+import PokemonTabs from "./PokemonTabs";
+import { dataMenu, mechanicsMenu, genNineMenu, genEightMenu, genTwoMenu, genOneMenu } from "../variables/PokemonMenus";
 
 const menus = [
   { title: 'Data', list: dataMenu },
@@ -20,11 +20,10 @@ const SideBarIcon = ({ text, route }) => {
 };
 
 export default function PokemonSideMenu() {
-
   return (
     <>
       <div className={"laptop:hidden"}>
-        <Tabs />
+        <PokemonTabs />
       </div>
       <div className="hidden laptop:flex flex-col font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
         <SideBarIcon route={"/pokemon"} text={"Pokemon Home"} />

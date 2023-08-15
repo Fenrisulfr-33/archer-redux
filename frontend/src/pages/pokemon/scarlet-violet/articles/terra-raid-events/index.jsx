@@ -1,5 +1,5 @@
 import TerraRaidEvents from "../../../../../components/pokemon/mdxPages/terraRaidEvents/terraRaidEvents.mdx";
-import PokemonLayout from "../../../PokemonLayout";
+import PokemonLayout from "@/components/pokemon/PokemonLayout";
 
 export default function TypeChartPage() {
   return (

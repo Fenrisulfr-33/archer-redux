@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import TableLayout from "../tableLayout/TableLayout";
+import PokemonTableLayout from "./PokemonTableLayout";
 import PokedexRow from "./PokedexRow";
 import PaginationLayout from "../pagination/PaginationLayout";
-import ListFilters from "../filters/Filters";
-import { onFilterSubmitHandler } from "../../../helperFunctions/helperFunctions";
-import { types } from "../variables/dropdowns";
-import { national, dexes } from "../variables/headers";
+import PokedexListFilters from "./PokedexListFilters";
+import { pokedexOnFilterSubmit } from "@/helperFunctions/pokedexOnFilterSubmit";
+import { pokemonTypes } from "../variables/pokemonDropDowns";
+import { nationalHeaders, pokedexHeaders } from "../variables/pokemonHeaders";
 
-export default function List({
-  list = [],
+export default function PokedexList({
+  list,
   pushRoute,
-  header,
-  dexNumber,
+  national,
+  game,
   searchRoute,
 }) {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function List({
   const [sort, setSort] = useState("");
   const [stat, setStat] = useState("");
   // Set headers variables
-  const headers = header === "national" ? national : dexes;
+  const headers = national ? nationalHeaders : pokedexHeaders;
   // Reset filter variables
   const onResetHandler = () => {
     setTypeOne("");
@@ -44,7 +44,7 @@ export default function List({
       stat: stat,
     };
     // This pushes the route with the new query
-    onFilterSubmitHandler(event, router, params, searchRoute);
+    pokedexOnFilterSubmit(event, router, params, searchRoute);
   };
   // Generic Filter code ----- END
   // Pagination
@@ -57,19 +57,19 @@ export default function List({
 
   return (
     <div id="dex-list-content" className="flex flex-col space-y-2 pb-4">
-      <ListFilters
+      <PokedexListFilters
         inputs={[
           {
             value: typeOne,
             setValue: setTypeOne,
-            list: types,
+            list: pokemonTypes,
             placeholder: "Type One",
             isType: true,
           },
           {
             value: typeTwo,
             setValue: setTypeTwo,
-            list: types,
+            list: pokemonTypes,
             placeholder: "Type Two",
             isType: true,
           },
@@ -82,7 +82,7 @@ export default function List({
           {
             value: stat,
             setValue: setStat,
-            list: ["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Speed"],
+            list: ["Total", "HP", "Atk", "Def", "SpAtk", "SpDef", "Spd"],
             placeholder: "Stats",
           },
         ]}
@@ -95,9 +95,9 @@ export default function List({
         paginate={paginate}
         currentPage={currentPage}
         children={
-          <TableLayout
+          <PokemonTableLayout
             thead={headers.map((header, index) => (
-              <th key={index} className={"py-1 px-1 text-center bg-purple-900"}>
+              <th key={index}>
                 {header}
               </th>
             ))}
@@ -105,9 +105,8 @@ export default function List({
               <PokedexRow
                 key={pokemon._id}
                 pokemon={pokemon}
-                dexNumber={
-                  dexNumber ? pokemon.pokedexNumber[dexNumber] : pokemon._id
-                }
+                dexNo={game ? pokemon.pokedexNumber[game] : null}
+                national={national}
                 pushRoute={pushRoute}
               />
             ))}
