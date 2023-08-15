@@ -1,4 +1,4 @@
-import ArticlesList from "@/components/Articles/ArticlesList";
+import ArticlesList from "@/components/Articles/articlesList";
 import { scarletVioletList } from "@/articles/pokemon/scarlet-violet/scarletVioletList";
 import PokemonLayout from "../../../../layout/PokemonLayout";
 

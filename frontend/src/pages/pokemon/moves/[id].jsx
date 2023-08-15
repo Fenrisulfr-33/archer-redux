@@ -1,4 +1,4 @@
-import MovePage from "@/components/pokemon/MovePage";
+import MovePage from "@/components/pokemon/MovesPage";
 import PokemonLayout from "../../../layout/PokemonLayout";
 
 export default function MoveInd({ move }) {
