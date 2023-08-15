@@ -8,36 +8,37 @@ export const meta_1 = {
   id: 1
 }
 
----
-
 ## Getting Started with Next, TailwindCSS and MDX
 
 1. Create your create your Next.js base.
 
-  ```
-    npx create-next-app my-project
-    cd my-project
-  ```
+```
+$  npx create-next-app my-project
+```
+
+```
+$  cd my-project
+```
 
 2. Install the tailwindCss package
     - The `init -p` is the file needed for settings up your custom class or overwriting current ones
 
-  ```
-  npm install -D tailwindcss postcss autoprefixer
-  npx tailwindcss init -p
-  ```
+```js
+$   npm install -D tailwindcss postcss autoprefixer
+$   npx tailwindcss init -p
+```
 3. [Optional] If you are writing a blog site I highly recommened using this. 
     - Link: [TailwindCSS Typography](https://tailwindcss.com/docs/typography-plugin).
 
-  ```
-  npm install -D @tailwindcss/typography
-  ```
+```js
+$   npm install -D @tailwindcss/typography
+```
 
-4. In your newly created `tailwind.config.js` file add the `jit` (Just in time) engine. Make sure the
-the `.js`, `.ts`, `.jsx`, and `.tsx` files are being hit by tailwindcss. The screens is not neccessary
+4. In your newly created **tailwind.config.js** file add the jit (Just in time) engine. Make sure the
+the .js, .ts, .jsx, and .tsx files are being hit by tailwindcss. The screens is not neccessary
 and you can remove them, I personally like my site to be very reactive to certain size screens.
 
-  ```
+  ```js
   module.exports = {
     mode: 'jit',
     purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -65,11 +66,11 @@ and you can remove them, I personally like my site to be very reactive to certai
 
 5. Inside your globals.css add the following. 
 
-  ```
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  ```
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
 6. [Optional] If you want to add styles or classes to your entire webpade, you can do so like this.
 The reason we add `@layer` is because these need to come before the utilites or else we wouldn't be able to 
@@ -77,20 +78,20 @@ add custom classes and tailwinds default classes. This allows you to sneak a cou
 className not including your custom class.
     - Link: [TailwindCSS @apply](https://www.youtube.com/watch?v=TrftauE2Vyk).
 
-  ```
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  @layer components {
-    .h1 {
-      @apply <insert tailwindcss classes here for all h1 tags, etc...>
-    }
+@layer components {
+  .h1 {
+    @apply <insert tailwindcss classes here for all h1 tags, etc...>
   }
-  ```
+}
+```
 
 7. Have fun and play around!
 
-  ```
-  npm run dev
-  ```
+```js
+$ npm run dev
+```

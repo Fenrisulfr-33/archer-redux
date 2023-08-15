@@ -1,18 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import HomePage from "../components/mdxPages/homePage.mdx";
-import MDXWrapper from "../components/MDXWrapper";
+import LandingPage from "@/articles/landing-page.mdx";
 
 const IndexPage: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Archer Home</title>
+        <title>Gengar's HM</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MDXWrapper>
-        <HomePage />
-      </MDXWrapper>
+      <div className="py-2 bg-gray-900">
+        <div className={`article-container`}>
+          <LandingPage />
+        </div>
+      </div>
     </div>
   );
 };

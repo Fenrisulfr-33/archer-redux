@@ -1,13 +1,13 @@
-import TerraRaidEvents from '../../../../../components/pokemon/mdxPages/terraRaidEvents/terraRaidEvents.mdx';
-import MDXWrapper from '../../../../../components/MDXWrapper';
-import PokemonLayout from "../../../PokemonLayout";
+import TerraRaidEvents from "@/articles/pokemon/scarlet-violet/terra-raid-events.mdx";
+import ArticleContainer from "@/components/articles/ArticleContainer";
+import PokemonLayout from "../../../../../layout/PokemonLayout";
 
-export default function TypeChartPage(){
-    return (
-        <PokemonLayout>
-            <MDXWrapper>
-                <TerraRaidEvents />
-            </MDXWrapper>
-        </PokemonLayout>
-    )
+export default function TypeChartPage() {
+  return (
+    <PokemonLayout>
+      <ArticleContainer>
+        <TerraRaidEvents />
+      </ArticleContainer>
+    </PokemonLayout>
+  );
 }

@@ -7,10 +7,7 @@ export default {
   },
   dexes: {
     national: [],
-    scarlet_violet: [],
-    sword_shield: [],
-    isle_of_armor: [],
-    crown_tundra: [],
+    dex: [],
   },
   moves: {
     move: {},

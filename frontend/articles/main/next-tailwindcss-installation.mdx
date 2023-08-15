@@ -1,0 +1,95 @@
+## Getting Started with Next, TailwindCSS and MDX
+
+1. Create your create your Next.js base.
+
+```
+$  npx create-next-app my-project
+```
+
+```
+$  cd my-project
+```
+
+2. Install the tailwindCss package
+   - The `init -p` is the file needed for settings up your custom class or overwriting current ones
+
+```js
+$   npm install -D tailwindcss postcss autoprefixer
+$   npx tailwindcss init -p
+```
+
+3. [Optional] If you are writing a blog site I highly recommened using this.
+   - Link: [TailwindCSS Typography](https://tailwindcss.com/docs/typography-plugin).
+
+```js
+$   npm install -D @tailwindcss/typography
+```
+
+4. In your newly created **tailwind.config.js** file add the jit (Just in time) engine. Make sure the
+   the .js, .ts, .jsx, and .tsx files are being hit by tailwindcss. The screens is not neccessary
+   and you can remove them, I personally like my site to be very reactive to certain size screens.
+
+```js
+module.exports = {
+  mode: "jit",
+  purge: [
+    "./pages/**/*.{js,ts,jsx,tsx}", \
+    "./components/**/*.{js,ts,jsx,tsx}"
+  ],
+  darkMode: true, // or 'media' or 'class'
+  theme: {
+    screens: {
+      phone: "480px",
+      tablet: "768px",
+      laptop: "1024px",
+      desktop: "1200px",
+      wide: "1280px",
+      ultrawide: "1536px",
+    },
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require("@tailwindcss/typography")],
+};
+```
+
+5. Inside your globals.css add the following.
+
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+6. [Optional] If you want to add styles or classes to your entire webpade, you can do so like this.
+   The reason we add `@layer` is because these need to come before the utilites or else we wouldn't be able to
+   add custom classes and tailwinds default classes. This allows you to sneak a couple of classes right in the the
+   className not including your custom class. - Link: [TailwindCSS @apply](https://www.youtube.com/watch?v=TrftauE2Vyk).
+
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .h1 {
+    @apply
+    bg-purple-600
+    leading-tight
+    rounded-lg
+    p-2
+    text-left
+    text-gray-300
+    font-extrabold
+    text-[min(4vw,100px)]
+  }
+}
+```
+
+7. Have fun and play around!
+
+```js
+$ npm run dev
+```
