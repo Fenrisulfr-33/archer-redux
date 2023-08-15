@@ -25,11 +25,20 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/articles/*": ["articles/*"],
-      "@helperFunctions/*": ["helperFunctions/*"],
-    }
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/articles/*": [
+        "articles/*"
+      ],
+      "@helperFunctions/*": [
+        "helperFunctions/*"
+      ]
+    },
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",

@@ -1,4 +1,4 @@
-export const onFilterSubmitHandler = (event, router, params, searchRoute) => {
+export const pokedexOnFilterSubmit = (event, router, params, searchRoute) => {
     event.preventDefault();
 
     const queries = [];
