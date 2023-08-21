@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import ArticleContainer from "@/components/articles/ArticleContainer";
 import LandingPage from "@/articles/landing-page.mdx";
 
 const IndexPage: NextPage = () => {
@@ -9,11 +10,9 @@ const IndexPage: NextPage = () => {
         <title>Gengar's HM</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="py-2 bg-gray-900">
-        <div className={`article-container`}>
-          <LandingPage />
-        </div>
-      </div>
+      <ArticleContainer>
+        <LandingPage />
+      </ArticleContainer>
     </div>
   );
 };

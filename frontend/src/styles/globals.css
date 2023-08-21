@@ -5,42 +5,66 @@
 
 @layer base {
   p {
-    @apply text-clip
+    @apply
+    mx-auto
+        border
+        border-purple-100
+        w-2/3
+        max-w-[600px]
+        text-clip
         overflow-hidden 
-        leading-loose 
+        leading-relaxed 
         text-gray-300 
-        bg-gray-700 
-        p-4 
-        rounded-lg 
-        text-xxs
-        phone:text-base
-        mt-2
+        bg-gray-900 
+        mb-8
+        py-2
+        px-4
+        rounded
+        text-sm
+        tablet:text-base
+        
         text-left;
   }
   h1 {
-    @apply bg-purple-600
-        leading-tight
+    @apply 
+      bg-purple-600
+        tracking-tighter
+        leading-relaxed
         rounded-lg
-        p-2
-        text-left
+        my-10
+        mx-4
+        py-2
+        px-4
+        tablet:py-4
+        text-center
         text-gray-300 
         font-extrabold 
         text-[min(4vw,100px)];
   }
   h2 {
-    @apply leading-tight
-        mt-4
-        text-left 
+    @apply
+        tracking-tighter         
+        text-center 
+        py-1
+        px-4
+        mx-4
+        
+        mb-4
         text-purple-50 
         font-bold 
-        text-[min(4vw,100px)];
+        text-[min(3vw,100px)];
   }
   h3 {
-    @apply leading-tight
-        mt-4
-        text-left
+    @apply 
+    tracking-tighter
+      py-1
+      px-4
+      mx-4
+      font-extrabold
+        mb-4
+        text-center
         text-purple-50
-        text-[min(3vw,100px)];
+        text-[min(2vw,100px)];
   }
   hr {
     @apply w-[90%]
@@ -92,8 +116,7 @@
   .article-container {
     @apply w-[95%]
     phone:w-[80%]
-        p-2
-        bg-gray-900
+        bg-gray-800
         font-mono
         rounded-lg
         mx-auto

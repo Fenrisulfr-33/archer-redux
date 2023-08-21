@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const movesSchema = mongoose.Schema({
     _id: { type: Number },
+    key: { type: String },
     name: { type: Object },
     type: { type: String },
     category: { type: String },
