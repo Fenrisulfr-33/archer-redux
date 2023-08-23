@@ -2,7 +2,7 @@ import { NavBarIcon } from "./NavBarIcon";
 import { SiHomeadvisor } from "react-icons/si";
 import { MdArticle, MdCatchingPokemon } from "react-icons/md";
 import { AiTwotoneHome } from "react-icons/ai";
-import { BsNewspaper } from "react-icons/bs";
+import { BsNewspaper, BsInfoCircleFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 export default function NavBar() {
@@ -26,17 +26,17 @@ export default function NavBar() {
             </button>
             <button
               className={tabBarButton}
-              onClick={() => router.push("/articles")}
-            >
-              <BsNewspaper size="25" />
-              <div className={tabBarTitle}>Articles</div>
-            </button>
-            <button
-              className={tabBarButton}
               onClick={() => router.push("/pokemon")}
             >
               <MdCatchingPokemon size="25" />
               <div className={tabBarTitle}>Pokemon</div>
+            </button>
+            <button
+              className={tabBarButton}
+              onClick={() => router.push("/articles")}
+            >
+              <BsNewspaper size="25" />
+              <div className={tabBarTitle}>Articles</div>
             </button>
           </div>
         </div>
@@ -48,14 +48,19 @@ export default function NavBar() {
           route={"/"}
         />
         <NavBarIcon
+          icon={<MdCatchingPokemon size="28" />}
+          text={"Pokemon"}
+          route={"/pokemon"}
+        />
+        <NavBarIcon
           icon={<MdArticle size="28" />}
           text={"Articles"}
           route={"/articles"}
         />
-        <NavBarIcon
-          icon={<MdCatchingPokemon size="28" />}
-          text={"Pokemon"}
-          route={"/pokemon"}
+                <NavBarIcon
+          icon={<BsInfoCircleFill size="28" />}
+          text={"About"}
+          route={"/about"}
         />
       </div>
     </div>

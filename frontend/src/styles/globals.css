@@ -5,36 +5,25 @@
 
 @layer base {
   p {
-    @apply
-    mx-auto
-        border
-        border-purple-100
+    @apply mx-auto
         w-2/3
         max-w-[600px]
         text-clip
         overflow-hidden 
         leading-relaxed 
         text-gray-300 
-        bg-gray-900 
         mb-8
-        py-2
-        px-4
-        rounded
         text-sm
         tablet:text-base
-        
         text-left;
   }
   h1 {
-    @apply 
-      bg-purple-600
+    @apply bg-purple-600
         tracking-tighter
         leading-relaxed
         rounded-lg
         my-10
         mx-4
-        py-2
-        px-4
         tablet:py-4
         text-center
         text-gray-300 
@@ -42,21 +31,15 @@
         text-[min(4vw,100px)];
   }
   h2 {
-    @apply
-        tracking-tighter         
+    @apply tracking-tighter         
         text-center 
-        py-1
-        px-4
-        mx-4
-        
         mb-4
         text-purple-50 
         font-bold 
         text-[min(3vw,100px)];
   }
   h3 {
-    @apply 
-    tracking-tighter
+    @apply tracking-tighter
       py-1
       px-4
       mx-4
@@ -76,7 +59,9 @@
         to-purple-50;
   }
   a {
-    @apply font-medium;
+    @apply italic
+    font-medium
+    text-purple-50;
   }
   pre {
     @apply bg-gray-800
@@ -115,13 +100,9 @@
   }
   .article-container {
     @apply w-[95%]
-    phone:w-[80%]
-        bg-gray-800
-        font-mono
-        rounded-lg
-        mx-auto
-        border-2
-        border-purple-500;
+      phone:w-[80%]
+      font-mono
+      mx-auto;
   }
   .xxs-label {
     @apply bg-gray-500

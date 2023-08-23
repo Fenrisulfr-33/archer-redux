@@ -89,14 +89,14 @@ export default function PokemonPageInfoSection({ pokemon }) {
             <div className={"w-1/2"}>
               <span className={"flex flex-row space-x-1"}>
                 <Image
-                  src={`/types/${pokemon.type.one}.svg`}
+                  src={`/pokemon/typeIcons/${pokemon.type.one.toLowerCase()}.svg`}
                   alt={`${pokemon.type.one}`}
                   height={40}
                   width={40}
                 />
                 {pokemon.type?.two && (
                   <Image
-                    src={`/types/${pokemon.type.two}.svg`}
+                    src={`/pokemon/typeIcons/${pokemon.type.two.toLowerCase()}.svg`}
                     alt={`${pokemon.type.two}`}
                     height={40}
                     width={40}

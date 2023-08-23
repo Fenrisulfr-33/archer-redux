@@ -213,6 +213,9 @@ module.exports = {
         '127': "31.75rem",
         '128': "32rem",
       },
+      boxShadow: {
+        'selected': '5px 5px 0px 0px rgba(141,126,196)',
+      }
     },
   },
   variants: {

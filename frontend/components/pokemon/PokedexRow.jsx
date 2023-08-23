@@ -13,7 +13,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
   const stats = [total, hp, atk, def, spatk, spdef, spd];
 
   return (
-    <tr className="text-center odd:bg-gray-600 hover:bg-purple-50 hover:font-bold">
+    <tr className="text-center odd:bg-gray-600 hover:bg-gray-900 hover:font-bold">
       {national ? <td>{_id}</td> : <><td>{dexNo}</td><td>{_id}</td></>}
       <td>
         <Link
