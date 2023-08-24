@@ -1,5 +1,7 @@
-import { useRouter } from "next/router";
+'use client';
+
 import { useState } from "react";
+import Link from "next/link";
 import {
   dataMenu,
   mechanicsMenu,
@@ -10,7 +12,6 @@ import { AiTwotoneHome, AiFillDatabase } from "react-icons/ai";
 import { FaScrewdriver } from "react-icons/fa";
 
 export default function PokemonTabs() {
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(() => false);
   const [selectedMenu, setSelectedMenu] = useState(() => []);
 
@@ -33,14 +34,15 @@ export default function PokemonTabs() {
         className={
           "grid grid-flow-col justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
         }
-      >
+      > 
+      <Link href="/pokemon" passHref>
         <button
           className={tabBarButton}
-          onClick={() => router.push("/pokemon")}
         >
           <AiTwotoneHome size="25" />
           <div className={tabBarTitle}>Pokemon</div>
         </button>
+        </Link>
         <button
           className={tabBarButton}
           onClick={() => handleMenuButton(dataMenu)}
@@ -69,12 +71,12 @@ export default function PokemonTabs() {
         } absolute w-full bg-gray-600 flex flex-col mt-1 rounded border border-purple-50`}
       >
         {selectedMenu.map((menuItem) => (
+          <Link href={menuItem.route} passHref>
           <button
             className="m-1 p-2 rounded hover:bg-purple-200 hover:border-2 hover:border-gray-900 hover:text-gray-900 hover:font-bold hover:shadow-sm hover:shadow-purple-50 bg-gray-800 border border-gray-900 text-purple-100"
-            onClick={() => router.push(menuItem.route)}
           >
             {menuItem.title}
-          </button>
+          </button></Link>
         ))}
       </div>
     </div>
