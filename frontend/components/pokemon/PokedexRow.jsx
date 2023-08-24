@@ -14,12 +14,12 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
 
   return (
     <tr className="text-center odd:bg-gray-600 hover:bg-gray-900 hover:font-bold">
-      {national ? <td>{_id}</td> : <><td>{dexNo}</td><td>{_id}</td></>}
-      <td>
+      {national ? <td className="p-2">{_id}</td> : <><td>{dexNo}</td><td>{_id}</td></>}
+      <td className="p-2">
         <Link
           href={`/pokemon/national/${_id}/${pushRoute}`}
           passhref="true"
-          className="hover:font-extrabold"
+          className="font-extrabold not-italic"
         >
           {name.english}
         </Link>
@@ -34,7 +34,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
           />
         </div>
       </td>
-      <td>
+      <td className="p-2">
         <div className="font-bold flex flex-col">
           <div
             className={`col-span-1 my-1 bg-opacity-100 rounded-md px-2 space-x-1 font-bold ${
@@ -54,7 +54,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
           )}
         </div>
       </td>
-      <td>
+      <td className="p-2">
         <div className="flex flex-col">
           <div className="">{abilities?.one?.name}</div>
           <div className="">{abilities?.two?.name}</div>
@@ -62,7 +62,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
         </div>
       </td>
       {stats.map((stat, index) => (
-        <td key={index} className="p-1 whitespace-nowrap">
+        <td key={index} className="p-2 whitespace-nowrap">
           {stat}
         </td>
       ))}

@@ -57,7 +57,9 @@ export default function PokedexList({
 
   return (
     <div id="dex-list-content" className="flex flex-col space-y-2 pb-4">
+
       <PokedexListFilters
+        searchRoute={searchRoute}
         inputs={[
           {
             value: typeOne,
@@ -97,7 +99,7 @@ export default function PokedexList({
         children={
           <PokemonTableLayout
             thead={headers.map((header, index) => (
-              <th key={index}>
+              <th key={index} className="p-2">
                 {header}
               </th>
             ))}

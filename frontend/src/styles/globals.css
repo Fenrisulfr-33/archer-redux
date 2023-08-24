@@ -75,22 +75,17 @@
         text-[min(2vw,60px)];
   }
   li {
-    @apply w-fit
-        text-clip
-        overflow-hidden 
-        leading-snug 
-        text-gray-300 
-        bg-purple-700 
-        rounded-lg
-        py-2
-        px-2
-        phone:px-4
-        text-xxs
-        phone:text-base
-        mt-2
-        ml-2
-        phone:ml-4
-        text-left;
+    @apply
+      px-4
+      even:bg-gray-700
+      odd:bg-gray-800
+      leading-tight
+      mx-auto
+      font-light
+      w-2/3
+      text-left
+      py-1
+      text-gray-100
   }
 }
 

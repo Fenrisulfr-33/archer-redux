@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { pokedexOnFilterSubmit } from "@/helperFunctions/pokedexOnFilterSubmit";
 import PokedexFilterInputBox from "./PokedexFilterInputBox";
 
 const FilterLabel = ({ label }) => (
@@ -10,53 +12,82 @@ const FilterLabel = ({ label }) => (
 
 export default function PokedexListFilters({
   inputs,
-  onResetHandler,
-  onFilterSubmit,
+  // onResetHandler,
+  // onFilterSubmit,
+  searchRoute,
 }) {
-  const stateInitial = () => null;
+  const router = useRouter();
+  const { asPath } = router;
+  const stateInitial = () => "";
   const [filters, setFilters] = useState(false);
   const [typeOne, setTypeOne] = useState(() => stateInitial());
   const [typeTwo, setTypeTwo] = useState(() => stateInitial());
   const [sortSelected, setSortSelected] = useState(() => stateInitial());
   const [statSelected, setStatSelected] = useState(() => stateInitial());
+  const onResetHandler = () => {
+    setTypeOne("");
+    setTypeTwo("");
+    setSortSelected("");
+    setStatSelected("");
+    if (asPath !== searchRoute) {
+      router.push(searchRoute);
+    }
+  };
+  // When filter search is clicked
+  const onFilterSubmit = (event) => {
+    // create params for the query
+    const params = {
+      typeOne: typeOne,
+      typeTwo: typeTwo,
+      sort: sortSelected,
+      stat: statSelected,
+    };
+    // This pushes the route with the new query
+    pokedexOnFilterSubmit(event, router, params, searchRoute);
+  };
 
   const types = [
-    "normal",
-    "fire",
-    "water",
-    "electric",
-    "grass",
-    "ice",
-    "fighting",
-    "poison",
-    "ground",
-    "flying",
-    "psychic",
-    "bug",
-    "rock",
-    "ghost",
-    "dragon",
-    "dark",
-    "steel",
-    "fairy",
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel",
+    "Fairy",
   ];
   const sorting = ["Asc", "Desc"];
   const stats = ["HP", "Atk", "Def", "SpAtk", "SpDef", "Spd"];
 
   return (
-    <div className="flex flex-col space-y-2 p-2 font-mono bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
-      <button className={"label"} onClick={() => setFilters(!filters)}>
+    <div className="flex flex-col space-y-4 p-2 font-mono bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
+      <button
+        className={`bg-gray-900 rounded-lg px-4 py-2 text-purple-50 ${
+          filters ? "font-bold border-2 border-purple-50 shadow-selected" : ""
+        }`}
+        onClick={() => setFilters(!filters)}
+      >
         Filters {filters ? "[close]" : "[open]"}
       </button>
       <div className={`space-y-2 ${filters ? "" : "hidden"} `}>
-        <div className={`flex flex-row space-x-2 overflow-auto scrollbar-hide`}>
+        {/* <div className={`flex flex-row space-x-2 overflow-auto scrollbar-hide`}>
           <button onClick={onResetHandler} className={`button`}>
             Reset
           </button>
           <button onClick={onFilterSubmit} className={`button`}>
             Search
           </button>
-        </div>
+        </div> */}
         <div
           className={
             "text-xxs phone:text-sm text-gray-400 ml-2 italic leading-tight"
@@ -92,7 +123,7 @@ export default function PokedexListFilters({
               {types.map((type) => (
                 <button onClick={() => setTypeOne(type)}>
                   <Image
-                    src={`/pokemon/typeIcons/${type}.svg`}
+                    src={`/pokemon/typeIcons/${type.toLowerCase()}.svg`}
                     alt={type}
                     height={60}
                     width={60}
@@ -112,7 +143,7 @@ export default function PokedexListFilters({
               {types.map((type) => (
                 <button onClick={() => setTypeTwo(type)}>
                   <Image
-                    src={`/pokemon/typeIcons/${type}.svg`}
+                    src={`/pokemon/typeIcons/${type.toLowerCase()}.svg`}
                     alt={type}
                     height={60}
                     width={60}
@@ -146,11 +177,11 @@ export default function PokedexListFilters({
 
           <div className="flex flex-col">
             <FilterLabel label={"Select stat to sort by"} />
-            <div className="flex flex-row">
+            <div className="grid grid-cols-3 tablet:grid-cols-6">
               {stats.map((stat) => (
                 <button
                   onClick={() => setStatSelected(stat)}
-                  className={`w-1/6 bg-gray-900 rounded-lg p-4 m-1 text-purple-50 ${
+                  className={`col-span-1 bg-gray-900 rounded-lg p-4 m-1 text-purple-50 ${
                     stat === statSelected
                       ? "border-2 border-purple-50 shadow-selected"
                       : ""
@@ -160,6 +191,21 @@ export default function PokedexListFilters({
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className={`flex flex-row`}>
+            <button
+              onClick={onResetHandler}
+              className="w-1/2 bg-purple-100 rounded-lg px-4 py-2 m-1 text-gray-900 font-bold"
+            >
+              Reset
+            </button>
+            <button
+              onClick={onFilterSubmit}
+              className="w-1/2 bg-purple-100 rounded-lg px-4 py-2 m-1 text-gray-900 font-bold"
+            >
+              Search
+            </button>
           </div>
         </div>
       </div>

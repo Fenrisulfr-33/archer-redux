@@ -187,8 +187,16 @@ const listNational = asyncHandler(async (request, response) => {
     response.status(200).json(national);
 });
 
+const listNationalNames = asyncHandler(async (request, response) => {
+    const nationalNames = await National.distinct('name.english');
+
+    disconnect();
+    response.status(200).json(nationalNames);
+});
+
 module.exports = {
     read: [connect, pokemonExists, getMoves, readPokemon],
     readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
     list: [connect, listNational],
+    listNames: [connect, listNationalNames],
 };

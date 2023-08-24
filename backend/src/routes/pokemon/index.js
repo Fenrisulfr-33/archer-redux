@@ -8,6 +8,8 @@ const methodNotAllowed = require("../../errors/methodNotAllowed");
 
 router.route("/national").get(national.list).all(methodNotAllowed);
 
+router.route("/national/names").get(national.listNames).all(methodNotAllowed);
+
 router.route("/national/:id").get(national.read).all(methodNotAllowed);
 
 router.route("/national/:id/:game").get(national.read).all(methodNotAllowed);
@@ -25,6 +27,8 @@ router.route("/moves/:name").get(moves.read).all(methodNotAllowed);
 router.route("/moves/:name/:game").get(moves.read).all(methodNotAllowed);
 
 router.route("/abilities").get(abilities.list).all(methodNotAllowed);
+
+router.route("/abilities/names").get(abilities.listNames).all(methodNotAllowed);
 
 router.route("/abilities/:id").get(abilities.read).all(methodNotAllowed);
 

@@ -29,7 +29,14 @@ const listAbilities = asyncHandler(async (request, response) => {
   response.status(200).json(abilities);
 });
 
+const listAbilitiesNames = asyncHandler(async (request, response) => {
+  const abilitiesNames = await Abilities.distinct('name.english');
+  disconnect();
+  response.status(200).json(abilitiesNames);
+})
+
 module.exports = {
   read: [connect, abilityExists, readAbility],
   list: [connect, listAbilities],
+  listNames: [connect, listAbilitiesNames],
 };
