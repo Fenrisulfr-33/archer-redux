@@ -189,9 +189,14 @@ const listNational = asyncHandler(async (request, response) => {
 
 const listNationalNames = asyncHandler(async (request, response) => {
     const nationalNames = await National.distinct('name.english');
-
+    const returnNationNames = nationalNames.map((name) => {
+        return {
+            name: name,
+            key: "/national/"
+        }
+    })
     disconnect();
-    response.status(200).json(nationalNames);
+    response.status(200).json(returnNationNames);
 });
 
 module.exports = {

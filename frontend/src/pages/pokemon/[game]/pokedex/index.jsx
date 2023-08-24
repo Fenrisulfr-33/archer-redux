@@ -1,6 +1,6 @@
 import PokedexList from "@/components/pokemon/PokedexList";
 import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
-import PokemonLayout from "../../../../layout/PokemonLayout";
+import PokemonLayout from '@/components/layouts/PokemonLayout';
 
 export default function PokedexPage({ pokedex, game }){
   return (

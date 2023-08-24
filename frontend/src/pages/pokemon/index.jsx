@@ -1,6 +1,6 @@
 import HomePage from "@/articles/pokemon/home-page.mdx";
 import ArticleContainer from '@/components/articles/ArticleContainer';
-import PokemonLayout from "../../layout/PokemonLayout";
+import PokemonLayout from '@/components/layouts/PokemonLayout';
 
 export default function Pokemon() {
   return (

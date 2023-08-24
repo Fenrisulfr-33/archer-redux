@@ -18,6 +18,8 @@ router.route("/:game/pokedex").get(dexes.list).all(methodNotAllowed);
 
 router.route("/moves").get(moves.list).all(methodNotAllowed);
 
+router.route("/moves/names").get(moves.listNames).all(methodNotAllowed);
+
 router.route("/moves/:id").get(moves.read).all(methodNotAllowed);
 
 router.route("/moves/:id/:game").get(moves.read).all(methodNotAllowed);

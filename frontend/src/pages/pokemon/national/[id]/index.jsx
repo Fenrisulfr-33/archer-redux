@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import PokemonPage from "@/components/pokemon/PokemonPage";
-import PokemonLayout from "../../../../layout/PokemonLayout";
+import PokemonLayout from '@/components/layouts/PokemonLayout';
 
 export default function NationalInd({ pokemon, query }) {
   const router = useRouter();

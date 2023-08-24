@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import MovePage from "@/components/pokemon/MovePage";
-import PokemonLayout from "../../../../../layout/PokemonLayout";
+import PokemonLayout from '@/components/layouts/PokemonLayout';
 
 export default function MoveInd({ move, game }) {
     const router = useRouter();

@@ -178,7 +178,20 @@ const listMoves = asyncHandler(async (request, response) => {
   response.status(200).json(moves);
 });
 
+const listMovesNames = asyncHandler(async (request, response) => {
+  const movesNames = await Moves.distinct('name.english');
+  const returnMovesNames = movesNames.map((name) => {
+    return {
+        name: name,
+        key: "/moves/"
+    }
+})
+  disconnect();
+  response.status(200).json(returnMovesNames);
+})
+
 module.exports = {
   read: [connect, moveExists, readMove],
   list: [connect, listMoves],
+  listNames: [connect, listMovesNames],
 };
