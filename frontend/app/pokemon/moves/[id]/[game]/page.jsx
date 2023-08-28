@@ -1,16 +1,9 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import MovePage from "@/components/pokemon/MovePage";
-import PokemonLayout from '@/components/layouts/PokemonLayout';
 
 export default function MoveInd({ move, game }) {
-    const router = useRouter();
-  return (
-    <PokemonLayout>
-      <MovePage key={router.asPath}
-      game={game}
-      move={move} />
-    </PokemonLayout>
-  );
+  const router = useRouter();
+  return <MovePage key={router.asPath} move={move} game={game} />;
 }
 
 export const getServerSideProps = async (context) => {

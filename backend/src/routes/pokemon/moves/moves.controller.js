@@ -15,8 +15,8 @@ const moveExists = asyncHandler(async (request, response, next) => {
    * This check verifies if Id is equal to a Number.
    */
   isNaN(id)
-    ? (move = await Moves.findOne({ key: request.params.id }).lean())
-    : (move = await Moves.findById(Number(request.params.id)).lean());
+    ? (move = await Moves.findOne({ key: id }).lean())
+    : (move = await Moves.findById(Number(id)).lean());
 
   if (!move) {
     // Case for if move does not exist
@@ -138,7 +138,7 @@ const getMoveGameDropDown = (generation) => {
     case 1:
       return gameDropDown;
     default:
-    return gameDropDown;
+      return gameDropDown;
   }
 };
 
@@ -147,25 +147,30 @@ const getMoveGameDropDown = (generation) => {
 const readMove = asyncHandler(async (request, response) => {
   const { move } = response.locals;
   const { game } = request.params;
-
+  const moveGameDropDown = getMoveGameDropDown(move.generation);
+  let returnMoveObj = {
+    ...move,
+    gameDropDown: moveGameDropDown,
+  };
+  let pokemonThatLearnMove = {};
   if (game) {
-    // If the game parameter exists get pokemon that can learn move.
-    const pokemonThatLearnMove = await getPokemonThatKnowMoveByGame(
+    pokemonThatLearnMove = await getPokemonThatKnowMoveByGame(
       move.name.english,
       game
     );
-    const returnMoveObj = {
-      ...move,
-      gameDropDown: getMoveGameDropDown(move.generation),
-      pokemonThatLearnMove,
-    };
-    disconnect();
-    response.status(200).json(returnMoveObj);
   } else {
-    // Else return just the move itself.
-    disconnect();
-    response.status(200).json(move);
+    pokemonThatLearnMove = await getPokemonThatKnowMoveByGame(
+      move.name.english,
+      moveGameDropDown[0].key
+    );
   }
+  returnMoveObj = {
+    ...returnMoveObj,
+    pokemonThatLearnMove,
+  }
+
+  disconnect();
+  response.status(200).json(returnMoveObj);
 });
 
 const listMoves = asyncHandler(async (request, response) => {
@@ -178,20 +183,7 @@ const listMoves = asyncHandler(async (request, response) => {
   response.status(200).json(moves);
 });
 
-const listMovesNames = asyncHandler(async (request, response) => {
-  const movesNames = await Moves.distinct('name.english');
-  const returnMovesNames = movesNames.map((name) => {
-    return {
-        name: name,
-        key: "/moves/"
-    }
-})
-  disconnect();
-  response.status(200).json(returnMovesNames);
-})
-
 module.exports = {
   read: [connect, moveExists, readMove],
   list: [connect, listMoves],
-  listNames: [connect, listMovesNames],
 };

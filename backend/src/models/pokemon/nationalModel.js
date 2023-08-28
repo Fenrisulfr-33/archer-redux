@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const nationalSchema = mongoose.Schema({
     _id: { type: Number },
+    key: { type: String },
     pokedexNumber: { type: Object },
     name: { type: Object },
     type: {

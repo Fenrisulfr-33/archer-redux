@@ -5,6 +5,7 @@
     "setup": "yarn install && cd backend && yarn install && cd ../frontend && yarn install"
   },
   "dependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "react-dom": "18.2.0"
   }
 }

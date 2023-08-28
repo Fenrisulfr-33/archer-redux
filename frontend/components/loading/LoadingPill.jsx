@@ -1,6 +1,6 @@
 import style from "./Loading.module.css";
 
-export default function Loading() {
+export default function LoadingPill() {
   return (
     <div className={style.loader}>
       <div className={style.pill}>

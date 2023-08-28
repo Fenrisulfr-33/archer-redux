@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { pokedexOnFilterSubmit } from "@/helperFunctions/pokedexOnFilterSubmit";
-import PokedexFilterInputBox from "./PokedexFilterInputBox";
 
 const FilterLabel = ({ label }) => (
   <div className="text-gray-100 italic font-bold p-2 mb-1 border-b border-purple-50">
@@ -11,9 +10,6 @@ const FilterLabel = ({ label }) => (
 );
 
 export default function PokedexListFilters({
-  inputs,
-  // onResetHandler,
-  // onFilterSubmit,
   searchRoute,
 }) {
   const router = useRouter();
@@ -80,14 +76,6 @@ export default function PokedexListFilters({
         Filters {filters ? "[close]" : "[open]"}
       </button>
       <div className={`space-y-2 ${filters ? "" : "hidden"} `}>
-        {/* <div className={`flex flex-row space-x-2 overflow-auto scrollbar-hide`}>
-          <button onClick={onResetHandler} className={`button`}>
-            Reset
-          </button>
-          <button onClick={onFilterSubmit} className={`button`}>
-            Search
-          </button>
-        </div> */}
         <div
           className={
             "text-xxs phone:text-sm text-gray-400 ml-2 italic leading-tight"
@@ -104,19 +92,6 @@ export default function PokedexListFilters({
           [Normal/Fire] give the same results.
         </div>
         <div className={`space-y-2 font-mono`}>
-          {/* {inputs.map((input, index) => {
-            return (
-              <PokedexFilterInputBox
-                key={index}
-                value={input.value}
-                setValue={input.setValue}
-                placeholder={input.placeholder}
-                list={input.list}
-                isType={input.isType}
-              />
-            );
-          })} */}
-
           <div className="flex flex-col">
             <FilterLabel label={"Pick a type"} />
             <div className="flex flex-wrap">

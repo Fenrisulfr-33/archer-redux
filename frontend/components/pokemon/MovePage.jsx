@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import DataContainer from "@/components/pokemon/DataContainer";
 import DataSection from "@/components/pokemon/DataSection";
 import DataRow from "@/components/pokemon/DataRow";
@@ -9,6 +11,9 @@ import MoveGameDropDown from "./MovePageGameDropDownTest";
 import { gameDropDown } from '../variables/pokemonDropDowns';
 
 export default function MovePage({ move, game }) {
+  console.log('move', move);
+  console.log('game', game);
+  console.log(gameDropDown);
   const router = useRouter();
   const gameInitial = () => game ? gameDropDown[game] : move.gameDropDown[0];
   const [gameSelected, setGameSelected] = useState(() => gameInitial())
@@ -44,7 +49,6 @@ export default function MovePage({ move, game }) {
           ))}
         </DataSection>
       </DataContainer>
-      {/* <AddNewComponent note={"Game drop down to select which game to use."} /> */}
       <MoveGameDropDown list={move.gameDropDown} selected={gameSelected} setSelected={handleGameSelect} placeholder={'Select a Game'}/>
       <DataContainer title={"Pokemon that learn move from level-up"}>
         <DataSection>

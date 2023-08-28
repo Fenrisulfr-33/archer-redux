@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import PokemonTableLayout from "./PokemonTableLayout";
 import PaginationLayout from "../pagination/PaginationLayout";

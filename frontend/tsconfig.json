@@ -47,7 +47,7 @@
     "tailwindcss-config.js",
     "mdx.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "app/pokemon/moves/[id]/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

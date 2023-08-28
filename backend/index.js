@@ -13,7 +13,7 @@ app.use(express.json()); // This parse the body data as JSON to be able to use r
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("The Archer Project Backend");
+  res.send("Gengar's Haunted Mansion API");
 });
 
 app.use('/pokemon', pokemonRouter);

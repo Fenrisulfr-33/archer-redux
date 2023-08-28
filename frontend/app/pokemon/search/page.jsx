@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import PokemonSearchInputBox from "@/components/pokemon/PokemonSearchInputBox";
 import { useRouter } from "next/router";
@@ -6,7 +8,6 @@ import { movesDropDownScarletViolet } from "@/components/variables/movesDropDown
 import PokedexList from "@/components/pokemon/PokedexList";
 import { search } from "@/components/variables/pokemonHeaders";
 import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
-import PokemonLayout from "../../../layout/PokemonLayout";
 
 const Box = ({ label }) => (
   <div
@@ -63,7 +64,6 @@ export default function PokemonSearchResults({ searchResults }) {
   };
 
   return (
-    <PokemonLayout>
       <div className={"flex flex-col m-2 space-y-4"}>
         <div className={`article-container`}>
           <SearchPage />
@@ -85,7 +85,6 @@ export default function PokemonSearchResults({ searchResults }) {
           pushRoute={"scarlet-violet"}
         />
       </div>
-    </PokemonLayout>
   );
 }
 

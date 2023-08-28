@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import PaginationLayout from "../pagination/PaginationLayout";
 import AbilitiesRow from "./AbilitiesRow";
