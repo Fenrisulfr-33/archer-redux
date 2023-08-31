@@ -11,7 +11,7 @@ const moveExists = asyncHandler(async (request, response, next) => {
   let move = null;
   /**
    * This ID can be either a Number Id or the name of the move
-   *   However the variable is always ID as the route doesn't change
+   * However the variable is always ID as the route doesn't change
    * This check verifies if Id is equal to a Number.
    */
   isNaN(id)
@@ -19,11 +19,10 @@ const moveExists = asyncHandler(async (request, response, next) => {
     : (move = await Moves.findById(Number(id)).lean());
 
   if (!move) {
-    // Case for if move does not exist
+    // If move does not return from DB.
     response.status(400);
     throw new Error("Move not found.");
   } else {
-    // console.log(move);
     response.locals.move = move;
     next();
   }
@@ -35,9 +34,9 @@ const moveExists = asyncHandler(async (request, response, next) => {
  * This is designed to get all the pokemon that can learn this move
  * in any form and attach it to the return move.
  * As pokemon get added this should automatically work with the updated dex.
- * @param {*} move
- * @param {*} game
- * @returns
+ * @param {String} move
+ * @param {String} game
+ * @returns Object containing pokemon that can learn move.
  */
 const getPokemonThatKnowMoveByGame = async (move, game) => {
   // Create return object.
@@ -142,7 +141,7 @@ const getMoveGameDropDown = (generation) => {
   }
 };
 
-/* ------------- CRUDL ------------ */
+/* ----------- CRUDL Ops ---------- */
 
 const readMove = asyncHandler(async (request, response) => {
   const { move } = response.locals;

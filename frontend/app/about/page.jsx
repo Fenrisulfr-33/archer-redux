@@ -1,3 +1,5 @@
+'use client';
+
 import ArticleContainer from "@/components/articles/ArticleContainer";
 import AboutPage from "@/articles/about-page.mdx";
 

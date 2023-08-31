@@ -2,9 +2,9 @@ export const pokedexOnFilterSubmit = (event, router, params, searchRoute) => {
     event.preventDefault();
 
     const queries = [];
-    params.typeOne !== '' ? queries.push(["typeOne", params.typeOne]) : null;
-    params.typeTwo !== '' ? queries.push(["typeTwo", params.typeTwo]) : null;
-    params.stat !== '' && params.sort !== '' ? queries.push([`${params.sort.toLowerCase()}`, `baseStats.${params.stat.toLowerCase()}`]) : null;
+    params.typeOne ? queries.push(["typeOne", params.typeOne]) : null;
+    params.typeTwo ? queries.push(["typeTwo", params.typeTwo]) : null;
+    params.stat && params.sort ? queries.push([`${params.sort.toLowerCase()}`, `baseStats.${params.stat.toLowerCase()}`]) : null;
 
     queries.forEach((query, index) => {
         if (query[1] !== "") {
@@ -15,5 +15,5 @@ export const pokedexOnFilterSubmit = (event, router, params, searchRoute) => {
             }
         }
     });
-    router.push(searchRoute);
+    router.push({ pathName: searchRoute });
 }

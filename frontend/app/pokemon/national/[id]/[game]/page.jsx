@@ -1,27 +1,18 @@
-import { useRouter } from "next/router";
 import PokemonPage from "@/components/pokemon/PokemonPage";
-import PokemonLayout from '@/components/layouts/PokemonLayout';
 
-export default function NationalIndByGame({ pokemon, game }) {
-  const router = useRouter();
-  return (
-    <PokemonLayout>
-      <PokemonPage
-        key={router.asPath}
-        pokemon={pokemon}
-        goBackRoute={`/pokemon/${game}/pokedex`}
-        game={game}
-      />
-    </PokemonLayout>
-  );
+const getPokemonByGame = async (id, game) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/national/${id}/${game}`);
+  const nationalDex = await response.json();
+  return nationalDex;
 }
 
-export const getServerSideProps = async (context) => {
-  const query = context.query;
-  const { id, game } = query;
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND_URL}/pokemon/national/${id}/${game}`
+export default async function NationalIndByGame({ params }) {
+  const pokemon = await getPokemonByGame(params.id, params.game)
+  return (
+      <PokemonPage
+        pokemon={pokemon}
+        goBackRoute={`/pokemon/${params.game}/pokedex`}
+        game={params.game}
+      />
   );
-  const pokemon = await response.json();
-  return { props: { pokemon, game } };
-};
+}

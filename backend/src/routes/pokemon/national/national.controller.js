@@ -8,15 +8,10 @@ const { connect, disconnect } = require("../connection");
 
 const getPokemonMoves = (pokemonMoves, dbMoves) => {
   const returnMoves = {};
-  // console.log(pokemonMoves);
   for (const [game, methodList] of Object.entries(pokemonMoves)) {
     returnMoves[game] = {};
-    // console.log(`Game: ${game} - Type: ${methodList}`);
     for (const [method, list] of Object.entries(pokemonMoves[game])) {
-      // console.log(`Method: ${method}`)
-      // console.log(`List: ${list}`)
       if (typeof list[0] === typeof {}) {
-        // console.log('object')
         const returnList = list.map((move) => {
           const foundMove = dbMoves.find(
             (dbMove) => dbMove.name.english === move.name
@@ -70,7 +65,29 @@ const getPokemonMoves = (pokemonMoves, dbMoves) => {
   return returnMoves;
 };
 
+const getPokemonForms = async (pokemonId, formsTab, dbMoves) => {
+  const returnForms = {
+    startingIndex: 0,
+    formsTab: []
+  }
+
+  for (let i = 0; i < formsTab.length; i++){
+    const form = formsTab[i];
+    if (form.id === pokemonId){
+      returnForms.startingIndex = i;
+    }
+    const pokemon = await National.findById(Number(form.id)).lean();
+    const newMoves = getPokemonMoves(pokemon.moves, dbMoves);
+    pokemon.moves = newMoves;
+    pokemon.index = i;
+    returnForms.formsTab.push(pokemon);
+  }
+
+  return returnForms;
+}
+
 /* ---------- Middleware ---------- */
+
 const pokemonExists = asyncHandler(async (request, response, next) => {
   const { id } = request.params;
   let pokemon = null;
@@ -79,9 +96,8 @@ const pokemonExists = asyncHandler(async (request, response, next) => {
     ? (pokemon = await National.findOne({ key: id }).lean())
     : (pokemon = await National.findById(Number(id)).lean());
 
-  // const pokemon = await National.findById(Number(id)).lean(); // Get the requested pokemon by natioinal dex id
   if (!pokemon) {
-    // Case for if pokemon does not exist
+    // If pokemon does not return from DB
     response.status(400);
     throw new Error("Pokemon not found.");
   } else {
@@ -96,7 +112,7 @@ const getMoves = asyncHandler(async (request, response, next) => {
   // Working on
   // const moves = await Moves.find().select('name.english type category contest pp power accuracy contact generation target effect priority').lean();
   if (!moves) {
-    // Case for if moves is not connecting
+    // If moves do not return from DB.
     response.status(400);
     throw new Error("Moves data not found, error on Server/Database side.");
   } else {
@@ -113,17 +129,12 @@ const getMoves = asyncHandler(async (request, response, next) => {
  */
 // TODO: Make this page work so when you go from a dex to that page it has the moves
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
-  const { pokemon, moves } = response.locals,
-    game = request.params.game;
-  let mainGame = null;
-  game === "isle-of-armor" || "crown-tundra"
-    ? (mainGame = "sword-shield")
-    : null;
-
-  const newMoves = mainGame
-    ? getPokemonMoves(pokemon.moves, mainGame, moves)
-    : getPokemonMoves(pokemon.moves, game, moves);
+  const { pokemon, moves } = response.locals;
+  const { game } = request.params;
+  // Reformat moves to have pop up information.
+  const newMoves = getPokemonMoves(pokemon.moves, moves);
   pokemon.moves = newMoves;
+
   disconnect();
   response.status(200).json(pokemon);
 });
@@ -142,10 +153,13 @@ const readPokemon = asyncHandler(async (request, response) => {
   pokemon.moves = getPokemonMoves(pokemon.moves, moves);
   // Get pokemon forms tab data if formsTab exists.
   if (pokemon.formsTab) {
+    const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
+    disconnect();
+    response.status(200).json(forms);
+  } else {
+    disconnect();
+    response.status(200).json(pokemon);
   }
-
-  disconnect();
-  response.status(200).json(pokemon);
 });
 /**
  *  lists all pokemon in order of national dex _id

@@ -15,11 +15,11 @@ import Link from "next/link";
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
   const router = useRouter();
   // This is for Form Changes, in the future we can limit it if there is no form change.
-  const pokemonInitial = () => pokemon;
+  const pokemonInitial = () => pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
   const gameInitial = () =>
-    game ? gameDropDown[game] : pokemon.gameDropDown[0];
+    game ? gameDropDown[game] : pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex].gameDropDown[0] : pokemon.gameDropDown[0];
   const movesInitial = () =>
-    game ? pokemon.moves[game] : pokemon.moves[pokemon.gameDropDown[0].key];
+    game ? pokemon.moves[game] : pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex].moves[pokemon.formsTab[pokemon.startingIndex].gameDropDown[0].key] : pokemon.moves[pokemon.gameDropDown[0].key];
 
   const [selectedPokemon, setSelectedPokemon] = useState(() =>
     pokemonInitial()
@@ -41,15 +41,10 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
         </div>
         {selectedPokemon.formsTab && (
           <div className="border flex flex-row space-x-2">
-            {selectedPokemon.formsTab.map((form) => (
-              <Link
-                href={`/pokemon/national/${form.id}${game ? `/${game}` : ""}`}
-                passHref
-              >
-                <button className="bg-purple-600 py-1 px-2 rounded">
+            {selectedPokemon.formsTab.map((form, index) => (
+                <button onClick={() => setSelectedPokemon(pokemon.formsTab[index])} className="bg-purple-600 py-1 px-2 rounded">
                   {form.name}
                 </button>
-              </Link>
             ))}
           </div>
         )}

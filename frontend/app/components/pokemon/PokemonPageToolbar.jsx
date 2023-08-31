@@ -9,7 +9,7 @@ export default function PokemonPageToolbar({ id, goBackRoute }) {
     >
       {id - 1 > 0 ? (
         <Link href={`/pokemon/national/${Math.floor(id - 1)}`} passHref>
-          <button className={"bg-gray-800 p-2 rounded"}>{`< ${id - 1}`}</button>
+          <button className={"bg-gray-800 p-2 rounded"}>{`< ${Math.floor(id - 1)}`}</button>
         </Link>
       ) : (
         <SiPokemon size="50" />
@@ -21,7 +21,7 @@ export default function PokemonPageToolbar({ id, goBackRoute }) {
       </Link>
       {id + 1 <= 1010 ? (
         <Link href={`/pokemon/national/${Math.floor(id + 1)}`} passHref>
-          <button className={"bg-gray-800 p-2 rounded"}>{`${id + 1} >`}</button>
+          <button className={"bg-gray-800 p-2 rounded"}>{`${Math.floor(id + 1)} >`}</button>
         </Link>
       ) : (
         <SiPokemon size="50" />

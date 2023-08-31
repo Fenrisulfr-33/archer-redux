@@ -23,13 +23,7 @@ router.route("/moves/:id").get(moves.read).all(methodNotAllowed);
 
 router.route("/moves/:id/:game").get(moves.read).all(methodNotAllowed);
 
-// router.route("/moves/:name").get(moves.read).all(methodNotAllowed);
-
-router.route("/moves/:name/:game").get(moves.read).all(methodNotAllowed);
-
 router.route("/abilities").get(abilities.list).all(methodNotAllowed);
-
-router.route("/abilities/names").get(abilities.listNames).all(methodNotAllowed);
 
 router.route("/abilities/:id").get(abilities.read).all(methodNotAllowed);
 

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -25,18 +21,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/articles/*": [
-        "articles/*"
-      ],
-      "@helperFunctions/*": [
-        "helperFunctions/*"
-      ]
+      "@/*": ["./*"],
+      "@/components/*": ["app/components/*"],
+      "@/articles/*": ["articles/*"],
+      "@helperFunctions/*": ["helperFunctions/*"]
     },
     "strictNullChecks": true
   },
@@ -46,9 +34,8 @@
     "**/*.tsx",
     "tailwindcss-config.js",
     "mdx.d.ts",
-    ".next/types/**/*.ts"
-, "app/pokemon/moves/[id]/page.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    ".next/types/**/*.ts",
+    "app/pokemon/moves/[id]/page.jsx"
+  ],
+  "exclude": ["node_modules"]
 }
