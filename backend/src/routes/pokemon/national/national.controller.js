@@ -71,19 +71,199 @@ const getPokemonForms = async (pokemonId, formsTab, dbMoves) => {
     formsTab: []
   }
 
-  for (let i = 0; i < formsTab.length; i++){
+  for (let i = 0; i < formsTab.length; i++) {
     const form = formsTab[i];
-    if (form.id === pokemonId){
+    if (form.id === pokemonId) {
       returnForms.startingIndex = i;
     }
     const pokemon = await National.findById(Number(form.id)).lean();
     const newMoves = getPokemonMoves(pokemon.moves, dbMoves);
     pokemon.moves = newMoves;
+    pokemon.baseStats = getPokemonBaseStats(pokemon.baseStats);
     pokemon.index = i;
     returnForms.formsTab.push(pokemon);
   }
 
   return returnForms;
+}
+
+const getPokemonBaseStats = (baseStats) => {
+
+  const hp = {
+    base: baseStats.hp,
+    min: minStatFormula('hp', baseStats.hp),
+    max: maxStatFormula('hp', baseStats.hp),
+    tier: getTierColor('hp', baseStats.hp),
+    width: getTierWidth('hp', baseStats.hp),
+  };
+  const atk = {
+    base: baseStats.atk,
+    min: minStatFormula('atk', baseStats.atk),
+    max: maxStatFormula('atk', baseStats.atk),
+    tier: getTierColor('atk', baseStats.atk),
+    width: getTierWidth('atk', baseStats.atk),
+  };
+  const def = {
+    base: baseStats.def,
+    min: minStatFormula('def', baseStats.def),
+    max: maxStatFormula('def', baseStats.def),
+    tier: getTierColor('def', baseStats.def),
+    width: getTierWidth('def', baseStats.def),
+  };
+  const spatk = {
+    base: baseStats.spatk,
+    min: minStatFormula('spatk', baseStats.spatk),
+    max: maxStatFormula('spatk', baseStats.spatk),
+    tier: getTierColor('spatk', baseStats.spatk),
+    width: getTierWidth('spatk', baseStats.spatk),
+  };
+  const spdef = {
+    base: baseStats.spatk,
+    min: minStatFormula('spdef', baseStats.spdef),
+    max: maxStatFormula('spdef', baseStats.spdef),
+    tier: getTierColor('spdef', baseStats.spdef),
+    width: getTierWidth('spdef', baseStats.spdef),
+  };
+  const spd = {
+    base: baseStats.spd,
+    min: minStatFormula('spd', baseStats.spd),
+    max: maxStatFormula('spd', baseStats.spd),
+    tier: getTierColor('spd', baseStats.spd),
+    width: getTierWidth('spd', baseStats.spd),
+  };
+  return {
+    hp,
+    atk,
+    def,
+    spatk,
+    spdef,
+    spd,
+    total: baseStats.total,
+  }
+}
+
+const hpFormula = (baseStat, IV, EV, level) => {
+  return Math.floor(
+    ((2 * baseStat + IV + EV / 4) * level) / 100 + level + 10
+  );
+};
+
+const otherStat = (baseStat, IV, EV, level, nature) => {
+  return Math.floor(
+    (((2 * baseStat + IV + EV / 4) * level) / 100 + 5) * nature
+  );
+};
+
+const minStatFormula = (title, stat) => {
+  if (title === "hp") {
+    return hpFormula(stat, 0, 0, 100);
+  } else {
+    return otherStat(stat, 0, 0, 100, 0.9);
+  }
+};
+
+const maxStatFormula = (title, stat) => {
+  if (title === "hp") {
+    return hpFormula(stat, 31, 252, 100);
+  } else {
+    return otherStat(stat, 31, 252, 100, 1.1);
+  }
+};
+
+const getTierColor = (title, stat) => {
+  let tierColor = '';
+  const tier = {
+    one: "bg-green-600",
+    two: "bg-green-400",
+    three: "bg-green-300",
+    four: "bg-sky-500",
+    five: "bg-sky-300",
+    six: "bg-purple-200",
+    seven: "bg-purple-50",
+    seven: "bg-black",
+  };
+
+  if (title === 'hp') {
+    if (stat > 0) { tierColor = tier.one };
+    if (stat > 42.5) { tierColor = tier.two };
+    if (stat > 85) { tierColor = tier.three };
+    if (stat > 127.5) { tierColor = tier.four };
+    if (stat > 170) { tierColor = tier.five };
+    if (stat > 212.5) { tierColor = tier.six };
+  } else if (title === 'atk' || title === 'spatk') {
+    if (stat > 0) { tierColor = tier.one };
+    if (stat > 30) { tierColor = tier.two };
+    if (stat > 60) { tierColor = tier.three };
+    if (stat > 90) { tierColor = tier.four };
+    if (stat > 120) { tierColor = tier.five };
+    if (stat > 150) { tierColor = tier.six };
+  } else if (title === 'def' || title === 'spdef') {
+    if (stat > 0) { tierColor = tier.one };
+    if (stat > 38.3) { tierColor = tier.two };
+    if (stat > 76.6) { tierColor = tier.three };
+    if (stat > 114.9) { tierColor = tier.four };
+    if (stat > 153.2) { tierColor = tier.five };
+    if (stat > 191.5) { tierColor = tier.six };
+  } else if (title === 'spd') {
+    if (stat > 0) { tierColor = tier.one };
+    if (stat > 33.3) { tierColor = tier.two };
+    if (stat > 66.6) { tierColor = tier.three };
+    if (stat > 99.9) { tierColor = tier.four };
+    if (stat > 133.2) { tierColor = tier.five };
+    if (stat > 166.5) { tierColor = tier.six };
+  }
+  return tierColor;
+}
+
+const getTierWidth = (title, stat) => {
+  if (title === "hp") {
+    const statRounded = Math.round([stat * 100] / 255);
+    return getStatWidth(statRounded);
+  } else if (title === "atk" || title === "spatk") {
+    const statRounded = Math.round([stat * 100] / 180);
+    return getStatWidth(statRounded);
+  } else if (title === "def" || title === "spdef") {
+    const statRounded = Math.round([stat * 100] / 230);
+    return getStatWidth(statRounded);
+  } else if (title === "spd") {
+    const statRounded = Math.round([stat * 100] / 200);
+    return getStatWidth(statRounded);
+  }
+}
+
+const getStatWidth = (width) => {
+  let returnWidth = '';
+
+  if (width === 0) {
+    returnWidth = 'w-[1px]'
+  } else if (width <= 9) {
+    returnWidth = 'w-1/8';
+  } else if (width <= 17) {
+    returnWidth = 'w-1/6';
+  } else if (width <= 20) {
+    returnWidth = 'w-1/5';
+  } else if (width <= 25) {
+    returnWidth = 'w-1/4';
+  } else if (width <= 34) {
+    returnWidth = 'w-1/3';
+  } else if (width <= 40) {
+    returnWidth = 'w-2/5';
+  } else if (width <= 50) {
+    returnWidth = 'w-1/2';
+  } else if (width <= 59) {
+    returnWidth = 'w-7/12';
+  } else if (width <= 67) {
+    returnWidth = 'w-2/3';
+  } else if (width <= 75) {
+    returnWidth = 'w-3/4';
+  } else if (width <= 84) {
+    returnWidth = 'w-5/6';
+  } else if (width <= 91) {
+    returnWidth = 'w-11/12';
+  } else if (width <= 100) {
+    returnWidth = 'w-full';
+  }
+  return returnWidth;
 }
 
 /* ---------- Middleware ---------- */
@@ -121,6 +301,14 @@ const getMoves = asyncHandler(async (request, response, next) => {
   }
 });
 
+const reformatPokemonBaseStats = asyncHandler(async (request, response, next) => {
+  const { pokemon } = response.locals;
+  pokemon.baseStats = getPokemonBaseStats(pokemon.baseStats);
+
+  response.locals.pokemon = pokemon;
+  next();
+});
+
 /**
  *  Finds a pokemon base upon its national dex _id,
  *  and reassigns its move values as object with
@@ -131,6 +319,7 @@ const getMoves = asyncHandler(async (request, response, next) => {
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
   const { game } = request.params;
+  console.log('readByGame');
   // Reformat moves to have pop up information.
   const newMoves = getPokemonMoves(pokemon.moves, moves);
   pokemon.moves = newMoves;
@@ -147,16 +336,19 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
  *  basic move information
  * @returns {JSON} all data for a specific Pokemon
  */
-const readPokemon = asyncHandler(async (request, response) => {
+const readPokemon = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
-  // Get more detailed information for each pokemon move for MoveModal.
-  pokemon.moves = getPokemonMoves(pokemon.moves, moves);
+  console.log('alteredBaseStats', pokemon.baseStats);
   // Get pokemon forms tab data if formsTab exists.
   if (pokemon.formsTab) {
     const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
     disconnect();
     response.status(200).json(forms);
   } else {
+    console.log('here');
+    // Get more detailed information for each pokemon move for MoveModal.
+    pokemon.moves = getPokemonMoves(pokemon.moves, moves);
+
     disconnect();
     response.status(200).json(pokemon);
   }
@@ -205,7 +397,7 @@ const listNational = asyncHandler(async (request, response) => {
 });
 
 module.exports = {
-  read: [connect, pokemonExists, getMoves, readPokemon],
+  read: [connect, pokemonExists, getMoves,reformatPokemonBaseStats, readPokemon],
   readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
   list: [connect, listNational],
 };

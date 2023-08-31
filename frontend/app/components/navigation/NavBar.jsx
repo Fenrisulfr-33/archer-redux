@@ -16,31 +16,33 @@ export default function NavBar() {
         <div className="font-mono">
           <div
             className={
-              "grid grid-flow-col justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
+              "flex flex-row justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
             }
           >
-            <Link href={'/'} passHref>
-            <button className={tabBarButton}>
-              <AiTwotoneHome size="25" />
-              <div className={tabBarTitle}>Home</div>
+            <button className="w-1/3">
+              <Link href={"/"} passHref>
+                <div className={tabBarButton}>
+                  <AiTwotoneHome size="25" />
+                  <div className={tabBarTitle}>Home</div>
+                </div>
+              </Link>
             </button>
-            </Link>
-            <Link href={"/pokemon"} passHref>
-            <button
-              className={tabBarButton}
-            >
-              <MdCatchingPokemon size="25" />
-              <div className={tabBarTitle}>Pokemon</div>
+            <button className="w-1/3">
+              <Link href={"/pokemon"} passHref>
+                <div className={tabBarButton}>
+                  <MdCatchingPokemon size="25" />
+                  <div className={tabBarTitle}>Pokemon</div>
+                </div>
+              </Link>
             </button>
-            </Link>
-            <Link href={"/articles"} passHref>
-            <button
-              className={tabBarButton}
-            >
-              <BsNewspaper size="25" />
-              <div className={tabBarTitle}>Articles</div>
+            <button className="w-1/3">
+              <Link href={"/articles"} passHref>
+                <div className={tabBarButton}>
+                  <BsNewspaper size="25" />
+                  <div className={tabBarTitle}>Articles</div>
+                </div>
+              </Link>
             </button>
-            </Link>
           </div>
         </div>
       </div>
@@ -60,7 +62,7 @@ export default function NavBar() {
           text={"Articles"}
           route={"/articles"}
         />
-                <NavBarIcon
+        <NavBarIcon
           icon={<BsInfoCircleFill size="28" />}
           text={"About"}
           route={"/about"}

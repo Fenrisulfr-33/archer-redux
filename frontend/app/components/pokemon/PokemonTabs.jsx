@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -26,23 +26,23 @@ export default function PokemonTabs() {
 
   const tabBarTitle = "text-sm";
   const tabBarButton =
-    "flex flex-col rounded border border-gray-900 p-1 items-center text-purple-100 bg-gray-800";
+    "w-1/4 flex flex-col rounded border border-gray-900 p-1 items-center text-purple-100 bg-gray-800";
 
   return (
     <div className="relative m-2 font-mono">
       <div
         className={
-          "grid grid-flow-col justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
+          "flex flex-row justify-stretch space-x-1 bg-gray-600 rounded border-2 p-1 border-purple-100"
         }
-      > 
-      <Link href="/pokemon" passHref>
-        <button
-          className={tabBarButton}
-        >
-          <AiTwotoneHome size="25" />
-          <div className={tabBarTitle}>Pokemon</div>
+      >
+        <button className="w-1/4">
+          <Link href="/pokemon" passHref>
+            <div className="flex flex-col rounded border border-gray-900 p-1 items-center text-purple-100 bg-gray-800">
+              <AiTwotoneHome size="25" />
+              <div className={tabBarTitle}>Pokemon</div>
+            </div>
+          </Link>
         </button>
-        </Link>
         <button
           className={tabBarButton}
           onClick={() => handleMenuButton(dataMenu)}
@@ -68,15 +68,15 @@ export default function PokemonTabs() {
       <div
         className={`${
           menuOpen ? "" : "hidden"
-        } absolute w-full bg-gray-600 flex flex-col mt-1 rounded border border-purple-50`}
+        } flex flex-col absolute w-full bg-gray-700 items-center mt-1 p-4 rounded border border-purple-50 space-y-4`}
       >
+        <button className="p-2 rounded hover:shadow-dark-selected bg-purple-50 border border-gray-900 text-gray-900 font-extrabold" onClick={() => setMenuOpen(false)} >{'[close]'}</button>
         {selectedMenu.map((menuItem) => (
-          <Link href={menuItem.route} passHref>
-          <button
-            className="m-1 p-2 rounded hover:bg-purple-200 hover:border-2 hover:border-gray-900 hover:text-gray-900 hover:font-bold hover:shadow-sm hover:shadow-purple-50 bg-gray-800 border border-gray-900 text-purple-100"
-          >
-            {menuItem.title}
-          </button></Link>
+          <button className="w-full p-2 rounded hover:shadow-selected bg-gray-900 border border-purple-50 text-purple-100" onClick={() => setMenuOpen(false)}>
+            <Link href={menuItem.route} passHref className="not-italic">
+              {menuItem.title}
+            </Link>
+          </button>
         ))}
       </div>
     </div>

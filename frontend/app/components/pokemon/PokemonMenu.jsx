@@ -69,20 +69,20 @@ export default function PokemonMenu({ searchList }) {
   return (
     <div>
       <div className={"flex flex-col tablet:hidden"}>
-        <PokemonTabs />
         <PokemonSearchBar
           setSelected={onSubmit}
           list={searchList}
           placeholder={"Search"}
         />
+        <PokemonTabs />
       </div>
       <div className="hidden tablet:flex flex-col ">
-      <PokemonSearchBar
+        <PokemonSearchBar
           setSelected={onSubmit}
           list={searchList}
           placeholder={"Search"}
         />
-      <div className="font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
+        <div className="font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
           <SideBarIcon route={"/pokemon"} text={"Pokemon Home"} />
           {menus.map((menuItem) => (
             <div
@@ -104,7 +104,7 @@ export default function PokemonMenu({ searchList }) {
             </div>
           ))}
         </div>
-        </div>
+      </div>
     </div>
   );
 }

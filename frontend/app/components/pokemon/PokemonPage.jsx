@@ -1,6 +1,5 @@
-'use client';
+"use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PokemonBaseStats from "./PokemonBaseStats";
 import PokemonTypeWeaknesses from "./PokemonTypeWeaknesses";
@@ -13,13 +12,25 @@ import { gameDropDown } from "../variables/pokemonDropDowns";
 import Link from "next/link";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
-  const router = useRouter();
+  console.log("baseStats", pokemon.baseStats);
+  console.log("formsTab", pokemon.formsTab);
   // This is for Form Changes, in the future we can limit it if there is no form change.
-  const pokemonInitial = () => pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
+  const pokemonInitial = () =>
+    pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
   const gameInitial = () =>
-    game ? gameDropDown[game] : pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex].gameDropDown[0] : pokemon.gameDropDown[0];
+    game
+      ? gameDropDown[game]
+      : pokemon.formsTab
+      ? pokemon.formsTab[pokemon.startingIndex].gameDropDown[0]
+      : pokemon.gameDropDown[0];
   const movesInitial = () =>
-    game ? pokemon.moves[game] : pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex].moves[pokemon.formsTab[pokemon.startingIndex].gameDropDown[0].key] : pokemon.moves[pokemon.gameDropDown[0].key];
+    game
+      ? pokemon.moves[game]
+      : pokemon.formsTab
+      ? pokemon.formsTab[pokemon.startingIndex].moves[
+          pokemon.formsTab[pokemon.startingIndex].gameDropDown[0].key
+        ]
+      : pokemon.moves[pokemon.gameDropDown[0].key];
 
   const [selectedPokemon, setSelectedPokemon] = useState(() =>
     pokemonInitial()
@@ -35,17 +46,27 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
   return (
     <div className={"flex flex-col m-2 font-mono text-center text-white"}>
       <div className={"col-flex space-y-2"}>
-        <PokemonPageToolbar id={selectedPokemon._id} goBackRoute={goBackRoute} />
+        <PokemonPageToolbar
+          id={selectedPokemon._id}
+          goBackRoute={goBackRoute}
+        />
         <div className="text-5xl font-bold rounded text-center py-5 bg-gradient-to-r from-purple-100 to-purple-600">
           {selectedPokemon.name.english}
         </div>
         {selectedPokemon.formsTab && (
-          <div className="border flex flex-row space-x-2">
-            {selectedPokemon.formsTab.map((form, index) => (
-                <button onClick={() => setSelectedPokemon(pokemon.formsTab[index])} className="bg-purple-600 py-1 px-2 rounded">
+          <div className=" bg-gray-700 flex flex-row rounded border-2 border-purple-100">
+            <div className="p-2 space-x-2">
+              {selectedPokemon.formsTab.map((form, index) => (
+                <button
+                  onClick={() => setSelectedPokemon(pokemon.formsTab[index])}
+                  className={`bg-gray-900 rounded-lg py-2 px-4 m-1 text-gray-100 border-2 border-purple-50 ${
+                    form.id === selectedPokemon._id ? " shadow-selected" : ""
+                  }`}
+                >
                   {form.name}
                 </button>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 

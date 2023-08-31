@@ -11,14 +11,10 @@ import MoveGameDropDown from "./MovePageGameDropDownTest";
 import { gameDropDown } from '../variables/pokemonDropDowns';
 
 export default function MovePage({ move, game }) {
-  console.log('move', move);
-  console.log('game', game);
-  console.log(gameDropDown);
   const router = useRouter();
   const gameInitial = () => game ? gameDropDown[game] : move.gameDropDown[0];
   const [gameSelected, setGameSelected] = useState(() => gameInitial())
   const handleGameSelect = (event) => {
-    console.log('event', event);
     router.push(`/pokemon/moves/${move._id}/${event.key}`);
   }
 

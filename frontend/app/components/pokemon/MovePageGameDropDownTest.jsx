@@ -29,7 +29,6 @@ export default function MoveGameDropDown({
             className={`bg-gray-900 w-11/12 p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
             displayValue={(value) => value.title}
             onChange={(event) => {
-              console.log("event", event);
               setQuery(event.target.value);
               // setSelected(event.target.value)
             }}

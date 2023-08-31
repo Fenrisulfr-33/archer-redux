@@ -1,3 +1,4 @@
+import { gameNames } from "../variables/gameNames"
 import { gameColors } from "../variables/gameColors";
 
 export default function PokedexEntries({ entries }) {
@@ -14,18 +15,20 @@ export default function PokedexEntries({ entries }) {
             {form}
           </div>
         </div>
+        <div className="">
         {desc.map((row) => (
-          <div key={row.game} className="flex flex-row">
+          <div key={row.game} className="flex flex-col tablet:flex-row">
             <div
-              className={`font-extrabold w-2/12 p-1 m-1 bg-opacity-80 rounded ${
+              className={`font-extrabold w-full tablet:w-2/12 p-1 mx-auto my-1 bg-opacity-80 rounded ${
                 gameColors[row.game]
               }`}
             >
-              {row.game}
+              {gameNames[row.game]}
             </div>
-            <div className={"break-words w-10/12 p-1 m-1"}>{row.desc}</div>
+            <div className={"break-words w-full tablet:w-10/12 p-1 m-1"}>{row.desc}</div>
           </div>
         ))}
+        </div>
       </div>
     );
   }

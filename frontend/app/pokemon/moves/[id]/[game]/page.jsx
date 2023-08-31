@@ -1,16 +1,12 @@
-import { useRouter } from "next/navigation";
 import MovePage from "@/components/pokemon/MovePage";
 
-export default function MoveInd({ move, game }) {
-  const router = useRouter();
-  return <MovePage key={router.asPath} move={move} game={game} />;
+const getMoveByGame = async (id, game) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/moves/${id}/${game}`);
+  const move = await response.json();
+  return move;
 }
 
-export const getServerSideProps = async (context) => {
-  const { id, game } = context.query;
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND_URL}/pokemon/moves/${id}/${game}`
-  );
-  const move = await response.json();
-  return { props: { move, game } };
-};
+export default async function MoveByGame({ params }) {
+  const moveByGame = await getMoveByGame(params.id, params.game);
+  return <MovePage move={moveByGame} game={params.game} />;
+}
