@@ -218,16 +218,20 @@ const getTierColor = (title, stat) => {
 const getTierWidth = (title, stat) => {
   if (title === "hp") {
     const statRounded = Math.round([stat * 100] / 255);
-    return getStatWidth(statRounded);
+    return statRounded;
+    // return getStatWidth(statRounded);
   } else if (title === "atk" || title === "spatk") {
     const statRounded = Math.round([stat * 100] / 180);
-    return getStatWidth(statRounded);
+    return statRounded;
+    // return getStatWidth(statRounded);
   } else if (title === "def" || title === "spdef") {
     const statRounded = Math.round([stat * 100] / 230);
-    return getStatWidth(statRounded);
+    return statRounded;
+    // return getStatWidth(statRounded);
   } else if (title === "spd") {
     const statRounded = Math.round([stat * 100] / 200);
-    return getStatWidth(statRounded);
+    return statRounded;
+    // return getStatWidth(statRounded);
   }
 }
 
@@ -319,7 +323,6 @@ const reformatPokemonBaseStats = asyncHandler(async (request, response, next) =>
 const readPokemonByGame = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
   const { game } = request.params;
-  console.log('readByGame');
   // Reformat moves to have pop up information.
   const newMoves = getPokemonMoves(pokemon.moves, moves);
   pokemon.moves = newMoves;
@@ -338,14 +341,12 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
  */
 const readPokemon = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
-  console.log('alteredBaseStats', pokemon.baseStats);
   // Get pokemon forms tab data if formsTab exists.
   if (pokemon.formsTab) {
     const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
     disconnect();
     response.status(200).json(forms);
   } else {
-    console.log('here');
     // Get more detailed information for each pokemon move for MoveModal.
     pokemon.moves = getPokemonMoves(pokemon.moves, moves);
 

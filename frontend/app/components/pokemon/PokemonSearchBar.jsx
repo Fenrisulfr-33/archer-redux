@@ -30,7 +30,6 @@ export default function PokemonSearchBar({
             className={`bg-gray-900 w-full p-2 text-sm text-gray-300 placeholder-gray-500 rounded-md`}
             displayValue={(value) => value.name}
             onChange={(event) => {
-              console.log("event here", event);
               setQuery(event.target.value);
             }}
             placeholder={placeholder}

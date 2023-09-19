@@ -16,7 +16,7 @@ export default function BaseStat({ title, stat }) {
         </div>
       </div>
       <div className={"w-8/12"}>
-        <div className={`rounded-md h-full ${stat.tier} ${stat.width}`}>
+        <div className={`rounded-md h-full ${stat.tier}`} style={{ width: `${stat.width}%` }}>
         <span className="inline-block"></span>
         </div>
       </div>

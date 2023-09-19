@@ -63,7 +63,6 @@ export default function PokemonMenu({ searchList }) {
   const router = useRouter();
   const onSubmit = (event) => {
     router.push(`/pokemon/${event.route}`);
-    console.log("event", event);
   };
 
   return (

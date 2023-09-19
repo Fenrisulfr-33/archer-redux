@@ -9,11 +9,11 @@ import PokemonPageToolbar from "./PokemonPageToolbar";
 import PokemonPageGameDropDown from "./PokemonPageGameDropDown";
 import PokemonPageInfoSection from "./PokemonPageInfoSection";
 import { gameDropDown } from "../variables/pokemonDropDowns";
+import MoveGameDropDown from "./MovePageGameDropDownTest";
+
 import Link from "next/link";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
-  console.log("baseStats", pokemon.baseStats);
-  console.log("formsTab", pokemon.formsTab);
   // This is for Form Changes, in the future we can limit it if there is no form change.
   const pokemonInitial = () =>
     pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
@@ -76,11 +76,17 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           typeTwo={selectedPokemon.type?.two}
         />
         <PokemonBaseStats stats={selectedPokemon.baseStats} />
-        <PokemonPageGameDropDown
+        {/* <PokemonPageGameDropDown
           selected={selectedGame}
           setSelected={changeSelectedGame}
           placeholder={`Default: ${selectedGame.title} - select a game`}
           list={selectedPokemon.gameDropDown}
+        /> */}
+        <MoveGameDropDown
+          list={selectedPokemon.gameDropDown}
+          selected={selectedGame}
+          setSelected={changeSelectedGame}
+          placeholder={"Select a Game"}
         />
         <PokemonMovesListByType
           moves={selectedMoves}

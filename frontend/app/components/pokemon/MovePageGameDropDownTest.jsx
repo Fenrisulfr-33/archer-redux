@@ -60,7 +60,7 @@ export default function MoveGameDropDown({
                 <Combobox.Option
                   key={value.query}
                   className={({ active }) =>
-                    ` cursor-default select-none m-2 w-auto ${
+                    ` cursor-default select-none m-2 w-auto rounded ${
                       gameColors[value.key]
                     }  ${active ? `font-bold border-2 border-gray-100` : ``}`
                   }
