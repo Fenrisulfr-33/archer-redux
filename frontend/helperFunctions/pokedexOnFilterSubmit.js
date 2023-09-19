@@ -15,5 +15,5 @@ export const pokedexOnFilterSubmit = (event, router, params, searchRoute) => {
             }
         }
     });
-    router.push({ pathName: searchRoute });
+    router.push(searchRoute);
 }

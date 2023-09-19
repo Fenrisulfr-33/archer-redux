@@ -24,7 +24,7 @@ export default function NationalDexFilters({ searchRoute }) {
     setSortSelected("");
     setStatSelected("");
     if (asPath !== searchRoute) {
-      router.push({ pathName: searchRoute });
+      router.push(searchRoute);
     }
   };
   // When filter search is clicked

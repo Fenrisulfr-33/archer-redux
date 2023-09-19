@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Link from "next/link";
 import PokemonTabs from "./PokemonTabs";
 import PokemonSearchBar from "./PokemonSearchBar";
@@ -32,6 +31,14 @@ const genEightMenu = [
   { title: "Isle of Armor Dex.", route: "/pokemon/isle-of-armor/pokedex" },
   { title: "Crown Tundra Dex.", route: "/pokemon/crown-tundra/pokedex" },
 ];
+const genFourMenu = [
+  { title: "Platinum Dex.", route: "/pokemon/platinum/pokedex" },
+  { title: "Diamond & Pearl Dex.", route: "/pokemon/diamond-pearl/pokedex" },
+];
+const genThreeMenu = [
+  { title: "Emerald Dex.", route: "/pokemon/emerald/pokedex" },
+  { title: "Ruby & Sapphire Dex.", route: "/pokemon/ruby-sapphire/pokedex" },
+];
 const genTwoMenu = [
   { title: "Crystal Dex.", route: "/pokemon/crystal/pokedex" },
   { title: "Gold & Silver Dex.", route: "/pokemon/gold-silver/pokedex" },
@@ -45,13 +52,15 @@ const menus = [
   { title: "Mechanics", list: mechanicsMenu },
   { title: "Gen. 9", list: genNineMenu },
   { title: "Gen. 8", list: genEightMenu },
+  { title: "Gen. 4", list: genFourMenu },
+  { title: "Gen. 3", list: genThreeMenu },
   { title: "Gen. 2", list: genTwoMenu },
   { title: "Gen. 1", list: genOneMenu },
 ];
 
 const SideBarIcon = ({ text, route }) => {
   return (
-    <Link href={route} passHref>
+    <Link href={route} scroll={false} passHref>
       <button className="bg-purple-500 text-gray-100 py-0.5 px-3 rounded transition ease-in-out hover:translate-x-4 hover:bg-purple-100 hover:font-bold duration-300">
         {text}
       </button>

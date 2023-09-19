@@ -14,7 +14,7 @@ const listDex = asyncHandler(async (request, response) => {
 
   let gameDex = [];
 
-  const gameSelect = "pokedexNumber name type abilities baseStats";
+  const gameSelect = `pokedexNumber name.english type abilities baseStats`;
 
   // Checks for pokemon types from parameters
   let typeStatment = null;
