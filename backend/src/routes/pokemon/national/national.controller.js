@@ -92,12 +92,12 @@ const getPokemonBaseStats = (baseStats) => {
    * Declare rounded stats to get width
    *  and pass into tierColor function
    */
-  const hpWidth = Math.round([stat * 100] / 255);
-  const atkWidth = Math.round([stat * 100] / 180);
-  const spatkWidth = Math.round([stat * 100] / 180);
-  const defWidth = Math.round([stat * 100] / 230);
-  const spdefWidth = Math.round([stat * 100] / 230);
-  const spdWidth = Math.round([stat * 100] / 200);
+  const hpWidth = Math.round([baseStats.hp * 100] / 255);
+  const atkWidth = Math.round([baseStats.atk * 100] / 180);
+  const spatkWidth = Math.round([baseStats.def * 100] / 180);
+  const defWidth = Math.round([baseStats.spatk * 100] / 230);
+  const spdefWidth = Math.round([baseStats.spdef * 100] / 230);
+  const spdWidth = Math.round([baseStats.spd * 100] / 200);
 
   const hp = {
     base: baseStats.hp,
@@ -191,21 +191,20 @@ const getTierColor = (stat) => {
     five: "bg-sky-300",
     six: "bg-purple-200",
   };
-
-  if (stat <= 100) {
-    tierColor = tier.six;
-  } else if (stat <= 83) {
-    tierColor = tier.five;
-  } else if (stat < 66.4) {
-    tierColor = tier.four;
-  } else if (stat < 49.8) {
-    tierColor = tier.three;
-  } else if (stat < 33.2) {
-    tierColor = tier.two;
-  } else if (stat < 16.6) {
+  
+  if (stat <= 16.6) {
     tierColor = tier.one;
-  }
-
+  } else if (16.6 < stat && stat < 33.2) {
+    tierColor = tier.two;
+  } else if (33.2 < stat && stat < 49.8) {
+    tierColor = tier.three;
+  } else if (49.8 < stat && stat < 66.4) {
+    tierColor = tier.four;
+  } else if (66.4 < stat && stat < 83) {
+    tierColor = tier.five;
+  } else if (83 <= stat && stat < 100) {
+    tierColor = tier.six;
+  }  
   return tierColor;
 }
 
@@ -305,7 +304,7 @@ const listNational = asyncHandler(async (request, response) => {
   // Create return array to avoid repetitive code
   let national = [];
   // Creates whats returned from model
-  const nationalSelect = "name.english type abilities baseStats";
+  const nationalSelect = "key name.english type abilities baseStats";
   // Create sorting object for array return
   const sort = asc ? { [asc]: 1 } : desc ? { [desc]: -1 } : { _id: 1 };
   // Checks for pokemon types from parameters

@@ -11,15 +11,18 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
     abilities,
   } = pokemon;
   const stats = [total, hp, atk, def, spatk, spdef, spd];
-
+  const abilityRoute = '/pokemon/abilities/';
+  const abilityOne = abilities?.one?.name.toLowerCase().replaceAll(' ', '-');
+  const abilityTwo = abilities?.two?.name.toLowerCase().replaceAll(' ', '-');
+  const abilityHidden = abilities?.hidden?.name.toLowerCase().replaceAll(' ', '-');
   return (
-    <tr className="text-center odd:bg-gray-600 hover:bg-gray-900 hover:font-bold">
+    <tr className="table-row">
       {national ? <td className="p-2">{_id}</td> : <><td>{dexNo}</td><td>{_id}</td></>}
       <td className="p-2">
         <Link
           href={`/pokemon/national/${_id}/${pushRoute}`}
           passhref="true"
-          className="font-extrabold not-italic"
+          className="text-purple-0 font-bold hover:text-purple-50"
         >
           {name.english}
         </Link>
@@ -56,9 +59,9 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
       </td>
       <td className="p-2">
         <div className="flex flex-col">
-          <div className=""><Link href="" className="not-italic">{abilities?.one?.name}</Link></div>
-          <div className="">{abilities?.two?.name}</div>
-          <div className="italic">{abilities?.hidden?.name}</div>
+          <div><Link href={`${abilityRoute}${abilityOne}`} className="text-purple-0 font-bold hover:text-purple-50">{abilities?.one?.name}</Link></div>
+          <div><Link href={`${abilityRoute}${abilityTwo}`} className="text-purple-0 font-bold hover:text-purple-50">{abilities?.two?.name}</Link></div>
+          <div><Link href={`${abilityRoute}${abilityHidden}`} className="italic text-purple-0 font-bold hover:text-purple-50">{abilities?.hidden?.name}</Link></div>
         </div>
       </td>
       {stats.map((stat, index) => (

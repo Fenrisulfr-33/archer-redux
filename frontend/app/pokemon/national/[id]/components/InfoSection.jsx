@@ -122,7 +122,7 @@ const InfoRow = ({ title, info, ability }) => (
     {ability ? (
       <Link
         href={`/pokemon/abilities/${info.id}`}
-        className={`${ability ? "italic" : null}`}
+        className={`text-purple-0 font-bold hover:text-purple-50`}
         passHref
       >
         {info.name}

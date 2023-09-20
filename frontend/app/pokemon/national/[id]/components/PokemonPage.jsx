@@ -11,6 +11,7 @@ import GameDropDown from "@/components/pokemon/GameDropDown";
 import { pokemonGameDropDown } from "@/constants/pokemonGameDropDown";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
+  console.log(pokemon.gameDropDown)
   const pokemonInitial = () =>
     pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
   const gameInitial = () => {
@@ -20,7 +21,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
       if (pokemon.formsTab){
         return pokemon.formsTab[pokemon.startingIndex].gameDropDown[0]
       } else {
-        if (pokemon.gameDropDown[0]){
+        if (pokemon.gameDropDown.length > 0){
           return pokemon.gameDropDown[0]
         }
       }

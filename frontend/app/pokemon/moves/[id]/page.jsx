@@ -1,4 +1,4 @@
-import MovePage from "@/components/pokemon/MovePage";
+import MovePage from "./components/MovePage";
 
 const getMove = async (id) => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/moves/${id}`);

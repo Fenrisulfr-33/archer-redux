@@ -1,4 +1,5 @@
-import AbilitiesPage from "@/components/pokemon/AbilitiesPage";
+// import AbilitiesPage from "@/components/pokemon/AbilitiesPage";
+import AbilitiesPage from "./components/AbilityPage";
 
 const getAbility = async (id) => {
   const response = await fetch(
