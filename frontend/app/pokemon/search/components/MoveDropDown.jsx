@@ -1,9 +1,8 @@
-'use client';
-
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
+import { BsChevronExpand } from "react-icons/bs";
 
-export default function PokemonSearchBar({
+export default function MoveDropDown({
   selected,
   setSelected,
   placeholder,
@@ -12,27 +11,33 @@ export default function PokemonSearchBar({
   const [query, setQuery] = useState("");
 
   const filteredList =
-    query.length < 3
-      ? []
+    query === ""
+      ? list
       : list.filter((value) =>
-          value.name
+          value.name.english
             .toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
   return (
-    <div className={`relative m-2`}>
+    <div className={` m-2`}>
       <Combobox value={selected} onChange={setSelected}>
         <div className="bg-gray-900 row-flex justify-between cursor-default border-2 border-purple-100 overflow-hidden rounded-md ">
           <Combobox.Input
-            className={`bg-gray-900 w-full p-2 text-sm text-gray-300 placeholder-gray-500 rounded-md`}
-            displayValue={(value) => value.name}
+            className={`bg-gray-900 w-11/12 p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
+            displayValue={(value) => value?.name?.english}
             onChange={(event) => {
               setQuery(event.target.value);
             }}
             placeholder={placeholder}
           />
+          <Combobox.Button className="flex items-center justify-center bg-gray-800 rounded-md m-1 w-1/12">
+            <BsChevronExpand
+              className="h-5 w-5 text-gray-300"
+              aria-hidden="true"
+            />
+          </Combobox.Button>
         </div>
         <Transition
           as={Fragment}
@@ -42,20 +47,22 @@ export default function PokemonSearchBar({
           afterLeave={() => setQuery("")}
         >
           <Combobox.Options
-            className={`absolute w-full mt-1 phone:test-base max-h-60 overflow-auto bg-gray-900 scrollbar-hide`}
+            className={`absolute w-full mt-1 phone:test-base max-h-60 overflow-auto border-purple-400 border-2 rounded-md bg-gray-900 scrollbar-hide`}
           >
             {filteredList.length === 0 && query !== "" ? (
-              <div></div>
+              <div className="relative cursor-default select-none text-gray-300 p-2">
+                Nothing found.
+              </div>
             ) : (
               filteredList.map((value) => (
                 <Combobox.Option
                   key={value.query}
                   className={({ active }) =>
-                    ` cursor-default select-none m-2 w-auto ${active ? `font-bold border-2 border-gray-100` : ``}`
+                    ` cursor-default select-none m-2 w-auto rounded ${active ? `font-bold border-2 border-gray-100` : ``}`
                   }
-                  value={value}
+                  value={value.name.english}
                 >
-                  <div className={`truncate`}>{value.name}</div>
+                  <span className={`block truncate`}>{value.name.english}</span>
                 </Combobox.Option>
               ))
             )}

@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from "react";
-import PaginationLayout from "../pagination/PaginationLayout";
+import PaginationLayout from "@/components/pagination/PaginationLayout";
 import AbilitiesRow from "./AbilitiesRow";
-import { abilities } from "../variables/pokemonHeaders";
-import PokemonTableLayout from "./PokemonTableLayout";
+import { abilities } from "@/constants/pokemonHeaders";
+import PokemonTableLayout from "@/components/pokemon/PokemonTableLayout";
 
-export default function AllAbilitiesList({ list }) {
+export default function AbilitiesList({ list }) {
   // Pagination
   const [recordsPerPage, setRcordsPerPage] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +24,7 @@ export default function AllAbilitiesList({ list }) {
       children={
         <PokemonTableLayout
           thead={abilities.map((header, index) => (
-            <th key={index} className="text-left">
+            <th key={index} className="p-2">
               {header}
             </th>
           ))}

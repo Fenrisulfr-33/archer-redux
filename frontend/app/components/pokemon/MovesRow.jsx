@@ -5,10 +5,10 @@ export default function MovesRow({
   move: { _id, name, type, category, pp, power, accuracy },
 }) {
   return (
-    <tr className="text-center odd:bg-gray-600 hover:bg-purple-50 hover:font-bold">
+    <tr className="table-row">
       <td>{_id}</td>
       <td>
-        <Link href={`/pokemon/moves/${_id}`} passHref>
+        <Link href={`/pokemon/moves/${_id}`} className="text-purple-0 font-bold hover:text-purple-50">
           {name.english}
         </Link>
       </td>

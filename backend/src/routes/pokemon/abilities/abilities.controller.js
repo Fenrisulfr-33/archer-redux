@@ -30,19 +30,19 @@ const getPokemonThatLearnAbility = async (abilityKey) => {
       if (pokemon.abilities.one){
           const abilityOne = pokemon.abilities.one.name.replaceAll(' ', '-').replaceAll("'", '').toLowerCase();
           if (abilityOne === abilityKey){
-            returnPokemonWithAbility.normal.push({id: pokemon._id, name: pokemon.name.english})
+            returnPokemonWithAbility.normal.push({id: pokemon._id, name: pokemon.name.english, type: pokemon.type})
           }
       }
       if (pokemon.abilities.two){
           const abilityTwo = pokemon.abilities.two.name.replaceAll(' ', '-').replaceAll("'", '').toLowerCase();
           if (abilityTwo === abilityKey){
-            returnPokemonWithAbility.normal.push({id: pokemon._id, name: pokemon.name.english})
+            returnPokemonWithAbility.normal.push({id: pokemon._id, name: pokemon.name.english, type: pokemon.type})
           }
       }
       if (pokemon.abilities.hidden){
           const abilityHidden = pokemon.abilities.hidden.name.replaceAll(' ', '-').replaceAll("'", '').toLowerCase();
           if (abilityHidden === abilityKey){
-            returnPokemonWithAbility.hidden.push({id: pokemon._id, name: pokemon.name.english})
+            returnPokemonWithAbility.hidden.push({id: pokemon._id, name: pokemon.name.english, type: pokemon.type})
           }
       }
   })

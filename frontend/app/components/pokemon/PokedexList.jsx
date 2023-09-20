@@ -1,21 +1,18 @@
 "use client";
 
-import { use, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import PokemonTableLayout from "./PokemonTableLayout";
 import PokedexRow from "./PokedexRow";
 import PaginationLayout from "../pagination/PaginationLayout";
 import PokedexListFilters from "./PokedexListFilters";
-import { pokedexOnFilterSubmit } from "@/helperFunctions/pokedexOnFilterSubmit";
-import { pokemonTypes } from "../variables/pokemonDropDowns";
 import { nationalHeaders, pokedexHeaders } from "../variables/pokemonHeaders";
-import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
 
 export default function PokedexList({
   list,
   pushRoute,
   national,
   game,
+  search,
   searchRoute,
 }) {
   // Set headers variables
@@ -30,7 +27,7 @@ export default function PokedexList({
 
   return (
     <div id="dex-list-content" className="flex flex-col space-y-2 pb-4">
-      <PokedexListFilters searchRoute={searchRoute} />
+      {!search && <PokedexListFilters searchRoute={searchRoute} />}
       <PaginationLayout
         recordsPerPage={recordsPerPage}
         totalCount={list.length}

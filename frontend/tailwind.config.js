@@ -41,6 +41,7 @@ module.exports = {
           100: "#f2f3f5",
         },
         purple: {
+          0: "#D8CEFF",
           // DO NOT TOUCH, this color scheme was hand picked from gengars icon in the bottom left corner
           50: "#8d7ec4",
           100: "#8275b5",

@@ -58,7 +58,7 @@
         to-purple-50;
   }
   a {
-    @apply italic
+    @apply
     font-medium
     text-purple-50;
   }
@@ -98,6 +98,15 @@
       font-mono
       mx-auto;
   }
+
+  .table-row {
+    @apply
+    text-center 
+    odd:bg-gray-600 
+    hover:bg-gray-900 
+    hover:font-bold
+  }
+
   .xxs-label {
     @apply bg-gray-500
         text-black 

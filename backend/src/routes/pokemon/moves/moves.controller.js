@@ -182,7 +182,17 @@ const listMoves = asyncHandler(async (request, response) => {
   response.status(200).json(moves);
 });
 
+const listMoveNames = asyncHandler(async (request, response) => {
+  const movesNames = await Moves.find()
+    .select("name.english")
+    .sort({ 'name.english': 1 });
+
+  disconnect();
+  response.status(200).json(movesNames);
+}); 
+
 module.exports = {
   read: [connect, moveExists, readMove],
   list: [connect, listMoves],
+  listNames: [connect, listMoveNames]
 };

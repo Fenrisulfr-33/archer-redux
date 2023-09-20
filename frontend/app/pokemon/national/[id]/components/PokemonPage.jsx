@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import BaseStats from "./BaseStats";
-import BaseStatsTest from "./BaseStatsTest";
 import TypeWeakness from "./TypeWeakness";
 import PokedexEntries from "./PokedexEntries";
 import MovesList from "./MoveTypeLists";
@@ -12,6 +11,7 @@ import GameDropDown from "@/components/pokemon/GameDropDown";
 import { pokemonGameDropDown } from "@/constants/pokemonGameDropDown";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
+  console.log(pokemon.gameDropDown)
   const pokemonInitial = () =>
     pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
   const gameInitial = () => {
@@ -21,7 +21,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
       if (pokemon.formsTab){
         return pokemon.formsTab[pokemon.startingIndex].gameDropDown[0]
       } else {
-        if (pokemon.gameDropDown[0]){
+        if (pokemon.gameDropDown.length > 0){
           return pokemon.gameDropDown[0]
         }
       }
@@ -81,8 +81,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           typeOne={selectedPokemon.type.one}
           typeTwo={selectedPokemon.type?.two}
         />
-        {/* <BaseStats stats={selectedPokemon.baseStats} /> */}
-        <BaseStatsTest stats={selectedPokemon.baseStats} />
+        <BaseStats stats={selectedPokemon.baseStats} />
         {selectedPokemon.gameDropDown.length > 0 && (
           <GameDropDown
             list={selectedPokemon.gameDropDown}

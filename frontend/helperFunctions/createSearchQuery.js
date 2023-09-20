@@ -5,9 +5,13 @@ export const createSearchQuery = (query) => {
         let index = 0;
         for (const [key, value] of Object.entries(query)) {
             if (index !== 0) {
-                searchQuery += `&${key}=${value}`;
+                if (value !== ''){
+                    searchQuery += `&${key}=${value}`;
+                }
             } else {
-                searchQuery += `${key}=${value}`;
+                if (value !== ''){
+                    searchQuery += `${key}=${value}`;
+                }
             }
             index++;
         }

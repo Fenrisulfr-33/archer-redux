@@ -88,49 +88,60 @@ const getPokemonForms = async (pokemonId, formsTab, dbMoves) => {
 }
 
 const getPokemonBaseStats = (baseStats) => {
+  /**
+   * Declare rounded stats to get width
+   *  and pass into tierColor function
+   */
+  const hpWidth = Math.round([baseStats.hp * 100] / 255);
+  const atkWidth = Math.round([baseStats.atk * 100] / 180);
+  const defWidth = Math.round([baseStats.def * 100] / 180);
+  const spatkWidth = Math.round([baseStats.spatk * 100] / 230);
+  const spdefWidth = Math.round([baseStats.spdef * 100] / 230);
+  const spdWidth = Math.round([baseStats.spd * 100] / 200);
 
   const hp = {
     base: baseStats.hp,
     min: minStatFormula('hp', baseStats.hp),
     max: maxStatFormula('hp', baseStats.hp),
-    tier: getTierColor('hp', baseStats.hp),
-    width: getTierWidth('hp', baseStats.hp),
+    tier: getTierColor(hpWidth),
+    width: hpWidth
   };
   const atk = {
     base: baseStats.atk,
     min: minStatFormula('atk', baseStats.atk),
     max: maxStatFormula('atk', baseStats.atk),
-    tier: getTierColor('atk', baseStats.atk),
-    width: getTierWidth('atk', baseStats.atk),
+    tier: getTierColor(atkWidth),
+    width: atkWidth
   };
   const def = {
     base: baseStats.def,
     min: minStatFormula('def', baseStats.def),
     max: maxStatFormula('def', baseStats.def),
-    tier: getTierColor('def', baseStats.def),
-    width: getTierWidth('def', baseStats.def),
+    tier: getTierColor(defWidth),
+    width: defWidth
   };
   const spatk = {
     base: baseStats.spatk,
     min: minStatFormula('spatk', baseStats.spatk),
     max: maxStatFormula('spatk', baseStats.spatk),
-    tier: getTierColor('spatk', baseStats.spatk),
-    width: getTierWidth('spatk', baseStats.spatk),
+    tier: getTierColor(spatkWidth),
+    width: spatkWidth
   };
   const spdef = {
     base: baseStats.spatk,
     min: minStatFormula('spdef', baseStats.spdef),
     max: maxStatFormula('spdef', baseStats.spdef),
-    tier: getTierColor('spdef', baseStats.spdef),
-    width: getTierWidth('spdef', baseStats.spdef),
+    tier: getTierColor(spdefWidth),
+    width: spdefWidth
   };
   const spd = {
     base: baseStats.spd,
     min: minStatFormula('spd', baseStats.spd),
     max: maxStatFormula('spd', baseStats.spd),
-    tier: getTierColor('spd', baseStats.spd),
-    width: getTierWidth('spd', baseStats.spd),
+    tier: getTierColor(spdWidth),
+    width: spdWidth
   };
+  
   return {
     hp,
     atk,
@@ -170,7 +181,7 @@ const maxStatFormula = (title, stat) => {
   }
 };
 
-const getTierColor = (title, stat) => {
+const getTierColor = (stat) => {
   let tierColor = '';
   const tier = {
     one: "bg-green-600",
@@ -179,95 +190,22 @@ const getTierColor = (title, stat) => {
     four: "bg-sky-500",
     five: "bg-sky-300",
     six: "bg-purple-200",
-    seven: "bg-purple-50",
-    seven: "bg-black",
   };
-
-  if (title === 'hp') {
-    if (stat > 0) { tierColor = tier.one };
-    if (stat > 42.5) { tierColor = tier.two };
-    if (stat > 85) { tierColor = tier.three };
-    if (stat > 127.5) { tierColor = tier.four };
-    if (stat > 170) { tierColor = tier.five };
-    if (stat > 212.5) { tierColor = tier.six };
-  } else if (title === 'atk' || title === 'spatk') {
-    if (stat > 0) { tierColor = tier.one };
-    if (stat > 30) { tierColor = tier.two };
-    if (stat > 60) { tierColor = tier.three };
-    if (stat > 90) { tierColor = tier.four };
-    if (stat > 120) { tierColor = tier.five };
-    if (stat > 150) { tierColor = tier.six };
-  } else if (title === 'def' || title === 'spdef') {
-    if (stat > 0) { tierColor = tier.one };
-    if (stat > 38.3) { tierColor = tier.two };
-    if (stat > 76.6) { tierColor = tier.three };
-    if (stat > 114.9) { tierColor = tier.four };
-    if (stat > 153.2) { tierColor = tier.five };
-    if (stat > 191.5) { tierColor = tier.six };
-  } else if (title === 'spd') {
-    if (stat > 0) { tierColor = tier.one };
-    if (stat > 33.3) { tierColor = tier.two };
-    if (stat > 66.6) { tierColor = tier.three };
-    if (stat > 99.9) { tierColor = tier.four };
-    if (stat > 133.2) { tierColor = tier.five };
-    if (stat > 166.5) { tierColor = tier.six };
-  }
+  
+  if (stat <= 16.6) {
+    tierColor = tier.one;
+  } else if (16.6 < stat && stat < 33.2) {
+    tierColor = tier.two;
+  } else if (33.2 < stat && stat < 49.8) {
+    tierColor = tier.three;
+  } else if (49.8 < stat && stat < 66.4) {
+    tierColor = tier.four;
+  } else if (66.4 < stat && stat < 83) {
+    tierColor = tier.five;
+  } else if (83 <= stat && stat < 100) {
+    tierColor = tier.six;
+  }  
   return tierColor;
-}
-
-const getTierWidth = (title, stat) => {
-  if (title === "hp") {
-    const statRounded = Math.round([stat * 100] / 255);
-    return statRounded;
-    // return getStatWidth(statRounded);
-  } else if (title === "atk" || title === "spatk") {
-    const statRounded = Math.round([stat * 100] / 180);
-    return statRounded;
-    // return getStatWidth(statRounded);
-  } else if (title === "def" || title === "spdef") {
-    const statRounded = Math.round([stat * 100] / 230);
-    return statRounded;
-    // return getStatWidth(statRounded);
-  } else if (title === "spd") {
-    const statRounded = Math.round([stat * 100] / 200);
-    return statRounded;
-    // return getStatWidth(statRounded);
-  }
-}
-
-const getStatWidth = (width) => {
-  let returnWidth = '';
-
-  if (width === 0) {
-    returnWidth = 'w-[1px]'
-  } else if (width <= 9) {
-    returnWidth = 'w-1/8';
-  } else if (width <= 17) {
-    returnWidth = 'w-1/6';
-  } else if (width <= 20) {
-    returnWidth = 'w-1/5';
-  } else if (width <= 25) {
-    returnWidth = 'w-1/4';
-  } else if (width <= 34) {
-    returnWidth = 'w-1/3';
-  } else if (width <= 40) {
-    returnWidth = 'w-2/5';
-  } else if (width <= 50) {
-    returnWidth = 'w-1/2';
-  } else if (width <= 59) {
-    returnWidth = 'w-7/12';
-  } else if (width <= 67) {
-    returnWidth = 'w-2/3';
-  } else if (width <= 75) {
-    returnWidth = 'w-3/4';
-  } else if (width <= 84) {
-    returnWidth = 'w-5/6';
-  } else if (width <= 91) {
-    returnWidth = 'w-11/12';
-  } else if (width <= 100) {
-    returnWidth = 'w-full';
-  }
-  return returnWidth;
 }
 
 /* ---------- Middleware ---------- */
@@ -366,7 +304,7 @@ const listNational = asyncHandler(async (request, response) => {
   // Create return array to avoid repetitive code
   let national = [];
   // Creates whats returned from model
-  const nationalSelect = "name.english type abilities baseStats";
+  const nationalSelect = "key name.english type abilities baseStats";
   // Create sorting object for array return
   const sort = asc ? { [asc]: 1 } : desc ? { [desc]: -1 } : { _id: 1 };
   // Checks for pokemon types from parameters
@@ -398,7 +336,7 @@ const listNational = asyncHandler(async (request, response) => {
 });
 
 module.exports = {
-  read: [connect, pokemonExists, getMoves,reformatPokemonBaseStats, readPokemon],
+  read: [connect, pokemonExists, getMoves, reformatPokemonBaseStats, readPokemon],
   readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
   list: [connect, listNational],
 };

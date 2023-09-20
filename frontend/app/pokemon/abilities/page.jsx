@@ -1,4 +1,4 @@
-import AllAbilitiesList from "@/components/pokemon/AbilitiesList";
+import AbilitiesList from "./components/AbilitiesList";
 
 const getAbilities = async () => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/abilities`);
@@ -9,6 +9,6 @@ const getAbilities = async () => {
 export default async function AbilitiesPage() {
   const abilities = await getAbilities();
   return (
-      <AllAbilitiesList list={abilities} />
+      <AbilitiesList list={abilities} />
   );
 }
