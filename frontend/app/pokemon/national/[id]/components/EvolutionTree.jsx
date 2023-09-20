@@ -1,5 +1,14 @@
+import PokemonLinkCard from '@/components/pokemon/PokemonLinkCard';
+
 export default function EvolutionTree({ evolutionTree }) {
-    // The Evolution tree should be an object if there is an evolution tree.
-    // Else is will be just a number, or null.
-    return <>{Object.keys(evolutionTree).length > 0 && <div>Evolution</div>}</>;
-}
+    // needs a starting point
+    return (
+        <div className="col-flex">
+            {evolutionTree.start && <PokemonLinkCard pokemon={evolutionTree.start}/>}
+            {evolutionTree.start.how && <div>{evolutionTree.start.how}</div>}
+            {evolutionTree.start.next && <PokemonLinkCard pokemon={evolutionTree.start.next} />}
+            {evolutionTree.start.next.how && <div>{evolutionTree.start.next.how}</div>}
+            {evolutionTree.start.next.next && <PokemonLinkCard pokemon={evolutionTree.start.next.next} />}
+        </div>
+    );
+};

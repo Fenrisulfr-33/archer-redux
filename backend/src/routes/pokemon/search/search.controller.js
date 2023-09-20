@@ -6,28 +6,27 @@ const { connect, disconnect } = require("../connection");
 const searchPokemon = asyncHandler(async (request, response) => {
   const returnArray = [];
   let {
-    move1,
-    move2,
-    move3,
-    move4,
-    // game,
+    moveOne,
+    moveTwo,
+    moveThree,
+    moveFour,
+    game,
   } = request.query;
-  if (!move1 && !move2 && !move3 && !move4){
+  if (!moveOne && !moveTwo && !moveThree && !moveFour) {
     disconnect();
     response.status(200).json([]);
   } else {
-    const game = "scarlet-violet";
-
     const gameList = await National.find()
       .where(`moves.${game}`)
       .exists(true)
-      .select(`name.english type abilities baseStats moves.${game}`)
+      .select(`name.english pokedexNumber type abilities baseStats moves.${game}`)
       .sort({ _id: 1 });
     if (gameList.length > 0) {
       gameList.forEach((pokemon) => {
         const returnPokemon = {
           _id: pokemon._doc._id,
           name: pokemon._doc.name,
+          pokedexNumber: pokemon._doc.pokedexNumber,
           type: pokemon._doc.type,
           abilities: pokemon._doc.abilities,
           baseStats: pokemon._doc.baseStats,
@@ -37,93 +36,63 @@ const searchPokemon = asyncHandler(async (request, response) => {
         let foundMove3 = false;
         let foundMove4 = false;
         for (const [key, value] of Object.entries(pokemon.moves[game])) {
-          if (key === "level-up") {
-            if (move1) {
-              pokemon.moves[game]["level-up"].find((move) => {
-                if (move.name === move1) {
-                  foundMove1 = true;
-                }
-              });
-            }
-            if (move2) {
-              pokemon.moves[game]["level-up"].find((move) => {
-                if (move.name === move2) {
-                  foundMove2 = true;
-                }
-              });
-            }
-            if (move3) {
-              pokemon.moves[game]["level-up"].find((move) => {
-                if (move.name === move3) {
-                  foundMove3 = true;
-                }
-              });
-            }
-            if (move4) {
-              pokemon.moves[game]["level-up"].find((move) => {
-                if (move.name === move4) {
-                  foundMove4 = true;
-                }
-              });
-            }
-          } else {
-            if (move1) {
-              pokemon.moves[game][key].find((move) => {
-                if (move.name === move1) {
-                  foundMove1 = true;
-                }
-              });
-            }
-            if (move2) {
-              pokemon.moves[game][key].find((move) => {
-                if (move.name === move2) {
-                  foundMove2 = true;
-                }
-              });
-            }
-            if (move3) {
-              pokemon.moves[game][key].find((move) => {
-                if (move.name === move3) {
-                  foundMove3 = true;
-                }
-              });
-            }
-            if (move4) {
-              pokemon.moves[game][key].find((move) => {
-                if (move.name === move4) {
-                  foundMove4 = true;
-                }
-              });
-            }
+          const searchKey = key === 'level-up' ? 'level-up' : key;
+          if (moveOne) {
+            pokemon.moves[game][searchKey].find((move) => {
+              if (move.name === moveOne) {
+                foundMove1 = true;
+              }
+            });
+          }
+          if (moveTwo) {
+            pokemon.moves[game][searchKey].find((move) => {
+              if (move.name === moveTwo) {
+                foundMove2 = true;
+              }
+            });
+          }
+          if (moveThree) {
+            pokemon.moves[game][searchKey].find((move) => {
+              if (move.name === moveThree) {
+                foundMove3 = true;
+              }
+            });
+          }
+          if (moveFour) {
+            pokemon.moves[game][searchKey].find((move) => {
+              if (move.name === moveFour) {
+                foundMove4 = true;
+              }
+            });
           }
         }
         if (foundMove4 && foundMove3 && foundMove2 && foundMove1) {
           returnArray.push(returnPokemon);
         } else if (
-          move4 === undefined &&
+          moveFour === undefined &&
           foundMove3 &&
           foundMove2 &&
           foundMove1
         ) {
           returnArray.push(returnPokemon);
         } else if (
-          move4 === undefined &&
-          move3 === undefined &&
+          moveFour === undefined &&
+          moveThree === undefined &&
           foundMove2 &&
           foundMove1
         ) {
           returnArray.push(returnPokemon);
         } else if (
-          move4 === undefined &&
-          move3 === undefined &&
-          move2 === undefined &&
+          moveFour === undefined &&
+          moveThree === undefined &&
+          moveTwo === undefined &&
           foundMove1
         ) {
           returnArray.push(returnPokemon);
         }
       });
     }
-  
+
     disconnect();
     response.status(200).json(returnArray);
   }
