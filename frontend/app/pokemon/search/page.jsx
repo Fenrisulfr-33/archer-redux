@@ -2,6 +2,14 @@ import PokedexList from "@/components/pokemon/PokedexList";
 import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
 import MoveBoxSearch from "./components/MoveBoxSearch";
 
+const getAllMoveNames = async () => {
+    const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/pokemon/moves/names`
+    );
+    const movesList = await response.json();
+    return movesList;
+};
+
 const getPokemonByMoves = async (searchParams) => {
     if (Object.keys(searchParams).length > 0) {
         const searchQuery = createSearchQuery(searchParams);
@@ -20,9 +28,8 @@ const getPokemonByMoves = async (searchParams) => {
 };
 
 export default async function Page({ params, searchParams }) {
-    console.log("searchParams", searchParams);
     const searchResults = await getPokemonByMoves(searchParams);
-    console.log("search results", searchResults);
+    const movesNameList = await getAllMoveNames();
     return (
         <div className="flex flex-col m-2 space-y-4">
             <div className="article-container">
@@ -42,7 +49,7 @@ export default async function Page({ params, searchParams }) {
                     me at GengarsHauntedMansion@proton.me
                 </p>
             </div>
-            <MoveBoxSearch />
+            <MoveBoxSearch list={movesNameList} />
             <PokedexList
                 list={searchResults}
                 pushRoute={"scarlet-violet"}
@@ -50,7 +57,6 @@ export default async function Page({ params, searchParams }) {
                 game={"scarlet-violet"}
                 search={true}
                 searchRoute={`/pokemon/search`}
-
             />
         </div>
     );

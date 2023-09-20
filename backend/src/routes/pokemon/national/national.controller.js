@@ -94,8 +94,8 @@ const getPokemonBaseStats = (baseStats) => {
    */
   const hpWidth = Math.round([baseStats.hp * 100] / 255);
   const atkWidth = Math.round([baseStats.atk * 100] / 180);
-  const spatkWidth = Math.round([baseStats.def * 100] / 180);
-  const defWidth = Math.round([baseStats.spatk * 100] / 230);
+  const defWidth = Math.round([baseStats.def * 100] / 180);
+  const spatkWidth = Math.round([baseStats.spatk * 100] / 230);
   const spdefWidth = Math.round([baseStats.spdef * 100] / 230);
   const spdWidth = Math.round([baseStats.spd * 100] / 200);
 

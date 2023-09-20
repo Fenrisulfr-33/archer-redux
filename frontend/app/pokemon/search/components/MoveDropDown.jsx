@@ -14,7 +14,7 @@ export default function MoveDropDown({
     query === ""
       ? list
       : list.filter((value) =>
-          value
+          value.name.english
             .toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -26,7 +26,7 @@ export default function MoveDropDown({
         <div className="bg-gray-900 row-flex justify-between cursor-default border-2 border-purple-100 overflow-hidden rounded-md ">
           <Combobox.Input
             className={`bg-gray-900 w-11/12 p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
-            displayValue={(value) => value}
+            displayValue={(value) => value?.name?.english}
             onChange={(event) => {
               setQuery(event.target.value);
             }}
@@ -60,9 +60,9 @@ export default function MoveDropDown({
                   className={({ active }) =>
                     ` cursor-default select-none m-2 w-auto rounded ${active ? `font-bold border-2 border-gray-100` : ``}`
                   }
-                  value={value}
+                  value={value.name.english}
                 >
-                  <span className={`block truncate`}>{value}</span>
+                  <span className={`block truncate`}>{value.name.english}</span>
                 </Combobox.Option>
               ))
             )}

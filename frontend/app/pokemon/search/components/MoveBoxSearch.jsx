@@ -8,7 +8,7 @@ import GameDropDown from "@/components/pokemon/GameDropDown";
 import { pokemonGameDropDown } from "@/constants/pokemonGameDropDown";
 import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
 
-export default function MoveBoxSearch() {
+export default function MoveBoxSearch({ list }) {
     const router = useRouter();
     const [moveOne, setMoveOne] = useState("");
     const [moveTwo, setMoveTwo] = useState("");
@@ -35,7 +35,7 @@ export default function MoveBoxSearch() {
     };
 
     return (
-        <div className="relative border-2">
+        <div className="relative">
             <GameDropDown
                 list={gameDropDownTest}
                 selected={selectedGame}
@@ -46,25 +46,25 @@ export default function MoveBoxSearch() {
                 selected={moveOne}
                 setSelected={setMoveOne}
                 placeholder={"Select a Move"}
-                list={movesDropDownScarletViolet}
+                list={list}
             />
             <MoveDropDown
                 selected={moveTwo}
                 setSelected={setMoveTwo}
                 placeholder={"Select a Move"}
-                list={movesDropDownScarletViolet}
+                list={list}
             />
             <MoveDropDown
                 selected={moveThree}
                 setSelected={setMoveThree}
                 placeholder={"Select a Move"}
-                list={movesDropDownScarletViolet}
+                list={list}
             />
             <MoveDropDown
                 selected={moveFour}
                 setSelected={setMoveFour}
                 placeholder={"Select a Move"}
-                list={movesDropDownScarletViolet}
+                list={list}
             />
             <div className="row-flex">
                 <button
