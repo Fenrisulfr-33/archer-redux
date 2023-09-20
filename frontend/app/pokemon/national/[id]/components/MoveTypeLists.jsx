@@ -1,18 +1,6 @@
-import PokemonMovesList from "./PokemonMovesList";
+import MoveList from "./MoveList";
 
-const MovesListSingle = ({ method, desc, moves, type}) => {
-  return (
-    <div>
-      <div className="text-xl font-bold">{method}</div>
-      <div className="bg-gray-800 mx-2 p-2 rounded">
-        {desc}
-      </div>
-      <PokemonMovesList moves={moves} levelUp={true} />
-    </div>
-  );
-};
-
-export default function PokemonMovesListByType({ moves, pokemonName }) {
+export default function MoveTypeLists({ moves, pokemonName }) {
   return (
     <div className={"grid grid-cols-1 tablet:grid-cols-2 font-mono"}>
       <div className="col-span-1 flex-col">
@@ -22,7 +10,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
             <div className="bg-gray-800 mx-2 p-2 rounded">
               {pokemonName} can learn these moves by leveling up.
             </div>
-            <PokemonMovesList moves={moves["level-up"]} levelUp={true} />
+            <MoveList moves={moves["level-up"]} levelUp={true} />
           </div>
         )}
         {moves?.egg && (
@@ -32,7 +20,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
               {pokemonName} can learn these moves by breeding with compatible
               parents.
             </div>
-            <PokemonMovesList moves={moves.egg} />
+            <MoveList moves={moves.egg} />
           </div>
         )}
         {moves?.tutor && (
@@ -41,7 +29,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
             <div className="bg-gray-800 mx-2 p-2 rounded">
               {pokemonName} can learn these moves from the Move Tutor.
             </div>
-            <PokemonMovesList moves={moves.tutor} />
+            <MoveList moves={moves.tutor} />
           </div>
         )}
       </div>
@@ -52,7 +40,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
             <div className="bg-gray-800 mx-2 p-2 rounded">
               {pokemonName} can learn these moves from Hidden Machines.
             </div>
-            <PokemonMovesList moves={moves["hidden-machine"]} hmTrue={true} />
+            <MoveList moves={moves["hidden-machine"]} hmTrue={true} />
           </div>
         )}
         {moves?.["technical-machine"] && (
@@ -61,7 +49,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
             <div className="bg-gray-800 mx-2 p-2 rounded">
               {pokemonName} can learn these moves from Technical Machines.
             </div>
-            <PokemonMovesList
+            <MoveList
               moves={moves["technical-machine"]}
               tmTrue={true}
             />
@@ -73,7 +61,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
             <div className="bg-gray-800 mx-2 p-2 rounded">
               {pokemonName} can learn these moves from Technical Records.
             </div>
-            <PokemonMovesList moves={moves["technical-record"]} trTrue={true} />
+            <MoveList moves={moves["technical-record"]} trTrue={true} />
           </div>
         )}
       </div>
@@ -85,7 +73,7 @@ export default function PokemonMovesListByType({ moves, pokemonName }) {
               {pokemonName} can learn these moves from previous generation
               methods.
             </div>
-            <PokemonMovesList moves={moves["transfer-only"]} transfer={true} />
+            <MoveList moves={moves["transfer-only"]} transfer={true} />
           </div>
         )}
       </div>

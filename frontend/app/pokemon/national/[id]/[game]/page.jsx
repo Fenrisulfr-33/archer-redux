@@ -1,4 +1,5 @@
-import PokemonPage from "@/components/pokemon/PokemonPage";
+// import PokemonPage from "@/components/pokemon/PokemonPage";
+import PokemonPage from "../components/PokemonPage";
 
 const getPokemonByGame = async (id, game) => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pokemon/national/${id}/${game}`);

@@ -1,7 +1,7 @@
-import PokemonMovesListModal from './PokemonMovesListModal';
-import { typeColors } from '../variables/typeColors';
+import MoveListModal from './MoveListModal';
+import { typeColors } from "@/constants/pokemonTypeColors";
 
-export default function PokemonMovesListRow({
+export default function MoveListRow({
   move,
   levelUp,
   hmTrue,
@@ -32,7 +32,7 @@ export default function PokemonMovesListRow({
       {tmTrue && <td className="px-2">{tm}</td>}
       {trTrue && <td className="px-2">{tr}</td>}
       <td className="p-2">
-        <PokemonMovesListModal move={move} />
+        <MoveListModal move={move} />
       </td>
       <td>
         <div className={`rounded my-1 ${typeColors[type.toLowerCase()]}`}>

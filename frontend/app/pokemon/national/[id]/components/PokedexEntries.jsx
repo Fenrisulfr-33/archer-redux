@@ -1,5 +1,5 @@
-import { gameNames } from "../variables/gameNames"
-import { gameColors } from "../variables/gameColors";
+import { gameNames } from "@/constants/pokemonGameNames";
+import { gameColors } from "@/constants/pokemonGameColors";
 
 export default function PokedexEntries({ entries }) {
   const forms = [];

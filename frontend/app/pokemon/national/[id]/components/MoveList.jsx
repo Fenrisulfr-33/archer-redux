@@ -1,7 +1,7 @@
-import PokemonMovesListRow from "./PokemonMovesListRow";
+import MoveListRow from "./MoveListRow";
 import PokemonTableLayout from "@/components/pokemon/PokemonTableLayout";
 
-export default function MovesList({
+export default function MoveList({
   moves,
   levelUp = false,
   hmTrue = false,
@@ -22,7 +22,7 @@ export default function MovesList({
         <th key={index}>{header}</th>
       ))}
       tbody={moves.map((move) => (
-        <PokemonMovesListRow
+        <MoveListRow
           key={move._id}
           move={move}
           levelUp={levelUp}

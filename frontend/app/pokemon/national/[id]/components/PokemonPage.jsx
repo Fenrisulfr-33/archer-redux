@@ -1,28 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import PokemonBaseStats from "./PokemonBaseStats";
-import PokemonTypeWeaknesses from "./PokemonTypeWeaknesses";
+import BaseStats from "./BaseStats";
+import BaseStatsTest from "./BaseStatsTest";
+import TypeWeakness from "./TypeWeakness";
 import PokedexEntries from "./PokedexEntries";
-import PokemonMovesListByType from "./PokemonMovesListByType";
-import PokemonPageToolbar from "./PokemonPageToolbar";
-import PokemonPageGameDropDown from "./PokemonPageGameDropDown";
-import PokemonPageInfoSection from "./PokemonPageInfoSection";
-import { gameDropDown } from "../variables/pokemonDropDowns";
-import MoveGameDropDown from "./MovePageGameDropDownTest";
-
-import Link from "next/link";
+import MovesList from "./MoveTypeLists";
+import Toolbar from "./Toolbar";
+import InfoSection from "./InfoSection";
+import GameDropDown from "@/components/pokemon/GameDropDown";
+import { pokemonGameDropDown } from "@/constants/pokemonGameDropDown";
 
 export default function PokemonPage({ pokemon, game, goBackRoute }) {
-  // This is for Form Changes, in the future we can limit it if there is no form change.
   const pokemonInitial = () =>
     pokemon.formsTab ? pokemon.formsTab[pokemon.startingIndex] : pokemon;
-  const gameInitial = () =>
-    game
-      ? gameDropDown[game]
-      : pokemon.formsTab
-      ? pokemon.formsTab[pokemon.startingIndex].gameDropDown[0]
-      : pokemon.gameDropDown[0];
+  const gameInitial = () => {
+    if (game){
+      return pokemonGameDropDown[game]
+    } else {
+      if (pokemon.formsTab){
+        return pokemon.formsTab[pokemon.startingIndex].gameDropDown[0]
+      } else {
+        if (pokemon.gameDropDown[0]){
+          return pokemon.gameDropDown[0]
+        }
+      }
+    }
+  }
+
   const movesInitial = () =>
     game
       ? pokemon.moves[game]
@@ -30,7 +35,9 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
       ? pokemon.formsTab[pokemon.startingIndex].moves[
           pokemon.formsTab[pokemon.startingIndex].gameDropDown[0].key
         ]
-      : pokemon.moves[pokemon.gameDropDown[0].key];
+      : pokemon.gameDropDown[0]
+      ? pokemon.moves[pokemon.gameDropDown[0].key]
+      : {};
 
   const [selectedPokemon, setSelectedPokemon] = useState(() =>
     pokemonInitial()
@@ -46,7 +53,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
   return (
     <div className={"flex flex-col m-2 font-mono text-center text-white"}>
       <div className={"col-flex space-y-2"}>
-        <PokemonPageToolbar
+        <Toolbar
           id={selectedPokemon._id}
           goBackRoute={goBackRoute}
         />
@@ -69,30 +76,28 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
             </div>
           </div>
         )}
-
-        <PokemonPageInfoSection pokemon={selectedPokemon} />
-        <PokemonTypeWeaknesses
+        <InfoSection pokemon={selectedPokemon} />
+        <TypeWeakness
           typeOne={selectedPokemon.type.one}
           typeTwo={selectedPokemon.type?.two}
         />
-        <PokemonBaseStats stats={selectedPokemon.baseStats} />
-        {/* <PokemonPageGameDropDown
-          selected={selectedGame}
-          setSelected={changeSelectedGame}
-          placeholder={`Default: ${selectedGame.title} - select a game`}
-          list={selectedPokemon.gameDropDown}
-        /> */}
-        <MoveGameDropDown
-          list={selectedPokemon.gameDropDown}
-          selected={selectedGame}
-          setSelected={changeSelectedGame}
-          placeholder={"Select a Game"}
-        />
-        <PokemonMovesListByType
+        {/* <BaseStats stats={selectedPokemon.baseStats} /> */}
+        <BaseStatsTest stats={selectedPokemon.baseStats} />
+        {selectedPokemon.gameDropDown.length > 0 && (
+          <GameDropDown
+            list={selectedPokemon.gameDropDown}
+            selected={selectedGame}
+            setSelected={changeSelectedGame}
+            placeholder={"Select a Game"}
+          />
+        )}
+        <MovesList
           moves={selectedMoves}
           pokemonName={selectedPokemon.name.english}
         />
-        <PokedexEntries entries={selectedPokemon.pokedexEntries} />
+        {Object.keys(selectedPokemon.pokedexEntries).length > 0 && (
+          <PokedexEntries entries={selectedPokemon.pokedexEntries} />
+        )}
       </div>
     </div>
   );

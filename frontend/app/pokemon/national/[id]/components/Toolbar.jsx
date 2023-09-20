@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiPokemon } from "react-icons/si";
 
-export default function PokemonPageToolbar({ id, goBackRoute }) {
+export default function Toolbar({ id, goBackRoute }) {
   return (
     <div
       id="toolbar"
@@ -19,7 +19,7 @@ export default function PokemonPageToolbar({ id, goBackRoute }) {
           <button className={"button flex"}>Go Back</button>
         </div>
       </Link>
-      {id + 1 <= 1010 ? (
+      {id + 1 <= 1017 ? (
         <Link href={`/pokemon/national/${Math.floor(id + 1)}`} passHref>
           <button className={"bg-gray-800 p-2 rounded"}>{`${Math.floor(id + 1)} >`}</button>
         </Link>

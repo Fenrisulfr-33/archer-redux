@@ -1,9 +1,9 @@
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { BsChevronExpand } from "react-icons/bs";
-import { BsCheck } from "react-icons/bs";
+import { gameColors } from "../variables/gameColors";
 
-export default function PokemonPageGameDropDown({
+export default function GameDropDown({
   selected,
   setSelected,
   placeholder,
@@ -22,11 +22,11 @@ export default function PokemonPageGameDropDown({
         );
 
   return (
-    <div className={`relative`}>
+    <div className={`relative m-2`}>
       <Combobox value={selected} onChange={setSelected}>
         <div className="bg-gray-900 row-flex justify-between cursor-default border-2 border-purple-100 overflow-hidden rounded-md ">
           <Combobox.Input
-            className={`bg-gray-900 w-[98%] p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
+            className={`bg-gray-900 w-11/12 p-2 text-sm text-gray-300 placeholder-gray-300 rounded-md placeholder-opacity-30`}
             displayValue={(value) => value.title}
             onChange={(event) => {
               setQuery(event.target.value);
@@ -34,7 +34,7 @@ export default function PokemonPageGameDropDown({
             }}
             placeholder={placeholder}
           />
-          <Combobox.Button className="bg-gray-800 rounded-md m-1 w-[2%]">
+          <Combobox.Button className="flex items-center justify-center bg-gray-800 rounded-md m-1 w-1/12">
             <BsChevronExpand
               className="h-5 w-5 text-gray-300"
               aria-hidden="true"
@@ -60,28 +60,13 @@ export default function PokemonPageGameDropDown({
                 <Combobox.Option
                   key={value.query}
                   className={({ active }) =>
-                    ` cursor-default select-none ${
-                      active
-                        ? "bg-purple-300 text-gray-800 font-bold border border-gray-700 rounded-lg"
-                        : "text-gray-300 bg-gray-700"
-                    }`
+                    ` cursor-default select-none m-2 w-auto rounded ${
+                      gameColors[value.key]
+                    }  ${active ? `font-bold border-2 border-gray-100` : ``}`
                   }
                   value={value}
                 >
-                  {({ selected, active }) => (
-                    <>
-                      <span className={`block truncate`}>{value.title}</span>
-                      {selected ? (
-                        <span
-                          className={`absolute right-0 flex items-center ${
-                            active ? "text-white" : "text-purp-200"
-                          }`}
-                        >
-                          <BsCheck className="h-5 w-5" aria-hidden="true" />
-                        </span>
-                      ) : null}
-                    </>
-                  )}
+                  <span className={`block truncate`}>{value.title}</span>
                 </Combobox.Option>
               ))
             )}

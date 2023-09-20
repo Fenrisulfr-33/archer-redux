@@ -1,4 +1,4 @@
-import PokemonBaseStat from "./PokemonBaseStat";
+import BaseStatRow from "./BaseStatRow";
 import DataContainer from "@/components/pokemon/DataContainer";
 import DataSection from "@/components/pokemon/DataSection";
 
@@ -28,12 +28,12 @@ export default function BaseStats({
                 <div className={`bg-purple-200 w-1/6 p-2 rounded-r`}>6</div>
               </div>
             </div>
-            <PokemonBaseStat title={"HP"} stat={hp} />
-            <PokemonBaseStat title={"Atk"} stat={atk} />
-            <PokemonBaseStat title={"Def"} stat={def} />
-            <PokemonBaseStat title={"SpAtk"} stat={spatk} />
-            <PokemonBaseStat title={"SpDef"} stat={spdef} />
-            <PokemonBaseStat title={"Spd"} stat={spd} />
+            <BaseStatRow title={"HP"} stat={hp} />
+            <BaseStatRow title={"Atk"} stat={atk} />
+            <BaseStatRow title={"Def"} stat={def} />
+            <BaseStatRow title={"SpAtk"} stat={spatk} />
+            <BaseStatRow title={"SpDef"} stat={spdef} />
+            <BaseStatRow title={"Spd"} stat={spd} />
             <div className={"label"}>Total: {total}</div>
           </div>
         </DataSection>

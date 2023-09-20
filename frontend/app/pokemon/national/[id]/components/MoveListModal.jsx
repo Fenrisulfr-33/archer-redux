@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { typeColors } from "../variables/typeColors";
+import { typeColors } from "@/constants/pokemonTypeColors";
 
-export default function MoveModal({
+export default function MoveListModal({
   move: {
     id,
     name,

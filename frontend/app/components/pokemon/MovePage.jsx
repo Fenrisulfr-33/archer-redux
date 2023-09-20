@@ -7,7 +7,7 @@ import DataSection from "@/components/pokemon/DataSection";
 import DataRow from "@/components/pokemon/DataRow";
 import AddNewComponent from "@/components/pokemon/AddNewComponent";
 import Image from "next/image";
-import MoveGameDropDown from "./MovePageGameDropDownTest";
+import MoveGameDropDown from "./GameDropDown";
 import { gameDropDown } from '../variables/pokemonDropDowns';
 
 export default function MovePage({ move, game }) {

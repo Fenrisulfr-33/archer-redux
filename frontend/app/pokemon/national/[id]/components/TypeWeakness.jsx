@@ -1,6 +1,6 @@
-import { typeWeaknessObj } from "../variables/typeWeaknessObj";
-import { typeColors } from "../variables/typeColors";
-import { typeWeaknesses } from "../variables/pokemonHeaders";
+import { typeWeaknessObj } from "@/constants/pokemonTypeWeaknessObj";
+import { typeColors } from "@/constants/pokemonTypeColors";
+import { typeWeaknesses } from "@/constants/pokemonHeaders";
 
 export default function TypeWeakness({ typeOne, typeTwo }) {
   const rows = [];

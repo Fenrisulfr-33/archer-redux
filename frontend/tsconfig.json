@@ -23,8 +23,9 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["app/components/*"],
+      "@/constants/*": ["app/_constants/*"],
       "@/articles/*": ["articles/*"],
-      "@helperFunctions/*": ["helperFunctions/*"]
+      "@/helperFunctions/*": ["helperFunctions/*"]
     },
     "strictNullChecks": true
   },
