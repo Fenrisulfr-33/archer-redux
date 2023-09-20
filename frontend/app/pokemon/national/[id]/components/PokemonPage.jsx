@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import BaseStats from "./BaseStats";
-import BaseStatsTest from "./BaseStatsTest";
 import TypeWeakness from "./TypeWeakness";
 import PokedexEntries from "./PokedexEntries";
 import MovesList from "./MoveTypeLists";
@@ -81,8 +80,7 @@ export default function PokemonPage({ pokemon, game, goBackRoute }) {
           typeOne={selectedPokemon.type.one}
           typeTwo={selectedPokemon.type?.two}
         />
-        {/* <BaseStats stats={selectedPokemon.baseStats} /> */}
-        <BaseStatsTest stats={selectedPokemon.baseStats} />
+        <BaseStats stats={selectedPokemon.baseStats} />
         {selectedPokemon.gameDropDown.length > 0 && (
           <GameDropDown
             list={selectedPokemon.gameDropDown}

@@ -1,15 +1,11 @@
 'use client';
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import PokemonTableLayout from "@/components/pokemon/PokemonTableLayout";
 import PokedexRow from "@/components/pokemon/PokedexRow";
 import PaginationLayout from "@/components/pagination/PaginationLayout";
 import NationalDexFilters from "./NationalDexFilters";
-import { pokedexOnFilterSubmit } from "@/helperFunctions/pokedexOnFilterSubmit";
-import { pokemonTypes } from "@/components/variables/pokemonDropDowns";
-import { nationalHeaders, pokedexHeaders } from "@/components/variables/pokemonHeaders";
-import { createSearchQuery } from "@/helperFunctions/createSearchQuery";
+import { nationalHeaders } from "@/components/variables/pokemonHeaders";
 
 export default function NationalDexList({ pokedex }) {
   const [recordsPerPage, setRcordsPerPage] = useState(100);
@@ -20,7 +16,7 @@ export default function NationalDexList({ pokedex }) {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div id="dex-list-content" className="flex flex-col space-y-2 pb-4">
+    <div className="flex flex-col space-y-2 pb-4">
 
       <NationalDexFilters
         searchRoute={"/pokemon/national"}

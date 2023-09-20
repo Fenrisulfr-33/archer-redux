@@ -28,7 +28,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
         <div className="flex justify-center">
           <Image
             src={`/sprites/gen_9/${_id}.png`}
-            alt={`${name.english}`}
+            alt={name.english}
             height={60}
             width={60}
           />
@@ -56,7 +56,7 @@ export default function PokedexRow({ pokemon, dexNo, national, pushRoute }) {
       </td>
       <td className="p-2">
         <div className="flex flex-col">
-          <div className="">{abilities?.one?.name}</div>
+          <div className=""><Link href="" className="not-italic">{abilities?.one?.name}</Link></div>
           <div className="">{abilities?.two?.name}</div>
           <div className="italic">{abilities?.hidden?.name}</div>
         </div>
