@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const National = require("../../../models/pokemon/nationalModel");
 const Moves = require("../../../models/pokemon/movesModel");
+const FormTabs = require('../../../models/pokemon/formTabsModel');
 const { connect, disconnect } = require("../connection");
 
 /* ---------- Helpers ---------- */
@@ -279,6 +280,9 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
  */
 const readPokemon = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
+  // See if pokemon has multiple forms
+  const pokemonForms = await FormTabs.findById(pokemon._id).lean();
+  console.log('pokemonForms', pokemonForms);
   // Get pokemon forms tab data if formsTab exists.
   if (pokemon.formsTab) {
     const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
