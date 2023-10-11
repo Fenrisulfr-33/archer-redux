@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 const National = require("../../../models/pokemon/nationalModel");
 const Moves = require("../../../models/pokemon/movesModel");
 const FormTabs = require('../../../models/pokemon/formTabsModel');
+const Evolutions = require('../../../models/pokemon/evolutionModel');
 const { connect, disconnect } = require("../connection");
 
 /* ---------- Helpers ---------- */
@@ -78,10 +79,10 @@ const getPokemonForms = async (pokemonId, formsTab, dbMoves) => {
       returnForms.startingIndex = i;
     }
     const pokemon = await National.findById(Number(form.id)).lean();
-    const newMoves = getPokemonMoves(pokemon.moves, dbMoves);
-    pokemon.moves = newMoves;
+    pokemon.moves = getPokemonMoves(pokemon.moves, dbMoves);
     pokemon.baseStats = getPokemonBaseStats(pokemon.baseStats);
     pokemon.index = i;
+    pokemon.formsTab = formsTab;
     returnForms.formsTab.push(pokemon);
   }
 
@@ -247,8 +248,24 @@ const getMoves = asyncHandler(async (request, response, next) => {
 const reformatPokemonBaseStats = asyncHandler(async (request, response, next) => {
   const { pokemon } = response.locals;
   pokemon.baseStats = getPokemonBaseStats(pokemon.baseStats);
-
   response.locals.pokemon = pokemon;
+  next();
+});
+
+const reformatPokemonEvolution = asyncHandler(async (request, response, next) => {
+  const { pokemon } = response.locals;
+  // If evolution is not null, pokemon without evo lines are null
+  if (pokemon.evolution){
+    // Get evolution object tree
+    const evolutionTree = await Evolutions.findById(pokemon.evolution);
+    // If pokemon has a tree, else DB does not yet contain tree
+    if (evolutionTree) {
+      pokemon.evolution = evolutionTree;
+    } else {
+      pokemon.evolution = pokemon.evolution;
+    }
+    response.locals.pokemon = pokemon;
+  }
   next();
 });
 
@@ -281,17 +298,15 @@ const readPokemonByGame = asyncHandler(async (request, response, next) => {
 const readPokemon = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
   // See if pokemon has multiple forms
-  const pokemonForms = await FormTabs.findById(pokemon._id).lean();
-  console.log('pokemonForms', pokemonForms);
+  const pokemonForms = await FormTabs.findById(Math.floor(pokemon._id)).lean();
   // Get pokemon forms tab data if formsTab exists.
   if (pokemon.formsTab) {
-    const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
+    const forms = await getPokemonForms(pokemon._id, pokemonForms.tab, moves);
     disconnect();
     response.status(200).json(forms);
   } else {
     // Get more detailed information for each pokemon move for MoveModal.
     pokemon.moves = getPokemonMoves(pokemon.moves, moves);
-
     disconnect();
     response.status(200).json(pokemon);
   }
@@ -340,7 +355,7 @@ const listNational = asyncHandler(async (request, response) => {
 });
 
 module.exports = {
-  read: [connect, pokemonExists, getMoves, reformatPokemonBaseStats, readPokemon],
+  read: [connect, pokemonExists, getMoves, reformatPokemonBaseStats, reformatPokemonEvolution, readPokemon],
   readGame: [connect, pokemonExists, getMoves, readPokemonByGame],
   list: [connect, listNational],
 };
