@@ -72,7 +72,8 @@ const getPokemonForms = async (pokemonId, formsTab, dbMoves) => {
     formsTab: []
   }
 
-  for (let i = 0; i < formsTab.length; i++) {
+  for (let i = 0; i < formsTab.length - 1; i++) {
+    console.log(i);
     const form = formsTab[i];
     if (form.id === pokemonId) {
       returnForms.startingIndex = i;
@@ -282,10 +283,11 @@ const readPokemon = asyncHandler(async (request, response, next) => {
   const { pokemon, moves } = response.locals;
   // See if pokemon has multiple forms
   const pokemonForms = await FormTabs.findById(pokemon._id).lean();
-  console.log('pokemonForms', pokemonForms);
+  // console.log('pokemonForms', pokemonForms);
   // Get pokemon forms tab data if formsTab exists.
-  if (pokemon.formsTab) {
-    const forms = await getPokemonForms(pokemon._id, pokemon.formsTab, moves);
+  if (pokemonForms.tab) {
+    console.log('in here');
+    const forms = await getPokemonForms(pokemon._id, pokemonForms.tab, moves);
     disconnect();
     response.status(200).json(forms);
   } else {
