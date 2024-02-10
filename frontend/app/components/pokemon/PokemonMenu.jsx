@@ -31,6 +31,10 @@ const genEightMenu = [
   { title: "Isle of Armor Dex.", route: "/pokemon/isle-of-armor/pokedex" },
   { title: "Crown Tundra Dex.", route: "/pokemon/crown-tundra/pokedex" },
 ];
+const genSevenMenu = [
+  { title: "Ultra Sun & Ultra Moon Dex.", route: "/pokemon/ultra-sun-ultra-moon/pokedex" },
+  { title: "Sun & Moon Dex.", route: "/pokemon/sun-moon/pokedex" },
+];
 const genFourMenu = [
   { title: "Platinum Dex.", route: "/pokemon/platinum/pokedex" },
   { title: "Diamond & Pearl Dex.", route: "/pokemon/diamond-pearl/pokedex" },
@@ -61,7 +65,7 @@ const menus = [
 const SideBarIcon = ({ text, route }) => {
   return (
     <Link href={route} scroll={false} passHref>
-      <button className="bg-purple-500 text-gray-100 py-0.5 px-3 rounded transition ease-in-out hover:translate-x-4 hover:bg-purple-100 hover:font-bold duration-300">
+      <button className="bg-purple-500 text-gray-100 py-0.5 px-2 rounded transition ease-in-out hover:translate-x-4 hover:bg-purple-100 hover:font-bold duration-300">
         {text}
       </button>
     </Link>
@@ -90,17 +94,17 @@ export default function PokemonMenu({ searchList }) {
           list={searchList}
           placeholder={"Search"}
         />
-        <div className="font-mono space-y-2 p-2 text-left text-lg border bg-gray-700 m-2 rounded-xl border-purple-400">
+        <div className="font-mono space-y-2 text-sm text-left m-2 rounded-xl ">
           <SideBarIcon route={"/pokemon"} text={"Pokemon Home"} />
           {menus.map((menuItem) => (
             <div
               key={menuItem.title}
               className=" space-y-2 pb-2 border-b border-purple-100"
             >
-              <div className="bg-gray-900 text-gray-100 font-bold py-1 px-2 rounded w-fit">
+              <div className="text-gray-100 font-bold py-1 px-2">
                 {menuItem.title}
               </div>
-              <div className={"pl-4  flex flex-col space-y-1"}>
+              <div className={"flex flex-col space-y-1"}>
                 {menuItem.list.map((page, index) => (
                   <SideBarIcon
                     key={index}

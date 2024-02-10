@@ -1,6 +1,10 @@
-import ArticleList from '@/components/articles/ArticlesList';
-import { mainArticles } from '@/articles/main';
+import ArticleList from "@/components/articles/ArticlesList";
+import { mainArticles } from "@/articles/main";
 
 export default function Articles() {
-  return <ArticleList list={mainArticles} route={'articles/'} />;
+    return (
+        <div className="min-h-screen">
+            <ArticleList list={mainArticles} route={"articles/"} />
+        </div>
+    );
 }
