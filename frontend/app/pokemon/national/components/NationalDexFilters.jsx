@@ -18,6 +18,7 @@ export default function NationalDexFilters({ searchRoute }) {
   const [typeTwo, setTypeTwo] = useState(() => stateInitial());
   const [sortSelected, setSortSelected] = useState(() => stateInitial());
   const [statSelected, setStatSelected] = useState(() => stateInitial());
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const onResetHandler = () => {
     setTypeOne("");
     setTypeTwo("");
@@ -30,14 +31,34 @@ export default function NationalDexFilters({ searchRoute }) {
   // When filter search is clicked
   const onFilterSubmit = (event) => {
     // create params for the query
-    const params = {};
-    if (typeOne !== '') { params.typeOne = typeOne };
-    if (typeTwo !== '') { params.typeTwo = typeTwo };
-    if (sortSelected !== '') { params.sort = sortSelected };
-    if (statSelected !== '') { params.stat = statSelected };
+    // const params = {};
+    // if (typeOne !== '') { params.typeOne = typeOne };
+    // if (typeTwo !== '') { params.typeTwo = typeTwo };
+    // if (sortSelected !== '') { params.sort = sortSelected };
+    // if (statSelected !== '') { params.stat = statSelected };
+    const params = {
+      typeOne: selectedTypes[0] ? selectedTypes[0] : null,
+      typeTwo: selectedTypes[1] ? selectedTypes[1] : null,
+      sort: sortSelected,
+      stat: statSelected,
+    };
     // This pushes the route with the new query
     pokedexOnFilterSubmit(event, router, params, searchRoute);
   };
+
+  const onTypeSelectHandler = (event, type) => {
+    const newTypes = selectedTypes;
+    if (newTypes.includes(type)){
+      const foundTypeIndex = newTypes.indexOf(type);
+      newTypes.splice(foundTypeIndex, 1);
+      setSelectedTypes([...newTypes]);
+    } else {
+      if (selectedTypes.length < 2){
+        newTypes.push(type);
+        setSelectedTypes([...newTypes]);
+      }
+    } 
+  }
 
   const types = [
     "Normal",
@@ -93,14 +114,14 @@ export default function NationalDexFilters({ searchRoute }) {
             <FilterLabel label={"Pick a type"} />
             <div className="flex flex-wrap">
               {types.map((type) => (
-                <button key={type} onClick={() => setTypeOne(type)}>
+                <button key={type} onClick={(event) => onTypeSelectHandler(event, type)}>
                   <Image
                     src={`/pokemon/typeIcons/${type.toLowerCase()}.svg`}
                     alt={type}
                     height={60}
                     width={60}
                     className={`p-1 m-1 ${
-                      typeOne === type
+                      selectedTypes.includes(type)
                         ? "border-4 border-purple-100 rounded-full shadow-lg shadow-purple-300"
                         : null
                     }`}
@@ -109,7 +130,7 @@ export default function NationalDexFilters({ searchRoute }) {
               ))}
             </div>
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <FilterLabel label={"Pick another type"} />
             <div className="flex flex-wrap">
               {types.map((type) => (
@@ -128,7 +149,7 @@ export default function NationalDexFilters({ searchRoute }) {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col">
             <FilterLabel label={"Asc = Lowest first / Desc = Greatest first"} />
             <div className="flex flex-row">

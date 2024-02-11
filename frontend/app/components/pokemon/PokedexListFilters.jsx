@@ -20,9 +20,11 @@ export default function PokedexListFilters({
   const [typeTwo, setTypeTwo] = useState(() => stateInitial());
   const [sortSelected, setSortSelected] = useState(() => stateInitial());
   const [statSelected, setStatSelected] = useState(() => stateInitial());
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const onResetHandler = () => {
-    setTypeOne("");
-    setTypeTwo("");
+    // setTypeOne("");
+    // setTypeTwo("");
+    setSelectedTypes([]);
     setSortSelected("");
     setStatSelected("");
     if (asPath !== searchRoute) {
@@ -33,8 +35,8 @@ export default function PokedexListFilters({
   const onFilterSubmit = (event) => {
     // create params for the query
     const params = {
-      typeOne: typeOne,
-      typeTwo: typeTwo,
+      typeOne: selectedTypes[0] ? selectedTypes[0] : null,
+      typeTwo: selectedTypes[1] ? selectedTypes[1] : null,
       sort: sortSelected,
       stat: statSelected,
     };
@@ -64,6 +66,20 @@ export default function PokedexListFilters({
   ];
   const sorting = ["Asc", "Desc"];
   const stats = ["HP", "Atk", "Def", "SpAtk", "SpDef", "Spd"];
+
+  const onTypeSelectHandler = (event, type) => {
+    const newTypes = selectedTypes;
+    if (newTypes.includes(type)){
+      const foundTypeIndex = newTypes.indexOf(type);
+      newTypes.splice(foundTypeIndex, 1);
+      setSelectedTypes([...newTypes]);
+    } else {
+      if (selectedTypes.length < 2){
+        newTypes.push(type);
+        setSelectedTypes([...newTypes]);
+      }
+    } 
+  }
 
   return (
     <div className="flex flex-col space-y-4 p-2 font-mono bg-gray-700 m-2 rounded-lg border-2 border-purple-300">
@@ -96,14 +112,14 @@ export default function PokedexListFilters({
             <FilterLabel label={"Pick a type"} />
             <div className="flex flex-wrap">
               {types.map((type) => (
-                <button onClick={() => setTypeOne(type)}>
+                <button onClick={(event) => onTypeSelectHandler(event, type)}>
                   <Image
                     src={`/pokemon/typeIcons/${type.toLowerCase()}.svg`}
                     alt={type}
                     height={60}
                     width={60}
                     className={`p-1 m-1 ${
-                      typeOne === type
+                      selectedTypes.includes(type)
                         ? "border-4 border-purple-100 rounded-full shadow-lg shadow-purple-300"
                         : null
                     }`}
@@ -112,7 +128,7 @@ export default function PokedexListFilters({
               ))}
             </div>
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <FilterLabel label={"Pick another type"} />
             <div className="flex flex-wrap">
               {types.map((type) => (
@@ -131,7 +147,7 @@ export default function PokedexListFilters({
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col">
             <FilterLabel label={"Asc = Lowest first / Desc = Greatest first"} />
             <div className="flex flex-row">

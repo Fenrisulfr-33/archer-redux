@@ -19,7 +19,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className="bg-gray-900">
         <Header />
-        <div>{children}</div>
+        <div className="min-h-screen">{children}</div>
         <Footer />
       </body>
     </html>
