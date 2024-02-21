@@ -17,7 +17,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-gray-900">
+      <body className="bg-gray-900 font-mono">
         <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
