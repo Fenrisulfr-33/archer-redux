@@ -60,13 +60,11 @@ export default function PokemonDropdownMenu() {
                             </div>
                             <div className="col-flex space-y-2">
                                 {menuItem.list.map((listItem) => (
-                                    // <li>
-                                    <Link href={"#"} scroll={false} passHref>
+                                    <Link href={listItem.route} scroll={false} passHref>
                                         <button className="w-full text-left bg-purple-500 text-gray-100 py-0.5 px-2 rounded hover:bg-purple-100">
                                             {listItem.title}
                                         </button>
                                     </Link>
-                                    // </li>
                                 ))}
                             </div>
                         </div>

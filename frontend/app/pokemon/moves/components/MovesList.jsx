@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from "react";
-import PokemonTableLayout from "./PokemonTableLayout";
-import PaginationLayout from "../pagination/PaginationLayout";
+import PokemonTableLayout from "../../../components/pokemon/PokemonTableLayout";
+import PaginationLayout from "../../../components/pagination/PaginationLayout";
 import MovesRow from "./MovesRow";
-import { moves } from "../variables/pokemonHeaders";
+import { moves } from "../../../components/variables/pokemonHeaders";
 
 export default function MovesList({ list }) {
   // Pagination

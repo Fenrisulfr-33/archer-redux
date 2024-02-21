@@ -1,4 +1,4 @@
-import { typeColors } from "../variables/typeColors";
+import { typeColors } from "../../../components/variables/typeColors";
 import Link from "next/link";
 
 export default function MovesRow({
